@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<TITLE>Crypto++ Library | 5.6.1 Release</TITLE>
+<META NAME="description" CONTENT="free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
+<META NAME="keywords" CONTENT="Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, elliptic curve">
+</HEAD>
+<BODY>
+<H1><A HREF="/">Crypto++ 5.6.1</A></H1>
+<P>Crypto++ 5.6.1 was released on August 09, 2010. 5.6.1 fixed several bugs and added support for AES-NI.
+<H2>Download</H2>
+<P>The download is available from the Crypto++ website. The checksums for the download are below.</P>
+<UL>
+  <LI><A HREF="cryptopp561.zip">Original cryptopp561.zip</A>
+  <LI>SHA-1: 31dbb456c21f50865218c57b7eaf4c955a222ba1
+  <LI>SHA-256: 98e74d8cb17a38033354519ac8ba9c5d98a6dc00bf5d1ec3c533c2e8ec86f268
+  <LI>SHA-512: 6cc07f36b84a1043e01e458a826d4e3626a2d87b2f606352bc18f607e1c1a68dc3c9b3454659bc1e21e07c9addbf6f4255c5848205fb31c3f445c31a00ebfbf1
+  <LI>WHIRLPOOL: 51021ec68fa5b4a988fa343dce1e64455b33c922691a842a2f7801d7359e400bff342f381393aae42114a061cf9ab6365271d7a5c21dd5c26330d41dcb59bfc9
+</UL>
+<P>Mirrors for the download are below. Note that GitHub and Sourceforge checksums on the ZIP or TAR are different because each creates the archive from sources.</P>
+<UL>
+  <LI><A HREF="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_1">GitHub cryptopp561.zip</A>
+  <LI><A HREF="//prdownloads.sourceforge.net/cryptopp/cryptopp561.zip" TARGET="_blank">Sourceforge cryptopp561.zip</A>
+</UL>
+<H2>Release Notes</H2>
+<P>The release notes for Crypto++ 5.6.1 follows.</P>
+<UL>
+  <LI>added support for AES-NI and CLMUL instruction sets in AES and GMAC/GCM
+  <LI>removed WAKE-CFB
+  <LI>fixed several bugs in the SHA-256 x86/x64 assembly code:
+    <UL>
+      <LI>incorrect hash on non-SSE2 x86 machines on non-aligned input
+      <LI>incorrect hash on x86 machines when input crosses 0x80000000
+      <LI>incorrect hash on x64 when compiled with GCC with optimizations enabled
+    </UL>
+  <LI>fixed bugs in AES x86 and x64 assembly causing crashes in some MSVC build configurations
+  <LI>switched to a public domain implementation of MARS
+  <LI>ported to MSVC 2010, GCC 4.5.1, Sun Studio 12u1, C++Builder 2010, Intel C++ Compiler 11.1
+  <LI>renamed the MSVC DLL project to "cryptopp" for compatibility with MSVC 2010
+</UL>
+
+<H2>File Changes</H2>
+<P>Below is a list of files that were added or deleted at Crypto++ 5.6.1.</P>
+<PRE>$ git diff-tree -r --summary CRYPTOPP_5_6_1 CRYPTOPP_5_6_2 &#124; grep -v "change" &#124; awk '{$2=$3=""; print $0}'
+create TestVectors/mars.txt
+create TestVectors/wake.txt</PRE>
+
+<!--#include virtual="/footer.html" -->
+</BODY>
+</HTML>

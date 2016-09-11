@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<TITLE>Crypto++ Library &#124; 5.6.4 Release</TITLE>
+<META NAME="description" CONTENT="free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
+<META NAME="keywords" CONTENT="Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+</HEAD>
+<BODY>
+<H1><A HREF="/">Crypto++ 5.6.4</A></H1>
+<P>Crypto++ 5.6.4 was released on September 11, 2016. The 5.6.4 release was mostly a maintenance release. The release included a few new classes, like BLAKE2b, BLAKE2s, ChaCha8/12/20, HMQV and FHMQV.</P>
+
+<H2>Download</H2>
+<P>The download is available from the Crypto++ website. The checksums for the download are below.</P>
+<UL>
+  <LI><A HREF="cryptopp564.zip">Original cryptopp564.zip</A>
+  <LI>SHA1: effa1770b81dfe05db48ddc0468ead8660929650
+  <LI>SHA256: be430377b05c15971d5ccb6e44b4d95470f561024ed6d701fe3da3a188c84ad7
+  <LI>SHA512: d9f0ce92f5f95794b5a43d5ae865bfe7bae555f1565210dd4fd9fa9d44b2f801d947e216042099f7d40dd83e3d385a6346343b05431f05bf04276ba85b7ff63f
+  <LI>WHIRLPOOL: 344354e2b4a822eb1f431137678067f6a042e710c13ab70e53dca2523f29b8bcf2227e6973f67e69079ddde789f1af764c0913a0e73808e784cec195ef722ce4
+</UL>
+<P>Mirrors for the download are below. Note that GitHub and Sourceforge checksums on the ZIP or TAR are different because each creates the archive from sources.</P>
+<UL>
+  <LI><A HREF="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_4">GitHub cryptopp564.zip</A>
+  <LI><A HREF="//prdownloads.sourceforge.net/cryptopp/cryptopp564.zip" TARGET="_blank">Sourceforge cryptopp564.zip</A>
+</UL>
+
+<H2>Release Notes</H2>
+<P>The release notes for Crypto++ 5.6.4 follows.</P>
+<UL>
+	<LI>maintenance release, honored API/ABI/Versioning requirements
+	<LI>expanded community input and support
+		<UL>
+          <LI>22 unique contributors for this release
+		</UL>
+	<LI>fixed CVE-2016-3995
+	<LI>changed SHA3 to FIPS 202 (F1600, XOF d=0x06)
+	<LI>added Keccak (F1600, XOF d=0x01)
+	<LI>added ChaCha (ChaCha8/12/20)
+	<LI>added HMQV and FHMQV
+		<UL>
+          <LI>Hashed and Fully Hashed MQV
+	    </UL>
+	<LI>added BLAKE2 (BLAKE2s and BLAKE2b)
+		<UL>
+          <LI>C++, SSE2, SSE4, ARM NEON and ARMv8 ASIMD
+		</UL>
+	<LI>added CRC32-C
+		<UL>
+          <LI>C/C++, Amd64 CRC, and ARMv8 CRC
+		</UL>
+	<LI>improved Rabin-William signatures
+		<UL>
+          <LI>Tweaked roots <em>e</em> and <em>f</em>
+		</UL>
+	<LI>improved C++11 support
+		<UL>
+          <LI>atomics, threads and fences
+          <LI>alginof, alignas
+          <LI>constexpr
+          <LI>noexcept
+		</UL>
+	<LI>improved GCM mode
+		<UL>
+          <LI>ARM NEON and ARMv8 ASIMD
+          <LI>ARMv8 carry-less multiply
+		</UL>
+	<LI>improved Windows 8 and 10 support
+		<UL>
+          <LI>Windows Phone, Universal Windows Platform, Windows Store
+		</UL>
+	<LI>improved MIPS, ARMv7 and ARMv8 support
+		<UL>
+          <LI>added scripts setenv-&#123;android &#124; embedded &#124; ios&#125;.sh for GNUmakefile-cross
+          <LI>aggressive use of -march=&lt;arch&gt; and -mfpu=&lt;fpu&gt; in cryptest.sh
+		</UL>
+	<LI>improved build systems
+		<UL>
+          <LI>Visual Studio 2010 default
+          <LI>added CMake support (lacks FindCryptopp.cmake)
+          <LI>archived VC++ 5/0/6.0 project files (vc60.zip)
+          <LI>archived VS2005 project files (vs2005.zip)
+          <LI>archived Borland project files (bds10.zip)
+		</UL>
+	<LI>improved Testing and QA
+		<UL>
+          <LI>expanded platforms and compilers
+          <LI>added code generation tests based on CPU features
+          <LI>added C++03, C++11, C++14, C++17 testing
+          <LI>added -O3, -O5, -Ofast and -Os testing
+		</UL>
+	<LI>ported to MSVC 2015 SP3, Xcode 7.3, Sun Studio 12.5, GCC 7.0, MacPorts GCC 7.0, Clang 3.8, Intel C++ 17.00
+</UL>
+
+<H2>Minor Bug Fixes and Issues</H2>
+<P>The minor bug fix and issue list for Crypto++ 5.6.4 follows. Most issues are tracked for auditing and C&amp;A
+	 purposes, but the list may not be complete. A number in parenthesis is the
+	<A HREF="http://github.com/weidai11/cryptopp/issues">GitHub	Issue number</A>, if it was tracked. Sometimes a
+	Git commit is referenced, but many trivial GitHub commits are omitted. Missing Issue numbers or lack of
+	consecutiveness usually indicates feature requests and &quot;won&#39;t fix/can&#39;t fix&quot; type reports.</P>
+
+<P>The list below has about 70 issues. 10 of the 70 are roughly feature requests that required tracking due to non-trivial
+	code changes. For the remaining 60 issues, the project's test scripts, <tt>cryptest.sh</tt> and <tt>cryptest.nmake</tt>,
+	uncovered about 47 (78.3%) of them.</P>
+<UL>
+	<LI>Timing Attack Counter Measure AES (146) and Camellia (203) (AES was CVE&#39;d; Camellia was pre-emptive)
+	<LI>Implementing GCM on ARMv8 (177)
+	<LI>Apple Clang 6.3 and undeclared identifier &#39;_rdseed64_step&#39; (183)
+	<LI>Apple Clang 6.0 (LLVM Clang 3.5) and alignment on __m128i variable (256)
+	<LI>Apple Clang 5.0 (LLVM Clang 3.4) and undeclared identifier &#39;_mm_clmulepi64_si128&#39; (184)
+	<LI>Apple Clang 5.0 compiler crash when using pclmulqdq ASM insn (182)
+	<LI>Apple Clang 6.0 (LLVM Clang 3.5), ARM and &quot;error: no matching function for call to vcombine_u64&quot; (234)
+	<LI>Apple Clang 6.0 (LLVM Clang 3.5), ARM and &quot;compiler does not support &#39;-mfpu=neon-vfpv4&#39;&quot; (246)
+	<LI>LLVM Clang and undeclared identifiers &#39;_tzcnt_u32&#39; and &#39;_blsr_u32&#39; (205)
+	<LI>LLVM Clang 3.5 and &quot;SSE instruction set not enabled&quot; (196)		
+	<LI>LLVM Clang 3.5 and &quot;error: SSSE3 instruction set not enabled&quot; (245)		
+	<LI>Missing symbols for FixedKeyLength&lt;params&gt;::KEYLENGTH under C++11 and C++14 with constexpr (255)
+	<LI>StaticGetValidKeyLength returns incorrect values due to incorrect preprocessor macro (252)
+	<LI>GCC, ARMv8 and &quot;fatal error: arm_acle.h: No such file or directory&quot; (238)
+	<LI>Mingw-w64 and &#39;sigset_t&#39; does not name a type (237)
+	<LI>word64 compile problems due to SSE2 and NEON interfaces (236)
+	<LI>GCC 4.9, Aarch32 and internal compiler error: in expand_shift_1, at expmed.c:2318 (233)
+	<LI>GCC 4.9, Raspberry Pi 3 and Bus Error (231)
+	<LI>Sun GCC 4.8 and missing 64-bit BMI/BMI2 instructions (230)
+	<LI>Sun Studio 12.1-12.3 and &quot;Error: cannot use vector unsigned long long[2] to initialize vector unsigned long long[2]&quot; (229)
+	<LI>Sun Studio 12.2 and failed compile using PLATFORM_CXXFLAGS (228, Commit 199c00f30abeaf04)
+	<LI>Sun Studio 12.2-12.5 and failed compile for gcm.cpp (228, Commit 199c00f30abeaf04)
+	<LI>Sun Studio 12.4 and failed compile for rijndael.cpp (224, Commit 199c00f30abeaf04)
+	<LI>Sun Studio 12.4 and &quot;Error: The operand ___LKDB cannot be assigned to...&quot; (188)
+	<LI>Sun Studio 12.3 and 12.4 builds broken (179)
+	<LI>Sun Studio 12.5 and BLAKE2b runtime failure (247)
+	<LI>Sun Studio 12.5 and &quot;assertion failed in function pr_post_process_node() @ preopt.c:3868&quot; (220, Commit 199c00f30abeaf04)
+	<LI>OS X and Valgrind findings for uninitialized variables when using -Ofast (223)
+	<LI>OS X and incorrect install_name for dynamic library (80)
+	<LI>Android cross-compile autoconf header check (222)
+	<LI>ld.gold and i686 without PIC: &quot;/usr/bin/ld: -f may not be used without -shared&quot; (219)
+	<LI>VS2015 and multiple C4589 warnings, &quot;Constructor of abstract class X ignores initializer for virtual base class Y&quot; (214)
+	<LI>Blake2s fails under VS2008/Win32/Release for Validation Suite (209)
+	<LI>CMake and &quot;No rule to make target &#39;static&#39;. Stop&quot; (192)
+	<LI>CMake and &quot;MACOSX_RPATH is not specified for the following targets...&quot; (191)
+	<LI>CMake and &quot;unknown target_include_directories&quot; (181)
+	<LI>CMake and &quot;include_directories given empty-string as include directory&quot; (199)
+	<LI>CMake and &quot;write_basic_package_version_file&quot; (198)
+	<LI>CMake path variable should use CURRENT_SOURCE_DIR (135)
+	<LI>cpu.h and error: expected unqualified-id before &#39;int&#39; (193)
+	<LI>MacPorts GCC should use Clang integrated assembler via -Wa,-q (190)
+	<LI>MacPorts GCC engages -DCRYPTOPP_DISABLE_ASM (189)
+	<LI>Cygwin i686/GCC 5.3 and error: &#39;u_short&#39; was not declared in this scope (187)
+	<LI>Cygwin x86_64 and failed compile when using std=c++03 (148)
+	<LI>Cygwin x86_64 and &#39;fd_set&#39; does not name a type (137)
+	<LI>Cygwin x86_64 crash with -DDEBUG -Os (100)
+	<LI>cryptest.exe reports wrong CPU features (176)
+	<LI>Use std::call for singleton implementation (173)
+	<LI>Performance based counter for TimerBase on Windows Phone and Windows Store apps (168)
+	<LI>Deactivate FIPS code paths for Windows Store apps (167)
+	<LI>NO_SOCKET macro (or similar) to remove sockets only for Windows Store apps (165)
+	<LI>NonblockingRng using BCryptGenRandom for Windows 10 and above (165)
+	<LI>VS2015 with Update2 and broken build using /MD (163)
+	<LI>blake2.cpp and crc.cpp compile issues under [Visual Studio] ARM Developer Prompt (162)
+	<LI>Failed build on Debian 8 and m68k processor (153)
+	<LI>validat1.cpp compile issue with NO_OS_DEPENDENCE defined (141)
+	<LI>Assert when running CMAC example on the wiki (138)
+	<LI>StringNarrow may violate ODR and lead to UB (127)
+	<LI>GCC and Clang warnings when compiling with -Wcast-align (122)
+	<LI>VS2008 C4996 warning due to std::reverse_copy (123)
+	<LI>Android NDK and failed compile due to g_pAssignIntToInteger (119)
+	<LI>Inflator throws end of compressed block on complete compressed data (112)
+	<LI>Crash when setting alternate alphabet for Base32 decoder (108)
+	<LI>Valgrind reports unintialized reads under 32-bit ARM (105)
+	<LI>Borland failed compile due to size_t/unsigned int mismatch in PKCS_DigestDecoration::length (102)
+	<LI>SecBlock and incorrect result during self assignment (Issue 92, Commit 605744d8260c6ada)
+	<LI>SecBlock and incorrect result during append when T is not a byte (Issue 92, Commit 81482d8348eae0b4)
+	<LI>secblock.h failed compile and typo inside assert (92)
+	<LI>Assert during ZDeflate operation (83)
+	<LI>Assert in misc.h due to NULL pointers in memcpy_s and memmove_s (79)
+	<LI>PolynomialMod2::operator&lt;&lt;= incorrect result (64)
+</UL>
+
+<H2>File Changes</H2>
+
+<P>Below is a list of <em>source</em> files that were added or deleted at Crypto++ 5.6.4.</P>
+
+<PRE>$ git diff-tree -r --summary CRYPTOPP_5_6_3 CRYPTOPP_5_6_4 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+create CMakeLists.txt
+create TestData/fhmqv160.dat
+create TestData/fhmqv256.dat
+create TestData/fhmqv384.dat
+create TestData/fhmqv512.dat
+create TestData/hmqv160.dat
+create TestData/hmqv256.dat
+create TestData/hmqv384.dat
+create TestData/hmqv512.dat
+create TestVectors/blake2.txt
+create TestVectors/blake2b.txt
+create TestVectors/blake2s.txt
+create TestVectors/chacha.txt
+create TestVectors/dsa_rfc6979.txt
+create TestVectors/keccak.txt
+delete TestVectors/sha3.txt
+create TestVectors/sha3_224_fips_202.txt
+create TestVectors/sha3_256_fips_202.txt
+create TestVectors/sha3_384_fips_202.txt
+create TestVectors/sha3_512_fips_202.txt
+create TestVectors/sha3_fips_202.txt
+delete bench.cpp
+create bench1.cpp
+create blake2.cpp
+create blake2.h
+create chacha.cpp
+create chacha.h
+delete cryptlib_bds.cpp
+create fhmqv.h
+create hmqv.h
+create keccak.cpp
+create keccak.h</PRE>
+
+<P>Below is a list of <em>all</em> files that were added or deleted at Crypto++ 5.6.4. The list includes Windows IDE project files and archives.</P>
+<PRE>$ git diff-tree -r --summary CRYPTOPP_5_6_3 CRYPTOPP_5_6_4 &#124; grep -v "change" &#124; awk '{$2=$3=""; print $0}'
+create CMakeLists.txt
+create TestData/fhmqv160.dat
+create TestData/fhmqv256.dat
+create TestData/fhmqv384.dat
+create TestData/fhmqv512.dat
+create TestData/hmqv160.dat
+create TestData/hmqv256.dat
+create TestData/hmqv384.dat
+create TestData/hmqv512.dat
+create TestVectors/blake2.txt
+create TestVectors/blake2b.txt
+create TestVectors/blake2s.txt
+create TestVectors/chacha.txt
+create TestVectors/dsa_rfc6979.txt
+create TestVectors/keccak.txt
+delete TestVectors/sha3.txt
+create TestVectors/sha3_224_fips_202.txt
+create TestVectors/sha3_256_fips_202.txt
+create TestVectors/sha3_384_fips_202.txt
+create TestVectors/sha3_512_fips_202.txt
+create TestVectors/sha3_fips_202.txt
+create bds10.zip
+delete bench.cpp
+create bench1.cpp
+create blake2.cpp
+create blake2.h
+create chacha.cpp
+create chacha.h
+delete cryptdll.dsp
+delete cryptdll.vcproj
+create cryptdll.vcxproj
+create cryptdll.vcxproj.filters
+create cryptest-ios.sh
+delete cryptest.dsp
+delete cryptest.dsw
+create cryptest.nmake
+delete cryptest.vcproj
+create cryptest.vcxproj
+create cryptest.vcxproj.filters
+create cryptest.vcxproj.user
+delete cryptest_bds.bdsgroup
+delete cryptest_bds.bdsproj
+delete cryptest_bds.bpf
+delete cryptlib.dsp
+delete cryptlib.vcproj
+create cryptlib.vcxproj
+create cryptlib.vcxproj.filters
+delete cryptlib_bds.bdsproj
+delete cryptlib_bds.cpp
+create cryptopp-config.cmake
+delete dlltest.dsp
+delete dlltest.vcproj
+create dlltest.vcxproj
+create fhmqv.h
+create hmqv.h
+create keccak.cpp
+create keccak.h
+delete make-rdrand.cmd
+create setenv-android.sh
+create setenv-embedded.sh
+create setenv-ios.sh
+create vc60.zip
+create vs2005.zip
+delete vs2010.zip</PRE>
+
+<!--#include virtual="/footer.html" -->
+</BODY>
+</HTML>
