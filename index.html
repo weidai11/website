@@ -154,20 +154,24 @@ while the individual files in the compilation are all public domain.</P>
 	<LI>maintenance release, recompile of programs recommended
 	<LI>expanded community input and support
 		<UL>
-          <LI>24 unique contributors as of this release
+			<LI>25 unique contributors as of this release
 		</UL>
-	<LI>fixed CVE-2016-7420 (Issue 277, <tt>NDEBUG</tt> for production/release)
-	<LI>fixed CVE-2016-7544 (Issue 302, <tt>_malloca</tt> and <tt>_freea</tt>)
+	<LI>fixed CVE-2016-7420 (Issue 277, document <tt>NDEBUG</tt> for production/release)
+	<LI>fixed CVE-2016-7544 (Issue 302, avoid <tt>_malloca</tt> and <tt>_freea</tt>)
+	<LI>shipped library in recommended state
+		<UL>
+			<LI>backwards compatibility achieved with <tt>&lt;config.compat&gt;</tt>
+		</UL>
 	<LI>Visual Studio project file cleanup
 		<UL>
-		  <LI>improved X86 and X64 MSBuild support
-		  <LI>added ARM-based build support
+			<LI>improved X86 and X64 MSBuild support
+			<LI>added ARM-based MSBuild awareness
 		</UL>
 	<LI>improved Testing and QA
 		<UL>
-          <LI>expanded platforms and compilers
-          <LI>expanded Coverity into OS X and Windows platforms
-          <LI>added Windows test scripts using Strawberry Perl
+			<LI>expanded platforms and compilers
+			<LI>expanded Coverity into OS X and Windows platforms
+			<LI>added Windows test scripts using Strawberry Perl
 		</UL>
 	<LI>ported to MSVC 2015 SP3, Xcode 7.3, Sun Studio 12.5, GCC 7.0, MacPorts GCC 7.0, Clang 3.8, Intel C++ 17.00
 </UL>
