@@ -12,6 +12,8 @@
 
 <P>The first, CVE-2016-7420, was a procedural finding due to external build systems failing to define <tt>NDEBUG</tt> for release builds. The procedural gap was a failure to tell users to define it. The second, CVE-2016-7544, was a potential memory corruption on Windows platforms when using Microsoft compilers due to use of <tt>_malloca</tt> and <tt>_freea</tt>.</P>
 
+<P>Due to CVE-2016-7420 and the possibility for an unwanted <tt>assert</tt> to egress data, users and distros are encouraged ot recompile the library and all dependent programs.</P>
+
 <H2>Download</H2>
 <P>The download is available from the Crypto++ website. The checksums for the download are below.</P>
 <UL>
@@ -33,7 +35,7 @@
 	<LI>maintenance release
 	<LI>expanded community input and support
 		<UL>
-          <LI>24 unique contributors for this release
+          <LI>24 unique contributors as of this release
 		</UL>
 	<LI>fixed CVE-2016-7420 (Issue 277, <tt>NDEBUG</tt> for production/release)
 	<LI>fixed CVE-2016-7544 (Issue 302, <tt>_malloca</tt> and <tt>_freea</tt>)
