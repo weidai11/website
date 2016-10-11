@@ -71,12 +71,12 @@
 	<LI>Improved MSBuild support, including future ARM-based builds (Issue 316)
 	<LI>Cygwin, Newlib and broken compile when <tt>-std=XXX</tt> due to <tt>&lt;signal.h&gt;</tt> (Issue 315)
 	<LI>Sun Studio 12.2-12.4 and failed debug compile due to <tt>&lt;signal.h&gt;</tt> (Issue 289)
-	<LI>Sun Studio 12.5 and incorrect results for GCM when using SSE2 ASM (Issue 284)
 	<LI>Sun Studio 12.3-12.4, integer.cpp and "Types cannot be declared in anonymous union" (Issue 274)
+	<LI>Sun Studio 12.5 and incorrect results for GCM when using SSE2 ASM (Issue 284)
 	<LI>Solaris GCC and "error: constructor priorities are not supported" (Issue 289)
 	<LI>Clang 3.3, i686 and "error: unknown use of instruction mnemonic without a size suffix (Issue 264)
 	<LI>Clang 3.7 warnings for missing/undefined variable templates definitions in pkcspad.h
-	<LI>Additional test scripts for Windows testing (Issue 303)
+	<LI>Additional test scripts for Windows and OS X testing (Issue 303)
 	<LI>Approximately 80 miscellaneous Coverity findings on Windows (Issues 310-12, all minor or false positives)
 	<LI>Approximately 20 miscellaneous Coverity findings on OS X (Issues 295 and 299, all minor or false positives)
 	<LI>MARS max keysize is limited at 32 bytes (Issue 278)
@@ -84,11 +84,11 @@
 	<LI>CMake, Solaris and output artifacts that can't be linked due to missing PIC (Issue 271)
 	<LI>CMake, CMakeList.txt calls out GNUInstallDirs (Issue 268)
 	<LI>Fix port forawrding in <tt>cryptest.exe</tt> program on Unix
-	<LI>Add statics to anonymous namespace
-	<LI>Rewrite some Windows socket code, remove _WINSOCK_DEPRECATED_NO_WARNINGS (Issue 19)
+	<LI>Move file scope statics into anonymous namespace
+	<LI>Rewrite some Windows socket code, remove <tt>_WINSOCK_DEPRECATED_NO_WARNINGS</tt> (Issue 19)
 	<LI>Guard DEBUG_NEW for Visual Studio and leak detection
 	<LI>Remove library supplied aesenc, aesdec and friends (Issue 206)
-	<LI>Use __BIGGEST_ALIGNMENT__ in <tt>&lt;secblock.h&gt;</tt> if its smaller than sizeof(T)
+	<LI>Use <tt>__BIGGEST_ALIGNMENT__</tt> in <tt>&lt;secblock.h&gt;</tt> if its smaller than <tt>sizeof(T)</tt>
 	<LI>Re-enable AES-NI/CLMUL when using Clang Integrated Assembler
 	<LI>Updated documentation
 </UL>
@@ -97,7 +97,7 @@
 
 <P>Below is a list of <em>all</em> files that were added or deleted at Crypto++ 5.6.5.</P>
 
-<PRE>$ git diff-tree -r --summary CRYPTOPP_5_6_4 HEAD | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+<PRE>$ git diff-tree -r --summary CRYPTOPP_5_6_4 CRYPTOPP_5_6_5 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
 create TestScripts/coverity-linux.txt
 create TestScripts/coverity-macosx.txt
 create TestScripts/coverity-windows.txt
