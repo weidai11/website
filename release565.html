@@ -12,7 +12,7 @@
 
 <P>The first, CVE-2016-7420, was a procedural finding due to external build systems failing to define <tt>NDEBUG</tt> for release builds. The procedural gap was a failure to tell users to define it. The second, CVE-2016-7544, was a potential memory corruption on Windows platforms when using Microsoft compilers due to use of <tt>_malloca</tt> and <tt>_freea</tt>.</P>
 
-<P>Due to CVE-2016-7420 and the possibility for an unwanted <tt>assert</tt> to egress data, users and distros are encouraged ot recompile the library and all dependent programs.</P>
+<P>Due to CVE-2016-7420 and the possibility for an unwanted <tt>assert</tt> to egress data, users and distros are encouraged to recompile the library and all dependent programs.</P>
 
 <H2>Download</H2>
 <P>The download is available from the Crypto++ website. The checksums for the download are below.</P>
@@ -75,7 +75,7 @@
 	<LI>Sun Studio 12.5 and incorrect results for GCM when using SSE2 ASM (Issue 284)
 	<LI>Solaris GCC and "error: constructor priorities are not supported" (Issue 289)
 	<LI>Clang 3.3, i686 and "error: unknown use of instruction mnemonic without a size suffix (Issue 264)
-	<LI>Clang 3.7 warnings for missing/undefined variable templates definitions in pkcspad.h
+	<LI>Clang 3.7 warnings for missing/undefined variable templates definitions in <tt>&lt;pkcspad.h&gt;</tt>
 	<LI>Additional test scripts for Windows and OS X testing (Issue 303)
 	<LI>Approximately 80 miscellaneous Coverity findings on Windows (Issues 310-12, all minor or false positives)
 	<LI>Approximately 20 miscellaneous Coverity findings on OS X (Issues 295 and 299, all minor or false positives)
@@ -95,7 +95,7 @@
 
 <H2>File Changes</H2>
 
-<P>Below is a list of <em>all</em> files that were added or deleted at Crypto++ 5.6.5.</P>
+<P>Below is a list of <em>all</em> files that were added or deleted at Crypto++ 5.6.5.</P> The header file <tt>ossig.h</tt> is new and needs to be distributed. Additions to <tt>TestScripts</tt> can probably be ignored.
 
 <PRE>$ git diff-tree -r --summary CRYPTOPP_5_6_4 CRYPTOPP_5_6_5 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
 create TestScripts/coverity-linux.txt
