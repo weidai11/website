@@ -1,603 +1,779 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-<HEAD>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
-<TITLE>Crypto++ Library 5.6.5 &#124; Free C++ Class Library of Cryptographic Schemes</TITLE>
-<META NAME="description" CONTENT="free C++ library for cryptography: includes c
-iphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
-<META NAME="keywords" CONTENT="Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Crypto++ Library 5.6.5 | Free C++ Class Library of Cryptographic
+  Schemes</title>
+  <meta name="description"
+  content="free C++ library for cryptography: includes c iphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
+  <meta name="keywords"
+  content="Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+  <!--
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  -->
+</head>
 
-<!--
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="dynsections.js"></script>
-<link href="doxygen.css" rel="stylesheet" type="text/css" />
--->
-
-<BODY>
+<body>
 
 <table border="0" cellpadding="8" cellspacing="0" bgcolor="#ffffcc">
-  <tr>
-    <td><a href="#news">News</a>
-    <td><a href="#platforms">Platforms</a>
-    <td><b><big><a href="#download">Download</a></big></b>
-    <td><a href="docs/ref/">Manual</a>
-    <td><a href="//github.com/weidai11/cryptopp">GitHub</a>
-    <td><a href="wiki/">Wiki and FAQ</a>
-    <td><a href="#lists">Mailing lists</a>
-    <td><a href="#contributions">Contributions</a>
-    <td><a href="wiki/Related_Links">Related links</a>
-  </tr>
+  <tbody>
+    <tr>
+      <td><a href="#news">News</a> </td>
+      <td><a href="#platforms">Platforms</a> </td>
+      <td><b><big><a href="#download">Download</a></big></b> </td>
+      <td><a href="docs/ref/">Manual</a> </td>
+      <td><a href="//github.com/weidai11/cryptopp">GitHub</a> </td>
+      <td><a href="wiki/">Wiki and FAQ</a> </td>
+      <td><a href="#lists">Mailing lists</a> </td>
+      <td><a href="#contributions">Contributions</a> </td>
+      <td><a href="wiki/Related_Links">Related links</a> </td>
+    </tr>
+  </tbody>
 </table>
 
 <div>
-<H1>Crypto++<sup>&reg;</sup> Library 5.6.5</H1>
+<h1>Crypto++<sup>®</sup> Library 5.6.5</h1>
 </div>
-
 <!--
-    <div id="navrow1" class="tabs">
-      <ul class="tablist">
-        <li><a href="#news"><span>Current News</span></a></li>
-        <li><a href="#platforms"><span>Platforms</span></a></li>
-        <li><a href="#download"><span>Downloads</span></a></li>
-        <li><a href="docs/ref/"><span>Manual</span></a></li>
-        <li><a href="wiki/FAQ"><span>FAQ</span></a></li>
-		<li><a href="#lists"><span>Mailing Lists</span></a></li>
-		<li><a  href="wiki/Related_Links"><span>Related Links</span></a></li>
-      </ul>
-    </div>
+<div id="navrow1" class="tabs">
+<ul class="tablist">
+<li><a href="#news"><span>Current News</span></a></li>
+<li><a href="#platforms"><span>Platforms</span></a></li>
+<li><a href="#download"><span>Downloads</span></a></li>
+<li><a href="docs/ref/"><span>Manual</span></a></li>
+<li><a href="wiki/FAQ"><span>FAQ</span></a></li>
+<li><a href="#lists"><span>Mailing Lists</span></a></li>
+<li><a href="wiki/Related_Links"><span>Related Links</span></a></li>
+</ul>
+</div>
 -->
 
-<P>Crypto++ Library is a free C++ class library of cryptographic schemes. The library contains the following algorithms:
+<p>Crypto++ Library is a free C++ class library of cryptographic schemes. The
+library contains the following algorithms: </p>
 
-<TABLE frame="void" rules="all" cellspacing=0 cellpadding=4>
-  <tr><th align=right>algorithm type<th  align=left>name</tr>
-  <tr><td align=right>authenticated encryption schemes<td>
-	<a href="http://www.cryptolounge.org/wiki/GCM">GCM</a>,
-	<A HREF="http://www.cryptolounge.org/wiki/CCM">CCM</a>,
-	<A HREF="http://www.cryptolounge.org/wiki/EAX">EAX</a></tr>
-  <tr><td align=right><A HREF="benchmarks.html">high speed</A> stream ciphers<td>
-	<a href="http://www.cryptolounge.org/wiki/Salsa20">ChaCha (ChaCha8/12/20)</a>,
-	<a href="http://www.cryptolounge.org/wiki/PANAMA">Panama</a>,
-	<A HREF="http://www.cryptolounge.org/wiki/Sosemanuk">Sosemanuk</a>,
-	<A HREF="http://www.cryptolounge.org/wiki/Salsa20">Salsa20</a>,
-	<A HREF="http://www.cryptolounge.org/wiki/XSalsa20">XSalsa20</a></tr>
-<tr><td align=right>AES and AES candidates<td>
-	<A HREF="http://www.cryptolounge.org/wiki/AES">AES</A> (Rijndael),
-	<A HREF="http://www.cryptolounge.org/wiki/RC6">RC6</A>,
-	<A HREF="http://www.research.ibm.com/security/mars.html">MARS</A>,
-	<A HREF="http://www.cryptolounge.org/wiki/Twofish">Twofish</A>,
-	<A HREF="http://www.cryptolounge.org/wiki/Serpent">Serpent</A>,
-	<A HREF="http://www.cryptolounge.org/wiki/CAST-256">CAST-256</A>
-<tr><td align=right>other <A HREF="http://en.wikipedia.org/wiki/Block_cipher">block ciphers</A><td>
-	<a href="http://www.cryptolounge.org/wiki/IDEA">IDEA</a>,
-	<a href="http://csrc.nist.gov/cryptval/des.htm">Triple-DES</a> (DES-EDE2 and DES-EDE3),
-	<a href="http://www.cryptolounge.org/wiki/Camellia">Camellia</a>,
-	<a href="http://www.cryptolounge.org/wiki/SEED">SEED</a>,
-	RC5, Blowfish, TEA, XTEA, Skipjack, SHACAL-2
-<tr><td align=right><A HREF="http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation">block cipher modes of operation</A><td>
-	ECB, CBC, CBC ciphertext stealing (CTS), CFB, OFB, counter mode (CTR)
-<tr><td align=right>message authentication codes<td>
-	<a href="http://www.cryptolounge.org/wiki/VMAC">VMAC</a>,
-	<a href="http://www.cryptolounge.org/wiki/HMAC">HMAC</a>,
-	<a href="http://www.cryptolounge.org/wiki/GCM">GMAC (GCM)</a>,
-	<a href="http://www.cryptolounge.org/wiki/CMAC">CMAC</a>,
-	CBC-MAC, DMAC, Two-Track-MAC
-<tr><td align=right>hash functions<td>
-	<A HREF="http://www.cryptolounge.org/wiki/BLAKE2">BLAKE2 (BLAKE2b, BLAKE2s)</A>,
-	<A HREF="http://www.cryptolounge.org/wiki/SHA-1">SHA-1</A>,
-	<a href="http://www.cryptolounge.org/wiki/FIPS_180-2">SHA-2</a> (SHA-224, SHA-256, SHA-384, and SHA-512), SHA-3,
-	<a href="http://www.cryptolounge.org/wiki/Tiger">Tiger</a>,
-	<A HREF="http://www.cryptolounge.org/wiki/WHIRLPOOL">WHIRLPOOL</A>,
-	RIPEMD-128, RIPEMD-256, RIPEMD-160, RIPEMD-320
-<tr><td align=right><A HREF="http://en.wikipedia.org/wiki/Public-key_cryptography">public-key cryptography</A><td>
-	<a href="http://www.nist.gov/dss">RSA, DSA</a>, ElGamal, Nyberg-Rueppel (NR), Rabin-Williams (RW), LUC, LUCELG, DLIES (variants of DHAES), ESIGN
-<tr><td align=right>padding schemes for public-key systems<td>
-	<a href="http://www.rsasecurity.com/rsalabs/pkcs/pkcs-1/">PKCS#1</a> v2.0, OAEP, PSS, PSSR, <a href="http://grouper.ieee.org/groups/1363/">IEEE P1363</a> EMSA2 and EMSA5
-<tr><td align=right>key agreement schemes<td>
-	Diffie-Hellman (DH), Unified Diffie-Hellman (DH2), Menezes-Qu-Vanstone (MQV), Hashed MQV (HMQV), Fully Hashed MQV (FHMQV), LUCDIF, XTR-DH
-<tr><td align=right><A HREF="http://en.wikipedia.org/wiki/Elliptic_curve_cryptography">elliptic curve cryptography</A><td>
-	ECDSA, ECNR, ECIES, ECDH, ECMQV
-<tr><td align=right>insecure or obsolescent algorithms retained for backwards compatibility and historical value<td>
-	<a href="http://www.cryptolounge.org/wiki/MD2">MD2</a>,
-	<a href="http://www.cryptolounge.org/wiki/MD4">MD4</a>,
-	<a href="http://www.cryptolounge.org/wiki/MD5">MD5</a>,
-	<a href="http://www.cryptolounge.org/wiki/PANAMA_%28Hash_Function%29">Panama Hash</a>,
-	<a href="http://www.cryptolounge.org/wiki/DES">DES</a>,
-	<a href="http://www.cryptolounge.org/wiki/RC4">ARC4</a>,
-	<a href="http://www.cryptolounge.org/wiki/SEAL_3.0">SEAL 3.0</a>,
-	WAKE-OFB, DESX (DES-XEX3), RC2, SAFER, 3-WAY, GOST, SHARK, CAST-128, Square
+<table frame="void" rules="all" cellspacing="0" cellpadding="4">
+  <tbody>
+    <tr>
+      <th align="right">Algorithm</th>
+      <th align="left">Name</th>
+    </tr>
+    <tr>
+      <td align="right">authenticated encryption schemes</td>
+      <td><a href="http://www.cryptolounge.org/wiki/GCM">GCM</a>, <a
+        href="http://www.cryptolounge.org/wiki/CCM">CCM</a>, <a
+        href="http://www.cryptolounge.org/wiki/EAX">EAX</a></td>
+    </tr>
+    <tr>
+      <td align="right"><a href="benchmarks.html">high speed</a> stream
+      ciphers</td>
+      <td><a href="http://www.cryptolounge.org/wiki/Salsa20">ChaCha
+        (ChaCha8/12/20)</a>, <a
+        href="http://www.cryptolounge.org/wiki/PANAMA">Panama</a>, <a
+        href="http://www.cryptolounge.org/wiki/Sosemanuk">Sosemanuk</a>, <a
+        href="http://www.cryptolounge.org/wiki/Salsa20">Salsa20</a>, <a
+        href="http://www.cryptolounge.org/wiki/XSalsa20">XSalsa20</a></td>
+    </tr>
+    <tr>
+      <td align="right">AES and AES candidates</td>
+      <td><a href="http://www.cryptolounge.org/wiki/AES">AES</a> (Rijndael), <a
+        href="http://www.cryptolounge.org/wiki/RC6">RC6</a>, <a
+        href="http://www.research.ibm.com/security/mars.html">MARS</a>, <a
+        href="http://www.cryptolounge.org/wiki/Twofish">Twofish</a>, <a
+        href="http://www.cryptolounge.org/wiki/Serpent">Serpent</a>, <a
+        href="http://www.cryptolounge.org/wiki/CAST-256">CAST-256</a> </td>
+    </tr>
+    <tr>
+      <td align="right">other <a
+        href="http://en.wikipedia.org/wiki/Block_cipher">block ciphers</a></td>
+      <td><a href="http://www.cryptolounge.org/wiki/IDEA">IDEA</a>, <a
+        href="http://csrc.nist.gov/cryptval/des.htm">Triple-DES</a> (DES-EDE2
+        and DES-EDE3), <a
+        href="http://www.cryptolounge.org/wiki/Camellia">Camellia</a>, <a
+        href="http://www.cryptolounge.org/wiki/SEED">SEED</a>, RC5, Blowfish,
+        TEA, XTEA, Skipjack, SHACAL-2 </td>
+    </tr>
+    <tr>
+      <td align="right"><a
+        href="http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation">block
+        cipher modes of operation</a></td>
+      <td>ECB, CBC, CBC ciphertext stealing (CTS), CFB, OFB, counter mode (CTR)
+      </td>
+    </tr>
+    <tr>
+      <td align="right">message authentication codes</td>
+      <td><a href="http://www.cryptolounge.org/wiki/VMAC">VMAC</a>, <a
+        href="http://www.cryptolounge.org/wiki/HMAC">HMAC</a>, <a
+        href="http://www.cryptolounge.org/wiki/GCM">GMAC (GCM)</a>, <a
+        href="http://www.cryptolounge.org/wiki/CMAC">CMAC</a>, CBC-MAC, DMAC,
+        Two-Track-MAC </td>
+    </tr>
+    <tr>
+      <td align="right">hash functions</td>
+      <td><a href="http://www.cryptolounge.org/wiki/BLAKE2">BLAKE2 (BLAKE2b,
+        BLAKE2s)</a>, <a
+        href="http://www.cryptolounge.org/wiki/SHA-1">SHA-1</a>, <a
+        href="http://www.cryptolounge.org/wiki/FIPS_180-2">SHA-2</a> (SHA-224,
+        SHA-256, SHA-384, and SHA-512), SHA-3, <a
+        href="http://www.cryptolounge.org/wiki/Tiger">Tiger</a>, <a
+        href="http://www.cryptolounge.org/wiki/WHIRLPOOL">WHIRLPOOL</a>,
+        RIPEMD-128, RIPEMD-256, RIPEMD-160, RIPEMD-320 </td>
+    </tr>
+    <tr>
+      <td align="right"><a
+        href="http://en.wikipedia.org/wiki/Public-key_cryptography">public-key
+        cryptography</a></td>
+      <td><a href="http://www.nist.gov/dss">RSA, DSA</a>, ElGamal,
+        Nyberg-Rueppel (NR), Rabin-Williams (RW), LUC, LUCELG, DLIES (variants
+        of DHAES), ESIGN </td>
+    </tr>
+    <tr>
+      <td align="right">padding schemes for public-key systems</td>
+      <td><a href="http://www.rsasecurity.com/rsalabs/pkcs/pkcs-1/">PKCS#1</a>
+        v2.0, OAEP, PSS, PSSR, <a
+        href="http://grouper.ieee.org/groups/1363/">IEEE P1363</a> EMSA2 and
+        EMSA5 </td>
+    </tr>
+    <tr>
+      <td align="right">key agreement schemes</td>
+      <td>Diffie-Hellman (DH), Unified Diffie-Hellman (DH2),
+        Menezes-Qu-Vanstone (MQV), Hashed MQV (HMQV), Fully Hashed MQV (FHMQV),
+        LUCDIF, XTR-DH </td>
+    </tr>
+    <tr>
+      <td align="right"><a
+        href="http://en.wikipedia.org/wiki/Elliptic_curve_cryptography">elliptic
+        curve cryptography</a></td>
+      <td>ECDSA, ECNR, ECIES, ECDH, ECMQV </td>
+    </tr>
+    <tr>
+      <td align="right">insecure or obsolescent algorithms retained for
+        backwards compatibility and historical value</td>
+      <td><a href="http://www.cryptolounge.org/wiki/MD2">MD2</a>, <a
+        href="http://www.cryptolounge.org/wiki/MD4">MD4</a>, <a
+        href="http://www.cryptolounge.org/wiki/MD5">MD5</a>, <a
+        href="http://www.cryptolounge.org/wiki/PANAMA_%28Hash_Function%29">Panama
+        Hash</a>, <a href="http://www.cryptolounge.org/wiki/DES">DES</a>, <a
+        href="http://www.cryptolounge.org/wiki/RC4">ARC4</a>, <a
+        href="http://www.cryptolounge.org/wiki/SEAL_3.0">SEAL 3.0</a>,
+        WAKE-OFB, DESX (DES-XEX3), RC2, SAFER, 3-WAY, GOST, SHARK, CAST-128,
+        Square </td>
+    </tr>
+  </tbody>
 </table>
 
-<p>Other features include:
-<UL>
-<LI>pseudo random number generators (PRNG): ANSI X9.17 appendix C, RandomPool
-<LI>password based key derivation functions: PBKDF1 and PBKDF2 from PKCS #5, PBKDF from PKCS #12 appendix B
-<LI>Shamir's <A HREF="http://en.wikipedia.org/wiki/Secret_sharing">secret sharing scheme</A> and Rabin's information dispersal algorithm (IDA)
-<LI>fast multi-precision integer (bignum) and polynomial operations
-<LI>finite field arithmetics, including GF(p) and GF(2^n)
-<LI>prime number generation and verification
-<LI>useful non-cryptographic algorithms
-	<UL>
-	<LI><a href="http://www.faqs.org/rfcs/rfc1951.html">DEFLATE</a> (RFC 1951) compression/decompression with
-	<a href="http://www.faqs.org/rfcs/rfc1952.html">gzip</a> (RFC 1952) and <a href="http://www.faqs.org/rfcs/rfc1950.html">zlib</a> (RFC 1950) format support
-	<LI>hex, base-32, and base-64 coding/decoding
-	<LI>32-bit CRC and Adler32 checksum
-	</UL>
-<LI>class wrappers for these operating system features (optional):
-	<UL>
-	<LI>high resolution timers on Windows, Unix, and Mac OS
-	<LI>Berkeley and Windows style sockets
-	<LI>Windows named pipes
-	<LI>/dev/random, /dev/urandom, /dev/srandom
-	<LI>Microsoft's CryptGenRandom on Windows
-	</UL>
-<LI>A high level interface for most of the above, using a <A HREF="wiki/User_Guide:_filters.h">filter/pipeline</A> metaphor
-<LI><A HREF="benchmarks.html">benchmarks</A> and validation testing
-<LI>x86, x86-64 (x64), MMX, and SSE2 assembly code for the most commonly used algorithms,
-	with run-time CPU feature detection and code selection
-	<UL>
-	<LI>supports GCC-style and MSVC-style inline assembly, and MASM for x64
-	</UL>
-<LI>certain versions are available in <A HREF="#fips">FIPS 140-2 validated</A> form
-</UL>
+<p>Other features include: </p>
+<ul>
+  <li>pseudo random number generators (PRNG): ANSI X9.17 appendix C, RandomPool
+  </li>
+  <li>password based key derivation functions: PBKDF1 and PBKDF2 from PKCS #5,
+    PBKDF from PKCS #12 appendix B </li>
+  <li>Shamir's <a href="http://en.wikipedia.org/wiki/Secret_sharing">secret
+    sharing scheme</a> and Rabin's information dispersal algorithm (IDA) </li>
+  <li>fast multi-precision integer (bignum) and polynomial operations </li>
+  <li>finite field arithmetics, including GF(p) and GF(2^n) </li>
+  <li>prime number generation and verification </li>
+  <li>useful non-cryptographic algorithms 
+    <ul>
+      <li><a href="http://www.faqs.org/rfcs/rfc1951.html">DEFLATE</a> (RFC
+        1951) compression/decompression with <a
+        href="http://www.faqs.org/rfcs/rfc1952.html">gzip</a> (RFC 1952) and <a
+        href="http://www.faqs.org/rfcs/rfc1950.html">zlib</a> (RFC 1950) format
+        support </li>
+      <li>hex, base-32, and base-64 coding/decoding </li>
+      <li>32-bit CRC and Adler32 checksum </li>
+    </ul>
+  </li>
+  <li>class wrappers for these operating system features (optional): 
+    <ul>
+      <li>high resolution timers on Windows, Unix, and Mac OS </li>
+      <li>Berkeley and Windows style sockets </li>
+      <li>Windows named pipes </li>
+      <li>/dev/random, /dev/urandom, /dev/srandom </li>
+      <li>Microsoft's CryptGenRandom on Windows </li>
+    </ul>
+  </li>
+  <li>A high level interface for most of the above, using a <a
+    href="wiki/User_Guide:_filters.h">filter/pipeline</a> metaphor </li>
+  <li><a href="benchmarks.html">benchmarks</a> and validation testing </li>
+  <li>x86, x86-64 (x64), MMX, and SSE2 assembly code for the most commonly used
+    algorithms, with run-time CPU feature detection and code selection 
+    <ul>
+      <li>supports GCC-style and MSVC-style inline assembly, and MASM for x64
+      </li>
+    </ul>
+  </li>
+  <li>certain versions are available in <a href="#fips">FIPS 140-2
+    validated</a> form </li>
+</ul>
 
-<H2><A NAME="license">License</A></H2>
+<h2><a name="license">License</a></h2>
 
-<P>Crypto++ Library is copyrighted as a compilation and (as of version 5.6.2) <a href="License.txt">licensed</a> under the Boost Software License 1.0,
-while the individual files in the compilation are all public domain.</P>
+<p>Crypto++ Library is copyrighted as a compilation and (as of version 5.6.2)
+<a href="License.txt">licensed</a> under the Boost Software License 1.0, while
+the individual files in the compilation are all public domain.</p>
 
-<H2><A NAME="news">What's new?</A></H2>
-<UL>
-<LI>10/11/2016 - <A HREF="release565.html">Version 5.6.5 released</A>
-<UL>
-	<LI>maintenance release, recompile of programs recommended
-	<LI>expanded community input and support
-		<UL>
-			<LI>25 unique contributors as of this release
-		</UL>
-	<LI>fixed CVE-2016-7420 (Issue 277, document <tt>NDEBUG</tt> for production/release)
-	<LI>fixed CVE-2016-7544 (Issue 302, avoid <tt>_malloca</tt> and <tt>_freea</tt>)
-	<LI>shipped library in recommended state
-		<UL>
-			<LI>backwards compatibility achieved with <tt>&lt;config.compat&gt;</tt>
-		</UL>
-	<LI>Visual Studio project file cleanup
-		<UL>
-			<LI>improved X86 and X64 MSBuild support
-			<LI>added ARM-based MSBuild awareness
-		</UL>
-	<LI>improved Testing and QA
-		<UL>
-			<LI>expanded platforms and compilers
-			<LI>expanded Coverity into OS X and Windows platforms
-			<LI>added Windows test scripts using Strawberry Perl
-		</UL>
-	<LI>ported to MSVC 2015 SP3, Xcode 7.3, Sun Studio 12.5, GCC 7.0, MacPorts GCC 7.0, Clang 3.8, Intel C++ 17.00
-</UL>
-<LI>09/11/2016 - <A HREF="release564.html">Version 5.6.4 released</A>
-<UL>
-	<LI>maintenance release, honored API/ABI/Versioning requirements
-	<LI>expanded community input and support
-		<UL>
-          <LI>22 unique contributors as of this release
-		</UL>
-	<LI>fixed CVE-2016-3995
-	<LI>changed SHA3 to FIPS 202 (F1600, XOF d=0x06)
-	<LI>added Keccak (F1600, XOF d=0x01)
-	<LI>added ChaCha (ChaCha8/12/20)
-	<LI>added HMQV and FHMQV
-		<UL>
-          <LI>Hashed and Fully Hashed MQV
-	    </UL>
-	<LI>added BLAKE2 (BLAKE2s and BLAKE2b)
-		<UL>
-          <LI>C++, SSE2, SSE4, ARM NEON and ARMv8 ASIMD
-		</UL>
-	<LI>added CRC32-C
-		<UL>
-          <LI>C/C++, Amd64 CRC, and ARMv8 CRC
-		</UL>
-	<LI>improved Rabin-William signatures
-		<UL>
-          <LI>Tweaked roots <em>e</em> and <em>f</em>
-		</UL>
-	<LI>improved C++11 support
-		<UL>
-          <LI>atomics, threads and fences
-          <LI>alginof, alignas
-          <LI>constexpr
-          <LI>noexcept
-		</UL>
-	<LI>improved GCM mode
-		<UL>
-          <LI>ARM NEON and ARMv8 ASIMD
-          <LI>ARMv8 carry-less multiply
-		</UL>
-	<LI>improved Windows 8 and 10 support
-		<UL>
-          <LI>Windows Phone, Universal Windows Platform, Windows Store
-		</UL>
-	<LI>improved MIPS, ARMv7 and ARMv8 support
-		<UL>
-          <LI>added scripts setenv-&#123;android &#124; embedded &#124; ios&#125;.sh for GNUmakefile-cross
-          <LI>aggressive use of -march=&lt;arch&gt; and -mfpu=&lt;fpu&gt; in cryptest.sh
-		</UL>
-	<LI>improved build systems
-		<UL>
-          <LI>Visual Studio 2010 default
-          <LI>added CMake support (lacks FindCryptopp.cmake)
-          <LI>archived VC++ 5/0/6.0 project files (vc60.zip)
-          <LI>archived VS2005 project files (vs2005.zip)
-          <LI>archived Borland project files (bds10.zip)
-		</UL>
-	<LI>improved Testing and QA
-		<UL>
-          <LI>expanded platforms and compilers
-          <LI>added code generation tests based on CPU features
-          <LI>added C++03, C++11, C++14, C++17 testing
-          <LI>added -O3, -O5, -Ofast and -Os testing
-		</UL>
-	<LI>ported to MSVC 2015 SP3, Xcode 7.3, Sun Studio 12.5, GCC 7.0, MacPorts GCC 7.0, Clang 3.8, Intel C++ 17.00
-</UL>
-<LI>11/20/2015 - <A HREF="release563.html">Version 5.6.3 released</A>
-  <UL>
-    <LI>fixed CVE-2015-2141
-    <LI>cleared most Undefined Behavior Sanitizer (UBsan) findings
-    <LI>cleared all Address Sanitizer (Asan) findings
-    <LI>cleared all Valgrind findings
-    <LI>cleared all Coverity findings
-    <LI>cleared all Enterprise Analysis (/analyze) findings
-    <LI>cleared most GCC warnings with -Wall
-    <LI>cleared most Clang warnings with -Wall
-    <LI>cleared most MSVC warnings with /W4
-    <LI>added -fPIC for 64-bit builds (off for 32-bit builds)
-    <LI>added HKDF class from RFC 5869
-    <LI>switched to member_ptr due to C++ 11 warnings for auto_ptr
-    <LI>initialization of C++ static objects, off by default
-      <UL>
-	<LI>GCC and init_priotirty/constructor attributes
-        <LI>MSVC and init_seg(lib)
-        <LI>CRYPTOPP_INIT_PRIORITY disabled by default, but available
-      </UL>
-    <LI>improved OS X support
-    <LI>improved GNUmakefile support for Testing and QA
-    <LI>added self tests for additional Testing and QA
-    <LI>added cryptest.sh for systematic Testing and QA
-    <LI>added GNU Gold linker support
-    <LI>added Visual Studio 2010 solution and project files in vs2010.zip
-    <LI>added Clang integrated assembler support
-    <LI>unconditionally define CRYPTOPP_NO_UNALIGNED_DATA_ACCESS for Makefile target 'ubsan' and at -O3
-    <LI>workaround ARMEL/GCC 5.2 bug and failed self test
-    <LI>fixed crash in MQV due to GCC 4.9+ and inlining
-    <LI>fixed hang in SHA due to GCC 4.9+ and inlining
-    <LI>fixed missing rdtables::Te under VS with ALIGNED_DATA_ACCESS
-    <LI>fixed S/390 and big endian feature detection
-    <LI>fixed S/390 and int128_t/uint128_t detection
-    <LI>fixed X32 (ILP32) feature detection
-    <LI>removed  _CRT_SECURE_NO_DEPRECATE for Microsoft platforms
-    <LI>utilized bound checking interfaces from ISO/IEC TR 24772 when available
-    <LI>improved ARM, ARM64, MIPS, MIPS64, S/390 and X32 (ILP32) support
-    <LI>introduced CRYPTOPP_MAINTAIN_BACKWARDS_COMPATIBILITY_562
-    <LI>added additional Doxygen-based documentation
-    <LI>ported to MSVC 2015, Xcode 7.2, GCC 5.2, Clang 3.7, Intel C++ 16.00
-  </UL>
-  <LI>8/31/2015 - Completed migration from ibiblio and Sourceforge to a stand alone installation and GitHub
-<LI>02/20/2013 - <A HREF="release562.html">Version 5.6.2 released</A>
-  <UL>
-    <LI> changed license to Boost Software License 1.0
-    <LI> added SHA-3 (Keccak)
-    <LI> updated DSA to FIPS 186-3 (see DSA2 class)
-    <LI> fixed Blowfish minimum keylength to be 4 bytes (32 bits)
-    <LI> fixed Salsa validation failure when compiling with GCC 4.6
-    <LI> fixed infinite recursion when on x64, assembly disabled, and no AESNI
-    <LI> ported to MSVC 2012, GCC 4.7, Clang 3.2, Solaris Studio 12.3, Intel C++ Compiler 13.0
-  </UL>
-<LI>8/9/2010 - <A HREF="release561.html">Version 5.6.1 released</A>
-  <UL>
-    <LI> added support for AES-NI and CLMUL instruction sets in AES and GMAC/GCM
-    <LI> removed WAKE-CFB
-    <LI> fixed several bugs in the SHA-256 x86/x64 assembly code:
-      <UL>
-	<LI> incorrect hash on non-SSE2 x86 machines on non-aligned input
-	<LI> incorrect hash on x86 machines when input crosses 0x80000000
-	<LI> incorrect hash on x64 when compiled with GCC with optimizations enabled
-      </UL>
-    <LI> fixed bugs in AES x86 and x64 assembly causing crashes in some MSVC build configurations
-    <LI> switched to a public domain implementation of MARS
-    <LI> ported to MSVC 2010, GCC 4.5.1, Sun Studio 12u1, C++Builder 2010, Intel C++ Compiler 11.1
-    <LI> renamed the MSVC DLL project to "cryptopp" for compatibility with MSVC 2010
-</UL>
-<LI>3/15/2009 - <A HREF="release560.html">Version 5.6.0 released</A>
-  <UL>
-    <LI> added AuthenticatedSymmetricCipher interface class and Filter wrappers
-    <LI> added CCM, GCM (with SSE2 assembly), EAX, CMAC, XSalsa20, and SEED
-    <LI> added support for variable length IVs
-    <LI> added OIDs for Brainpool elliptic curve parameters
-    <LI> improved AES and SHA-256 speed on x86 and x64
-    <LI> fixed incorrect VMAC computation on message lengths that are &gt;64 mod 128 (x86 assembly version is not affected)
-    <LI> fixed compiler error in vmac.cpp on x86 with GCC -fPIC
-    <LI> fixed run-time validation error on x86-64 with GCC 4.3.2 -O2
-    <LI> fixed HashFilter bug when putMessage=true
-    <LI> removed WORD64_AVAILABLE; compiler support for 64-bit int is now required
-    <LI> ported to GCC 4.3, C++Builder 2009, Sun CC 5.10, Intel C++ Compiler 11
-  </UL>
-<LI>5/16/2008 - Recovered from web host server crash. Now hosted by <a href="http://www.ibiblio.org/">ibiblio.org</a>.
-<LI>9/24/2007 - Version 5.5.2 released
-  <UL>
-    <LI>ported x64 assembly language code for AES, Salsa20, Sosemanuk, and Panama to MSVC 2005 (using MASM since MSVC doesn't support inline assembly on x64)
-    <LI>fixed Salsa20 initialization crash on non-SSE2 machines
-    <LI>fixed Whirlpool crash on Pentium 2 machines
-    <LI>fixed possible branch prediction analysis (BPA) vulnerability in MontgomeryReduce(), which may affect security of RSA, RW, LUC
-    <LI>fixed link error with MSVC 2003 when using "debug DLL" form of runtime library
-    <LI>fixed crash in SSE2_Add on P4 machines when compiled with MSVC 6.0 SP5 with Processor Pack
-    <LI>added support for newly released compilers: MSVC 2008, GCC 4.2, Sun CC 5.9, Intel C++ Compiler 10.0, and Borland C++Builder 2007
-  </UL>
-<LI>8/14/2007 - <A HREF="#fips">Version 5.3.0</A> released as FIPS 140-2 validated module.
-<LI>6/1/2007 - Updated <a href="docs/ref/">reference manual</a> to version 5.5.1,
-	and migrated from CVS to <a href="http://sourceforge.net/svn/?group_id=6152">SVN</a>
-<LI>5/25/2007 - Version 5.5.1 released
-	<UL>
-	<LI>fixed VMAC validation failure on 32-bit big-endian machines
-	</UL>
-<LI>5/5/2007 - <A HREF="release55.html">Version 5.5 released</A>
-	<UL>
-	<LI>added VMAC and Sosemanuk (with x86-64 and SSE2 assembly)
-	<LI>improved speed of integer arithmetic, AES, SHA-512, Tiger, Salsa20, Whirlpool, and PANAMA cipher using assembly (x86-64, MMX, SSE2)
-	<LI>optimized Camellia and added defense against timing attacks
-	<LI>updated benchmarks code to show cycles per byte and to time key/IV setup
-	<LI>started using OpenMP for increased multi-core speed
-	<LI>enabled GCC optimization flags by default in GNUmakefile
-	<LI>added blinding and computational error checking for RW signing
-	<LI>changed RandomPool, X917RNG, GetNextIV, DSA/NR/ECDSA/ECNR to reduce the risk of reusing random numbers and IVs after virtual machine state rollback
-	<LI>changed default FIPS mode RNG from AutoSeededX917RNG&lt;DES_EDE3&gt; to
-	  AutoSeededX917RNG&lt;AES&gt;
-	<LI>fixed PANAMA cipher interface to accept 256-bit key and 256-bit IV
-	<LI>moved MD2, MD4, MD5, PanamaHash, ARC4, WAKE_CFB into the namespace "Weak"
-	<LI>removed HAVAL, MD5-MAC, XMAC
-	</UL>
-</UL>
+<h2><a name="platforms">Platforms</a></h2>
 
-<H2><A NAME="platforms">Platforms</A></H2>
-<p>The current version of Crypto++ supports the following compilers:
-<UL>
-  <LI> MSVC 6.0 - VS2015
-  <LI> GCC 3.2 - 7.0
-  <LI> Clang 2.9 - 3.8
-  <LI> Intel C++ Compiler 11 - 17.0
-  <LI> Solaris Studio 12.5
-  <LI> Xcode 3.0 - 7.3
-  <LI> C++ Builder 2010 (for version 5.6.4)
-</UL>
-<p>For detailed build status and notes on various compiler/OS/CPU combinations as well as information about compiling earlier versions of Crypto++, please see <a href="wiki/Compiling">this wiki entry</a>.
+<p>The current version of Crypto++ supports the following compilers: </p>
+<ul>
+  <li>MSVC 6.0 - VS2015 </li>
+  <li>GCC 3.2 - 7.0 </li>
+  <li>Clang 2.9 - 3.8 </li>
+  <li>Intel C++ Compiler 11 - 17.0 </li>
+  <li>Solaris Studio 12.5 </li>
+  <li>Xcode 3.0 - 7.3 </li>
+  <li>C++ Builder 2010 (for version 5.6.4)</li>
+</ul>
 
-<H2><A NAME="download">Download</A></H2>
-<TABLE frame="border" rules="groups" cellspacing=0 cellpadding=4>
-<COLGROUP align="center">
-<COLGROUP align="center">
-<COLGROUP align="center">
-<COLGROUP align="center">
-<THEAD>
-<TR><TH><A HREF="http://www.cryptopp.com">US Original</A>
-  <TH><A HREF="http://sourceforge.net/project/showfiles.php?group_id=6152">SourceForge Mirrors</A>
-  <TBODY>
-    <TR><TD><A HREF="crypto50.zip">Crypto++ 5.0</A>
-        <TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/crypto50.zip">Crypto++ 5.0</A>
-    <TR><TD><A HREF="crypto51.zip">Crypto++ 5.1</A>
-        <TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/crypto51.zip">Crypto++ 5.1</A>
-    <TR><TD><A HREF="cryptopp521.zip">Crypto++ 5.2.1</A>
-	<TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp521.zip">Crypto++ 5.2.1</A>
-    <TR><TD><A HREF="cryptopp54.zip">Crypto++ 5.4</A>
-	<TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp54.zip">Crypto++ 5.4</A>
-    <TR><TD><A HREF="cryptopp552.zip">Crypto++ 5.5.2</A>
-	<TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp552.zip">Crypto++ 5.5.2</A>
-    <TR><TD><A HREF="cryptopp560.zip">Crypto++ 5.6.0</A>
-	<TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp560.zip">Crypto++ 5.6.0</A>
-    <TR><TD><A HREF="cryptopp561.zip">Crypto++ 5.6.1</A>
-	<TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp561.zip">Crypto++ 5.6.1</A>
-    <TR><TD><A HREF="cryptopp562.zip">Crypto++ 5.6.2</A>
-        <TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp562.zip">Crypto++ 5.6.2</A>
-    <TR><TD><A HREF="cryptopp563.zip">Crypto++ 5.6.3</A>
-        <TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp563.zip">Crypto++ 5.6.3</A>
-    <TR><TD><A HREF="cryptopp564.zip">Crypto++ 5.6.4</A>
-        <TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp564.zip">Crypto++ 5.6.4</A>
-    <TR><TD><A HREF="cryptopp565.zip">Crypto++ 5.6.5</A>
-        <TD><A HREF="http://prdownloads.sourceforge.net/cryptopp/cryptopp565.zip">Crypto++ 5.6.5</A>
-  </TBODY>
-</TABLE>
-<P>Remember to use the "-a" (auto-convert text files) option when unzipping on a Unix machine. After downloading, please read the <b>Readme.txt</b> included in the zip archive for build instructions and other important notes.
-<P>
-The zip files should have the following hashes:
-<p>
-<B>crypto50.zip:</B>
-<PRE>
-MD5: fe8d4ef49b69874763f6dab30cbb6292
-SHA-1: d0d83e60b6c03408370ca6c13aa5cac5e2220bf1
-RIPEMD-160: 150db13d4df29020829f0fe817f54ee5a0595e50
-SHA-256: c67c64693f32195e69d3d7e5bdf47afbd91e8b69d0407a2bc68a745d9dbebb26
-</PRE>
-<B>crypto51.zip:</B>
-<PRE>
-MD5: f4bfd4ac39dc1b7f0764d61a1ec4df16
-SHA-1: 95905714c85f6fb563e66edb5478818df787fe2d
-RIPEMD-160: 8b7420c421be39e9976f1ce2a80840d7ed6b38ef
-SHA-256: d183a98c28feb1e0f7d21d177469831e5052aa8ca446475e95a5ebe7a7feb3cd
-</PRE>
-<B>cryptopp521.zip:</B>
-<PRE>
-MD5: 82a00c44235ccbae2bedf9cb16c40ac3
-SHA-1: 4b84311d1cbde04df5d88b5375d29c2e35ccb89c
-RIPEMD-160: 7c4d3cf702a1cf38f2a19cb5cebf170dabc23a35
-SHA-256: d578d297f1804a6b1c3f9090cc77091e49ae6d0311846a45117e79d4d20c2a39
-</PRE>
-<B>cryptopp54.zip:</B>
-<PRE>
-MD5: 40e760012d1b0b7e316676ef09e0a814
-SHA-1: 88f6534b713fbbf5c1af5fdddc402b221eea73bf
-RIPEMD-160: 8efd6d1ab9a34f69dfa2ef04852eff0efb69b47f
-SHA-256: fa9aceb1b46c886b5c13fe5aa3d0cdbd74b4a2dd894e290cbdbfd17fe8a7fe5a
-</PRE>
-<B>cryptopp552.zip:</B>
-<PRE>
-SHA-1: 18efe451b3c682f40db75dc2b09cb448a835e7d6
-SHA-512: 62fa0aa79081b14cc87345c5364182d83cd1bde6ea732bcecc5cae02879d218159b324a0872d6ef70c1b1916cadb2243036918cbcf962f78b84c788c55d7520f
-WHIRLPOOL: ff32165cd7bac87004d5a60550226ef6391901185d2c2262f58b278d6cc705fb74d5cfaabbcdc47fed16448b52499b061ab0bb07556b95e3ccd4b4441cbd3952
-</PRE>
-<B>cryptopp560.zip:</B>
-<PRE>
-SHA-1: b836783ebd72d5bc6a916620ab2b1ecec316fef1
-SHA-512: 37c5820404f9fa94e4ebe595865de17af13876bf5ef20c8612e019427893227f80095f21ee71c6caf781f14a493dc56805eb965e909f8fdce31a9f748b772655
-WHIRLPOOL: fab7114bcd3eef5df0ef9d794ccb5f54670a7ef27f57f9662339e27d42dd2d19223ebee395e6a17e0fb2d48ea74139f3093f688db14bdefa650fb27f520c006b
-</PRE>
-<B>cryptopp561.zip:</B>
-<PRE>
-SHA-1: 31dbb456c21f50865218c57b7eaf4c955a222ba1
-SHA-256: 98e74d8cb17a38033354519ac8ba9c5d98a6dc00bf5d1ec3c533c2e8ec86f268
-SHA-512: 6cc07f36b84a1043e01e458a826d4e3626a2d87b2f606352bc18f607e1c1a68dc3c9b3454659bc1e21e07c9addbf6f4255c5848205fb31c3f445c31a00ebfbf1
-WHIRLPOOL: 51021ec68fa5b4a988fa343dce1e64455b33c922691a842a2f7801d7359e400bff342f381393aae42114a061cf9ab6365271d7a5c21dd5c26330d41dcb59bfc9
-</PRE>
-<B>cryptopp562.zip:</B>
-<PRE>
-SHA-1: ddc18ae41c2c940317cd6efe81871686846fa293
-SHA-256: 5cbfd2fcb4a6b3aab35902e2e0f3b59d9171fee12b3fc2b363e1801dfec53574
-SHA-512: 016ca7ebad1091d67ad0bc5ccb7549d96d4af6b563d9d5a612cae27b3d1a3514c41b954e319fed91c820e8c701e3aa43da186e0864bf959ce4afd1539248ebbe
-WHIRLPOOL: e31203da48a31b09e6ea48a75aa64fe5fd27fd370a1a609c4387526f09daab7582716563b688c0c81a8c3b200b8ffa7bdb2b981e5911640e5f1c172d6027f6ac
-</PRE>
+<p>For detailed build status and notes on various compiler/OS/CPU combinations
+as well as information about compiling earlier versions of Crypto++, please see
+<a href="wiki/Compiling">this wiki entry</a>.</p>
 
-<B>cryptopp563.zip:</B>
-<PRE>
-SHA-1: f2fcd1fbf884bed70a69b565970ecd8b33a68cc4
-SHA-256: 9390670a14170dd0f48a6b6b06f74269ef4b056d4718a1a329f6f6069dc957c9
-SHA-512: b3b963e87d937aeae03aa41849c23bb03fc0a8e627afddb8aa74bc07edf51949888aaa25cb4888053455524e7c5dd8de1f11e227acfab3a3ea344285b6408ce0
-WHIRLPOOL: 1f7716f143a6677be213e29330ed0cbcd16db0fe575487b35c071e3ee12bff0471b1c82fa43590ac708c06dbcd4d9c39499a4b8dfa89a3f410d3b0be376f5268
-</PRE>
+<h2><a name="news">What's new?</a></h2>
+<ul>
+  <li>10/11/2016 - <a href="release565.html">Version 5.6.5 released</a> 
+    <ul>
+      <li>maintenance release, recompile of programs recommended </li>
+      <li>expanded community input and support 
+        <ul>
+          <li>25 unique contributors as of this release </li>
+        </ul>
+      </li>
+      <li>fixed CVE-2016-7420 (Issue 277, document <tt>NDEBUG</tt> for
+        production/release) </li>
+      <li>fixed CVE-2016-7544 (Issue 302, avoid <tt>_malloca</tt> and
+        <tt>_freea</tt>) </li>
+      <li>shipped library in recommended state 
+        <ul>
+          <li>backwards compatibility achieved with
+            <tt>&lt;config.compat&gt;</tt> </li>
+        </ul>
+      </li>
+      <li>Visual Studio project file cleanup 
+        <ul>
+          <li>improved X86 and X64 MSBuild support </li>
+          <li>added ARM-based MSBuild awareness </li>
+        </ul>
+      </li>
+      <li>improved Testing and QA 
+        <ul>
+          <li>expanded platforms and compilers </li>
+          <li>expanded Coverity into OS X and Windows platforms </li>
+          <li>added Windows test scripts using Strawberry Perl </li>
+        </ul>
+      </li>
+      <li>ported to MSVC 2015 SP3, Xcode 7.3, Sun Studio 12.5, GCC 7.0,
+        MacPorts GCC 7.0, Clang 3.8, Intel C++ 17.00 </li>
+    </ul>
+  </li>
+  <li>09/11/2016 - <a href="release564.html">Version 5.6.4 released</a> 
+    <ul>
+      <li>maintenance release, honored API/ABI/Versioning requirements </li>
+      <li>expanded community input and support 
+        <ul>
+          <li>22 unique contributors as of this release </li>
+        </ul>
+      </li>
+      <li>fixed CVE-2016-3995 </li>
+      <li>changed SHA3 to FIPS 202 (F1600, XOF d=0x06) </li>
+      <li>added Keccak (F1600, XOF d=0x01) </li>
+      <li>added ChaCha (ChaCha8/12/20) </li>
+      <li>added HMQV and FHMQV 
+        <ul>
+          <li>Hashed and Fully Hashed MQV </li>
+        </ul>
+      </li>
+      <li>added BLAKE2 (BLAKE2s and BLAKE2b) 
+        <ul>
+          <li>C++, SSE2, SSE4, ARM NEON and ARMv8 ASIMD </li>
+        </ul>
+      </li>
+      <li>added CRC32-C 
+        <ul>
+          <li>C/C++, Amd64 CRC, and ARMv8 CRC </li>
+        </ul>
+      </li>
+      <li>improved Rabin-William signatures 
+        <ul>
+          <li>Tweaked roots <em>e</em> and <em>f</em> </li>
+        </ul>
+      </li>
+      <li>improved C++11 support 
+        <ul>
+          <li>atomics, threads and fences </li>
+          <li>alginof, alignas </li>
+          <li>constexpr </li>
+          <li>noexcept </li>
+        </ul>
+      </li>
+      <li>improved GCM mode 
+        <ul>
+          <li>ARM NEON and ARMv8 ASIMD </li>
+          <li>ARMv8 carry-less multiply </li>
+        </ul>
+      </li>
+      <li>improved Windows 8 and 10 support 
+        <ul>
+          <li>Windows Phone, Universal Windows Platform, Windows Store </li>
+        </ul>
+      </li>
+      <li>improved MIPS, ARMv7 and ARMv8 support 
+        <ul>
+          <li>added scripts setenv-{android | embedded | ios}.sh for
+            GNUmakefile-cross </li>
+          <li>aggressive use of -march=&lt;arch&gt; and -mfpu=&lt;fpu&gt; in
+            cryptest.sh </li>
+        </ul>
+      </li>
+      <li>improved build systems 
+        <ul>
+          <li>Visual Studio 2010 default </li>
+          <li>added CMake support (lacks FindCryptopp.cmake) </li>
+          <li>archived VC++ 5/0/6.0 project files (vc60.zip) </li>
+          <li>archived VS2005 project files (vs2005.zip) </li>
+          <li>archived Borland project files (bds10.zip) </li>
+        </ul>
+      </li>
+      <li>improved Testing and QA 
+        <ul>
+          <li>expanded platforms and compilers </li>
+          <li>added code generation tests based on CPU features </li>
+          <li>added C++03, C++11, C++14, C++17 testing </li>
+          <li>added -O3, -O5, -Ofast and -Os testing </li>
+        </ul>
+      </li>
+      <li>ported to MSVC 2015 SP3, Xcode 7.3, Sun Studio 12.5, GCC 7.0,
+        MacPorts GCC 7.0, Clang 3.8, Intel C++ 17.00 </li>
+    </ul>
+  </li>
+  <li>11/20/2015 - <a href="release563.html">Version 5.6.3 released</a> 
+    <ul>
+      <li>fixed CVE-2015-2141 </li>
+      <li>cleared most Undefined Behavior Sanitizer (UBsan) findings </li>
+      <li>cleared all Address Sanitizer (Asan) findings </li>
+      <li>cleared all Valgrind findings </li>
+      <li>cleared all Coverity findings </li>
+      <li>cleared all Enterprise Analysis (/analyze) findings </li>
+      <li>cleared most GCC warnings with -Wall </li>
+      <li>cleared most Clang warnings with -Wall </li>
+      <li>cleared most MSVC warnings with /W4 </li>
+      <li>added -fPIC for 64-bit builds (off for 32-bit builds) </li>
+      <li>added HKDF class from RFC 5869 </li>
+      <li>switched to member_ptr due to C++ 11 warnings for auto_ptr </li>
+      <li>initialization of C++ static objects, off by default 
+        <ul>
+          <li>GCC and init_priotirty/constructor attributes </li>
+          <li>MSVC and init_seg(lib) </li>
+          <li>CRYPTOPP_INIT_PRIORITY disabled by default, but available </li>
+        </ul>
+      </li>
+      <li>improved OS X support </li>
+      <li>improved GNUmakefile support for Testing and QA </li>
+      <li>added self tests for additional Testing and QA </li>
+      <li>added cryptest.sh for systematic Testing and QA </li>
+      <li>added GNU Gold linker support </li>
+      <li>added Visual Studio 2010 solution and project files in vs2010.zip
+      </li>
+      <li>added Clang integrated assembler support </li>
+      <li>unconditionally define CRYPTOPP_NO_UNALIGNED_DATA_ACCESS for Makefile
+        target 'ubsan' and at -O3 </li>
+      <li>workaround ARMEL/GCC 5.2 bug and failed self test </li>
+      <li>fixed crash in MQV due to GCC 4.9+ and inlining </li>
+      <li>fixed hang in SHA due to GCC 4.9+ and inlining </li>
+      <li>fixed missing rdtables::Te under VS with ALIGNED_DATA_ACCESS </li>
+      <li>fixed S/390 and big endian feature detection </li>
+      <li>fixed S/390 and int128_t/uint128_t detection </li>
+      <li>fixed X32 (ILP32) feature detection </li>
+      <li>removed _CRT_SECURE_NO_DEPRECATE for Microsoft platforms </li>
+      <li>utilized bound checking interfaces from ISO/IEC TR 24772 when
+        available </li>
+      <li>improved ARM, ARM64, MIPS, MIPS64, S/390 and X32 (ILP32) support </li>
+      <li>introduced CRYPTOPP_MAINTAIN_BACKWARDS_COMPATIBILITY_562 </li>
+      <li>added additional Doxygen-based documentation </li>
+      <li>ported to MSVC 2015, Xcode 7.2, GCC 5.2, Clang 3.7, Intel C++ 16.00
+      </li>
+    </ul>
+  </li>
+  <li>8/31/2015 - Completed migration from ibiblio and Sourceforge to a stand
+    alone installation and GitHub </li>
+  <li>02/20/2013 - <a href="release562.html">Version 5.6.2 released</a> 
+    <ul>
+      <li>changed license to Boost Software License 1.0 </li>
+      <li>added SHA-3 (Keccak) </li>
+      <li>updated DSA to FIPS 186-3 (see DSA2 class) </li>
+      <li>fixed Blowfish minimum keylength to be 4 bytes (32 bits) </li>
+      <li>fixed Salsa validation failure when compiling with GCC 4.6 </li>
+      <li>fixed infinite recursion when on x64, assembly disabled, and no AESNI
+      </li>
+      <li>ported to MSVC 2012, GCC 4.7, Clang 3.2, Solaris Studio 12.3, Intel
+        C++ Compiler 13.0 </li>
+    </ul>
+  </li>
+  <li>8/9/2010 - <a href="release561.html">Version 5.6.1 released</a> 
+    <ul>
+      <li>added support for AES-NI and CLMUL instruction sets in AES and
+        GMAC/GCM </li>
+      <li>removed WAKE-CFB </li>
+      <li>fixed several bugs in the SHA-256 x86/x64 assembly code: 
+        <ul>
+          <li>incorrect hash on non-SSE2 x86 machines on non-aligned input </li>
+          <li>incorrect hash on x86 machines when input crosses 0x80000000 </li>
+          <li>incorrect hash on x64 when compiled with GCC with optimizations
+            enabled </li>
+        </ul>
+      </li>
+      <li>fixed bugs in AES x86 and x64 assembly causing crashes in some MSVC
+        build configurations </li>
+      <li>switched to a public domain implementation of MARS </li>
+      <li>ported to MSVC 2010, GCC 4.5.1, Sun Studio 12u1, C++Builder 2010,
+        Intel C++ Compiler 11.1 </li>
+      <li>renamed the MSVC DLL project to "cryptopp" for compatibility with
+        MSVC 2010 </li>
+    </ul>
+  </li>
+  <li>3/15/2009 - <a href="release560.html">Version 5.6.0 released</a> 
+    <ul>
+      <li>added AuthenticatedSymmetricCipher interface class and Filter
+        wrappers </li>
+      <li>added CCM, GCM (with SSE2 assembly), EAX, CMAC, XSalsa20, and SEED
+      </li>
+      <li>added support for variable length IVs </li>
+      <li>added OIDs for Brainpool elliptic curve parameters </li>
+      <li>improved AES and SHA-256 speed on x86 and x64 </li>
+      <li>fixed incorrect VMAC computation on message lengths that are &gt;64
+        mod 128 (x86 assembly version is not affected) </li>
+      <li>fixed compiler error in vmac.cpp on x86 with GCC -fPIC </li>
+      <li>fixed run-time validation error on x86-64 with GCC 4.3.2 -O2 </li>
+      <li>fixed HashFilter bug when putMessage=true </li>
+      <li>removed WORD64_AVAILABLE; compiler support for 64-bit int is now
+        required </li>
+      <li>ported to GCC 4.3, C++Builder 2009, Sun CC 5.10, Intel C++ Compiler
+        11 </li>
+    </ul>
+  </li>
+  <li>5/16/2008 - Recovered from web host server crash. Now hosted by <a
+    href="http://www.ibiblio.org/">ibiblio.org</a>.</li>
+</ul>
 
-<B>cryptopp564.zip:</B>
-<PRE>
-SHA1: effa1770b81dfe05db48ddc0468ead8660929650
-SHA256: be430377b05c15971d5ccb6e44b4d95470f561024ed6d701fe3da3a188c84ad7
-SHA512: d9f0ce92f5f95794b5a43d5ae865bfe7bae555f1565210dd4fd9fa9d44b2f801d947e216042099f7d40dd83e3d385a6346343b05431f05bf04276ba85b7ff63f
-WHIRLPOOL: 344354e2b4a822eb1f431137678067f6a042e710c13ab70e53dca2523f29b8bcf2227e6973f67e69079ddde789f1af764c0913a0e73808e784cec195ef722ce4
-</PRE>
+<h2><a name="download">Download</a></h2>
 
-<B>cryptopp565.zip:</B>
-<PRE>
-SHA1: a74f207a315b6a133af9640a45bde9d6e378af4d
-SHA256: a75ef486fe3128008bbb201efee3dcdcffbe791120952910883b26337ec32c34
-SHA512: f13718d02ca69b0129aaf9e767c9d2e0333aa7538355f9c63d9eaf1ff369062084a18dc01489439ebf37797b3ea81b01beb072057d47ec962bfb824ddc72abc7
-WHIRLPOOL: 376e8d7ad497d03f19542fd183181f26c83f38dfef800529cb5d5ce7238978f005d36e3e7cce63322af9b7dfc3a69fdb615c435bcf092bbd6abf6781dfd6d8a3
-</PRE>
+<table frame="border" rules="groups" cellspacing="0" cellpadding="4">
+  <colgroup align="center"> </colgroup>
+  <colgroup align="center"> </colgroup>
+  <colgroup align="center"> </colgroup>
+  <colgroup align="center"> </colgroup>
+  <colgroup align="center"> </colgroup>
+  <thead>
+    <tr>
+      <th>Release Date<br>
+        (YYYY-MM-DD)</th>
+      <th><a href="http://www.cryptopp.com">US Original<br>
+        (Website)</a></th>
+      <th><a href="http://www.cryptopp.com">Release Notes<br>
+        (with Hashes)</a></th>
+      <th><a href="https://github.com/weidai11/cryptopp/releases">GitHub
+        Mirror<br>
+        (Active)</a></th>
+      <th><a
+        href="http://sourceforge.net/project/showfiles.php?group_id=6152">SourceForge
+        Mirror<br>
+        (Deprecated)</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2016-10-11</td>
+      <td><a href="cryptopp565.zip">Crypto++ 5.6.5</a> </td>
+      <td><a href="release565.html">5.6.5 Release</a></td>
+      <td><a
+        href="https://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_5">Crypto++
+        5.6.5</a></td>
+      <td><a
+        href="http://prdownloads.sourceforge.net/cryptopp/cryptopp565.zip">Crypto++
+        5.6.5</a></td>
+    </tr>
+    <tr>
+      <td>2016-09-11</td>
+      <td><a href="cryptopp564.zip">Crypto++ 5.6.4</a> </td>
+      <td><a href="release564.html">5.6.4 Release</a></td>
+      <td><a
+        href="https://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_4">Crypto++
+        5.6.4</a></td>
+      <td><a
+        href="http://prdownloads.sourceforge.net/cryptopp/cryptopp564.zip">Crypto++
+        5.6.4</a></td>
+    </tr>
+    <tr>
+      <td>2015-11-20</td>
+      <td><a href="cryptopp563.zip">Crypto++ 5.6.3</a> </td>
+      <td><a href="release563.html">5.6.3 Release</a></td>
+      <td><a
+        href="https://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_3">Crypto++
+        5.6.3</a></td>
+      <td><a
+        href="http://prdownloads.sourceforge.net/cryptopp/cryptopp563.zip">Crypto++
+        5.6.3</a></td>
+    </tr>
+    <tr>
+      <td>2013-02-20</td>
+      <td><a href="cryptopp562.zip">Crypto++ 5.6.2</a> </td>
+      <td><a href="release562.html">5.6.2 Release</a></td>
+      <td><a
+        href="https://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_2">Crypto++
+        5.6.2</a></td>
+      <td><a
+        href="http://prdownloads.sourceforge.net/cryptopp/cryptopp562.zip">Crypto++
+        5.6.2</a></td>
+    </tr>
+    <tr>
+      <td>2010-08-10</td>
+      <td><a href="cryptopp561.zip">Crypto++ 5.6.1</a> </td>
+      <td><a href="release561.html">5.6.1 Release</a></td>
+      <td><a
+        href="https://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_1">Crypto++
+        5.6.1</a></td>
+      <td><a
+        href="http://prdownloads.sourceforge.net/cryptopp/cryptopp561.zip">Crypto++
+        5.6.1</a></td>
+    </tr>
+    <tr>
+      <td>2009-03-27</td>
+      <td><a href="cryptopp560.zip">Crypto++ 5.6.0</a> </td>
+      <td><a href="release560.html">5.6.0 Release</a></td>
+      <td><a
+        href="https://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_0">Crypto++
+        5.6.0</a></td>
+      <td><a
+        href="http://prdownloads.sourceforge.net/cryptopp/cryptopp560.zip">Crypto++
+        5.6.0</a></td>
+    </tr>
+  </tbody>
+</table>
 
-<H2>While You Are Downloading</H2>
-<UL>
-<LI>Take a look at the <a href="wiki/Related_Links">related links</a> page.
-It includes links to crypto libraries for other languages, products that use Crypto++, etc.
-<LI>Consider the list of <a href="wiki/Recommended_Books">recommended books</a> for Crypto++ users.
-<LI>Examine the <A HREF="License.txt">Crypto++ license agreement</A>.
-<LI>Read the <A HREF="wiki/User_Guide:_Introduction">Crypto++ User Guide</A>.
-<LI>Browse the <A HREF="docs/ref/">Crypto++ Reference Manual</A>.
-<LI><A NAME="charts"></A>View these Crypto++ class hierarchy charts to see how Crypto++ is organized. Note
-that these charts only include a small number of actual algorithms as examples.
-<UL>
-<LI><A HREF="filters.gif">symmetric algorithms and hash functions</A>
-<LI><A HREF="pubkey.gif">public key algorithms</A>
-</UL>
-</UL>
+<p>If you need older downloads, from Crypto++ 5.3.0 to Crypto++ 2.3, then see
+the <a href="downloads.html">Downloads page.</a></p>
 
-<H2><A NAME="fips">FIPS 140-2 Validation</A></H2>
-<P>The following versions of Crypto++ have been validated by NIST and CSE for
-<a href="http://csrc.nist.gov/cryptval/140-2.htm">FIPS 140-2</a> level 1 conformance. Because only compiled executable code can receive FIPS validation, these versions are listed separately from the other source-code-only downloads. These download packages include the validated binary object, header files, API reference, and FIPS related documentation. Source code is also included for debugging purposes. (You cannot compile Crypto++ yourself and claim FIPS 140-2 conformance on the resulting module, unless the it goes through the validation process again.)</P>
-<P>Because these packages contain compiled executable code, they have been signed with a PGP public key which is included inside the package. You can verify the PGP key's fingerprint by following the certificate link and obtaining a
-copy of the Crypto++ Library Security Policy from NIST's web site. The fingerprint is given in the Security Policy.
-<UL>
-<LI>Crypto++ Library 5.0.4 (32-bit Windows DLL, calling application must be compiled with MSVC 6.0)
-[<a href="http://prdownloads.sourceforge.net/cryptopp/cryptopp504win32.zip">download package</a>]
-[<a href="http://prdownloads.sourceforge.net/cryptopp/cryptopp504win32.zip.sig">download PGP signature</a>]
-[<a href="http://csrc.nist.gov/cryptval/140-1/1401val2003.htm">certificate #343</a>]
-<LI>Crypto++ Library 5.2.3 (32-bit Windows DLL, calling application must be compiled with MSVC .NET 2003)
-[<a href="http://prdownloads.sourceforge.net/cryptopp/cryptopp523win32.zip">download package</a>]
-[<a href="http://prdownloads.sourceforge.net/cryptopp/cryptopp523win32.zip.sig">download PGP signature</a>]
-[<a href="http://csrc.nist.gov/cryptval/140-1/1401val2005.htm">certificate #562</a>]
-<LI>Crypto++ Library 5.3.0 (32-bit and 64-bit Windows DLL, calling application must be compiled with MSVC 2005)
-[<a href="http://prdownloads.sourceforge.net/cryptopp/cryptopp530win32win64.zip">download package</a>]
-[<a href="http://prdownloads.sourceforge.net/cryptopp/cryptopp530win32win64.zip.sig">download PGP signature</a>]
-[<a href="http://csrc.nist.gov/cryptval/140-1/1401val2007.htm">certificate #819</a>]
-</UL>
+<p>Remember to use the "-a" (auto-convert text files) option when unzipping on
+a Unix machine. After downloading, please read the <b>Readme.txt</b> included
+in the zip archive for build instructions and other important notes.</p>
 
-<H2><A NAME="lists">Mailing Lists</A></H2>
-<P>There are two mailing lists for Crypto++. The first is cryptopp-announce@googlegroups.com, and the second is cryptopp-users@googlegroups.com.</P>
-<UL>
-<LI><A HREF="//groups.google.com/forum/#!forum/cryptopp-announce">cryptopp-announce@googlegroups.com</A> - Crypto++ administrative announcements (formerly at <a href="//lists.sourceforge.net/mailman/listinfo/cryptopp-announce">cryptopp-announce@lists.sourceforge.net</a>)
-<LI><a href="//groups.google.com/group/cryptopp-users">cryptopp-users@googlegroups.com</a> - Crypto++ library user questions and general discussions (alternate archives are available at <a href="http://www.mail-archive.com/cryptopp-list@eskimo.com">The Mail Archive</a> and <a href="http://old.nabble.com/Crypto%2B%2B-Users-f949.html">Nabble</a>)
-</UL>
-<P>As a courtesy, please join the discussion list with your real name instead of an online handle. Alternate webviews are for the lists are available at <A HREF="https://groups.google.com/forum/#!forum/cryptopp-announce">Crypto++ Announce - Google Groups</A> and <A HREF="https://groups.google.com/forum/#!forum/cryptopp-users">Crypto++ Users - Google Groups</A>.</P>
-<P>When posting a question to the Crypto++ user mailing list, please provide the following information, if applicable:
-	<UL>
-	<LI>exact error message
-	<LI>stack trace (please copy from the call stack window of your debugger, or use the "bt" command in gdb)
-	<LI>a minimal program with a main() function, that reproduces the problem
-	<LI>version of Crypto++, operating system (output of "uname -a" command if using Unix), and compiler (output of "gcc -v" if using GCC)
-	</UL>
+<h2>While You Are Downloading</h2>
+<ul>
+  <li>Take a look at the <a href="wiki/Related_Links">related links</a> page.
+    It includes links to crypto libraries for other languages, products that
+    use Crypto++, etc.</li>
+  <li>Consider the list of <a href="wiki/Recommended_Books">recommended
+    books</a> for Crypto++ users.</li>
+  <li>Examine the <a href="License.txt">Crypto++ license agreement</a>.</li>
+  <li>Read the <a href="wiki/User_Guide:_Introduction">Crypto++ User Guide</a>.
+  </li>
+  <li>Browse the <a href="docs/ref/">Crypto++ Reference Manual</a>.</li>
+  <li><a name="charts"></a>View these Crypto++ class hierarchy charts to see
+    how Crypto++ is organized. Note that these charts only include a small
+    number of actual algorithms as examples. 
+    <ul>
+      <li><a href="filters.gif">symmetric algorithms and hash functions</a>
+      </li>
+      <li><a href="pubkey.gif">public key algorithms</a> </li>
+    </ul>
+  </li>
+</ul>
 
-<H2><A NAME="contributions">Source Code and Contributions</A></H2>
-<P>The source code and its planned changes are available at the following locations.
-<UL>
-	<LI>The <A HREF="">Crypto++ GitHub repository</A> allows you to view the latest (unreleased) Crypto++ source code via the <A HREF="//git.kernel.org/cgit/git/git.git/">Linux kernel's git</A> beginning around June 2015. Its also serves as an incubator to nuture and grow the library.
-	<LI>The former <A HREF="//sourceforge.net/svn/?group_id=6152">Crypto++ SourceForge repository</a> allows you to view the Crypto++ source code via <A HREF="//subversion.apache.org">Apache's subversion</A> until about July 2015. At that time, SourceForge had infrastructure problems and a cutover to GutHub was performed.
-	<LI>The <A HREF="wiki/Roadmap">Roadmap</A> on the wiki provides the general direction the library is heading. It includes planned features and releases, and even some wishlist items.
-</UL>
-<P>Contributions of all types are welcomed. Contributions include the following.</P>
-<UL>
-	<LI>Bug finding and fixes
-	<LI>Features and enhancements
-	<LI>Test scripts and test cases
-	<LI>Branch and release testing
-	<LI>Documentation and updates
-</UL>
+<h2><a name="fips">FIPS 140-2 Validation</a></h2>
 
-<P>If you think you have found a bug in the library, then you should discuss it on the <A HREF="http://groups.google.com/group/cryptopp-users">Users mailing list</A>. Discussing it will help bring the issue to the attention of folks who can help resolve the issue. If you want to contribute a bug fix to the library, then make a Pull Request or make a Diff available somewhere. Also see <A HREF="wiki/Bug_Report">Bug Reports</A> on the wiki.</P>
+<p>The following versions of Crypto++ have been validated by NIST and CSE for
+<a href="http://csrc.nist.gov/cryptval/140-2.htm">FIPS 140-2</a> level 1
+conformance. Because only compiled executable code can receive FIPS validation,
+these versions are listed separately from the other source-code-only downloads.
+These download packages include the validated binary object, header files, API
+reference, and FIPS related documentation. Source code is also included for
+debugging purposes. (You cannot compile Crypto++ yourself and claim FIPS 140-2
+conformance on the resulting module, unless the it goes through the validation
+process again.)</p>
 
-<P>Features and enhancements are welcomend additions to the library. This category tends to be time consuming because algorithms and their test cases need to be reviewed and merged. Please be mindful of the test cases, and attempt to procure them from an independent source.</P>
+<p>Because these packages contain compiled executable code, they have been
+signed with a PGP public key which is included inside the package. You can
+verify the PGP key's fingerprint by following the certificate link and
+obtaining a copy of the Crypto++ Library Security Policy from NIST's web site.
+The fingerprint is given in the Security Policy.</p>
+<ul>
+  <li>Crypto++ Library 5.0.4 (32-bit Windows DLL, calling application must be
+    compiled with MSVC 6.0) [<a
+    href="http://prdownloads.sourceforge.net/cryptopp/cryptopp504win32.zip">download
+    package</a>] [<a
+    href="http://prdownloads.sourceforge.net/cryptopp/cryptopp504win32.zip.sig">download
+    PGP signature</a>] [<a
+    href="http://csrc.nist.gov/cryptval/140-1/1401val2003.htm">certificate
+    #343</a>] </li>
+  <li>Crypto++ Library 5.2.3 (32-bit Windows DLL, calling application must be
+    compiled with MSVC .NET 2003) [<a
+    href="http://prdownloads.sourceforge.net/cryptopp/cryptopp523win32.zip">download
+    package</a>] [<a
+    href="http://prdownloads.sourceforge.net/cryptopp/cryptopp523win32.zip.sig">download
+    PGP signature</a>] [<a
+    href="http://csrc.nist.gov/cryptval/140-1/1401val2005.htm">certificate
+    #562</a>] </li>
+  <li>Crypto++ Library 5.3.0 (32-bit and 64-bit Windows DLL, calling
+    application must be compiled with MSVC 2005) [<a
+    href="http://prdownloads.sourceforge.net/cryptopp/cryptopp530win32win64.zip">download
+    package</a>] [<a
+    href="http://prdownloads.sourceforge.net/cryptopp/cryptopp530win32win64.zip.sig">download
+    PGP signature</a>] [<a
+    href="http://csrc.nist.gov/cryptval/140-1/1401val2007.htm">certificate
+    #819</a>] </li>
+</ul>
 
-<P>The library cherishes test scripts and test cases. They ensure the library is fit and they help uncover issues with the library before users experience them. If you have some time, then write some test cases, especially the ones that are intended to break things.</P>
+<h2><a name="lists">Mailing Lists</a></h2>
 
-<P>Branch and release testing is your chance to ensure Master (and planned merges) meets your expectations and perform as expected. If you have a few spare cycles, then please test Master on your favorite platform. We need more testing on MinGW, Windows Phone, Windows Store, Solaris 10 (and below), and modern iOS and OS X (including TV and Watch builds).</P>
+<p>There are two mailing lists for Crypto++. The first is
+cryptopp-announce@googlegroups.com, and the second is
+cryptopp-users@googlegroups.com.</p>
+<ul>
+  <li><a
+    href="//groups.google.com/forum/#!forum/cryptopp-announce">cryptopp-announce@googlegroups.com</a>
+    - Crypto++ administrative announcements (formerly at <a
+    href="//lists.sourceforge.net/mailman/listinfo/cryptopp-announce">cryptopp-announce@lists.sourceforge.net</a>)
+  </li>
+  <li><a
+    href="//groups.google.com/group/cryptopp-users">cryptopp-users@googlegroups.com</a>
+    - Crypto++ library user questions and general discussions (alternate
+    archives are available at <a
+    href="http://www.mail-archive.com/cryptopp-list@eskimo.com">The Mail
+    Archive</a> and <a
+    href="http://old.nabble.com/Crypto%2B%2B-Users-f949.html">Nabble</a>) </li>
+</ul>
 
-<P>Documentation and updates includes both the inline source code annotations using Doxygen, and the online information provided in the wiki. The wiki is more verbose and usually provides more contextual information than the API reference. Besides testing, documentation is one of the highest returns on investment.</P>
+<p>As a courtesy, please join the discussion list with your real name instead
+of an online handle. Alternate webviews are for the lists are available at <a
+href="https://groups.google.com/forum/#!forum/cryptopp-announce">Crypto++
+Announce - Google Groups</a> and <a
+href="https://groups.google.com/forum/#!forum/cryptopp-users">Crypto++ Users -
+Google Groups</a>.</p>
 
-<H2><A NAME="paid">Paid Support and Consulting</A></H2>
-<P>If you are interested in paid support for Crypto++ or consulting on a Crypto++ related project, then please see this <A HREF="wiki/Consulting"> list of companies and individuals</A> providing services on the wiki. This listing is a free service for the Crypto++ community, and anyone may sign up to be listed by <A HREF="wiki/Special:UserLogin">creating an account on the wiki</A>.</P>
+<p>When posting a question to the Crypto++ user mailing list, please provide
+the following information, if applicable: </p>
+<ul>
+  <li>exact error message </li>
+  <li>stack trace (please copy from the call stack window of your debugger, or
+    use the "bt" command in gdb) </li>
+  <li>a minimal program with a main() function, that reproduces the problem
+  </li>
+  <li>version of Crypto++, operating system (output of "uname -a" command if
+    using Unix), and compiler (output of "gcc -v" if using GCC) </li>
+</ul>
 
-<HR>
+<h2><a name="contributions">Source Code and Contributions</a></h2>
 
-<TABLE width="100%">
-  <TR>
-    <TD width="20%" align="left">
-      <!-- Histats.com  START  -->
-      <!-- Histats.com  (div with counter) -->
-      <span id="histats_counter"></span>
-      <!-- Histats.com  START  (aync)-->
-      <script type="text/javascript">var _Hasync= _Hasync|| [];
-	_Hasync.push(['Histats.start', '1,667237,4,139,85,17,00001000']);
-	_Hasync.push(['Histats.fasi', '1']);
-	_Hasync.push(['Histats.track_hits', '']);
-	(function() {
-	var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-	hs.src = ('//s10.histats.com/js15_as.js');
-	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-	})();</script>
-      <noscript><a href="//www.histats.com" target="_blank"><img src="//sstatic1.histats.com/0.gif?667237&101" alt="best counter" border="0"></a></noscript>
-      <!-- Histats.com  END  -->
-      visitors since 4/7/2004.</TD>
+<p>The source code and its planned changes are available at the following
+locations.</p>
+<ul>
+  <li>The <a href="">Crypto++ GitHub repository</a> allows you to view the
+    latest (unreleased) Crypto++ source code via the <a
+    href="//git.kernel.org/cgit/git/git.git/">Linux kernel's git</a> beginning
+    around June 2015. Its also serves as an incubator to nuture and grow the
+    library.</li>
+  <li>The former <a href="//sourceforge.net/svn/?group_id=6152">Crypto++
+    SourceForge repository</a> allows you to view the Crypto++ source code via
+    <a href="//subversion.apache.org">Apache's subversion</a> until about July
+    2015. At that time, SourceForge had infrastructure problems and a cutover
+    to GutHub was performed.</li>
+  <li>The <a href="wiki/Roadmap">Roadmap</a> on the wiki provides the general
+    direction the library is heading. It includes planned features and
+    releases, and even some wishlist items.</li>
+</ul>
 
-    <TD width="20%" align="center"><a href="//validator.w3.org/check?uri=http%3A%2F%2Fwww.cryptopp.com"><img src="valid-html401.png" alt="Valid HTML 4.01 Transitional" height="31" width="88"></a></TD>
+<p>Contributions of all types are welcomed. Contributions include the
+following.</p>
+<ul>
+  <li>Bug finding and fixes </li>
+  <li>Features and enhancements </li>
+  <li>Test scripts and test cases </li>
+  <li>Branch and release testing </li>
+  <li>Documentation and updates </li>
+</ul>
 
-    <TD width="20%" align="center"><a href="https://www.comodo.com"><img src="comodo-ssl-trustlogo.jpg" alt="Comodo Secure" height="71" width="103"></a></TD>
+<p>If you think you have found a bug in the library, then you should discuss it
+on the <a href="http://groups.google.com/group/cryptopp-users">Users mailing
+list</a>. Discussing it will help bring the issue to the attention of folks who
+can help resolve the issue. If you want to contribute a bug fix to the library,
+then make a Pull Request or make a Diff available somewhere. Also see <a
+href="wiki/Bug_Report">Bug Reports</a> on the wiki.</p>
 
-    <TD width="20%" align="center"><a href="https://scan.coverity.com/projects/cryptopp">
-		<img alt="Coverity Scan Build Status" src="https://scan.coverity.com/projects/6221/badge.svg"></a></TD>
+<p>Features and enhancements are welcomend additions to the library. This
+category tends to be time consuming because algorithms and their test cases
+need to be reviewed and merged. Please be mindful of the test cases, and
+attempt to procure them from an independent source.</p>
 
-    <TD width="20%" align="right">Originally written by: <A HREF="http://www.weidai.com">Wei Dai</A><BR>Last modified: October 11, 2016</TD>
-    </TR>
-  </TABLE>
-</HTML>
+<p>The library cherishes test scripts and test cases. They ensure the library
+is fit and they help uncover issues with the library before users experience
+them. If you have some time, then write some test cases, especially the ones
+that are intended to break things.</p>
+
+<p>Branch and release testing is your chance to ensure Master (and planned
+merges) meets your expectations and perform as expected. If you have a few
+spare cycles, then please test Master on your favorite platform. We need more
+testing on MinGW, Windows Phone, Windows Store, Solaris 10 (and below), and
+modern iOS and OS X (including TV and Watch builds).</p>
+
+<p>Documentation and updates includes both the inline source code annotations
+using Doxygen, and the online information provided in the wiki. The wiki is
+more verbose and usually provides more contextual information than the API
+reference. Besides testing, documentation is one of the highest returns on
+investment.</p>
+
+<h2><a name="paid">Paid Support and Consulting</a></h2>
+
+<p>If you are interested in paid support for Crypto++ or consulting on a
+Crypto++ related project, then please see this <a href="wiki/Consulting">list
+of companies and individuals</a> providing services on the wiki. This listing
+is a free service for the Crypto++ community, and anyone may sign up to be
+listed by <a href="wiki/Special:UserLogin">creating an account on the
+wiki</a>.</p>
+<hr>
+
+<table width="100%">
+  <tbody>
+    <tr>
+      <td width="20%" align="left"><!-- Histats.com START -->
+        <!-- Histats.com (div with counter) -->
+        <span id="histats_counter"></span> <!-- Histats.com START (aync)-->
+        <script type="text/javascript">
+var _Hasync= _Hasync|| [];
+        _Hasync.push(['Histats.start', '1,667237,4,139,85,17,00001000']);
+        _Hasync.push(['Histats.fasi', '1']);
+        _Hasync.push(['Histats.track_hits', '']);
+        (function() {
+        var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+        hs.src = ('//s10.histats.com/js15_as.js');
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+        })();</script>
+
+
+        <noscript>
+        <a href="//www.histats.com" target="_blank"><img
+        src="//sstatic1.histats.com/0.gif?667237&amp;101" alt="best counter"
+        border="0"></a></noscript>
+        <!-- Histats.com END -->
+         visitors since 4/7/2004.</td>
+      <td width="20%" align="center"><a
+        href="//validator.w3.org/check?uri=http%3A%2F%2Fwww.cryptopp.com"><img
+        src="valid-html401.png" alt="Valid HTML 4.01 Transitional" height="31"
+        width="88"></a></td>
+      <td width="20%" align="center"><a href="https://www.comodo.com"><img
+        src="comodo-ssl-trustlogo.jpg" alt="Comodo Secure" height="71"
+        width="103"></a></td>
+      <td width="20%" align="center"><a
+        href="https://scan.coverity.com/projects/cryptopp"><img
+        alt="Coverity Scan Build Status"
+        src="https://scan.coverity.com/projects/6221/badge.svg"></img></a></td>
+      <td width="20%" align="right">Originally written by: <a
+        href="http://www.weidai.com">Wei Dai</a><br>
+        Last modified: October 11, 2016</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
