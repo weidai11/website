@@ -1,6 +1,13 @@
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-family: 'Linux Libertine','Times New Roman',serif;
+    color: #001133;
+    line-height: 1.25;
+}
+
 body {
+    font-weight: normal;
     font-family: 'Helvetica Neue','Nimbus Sans L','Arial',sans-serif;
     color: #001133;
     line-height: 1.4;
-    font-size: 0.95em;
 }
