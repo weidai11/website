@@ -175,7 +175,7 @@ library contains the following algorithms:</p>
   <li>fast multi-precision integer (bignum) and polynomial operations</li>
   <li>finite field arithmetics, including GF(p) and GF(2^n)</li>
   <li>prime number generation and verification</li>
-  <li>useful non-cryptographic algorithms 
+  <li>useful non-cryptographic algorithms
     <ul>
       <li><a href="http://www.faqs.org/rfcs/rfc1951.html">DEFLATE</a> (RFC
         1951) compression/decompression with <a
@@ -186,7 +186,7 @@ library contains the following algorithms:</p>
       <li>32-bit CRC and Adler32 checksum</li>
     </ul>
   </li>
-  <li>class wrappers for these operating system features (optional): 
+  <li>class wrappers for these operating system features (optional):
     <ul>
       <li>high resolution timers on Windows, Unix, and Mac OS</li>
       <li>Berkeley and Windows style sockets</li>
@@ -199,7 +199,7 @@ library contains the following algorithms:</p>
     href="wiki/User_Guide:_filters.h">filter/pipeline</a> metaphor</li>
   <li><a href="benchmarks.html">benchmarks</a> and validation testing</li>
   <li>x86, x86-64 (x64), MMX, and SSE2 assembly code for the most commonly used
-    algorithms, with run-time CPU feature detection and code selection 
+    algorithms, with run-time CPU feature detection and code selection
     <ul>
       <li>supports GCC-style and MSVC-style inline assembly, and MASM for x64
       </li>
@@ -234,10 +234,10 @@ as well as information about compiling earlier versions of Crypto++, please see
 
 <h2><a name="news">What's new?</a></h2>
 <ul>
-  <li>10/11/2016 - <a href="release565.html">Version 5.6.5 released</a> 
+  <li>10/11/2016 - <a href="release565.html">Version 5.6.5 released</a>
     <ul>
       <li>maintenance release, recompile of programs recommended</li>
-      <li>expanded community input and support 
+      <li>expanded community input and support
         <ul>
           <li>25 unique contributors as of this release</li>
         </ul>
@@ -246,19 +246,19 @@ as well as information about compiling earlier versions of Crypto++, please see
         production/release)</li>
       <li>fixed CVE-2016-7544 (Issue 302, avoid <tt>_malloca</tt> and
         <tt>_freea</tt>)</li>
-      <li>shipped library in recommended state 
+      <li>shipped library in recommended state
         <ul>
           <li>backwards compatibility achieved with
             <tt>&lt;config.compat&gt;</tt></li>
         </ul>
       </li>
-      <li>Visual Studio project file cleanup 
+      <li>Visual Studio project file cleanup
         <ul>
           <li>improved X86 and X64 MSBuild support</li>
           <li>added ARM-based MSBuild awareness</li>
         </ul>
       </li>
-      <li>improved Testing and QA 
+      <li>improved Testing and QA
         <ul>
           <li>expanded platforms and compilers</li>
           <li>expanded Coverity into OS X and Windows platforms</li>
@@ -269,10 +269,10 @@ as well as information about compiling earlier versions of Crypto++, please see
         MacPorts GCC 7.0, Clang 3.8, Intel C++ 17.00</li>
     </ul>
   </li>
-  <li>09/11/2016 - <a href="release564.html">Version 5.6.4 released</a> 
+  <li>09/11/2016 - <a href="release564.html">Version 5.6.4 released</a>
     <ul>
       <li>maintenance release, honored API/ABI/Versioning requirements</li>
-      <li>expanded community input and support 
+      <li>expanded community input and support
         <ul>
           <li>22 unique contributors as of this release</li>
         </ul>
@@ -281,27 +281,27 @@ as well as information about compiling earlier versions of Crypto++, please see
       <li>changed SHA3 to FIPS 202 (F1600, XOF d=0x06)</li>
       <li>added Keccak (F1600, XOF d=0x01)</li>
       <li>added ChaCha (ChaCha8/12/20)</li>
-      <li>added HMQV and FHMQV 
+      <li>added HMQV and FHMQV
         <ul>
           <li>Hashed and Fully Hashed MQV</li>
         </ul>
       </li>
-      <li>added BLAKE2 (BLAKE2s and BLAKE2b) 
+      <li>added BLAKE2 (BLAKE2s and BLAKE2b)
         <ul>
           <li>C++, SSE2, SSE4, ARM NEON and ARMv8 ASIMD</li>
         </ul>
       </li>
-      <li>added CRC32-C 
+      <li>added CRC32-C
         <ul>
           <li>C/C++, Amd64 CRC, and ARMv8 CRC</li>
         </ul>
       </li>
-      <li>improved Rabin-William signatures 
+      <li>improved Rabin-William signatures
         <ul>
           <li>Tweaked roots <em>e</em> and <em>f</em></li>
         </ul>
       </li>
-      <li>improved C++11 support 
+      <li>improved C++11 support
         <ul>
           <li>atomics, threads and fences</li>
           <li>alginof, alignas</li>
@@ -309,18 +309,18 @@ as well as information about compiling earlier versions of Crypto++, please see
           <li>noexcept</li>
         </ul>
       </li>
-      <li>improved GCM mode 
+      <li>improved GCM mode
         <ul>
           <li>ARM NEON and ARMv8 ASIMD</li>
           <li>ARMv8 carry-less multiply</li>
         </ul>
       </li>
-      <li>improved Windows 8 and 10 support 
+      <li>improved Windows 8 and 10 support
         <ul>
           <li>Windows Phone, Universal Windows Platform, Windows Store</li>
         </ul>
       </li>
-      <li>improved MIPS, ARMv7 and ARMv8 support 
+      <li>improved MIPS, ARMv7 and ARMv8 support
         <ul>
           <li>added scripts setenv-{android | embedded | ios}.sh for
             GNUmakefile-cross</li>
@@ -328,7 +328,7 @@ as well as information about compiling earlier versions of Crypto++, please see
             cryptest.sh</li>
         </ul>
       </li>
-      <li>improved build systems 
+      <li>improved build systems
         <ul>
           <li>Visual Studio 2010 default</li>
           <li>added CMake support (lacks FindCryptopp.cmake)</li>
@@ -337,7 +337,7 @@ as well as information about compiling earlier versions of Crypto++, please see
           <li>archived Borland project files (bds10.zip)</li>
         </ul>
       </li>
-      <li>improved Testing and QA 
+      <li>improved Testing and QA
         <ul>
           <li>expanded platforms and compilers</li>
           <li>added code generation tests based on CPU features</li>
@@ -349,7 +349,7 @@ as well as information about compiling earlier versions of Crypto++, please see
         MacPorts GCC 7.0, Clang 3.8, Intel C++ 17.00</li>
     </ul>
   </li>
-  <li>11/20/2015 - <a href="release563.html">Version 5.6.3 released</a> 
+  <li>11/20/2015 - <a href="release563.html">Version 5.6.3 released</a>
     <ul>
       <li>fixed CVE-2015-2141</li>
       <li>cleared most Undefined Behavior Sanitizer (UBsan) findings</li>
@@ -363,7 +363,7 @@ as well as information about compiling earlier versions of Crypto++, please see
       <li>added -fPIC for 64-bit builds (off for 32-bit builds)</li>
       <li>added HKDF class from RFC 5869</li>
       <li>switched to member_ptr due to C++ 11 warnings for auto_ptr</li>
-      <li>initialization of C++ static objects, off by default 
+      <li>initialization of C++ static objects, off by default
         <ul>
           <li>GCC and init_priotirty/constructor attributes</li>
           <li>MSVC and init_seg(lib)</li>
@@ -399,7 +399,7 @@ as well as information about compiling earlier versions of Crypto++, please see
   </li>
   <li>8/31/2015 - Completed migration from ibiblio and Sourceforge to a stand
     alone installation and GitHub</li>
-  <li>02/20/2013 - <a href="release562.html">Version 5.6.2 released</a> 
+  <li>02/20/2013 - <a href="release562.html">Version 5.6.2 released</a>
     <ul>
       <li>changed license to Boost Software License 1.0</li>
       <li>added SHA-3 (Keccak)</li>
@@ -412,12 +412,12 @@ as well as information about compiling earlier versions of Crypto++, please see
         C++ Compiler 13.0</li>
     </ul>
   </li>
-  <li>8/9/2010 - <a href="release561.html">Version 5.6.1 released</a> 
+  <li>8/9/2010 - <a href="release561.html">Version 5.6.1 released</a>
     <ul>
       <li>added support for AES-NI and CLMUL instruction sets in AES and
         GMAC/GCM</li>
       <li>removed WAKE-CFB</li>
-      <li>fixed several bugs in the SHA-256 x86/x64 assembly code: 
+      <li>fixed several bugs in the SHA-256 x86/x64 assembly code:
         <ul>
           <li>incorrect hash on non-SSE2 x86 machines on non-aligned input</li>
           <li>incorrect hash on x86 machines when input crosses 0x80000000</li>
@@ -434,7 +434,7 @@ as well as information about compiling earlier versions of Crypto++, please see
         MSVC 2010</li>
     </ul>
   </li>
-  <li>3/15/2009 - <a href="release560.html">Version 5.6.0 released</a> 
+  <li>3/15/2009 - <a href="release560.html">Version 5.6.0 released</a>
     <ul>
       <li>added AuthenticatedSymmetricCipher interface class and Filter
       wrappers</li>
@@ -574,7 +574,7 @@ in the zip archive for build instructions and other important notes.</p>
   <li>Browse the <a href="docs/ref/">Crypto++ Reference Manual</a>.</li>
   <li><a name="charts"></a>View these Crypto++ class hierarchy charts to see
     how Crypto++ is organized. Note that these charts only include a small
-    number of actual algorithms as examples. 
+    number of actual algorithms as examples.
     <ul>
       <li><a href="filters.gif">symmetric algorithms and hash functions</a>
       </li>
