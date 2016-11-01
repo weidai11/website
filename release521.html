@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Crypto++ Library | 5.6.2 Release</title>
+  <title>Crypto++ Library | 5.2.1 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
   <meta name="keywords" content=
@@ -26,47 +26,38 @@
       </tr>
     </tbody>
   </table>
-  <h2>Crypto++ 5.6.2</h2>
-  <p>Crypto++ 5.6.2 was released on February 20, 2013. The 5.6.2 release fixed three bugs
-  and added SHA-3.</p>
+  <h2>Crypto++ 5.2.1</h2>
+  <p>Crypto++ 5.2.1 was released on December 22, 2006. The 5.2.1 fixed several minor
+  bugs.</p>
   <h2>Download</h2>
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below.</p>
   <ul>
-    <li><a href="cryptopp562.zip">Original cryptopp562.zip</a></li>
-    <li>SHA-1: ddc18ae41c2c940317cd6efe81871686846fa293</li>
-    <li>SHA-256: 5cbfd2fcb4a6b3aab35902e2e0f3b59d9171fee12b3fc2b363e1801dfec53574</li>
-    <li>SHA-512:
-    016ca7ebad1091d67ad0bc5ccb7549d96d4af6b563d9d5a612cae27b3d1a3514c41b954e319fed91c820e8c701e3aa43da186e0864bf959ce4afd1539248ebbe</li>
+    <li><a href="cryptopp521.zip">Original cryptopp521.zip</a></li>
+    <li>SHA1: 4b84311d1cbde04df5d88b5375d29c2e35ccb89c</li>
+    <li>SHA256: d578d297f1804a6b1c3f9090cc77091e49ae6d0311846a45117e79d4d20c2a39</li>
+    <li>SHA512:
+    09be806c7e5a4c51c9affb54f4b31ff0cfb4ede1be4e23a205e49735193119dcab0664f0e44011d8a7f032b9e447e805ad467ace4d8d90698c42c0d76d2ef610</li>
     <li>WHIRLPOOL:
-    e31203da48a31b09e6ea48a75aa64fe5fd27fd370a1a609c4387526f09daab7582716563b688c0c81a8c3b200b8ffa7bdb2b981e5911640e5f1c172d6027f6ac</li>
+    cc0138c096f1e9462d578298de91974b2619a50eb912dbee6c4ec2fb5f2f0fec690132773991d2655499928ff512feb81409bff761cee296b1e305192c9223af</li>
   </ul>
   <p>Mirrors for the download are below. Note that GitHub and Sourceforge checksums on
   the ZIP or TAR are different because each creates the archive from sources.</p>
   <ul>
-    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_2">GitHub
-    cryptopp562.zip</a></li>
-    <li><a href="//prdownloads.sourceforge.net/cryptopp/cryptopp562.zip" target=
-    "_blank">Sourceforge cryptopp562.zip</a></li>
+    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_2_1">GitHub
+    cryptopp521.zip</a></li>
+    <li><a href="//prdownloads.sourceforge.net/cryptopp/cryptopp521.zip" target=
+    "_blank">Sourceforge cryptopp521.zip</a></li>
   </ul>
   <h2>Release Notes</h2>
-  <p>The release notes for Crypto++ 5.6.2 follows.</p>
+  <p>The release notes for Crypto++ 5.2.1 follows.</p>
   <ul>
-    <li>changed license to Boost Software License 1.0</li>
-    <li>added SHA-3 (Keccak)</li>
-    <li>updated DSA to FIPS 186-3 (see DSA2 class)</li>
-    <li>fixed Blowfish minimum keylength to be 4 bytes (32 bits)</li>
-    <li>fixed Salsa validation failure when compiling with GCC 4.6</li>
-    <li>fixed infinite recursion when on x64, assembly disabled, and no AESNI</li>
-    <li>ported to MSVC 2012, GCC 4.7, Clang 3.2, Solaris Studio 12.3, Intel C++ Compiler
-    13.0</li>
-  </ul>
-  <h2>File Changes</h2>
-  <p>Below is a list of files that were added or deleted at Crypto++ 5.6.2.</p>
-  <pre>
-$ git diff-tree -r --summary CRYPTOPP_5_6_1 CRYPTOPP_5_6_2 | grep -v "change" | awk '{$2=$3=""; print $0}'
-create TestVectors/sha3.txt
-create sha3.cpp
-create sha3.h</pre><!--#include virtual="/footer.html" -->
+    <li>fixed bug in the "dlltest" DLL testing program</li>
+    <li>fixed compiling with STLport using VC .NET</li>
+    <li>fixed compiling with -fPIC using GCC</li>
+    <li>fixed compiling with -msse2 on systems without memalign()</li>
+    <li>fixed inability to instantiate PanamaMAC</li>
+    <li>fixed problems with inline documentation</li>
+  </ul><!--#include virtual="/footer.html" -->
 </body>
 </html>
