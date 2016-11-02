@@ -30,9 +30,9 @@
   <p>Crypto++ 5.6.5 was released on October 11, 2016. The 5.6.5 release was mostly a
   maintenance release. The release included two CVE fixes.</p>
   <p>The first, CVE-2016-7420, was a procedural finding due to external build systems
-  failing to define <tt>NDEBUG</tt> for release builds. The procedural gap was a failure
-  to tell users to define it. The second, CVE-2016-7544, was a potential memory
-  corruption on Windows platforms when using Microsoft compilers due to use of
+  failing to define <tt>NDEBUG</tt> for release builds. The gap was the project's failure
+  to tell users to define <tt>NDEBUG</tt>. The second, CVE-2016-7544, was a potential
+  memory corruption on Windows platforms when using Microsoft compilers due to use of
   <tt>_malloca</tt> and <tt>_freea</tt>.</p>
   <p>Due to CVE-2016-7420 and the possibility for an unwanted <tt>assert</tt> to egress
   data, users and distros are encouraged to recompile the library and all dependent
@@ -134,7 +134,7 @@
     <li>CMake, Solaris and output artifacts that can't be linked due to missing PIC
     (Issue 271)</li>
     <li>CMake, CMakeList.txt calls out GNUInstallDirs (Issue 268)</li>
-    <li>Fix port forawrding in <tt>cryptest.exe</tt> program on Unix</li>
+    <li>Fix port forwarding in <tt>cryptest.exe</tt> program on Unix</li>
     <li>Move file scope statics into anonymous namespace</li>
     <li>Rewrite some Windows socket code, remove <tt>_WINSOCK_DEPRECATED_NO_WARNINGS</tt>
     (Issue 19)</li>
