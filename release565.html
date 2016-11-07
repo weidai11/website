@@ -156,6 +156,57 @@ create TestScripts/coverity-macosx.txt
 create TestScripts/coverity-windows.txt
 create TestScripts/cryptest-coverity.cpp
 create TestVectors/tls_chacha.txt
-create ossig.h</pre><!--#include virtual="/footer.html" -->
+create ossig.h</pre>
+  <h2>Note for Distros</h2>
+  <p>If you start getting bug reports on missing symbols that implicate <tt>unsigned long
+  long</tt>, then this applies to you. Depending on what you are using in Crypto++, it
+  may surface as:</p>
+  <pre>// Linux:
+cryptest.exe: symbol lookup error: .../cryptest.exe: undefined symbol: CryptoPP::RandomNumberStore::TransferTo2(CryptoPP::BufferedTransformation&amp;, unsigned long long&amp;, std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, bool)
+cryptest.exe: symbol lookup error: .../cryptest.exe: undefined symbol: CryptoPP::Whirlpool::InitState(unsigned long long*)
+
+// OS X:
+dyld: Symbol not found: CryptoPP::RandomPool::GenerateIntoBufferedTransformation(CryptoPP::BufferedTransformation&amp;, std::string const&amp;, unsigned long long)
+  Referenced from: .../cryptest.exe
+  Expected in: .../libcryptopp.dylib
+ in .../cryptest.exe</pre>
+  <p>In Crypto++ 5.6.4 and below <b><tt>word64</tt></b> was unconditionally defined to
+  <b><tt>unsigned long long</tt></b> on 32-bit and 64-bit platforms. Crypto++ 5.6.5
+  defined <b><tt>word64</tt></b> to <b><tt>unsigned long</tt></b> on 64-bit machines due
+  to compile problems with GCC and Clang when using SSE and NEON data types through
+  intrinsics. Crypto++ 5.6.5 increased use of SSE and NEON intrinsics, and calls to SSE
+  and NEON APIs had some hacks that were cleaned up.</p>
+  <p>Below if from <tt>config.h</tt>, and it is reposnsible for the <em>"missing unsigned
+  long long"</em> issue.</p>
+  <pre>#if defined(_MSC_VER) || defined(__BORLANDC__)
+        typedef unsigned __int64 word64;
+        #define W64LIT(x) x##ui64
+#elif (_LP64 || __LP64__)
+        typedef unsigned long word64;
+        #define W64LIT(x) x##UL
+#else
+        typedef unsigned long long word64;
+        #define W64LIT(x) x##ULL
+#endif</pre>
+  <p>To go back to Crypto++ 5.6.4, you have two choices. First, you can use
+  <tt>config.compat</tt> in place of <tt>config.h</tt> to restore the compatibility.
+  Second, you can remove the <tt>__LP64__</tt> block. Be advised we did not test this
+  configuration, so it may not completely clear the <em>"missing unsigned long long"</em>
+  issue.</p>
+  <pre>#if defined(_MSC_VER) || defined(__BORLANDC__)
+        typedef unsigned __int64 word64;
+        #define W64LIT(x) x##ui64
+#else
+        typedef unsigned long long word64;
+        #define W64LIT(x) x##ULL
+#endif</pre>
+  <p>Since this break was unknown to the project, it was identified as a gap in our
+  testing process. <a href=
+  "http://github.com/weidai11/cryptopp/commit/385a3914d6cfdc88002f113bd4955f7b7ae2266a">Commit
+  385a3914d6cfdc88</a> added a script to test for missing symbols by linking
+  <tt>cryptest.exe</tt> against different versions of the dynamic library. For example,
+  Crypto++ 5.6.4 <tt>cryptest.exe</tt> will runtime link against Crypto++ 5.6.5
+  <tt>libcryptopp.so</tt> or <tt>libcryptopp.dylib</tt> to nsure no symbols go
+  missing.</p><!--#include virtual="/footer.html" -->
 </body>
 </html>
