@@ -1,8 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
   <title>Crypto++ Library | 5.6.0 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
@@ -10,62 +12,98 @@
   "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
 </head>
+
 <body>
   <!-- Child pages menu bar at top of page. Differs from home page -->
+
   <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
     <tbody>
       <tr>
         <td><b><big><a href="index.html">Home Page</a></big></b></td>
+
         <td><a href="index.html#download">Download</a></td>
+
         <td><a href="docs/ref/">Manual</a></td>
+
         <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
+
         <td><a href="wiki/">Wiki and FAQ</a></td>
+
         <td><a href="index.html#lists">Mailing lists</a></td>
+
         <td><a href="index.html#contributions">Contributions</a></td>
+
         <td><a href="wiki/Related_Links">Related links</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2>Crypto++ 5.6.0</h2>
+
   <p>Crypto++ 5.6.0 was released on March 15, 2009. The 5.6.0 released fixed several bugs
   and added classes for CCM, GCM EAX, CMAC, XSalsa20, and SEED.</p>
+
   <h2>Download</h2>
+
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below.</p>
+
   <ul>
     <li><a href="cryptopp560.zip">Original cryptopp560.zip</a></li>
+
     <li>SHA1: b836783ebd72d5bc6a916620ab2b1ecec316fef1</li>
+
     <li>SHA256: b522f0b5f850b50e9917823ea986f855295407380fafbe30f358875c41998bc5</li>
+
     <li>SHA512:
     37c5820404f9fa94e4ebe595865de17af13876bf5ef20c8612e019427893227f80095f21ee71c6caf781f14a493dc56805eb965e909f8fdce31a9f748b772655</li>
+
     <li>WHIRLPOOL:
     fab7114bcd3eef5df0ef9d794ccb5f54670a7ef27f57f9662339e27d42dd2d19223ebee395e6a17e0fb2d48ea74139f3093f688db14bdefa650fb27f520c006b</li>
   </ul>
+
   <p>Mirrors for the download are below. Note that GitHub and Sourceforge checksums on
   the ZIP or TAR are different because each creates the archive from sources.</p>
+
   <ul>
     <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_0">GitHub
     cryptopp560.zip</a></li>
+
     <li><a href="//prdownloads.sourceforge.net/cryptopp/cryptopp560.zip" target=
     "_blank">Sourceforge cryptopp560.zip</a></li>
   </ul>
+
   <h2>Release Notes</h2>
+
   <p>The release notes for Crypto++ 5.6.0 follows.</p>
+
   <ul>
     <li>added AuthenticatedSymmetricCipher interface class and Filter wrappers</li>
+
     <li>added CCM, GCM (with SSE2 assembly), EAX, CMAC, XSalsa20, and SEED</li>
+
     <li>added support for variable length IVs</li>
+
     <li>added OIDs for Brainpool elliptic curve parameters</li>
+
     <li>improved AES and SHA-256 speed on x86 and x64</li>
+
     <li>fixed incorrect VMAC computation on message lengths that are &gt;64 mod 128 (x86
     assembly version is not affected)</li>
+
     <li>fixed compiler error in vmac.cpp on x86 with GCC -fPIC</li>
+
     <li>fixed run-time validation error on x86-64 with GCC 4.3.2 -O2</li>
+
     <li>fixed HashFilter bug when putMessage=true</li>
+
     <li>removed WORD64_AVAILABLE; compiler support for 64-bit int is now required</li>
+
     <li>ported to GCC 4.3, C++Builder 2009, Sun CC 5.10, Intel C++ Compiler 11</li>
   </ul>
+
   <h2>File Changes</h2>
+
   <p>Below is a list of files that were added or deleted at Crypto++ 5.6.0. The 5.6.0
   library moved test data files into the <tt>TestData</tt> subdirectory, which explains
   the large number of deletes and creates.</p>
@@ -88,7 +126,9 @@ create gcm.cpp
 create gcm.h
 create seed.cpp
 create seed.h
-create x64dll.asm</pre>
+create x64dll.asm
+</pre>
+
   <p>Below is the full record of the 5.6.0 release.</p>
   <pre>
 $ git diff-tree -r --summary CRYPTOPP_5_5_2 CRYPTOPP_5_6_0 | grep -v "change" | awk '{$2=$3=""; print $0}'
@@ -219,6 +259,7 @@ delete twofishv.dat
 delete usage.dat
 create x64dll.asm
 delete xtrdh171.dat
-delete xtrdh342.dat</pre><!--#include virtual="/footer.html" -->
+delete xtrdh342.dat
+</pre><!--#include virtual="/footer.html" -->
 </body>
 </html>

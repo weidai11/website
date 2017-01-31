@@ -44,6 +44,10 @@ do
 
 	# Delete the generator markup tag
 	"$SED" "${SED_OPTS[@]}" -e'/<meta name="generator"/d' "$file"
+	"$SED" "${SED_OPTS[@]}" -e'/"HTML Tidy/d' "$file"
+
+	# Fix change from UTF-8 to ASCII
+        "$SED" "${SED_OPTS[@]}" -e's/charset=us-ascii/charset=utf-8/g' "$file"
 
 	# Fix CRLF endings after sed
 	unix2dos "$file"
