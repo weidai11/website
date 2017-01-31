@@ -133,9 +133,9 @@
         "http://en.wikipedia.org/wiki/Public-key_cryptography">public-key
         cryptography</a></td>
 
-        <td><a href="http://www.nist.gov/dss">RSA, DSA</a>, ElGamal, Nyberg-Rueppel (NR),
-        Rabin-Williams (RW), EC-based German Digital Signature (ECGDSA), LUC, LUCELG,
-        DLIES (variants of DHAES), ESIGN</td>
+        <td><a href="http://www.nist.gov/dss">RSA, DSA</a>, Determinsitic DSA, ElGamal,
+        Nyberg-Rueppel (NR), Rabin-Williams (RW), EC-based German Digital Signature
+        (ECGDSA), LUC, LUCELG, DLIES (variants of DHAES), ESIGN</td>
       </tr>
 
       <tr>
@@ -158,7 +158,7 @@
         "http://en.wikipedia.org/wiki/Elliptic_curve_cryptography">elliptic curve
         cryptography</a></td>
 
-        <td>ECDSA, ECGDSA, ECNR, ECIES, ECDH, ECMQV</td>
+        <td>ECDSA, Determinsitic ECDSA, ECGDSA, ECNR, ECIES, ECDH, ECMQV</td>
       </tr>
 
       <tr>
@@ -224,19 +224,24 @@
       </ul>
     </li>
 
+    <li>x86, x64 (x86-64), x32 (ILP32), ARM-32, Aarch32 and Aarch64 code for the commonly
+    used algorithms
+
+      <ul>
+        <li>run-time CPU feature detection and code selection</li>
+
+        <li>supports GCC-style and MSVC-style inline assembly, and MASM for x64</li>
+
+        <li>x86, x64 (x86-64), x32 provides MMX, SSE2, and SSE4 implementations</li>
+
+        <li>ARM-32, Aarch32 and Aarch64 provides EON and ASIMD implementations</li>
+      </ul>
+    </li>
+
     <li>A high level interface for most of the above, using a <a href=
     "wiki/User_Guide:_filters.h">filter/pipeline</a> metaphore</li>
 
     <li><a href="benchmarks.html">benchmarks</a> and validation testing</li>
-
-    <li>x86, x86-64 (x64), MMX, SSE2, SSE4 and ARM NEON and ASIMD specialized code for
-    the most commonly used algorithms, with run-time CPU feature detection and code
-    selection
-
-      <ul>
-        <li>supports GCC-style and MSVC-style inline assembly, and MASM for x64</li>
-      </ul>
-    </li>
 
     <li>certain versions are available in <a href="#fips">FIPS 140-2 validated</a>
     form</li>
@@ -882,12 +887,6 @@
     allows you to view the latest (unreleased) Crypto++ source code via the <a href=
     "//git.kernel.org/cgit/git/git.git/">Linux kernel's git</a> beginning around June
     2015. Its also serves as an incubator to nuture and grow the library.</li>
-
-    <li>The former <a href="//sourceforge.net/svn/?group_id=6152">Crypto++ SourceForge
-    repository</a> allows you to view the Crypto++ source code via <a href=
-    "//subversion.apache.org">Apache's subversion</a> until about July 2015. At that
-    time, SourceForge had infrastructure problems and a cutover to GutHub was
-    performed.</li>
 
     <li>The <a href="wiki/Roadmap">Roadmap</a> on the wiki provides the general direction
     the library is heading. It includes planned features and releases, and even some
