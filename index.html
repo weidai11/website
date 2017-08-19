@@ -9,7 +9,7 @@
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
   <meta name="keywords" content=
-  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, VIA Padlock, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
   <link rel="icon" type="image/png" href="cryptopp.png">
 </head>
@@ -24,7 +24,7 @@
 
         <td><a href="#platforms">Platforms</a></td>
 
-        <td><b><big><a href="#download">Download</a></big></b></td>
+        <td><strong><big><a href="#download">Download</a></big></strong></td>
 
         <td><a href="docs/ref/">Manual</a></td>
 
@@ -61,7 +61,7 @@
 
         <td><a href="http://www.cryptolounge.org/wiki/GCM">GCM</a>, <a href=
         "http://www.cryptolounge.org/wiki/CCM">CCM</a>, <a href=
-        "http://www.cryptolounge.org/wiki/EAX">EAX</a></td>
+        "http://www.cryptolounge.org/wiki/EAX">EAX</a>, OCB</td>
       </tr>
 
       <tr>
@@ -142,9 +142,8 @@
       <tr>
         <td align="right">padding schemes for public-key systems</td>
 
-        <td>PKCS#1 v2.0,
-        OAEP, PSS, PSSR, <a href="http://grouper.ieee.org/groups/1363/">IEEE P1363</a>
-        EMSA2 and EMSA5</td>
+        <td>PKCS#1 v2.0, OAEP, PSS, PSSR, <a href=
+        "http://grouper.ieee.org/groups/1363/">IEEE P1363</a> EMSA2 and EMSA5</td>
       </tr>
 
       <tr>
@@ -182,7 +181,7 @@
 
   <ul>
     <li>pseudo random number generators (PRNG): ANSI X9.17 appendix C, RandomPool,
-    RDRAND, RDSEED, NIST Hash DRBG, NIST HMAC DRBG</li>
+    VIA Padlock, RDRAND, RDSEED, NIST Hash and HMAC DRBGs</li>
 
     <li>password based key derivation functions: PBKDF1 and PBKDF2 from PKCS #5, PBKDF
     from PKCS #12 appendix B, HKDF from RFC 5869</li>
@@ -204,9 +203,9 @@
         "http://www.faqs.org/rfcs/rfc1952.html">gzip</a> (RFC 1952) and <a href=
         "http://www.faqs.org/rfcs/rfc1950.html">zlib</a> (RFC 1950) format support</li>
 
-        <li>hex, base-32, and base-64 coding/decoding</li>
+        <li>Hex, base-32, base-64, URL safe base-64 encoding and decoding</li>
 
-        <li>32-bit CRC and Adler32 checksum</li>
+        <li>32-bit CRC, CRC-C and Adler32 checksum</li>
       </ul>
     </li>
 
@@ -235,7 +234,8 @@
 
         <li>x86, x64 (x86-64), x32 provides MMX, SSE2, and SSE4 implementations</li>
 
-        <li>ARM-32, Aarch32 and Aarch64 provides EON and ASIMD implementations</li>
+        <li>ARM-32, Aarch32 and Aarch64 provides NEON, ASIMD and ARMv8
+        implementations</li>
       </ul>
     </li>
 
@@ -259,19 +259,19 @@
   <p>The current version of Crypto++ supports the following compilers:</p>
 
   <ul>
-    <li>VS2003 - VS2015</li>
+    <li>Visual Studio 2003 - 2015</li>
 
-    <li>GCC 3.2 - 7.0</li>
+    <li>GCC 3.3 - 7.1</li>
 
-    <li>Clang 2.9 - 4.0</li>
+    <li>Apple Clang 4.3 - 8.3</li>
 
-    <li>Intel C++ Compiler 11 - 17.0</li>
+    <li>LLVM Clang 2.9 - 4.0</li>
 
-    <li>Solaris Studio 12.1 - 12.5</li>
+    <li>C++Builder 2010</li>
 
-    <li>Xcode 3.0 - 7.3</li>
+    <li>Intel C++ Compiler 9 - 16.0</li>
 
-    <li>C++ Builder 2010 (for version 5.6.4)</li>
+    <li>Sun Studio 12u1 - 12.5</li>
   </ul>
 
   <p>For detailed build status and notes on various compiler/OS/CPU combinations as well
@@ -640,8 +640,6 @@
 
     <colgroup width="150px" align="center"></colgroup>
 
-    <colgroup width="150px" align="center"></colgroup>
-
     <thead>
       <tr>
         <th>Release Date<br>
@@ -655,10 +653,6 @@
 
         <th><a href="http://github.com/weidai11/cryptopp/releases">GitHub Mirror<br>
         (Active)</a></th>
-
-        <th><a href=
-        "http://sourceforge.net/project/showfiles.php?group_id=6152">SourceForge<br>
-        (Deprecated)</a></th>
       </tr>
     </thead>
 
@@ -673,10 +667,6 @@
         <td><a href=
         "http://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_5">Crypto++
         5.6.5</a></td>
-
-        <td><a href=
-        "http://prdownloads.sourceforge.net/cryptopp/cryptopp565.zip">Crypto++
-        5.6.5</a></td>
       </tr>
 
       <tr align="center">
@@ -688,10 +678,6 @@
 
         <td><a href=
         "http://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_4">Crypto++
-        5.6.4</a></td>
-
-        <td><a href=
-        "http://prdownloads.sourceforge.net/cryptopp/cryptopp564.zip">Crypto++
         5.6.4</a></td>
       </tr>
 
@@ -705,10 +691,6 @@
         <td><a href=
         "http://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_3">Crypto++
         5.6.3</a></td>
-
-        <td><a href=
-        "http://prdownloads.sourceforge.net/cryptopp/cryptopp563.zip">Crypto++
-        5.6.3</a></td>
       </tr>
 
       <tr align="center">
@@ -720,10 +702,6 @@
 
         <td><a href=
         "http://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_2">Crypto++
-        5.6.2</a></td>
-
-        <td><a href=
-        "http://prdownloads.sourceforge.net/cryptopp/cryptopp562.zip">Crypto++
         5.6.2</a></td>
       </tr>
 
@@ -737,10 +715,6 @@
         <td><a href=
         "http://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_1">Crypto++
         5.6.1</a></td>
-
-        <td><a href=
-        "http://prdownloads.sourceforge.net/cryptopp/cryptopp561.zip">Crypto++
-        5.6.1</a></td>
       </tr>
 
       <tr align="center">
@@ -753,17 +727,13 @@
         <td><a href=
         "http://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_0">Crypto++
         5.6.0</a></td>
-
-        <td><a href=
-        "http://prdownloads.sourceforge.net/cryptopp/cryptopp560.zip">Crypto++
-        5.6.0</a></td>
       </tr>
     </tbody>
   </table>
 
   <p>Remember to use the "<tt>-a</tt>" auto-convert text files option when unzipping on a
-  Unix machine. After downloading, please read the <b>Readme.txt</b> included in the zip
-  archive for build instructions and other important notes.</p>
+  Unix machine. After downloading, please read the <strong>Readme.txt</strong> included
+  in the zip archive for build instructions and other important notes.</p>
 
   <h2>While You Are Downloading</h2>
 
@@ -796,14 +766,19 @@
 
   <h2><a name="fips" id="fips">FIPS 140-2 Validation</a></h2>
 
+  <p>Crypto++ is listed on the CMVP's <a href=
+  "http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-historical.htm">Historical
+  Validation List</a>. It effectively means the library is no longer validated. If you
+  are interested in sponsoring a validation, then please send a message to the mailing
+  list to start an offline conversation. <em>The text that follows in the <strong>FIPS
+  140-2 Validation</strong> section is provided for historical purposes.</em></p>
+
   <p>The following versions of Crypto++ have been validated by NIST and CSE for <a href=
   "http://csrc.nist.gov/groups/STM/index.html">FIPS 140-2</a> level 1 conformance.
   Because only compiled executable code can receive FIPS validation, these versions are
   listed separately from the other source-code-only downloads. These download packages
   include the validated binary object, header files, API reference, and FIPS related
-  documentation. Source code is also included for debugging purposes. (You cannot compile
-  Crypto++ yourself and claim FIPS 140-2 conformance on the resulting module, unless the
-  it goes through the validation process again.)</p>
+  documentation. Source code is also included for debugging purposes.</p>
 
   <p>Because these packages contain compiled executable code, they have been signed with
   a PGP public key which is included inside the package. You can verify the PGP key's
