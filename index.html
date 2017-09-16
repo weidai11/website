@@ -9,7 +9,7 @@
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
   <meta name="keywords" content=
-  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, VIA Padlock, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, VIA Padlock, RDRAND, RDSEED, ARMv7a, ARMv8a, NEON, ASIMD, PowerPC, Power8, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
   <link rel="icon" type="image/png" href="cryptopp.png">
 </head>
@@ -59,31 +59,30 @@
       <tr>
         <td align="right">authenticated encryption schemes</td>
 
-        <td><a href="http://www.cryptolounge.org/wiki/GCM">GCM</a>, <a href=
-        "http://www.cryptolounge.org/wiki/CCM">CCM</a>, <a href=
-        "http://www.cryptolounge.org/wiki/EAX">EAX</a>, OCB</td>
+        <td><a href="http://www.cryptopp.com/wiki/GCM">GCM</a>, <a href=
+        "http://www.cryptopp.com/wiki/CCM">CCM</a>, <a href=
+        "http://www.cryptopp.com/wiki/EAX">EAX</a>, OCB</td>
       </tr>
 
       <tr>
         <td align="right"><a href="benchmarks.html">high speed</a> stream ciphers</td>
 
-        <td><a href="http://www.cryptolounge.org/wiki/Salsa20">ChaCha
-        (ChaCha8/12/20)</a>, <a href=
-        "http://www.cryptolounge.org/wiki/PANAMA">Panama</a>, <a href=
-        "http://www.cryptolounge.org/wiki/Sosemanuk">Sosemanuk</a>, <a href=
-        "http://www.cryptolounge.org/wiki/Salsa20">Salsa20</a>, <a href=
-        "http://www.cryptolounge.org/wiki/XSalsa20">XSalsa20</a></td>
+        <td><a href="http://www.cryptopp.com/wiki/Salsa20">ChaCha (ChaCha8/12/20)</a>,
+        <a href="http://www.cryptopp.com/wiki/PANAMA">Panama</a>, <a href=
+        "http://www.cryptopp.com/wiki/Sosemanuk">Sosemanuk</a>, <a href=
+        "http://www.cryptopp.com/wiki/Salsa20">Salsa20</a>, <a href=
+        "http://www.cryptopp.com/wiki/XSalsa20">XSalsa20</a></td>
       </tr>
 
       <tr>
         <td align="right">AES and AES candidates</td>
 
-        <td><a href="http://www.cryptolounge.org/wiki/AES">AES</a> (Rijndael), <a href=
-        "http://www.cryptolounge.org/wiki/RC6">RC6</a>, <a href=
+        <td><a href="http://www.cryptopp.com/wiki/AES">AES</a> (Rijndael), <a href=
+        "http://www.cryptopp.com/wiki/RC6">RC6</a>, <a href=
         "http://www.research.ibm.com/security/mars.html">MARS</a>, <a href=
-        "http://www.cryptolounge.org/wiki/Twofish">Twofish</a>, <a href=
-        "http://www.cryptolounge.org/wiki/Serpent">Serpent</a>, <a href=
-        "http://www.cryptolounge.org/wiki/CAST-256">CAST-256</a></td>
+        "http://www.cryptopp.com/wiki/Twofish">Twofish</a>, <a href=
+        "http://www.cryptopp.com/wiki/Serpent">Serpent</a>, <a href=
+        "http://www.cryptopp.com/wiki/CAST-256">CAST-256</a></td>
       </tr>
 
       <tr>
@@ -91,10 +90,10 @@
         ciphers</a></td>
 
         <td><a href="http://210.104.33.10/ARIA/index-e.html">ARIA</a>, <a href=
-        "http://www.cryptolounge.org/wiki/IDEA">IDEA</a>, <a href=
+        "http://www.cryptopp.com/wiki/IDEA">IDEA</a>, <a href=
         "http://csrc.nist.gov/cryptval/des.htm">Triple-DES</a> (DES-EDE2 and DES-EDE3),
-        <a href="http://www.cryptolounge.org/wiki/Camellia">Camellia</a>, <a href=
-        "http://www.cryptolounge.org/wiki/SEED">SEED</a>, Kalyna, RC5, Blowfish, TEA,
+        <a href="http://www.cryptopp.com/wiki/Camellia">Camellia</a>, <a href=
+        "http://www.cryptopp.com/wiki/SEED">SEED</a>, Kalyna, RC5, Blowfish, TEA,
         Threefish, Skipjack, SHACAL-2, XTEA</td>
       </tr>
 
@@ -109,24 +108,23 @@
       <tr>
         <td align="right">message authentication codes</td>
 
-        <td><a href="http://www.cryptolounge.org/wiki/VMAC">VMAC</a>, <a href=
-        "http://www.cryptolounge.org/wiki/HMAC">HMAC</a>, <a href=
-        "http://www.cryptolounge.org/wiki/GCM">GMAC (GCM)</a>, <a href=
-        "http://www.cryptolounge.org/wiki/CMAC">CMAC</a>, CBC-MAC, DMAC, Two-Track-MAC,
-        <a href="http://www.cryptolounge.org/wiki/BLAKE2">BLAKE2 (BLAKE2b, BLAKE2s)</a>,
+        <td><a href="http://www.cryptopp.com/wiki/VMAC">VMAC</a>, <a href=
+        "http://www.cryptopp.com/wiki/HMAC">HMAC</a>, <a href=
+        "http://www.cryptopp.com/wiki/GCM">GMAC (GCM)</a>, <a href=
+        "http://www.cryptopp.com/wiki/CMAC">CMAC</a>, CBC-MAC, DMAC, Two-Track-MAC,
+        <a href="http://www.cryptopp.com/wiki/BLAKE2">BLAKE2 (BLAKE2b, BLAKE2s)</a>,
         Poly1305, SipHash</td>
       </tr>
 
       <tr>
         <td align="right">hash functions</td>
 
-        <td><a href="http://www.cryptolounge.org/wiki/BLAKE2">BLAKE2 (BLAKE2b,
-        BLAKE2s)</a>, Keccack (F1600), <a href=
-        "http://www.cryptolounge.org/wiki/SHA-1">SHA-1</a>, <a href=
-        "http://www.cryptolounge.org/wiki/FIPS_180-2">SHA-2</a>, SHA-3, <a href=
-        "http://www.cryptolounge.org/wiki/Tiger">Tiger</a>, <a href=
-        "http://www.cryptolounge.org/wiki/WHIRLPOOL">WHIRLPOOL</a>, RIPEMD-128,
-        RIPEMD-256, RIPEMD-160, RIPEMD-320</td>
+        <td><a href="http://www.cryptopp.com/wiki/BLAKE2">BLAKE2 (BLAKE2b, BLAKE2s)</a>,
+        Keccack (F1600), <a href="http://www.cryptopp.com/wiki/SHA-1">SHA-1</a>, <a href=
+        "http://www.cryptopp.com/wiki/FIPS_180-2">SHA-2</a>, SHA-3, <a href=
+        "http://www.cryptopp.com/wiki/Tiger">Tiger</a>, <a href=
+        "http://www.cryptopp.com/wiki/WHIRLPOOL">WHIRLPOOL</a>, RIPEMD-128, RIPEMD-256,
+        RIPEMD-160, RIPEMD-320</td>
       </tr>
 
       <tr>
@@ -165,14 +163,14 @@
         <td align="right">insecure or obsolescent algorithms retained for backwards
         compatibility and historical value</td>
 
-        <td><a href="http://www.cryptolounge.org/wiki/MD2">MD2</a>, <a href=
-        "http://www.cryptolounge.org/wiki/MD4">MD4</a>, <a href=
-        "http://www.cryptolounge.org/wiki/MD5">MD5</a>, <a href=
-        "http://www.cryptolounge.org/wiki/PANAMA_%28Hash_Function%29">Panama Hash</a>,
-        <a href="http://www.cryptolounge.org/wiki/DES">DES</a>, <a href=
-        "http://www.cryptolounge.org/wiki/RC4">ARC4</a>, <a href=
-        "http://www.cryptolounge.org/wiki/SEAL_3.0">SEAL 3.0</a>, WAKE-OFB, DESX
-        (DES-XEX3), RC2, SAFER, 3-WAY, GOST, SHARK, CAST-128, Square</td>
+        <td><a href="http://www.cryptopp.com/wiki/MD2">MD2</a>, <a href=
+        "http://www.cryptopp.com/wiki/MD4">MD4</a>, <a href=
+        "http://www.cryptopp.com/wiki/MD5">MD5</a>, <a href=
+        "http://www.cryptopp.com/wiki/PANAMA">Panama Hash</a>, <a href=
+        "http://www.cryptopp.com/wiki/DES">DES</a>, <a href=
+        "http://www.cryptopp.com/wiki/RC4">ARC4</a>, <a href=
+        "http://www.cryptopp.com/wiki/SEAL_3.0">SEAL 3.0</a>, WAKE-OFB, DESX (DES-XEX3),
+        RC2, SAFER, 3-WAY, GOST, SHARK, CAST-128, Square</td>
       </tr>
     </tbody>
   </table>
@@ -180,8 +178,8 @@
   <p>Other features include:</p>
 
   <ul>
-    <li>pseudo random number generators (PRNG): ANSI X9.17 appendix C, RandomPool,
-    VIA Padlock, RDRAND, RDSEED, NIST Hash and HMAC DRBGs</li>
+    <li>pseudo random number generators (PRNG): ANSI X9.17 appendix C, RandomPool, VIA
+    Padlock, RDRAND, RDSEED, NIST Hash and HMAC DRBGs</li>
 
     <li>password based key derivation functions: PBKDF1 and PBKDF2 from PKCS #5, PBKDF
     from PKCS #12 appendix B, HKDF from RFC 5869</li>
@@ -224,8 +222,8 @@
       </ul>
     </li>
 
-    <li>x86, x64 (x86-64), x32 (ILP32), ARM-32, Aarch32 and Aarch64 code for the commonly
-    used algorithms
+    <li>x86, x64 (x86-64), x32 (ILP32), ARM-32, Aarch32, Aarch64 and Power8 in-core code
+    for the commonly used algorithms
 
       <ul>
         <li>run-time CPU feature detection and code selection</li>
@@ -236,6 +234,8 @@
 
         <li>ARM-32, Aarch32 and Aarch64 provides NEON, ASIMD and ARMv8
         implementations</li>
+
+        <li>Power8 provides in-core AES using NX Crypto Acceleration</li>
       </ul>
     </li>
 
@@ -243,9 +243,6 @@
     "wiki/User_Guide:_filters.h">filter/pipeline</a> metaphore</li>
 
     <li><a href="benchmarks.html">benchmarks</a> and validation testing</li>
-
-    <li>certain versions are available in <a href="#fips">FIPS 140-2 validated</a>
-    form</li>
   </ul>
 
   <h2><a name="license" id="license">License</a></h2>
@@ -259,7 +256,7 @@
   <p>The current version of Crypto++ supports the following compilers:</p>
 
   <ul>
-    <li>Visual Studio 2003 - 2015</li>
+    <li>Visual Studio 2003 - 2017</li>
 
     <li>GCC 3.3 - 7.1</li>
 
@@ -272,6 +269,8 @@
     <li>Intel C++ Compiler 9 - 16.0</li>
 
     <li>Sun Studio 12u1 - 12.5</li>
+
+    <li>IBM XL C/C++ 10.0 - 13.1</li>
   </ul>
 
   <p>For detailed build status and notes on various compiler/OS/CPU combinations as well
