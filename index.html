@@ -9,7 +9,7 @@
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
   <meta name="keywords" content=
-  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, VIA Padlock, RDRAND, RDSEED, ARMv7a, ARMv8a, NEON, ASIMD, PowerPC, Power8, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE3, SSE4, AESNI, VIA Padlock, RDRAND, RDSEED, ARMv7a, ARMv8a, NEON, ASIMD, PowerPC, Power8, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
   <link rel="icon" type="image/png" href="cryptopp.png">
 </head>
@@ -67,10 +67,10 @@
       <tr>
         <td align="right"><a href="benchmarks.html">high speed</a> stream ciphers</td>
 
-        <td><a href="http://www.cryptopp.com/wiki/Salsa20">ChaCha (ChaCha8/12/20)</a>,
-        <a href="http://www.cryptopp.com/wiki/PANAMA">Panama</a>, <a href=
+        <td><a href="http://www.cryptopp.com/wiki/Salsa20">ChaCha (8/12/20)</a>, <a href=
+        "http://www.cryptopp.com/wiki/PANAMA">Panama</a>, <a href=
         "http://www.cryptopp.com/wiki/Sosemanuk">Sosemanuk</a>, <a href=
-        "http://www.cryptopp.com/wiki/Salsa20">Salsa20</a>, <a href=
+        "http://www.cryptopp.com/wiki/Salsa20">Salsa20</a> (8/12/20), <a href=
         "http://www.cryptopp.com/wiki/XSalsa20">XSalsa20</a></td>
       </tr>
 
@@ -93,8 +93,13 @@
         "http://www.cryptopp.com/wiki/IDEA">IDEA</a>, Blowfish, <a href=
         "http://csrc.nist.gov/cryptval/des.htm">Triple-DES</a> (DES-EDE2 and DES-EDE3),
         <a href="http://www.cryptopp.com/wiki/Camellia">Camellia</a>, <a href=
-        "http://www.cryptopp.com/wiki/SEED">SEED</a>, Kalyna, RC5, SPECK-64 and SPECK-128,
-        TEA, Threefish, Skipjack, SHACAL-2, XTEA</td>
+        "http://www.cryptopp.com/wiki/SEED">SEED</a>, <a href=
+        "http://www.cryptopp.com/wiki/Kalyna">Kalyna (128/256/512)</a>, RC5, <a href=
+        "http://www.cryptopp.com/wiki/SIMON">SIMON-64 and SIMON-128</a>, <a href=
+        "http://www.cryptopp.com/wiki/SPECK">SPECK-64 and SPECK-128</a>, <a href=
+        "http://www.cryptopp.com/wiki/SM4">SM4</a>, <a href=
+        "http://www.cryptopp.com/wiki/Threefish">Threefish</a> (256/512/1024), Skipjack,
+        SHACAL-2, TEA, XTEA</td>
       </tr>
 
       <tr>
@@ -108,23 +113,26 @@
       <tr>
         <td align="right">message authentication codes</td>
 
-        <td><a href="http://www.cryptopp.com/wiki/VMAC">VMAC</a>, <a href=
-        "http://www.cryptopp.com/wiki/HMAC">HMAC</a>, <a href=
+        <td><a href="http://www.cryptopp.com/wiki/BLAKE2">BLAKE2b and BLAKE2s</a>,
+        <a href="http://www.cryptopp.com/wiki/CMAC">CMAC</a>, CBC-MAC, DMAC, <a href=
         "http://www.cryptopp.com/wiki/GCM">GMAC (GCM)</a>, <a href=
-        "http://www.cryptopp.com/wiki/CMAC">CMAC</a>, CBC-MAC, DMAC, Two-Track-MAC,
-        <a href="http://www.cryptopp.com/wiki/BLAKE2">BLAKE2 (BLAKE2b, BLAKE2s)</a>,
-        Poly1305, SipHash</td>
+        "http://www.cryptopp.com/wiki/HMAC">HMAC</a>, <a href=
+        "http://www.cryptopp.com/wiki/Poly1305">Poly1305</a>, <a href=
+        "http://www.cryptopp.com/wiki/SipHash">SipHash</a>, Two-Track-MAC, <a href=
+        "http://www.cryptopp.com/wiki/VMAC">VMAC</a></td>
       </tr>
 
       <tr>
         <td align="right">hash functions</td>
 
-        <td><a href="http://www.cryptopp.com/wiki/BLAKE2">BLAKE2 (BLAKE2b, BLAKE2s)</a>,
+        <td><a href="http://www.cryptopp.com/wiki/BLAKE2">BLAKE2b and BLAKE2s</a>,
         Keccack (F1600), <a href="http://www.cryptopp.com/wiki/SHA-1">SHA-1</a>, <a href=
         "http://www.cryptopp.com/wiki/FIPS_180-2">SHA-2</a>, SHA-3, <a href=
-        "http://www.cryptopp.com/wiki/Tiger">Tiger</a>, <a href=
-        "http://www.cryptopp.com/wiki/WHIRLPOOL">WHIRLPOOL</a>, RIPEMD-128, RIPEMD-256,
-        RIPEMD-160, RIPEMD-320</td>
+        "http://www.cryptopp.com/wiki/Poly1305">Poly1305</a>, <a href=
+        "http://www.cryptopp.com/wiki/SipHash">SipHash,</a> <a href=
+        "http://www.cryptopp.com/wiki/Tiger">Tiger</a>, RIPEMD (128, 256, 160, 320),
+        <a href="http://www.cryptopp.com/wiki/SM3">SM3</a>, <a href=
+        "http://www.cryptopp.com/wiki/WHIRLPOOL">WHIRLPOOL</a></td>
       </tr>
 
       <tr>
@@ -258,7 +266,7 @@
   <ul>
     <li>Visual Studio 2003 - 2017</li>
 
-    <li>GCC 3.3 - 7.1</li>
+    <li>GCC 3.3 - 7.2</li>
 
     <li>Apple Clang 4.3 - 8.3</li>
 
