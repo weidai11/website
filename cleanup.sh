@@ -13,9 +13,9 @@ else
     SED_OPTS=(-i)
 fi
 
-HTML_TIDY=$(which tidy)
+HTML_TIDY=$(command -v tidy)
 if [[ -z "$HTML_TIDY" ]]; then
-    HTML_TIDY=$(which htmltidy)
+    HTML_TIDY=$(command -v htmltidy)
 fi
 
 if [[ -z "$HTML_TIDY" ]]; then
@@ -23,7 +23,7 @@ if [[ -z "$HTML_TIDY" ]]; then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
 
-UNIX2DOS=$(which unix2dos)
+UNIX2DOS=$(command -v unix2dos)
 if [[ -z "$UNIX2DOS" ]]; then
     echo "ERROR: could not locate unix2dos"
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
