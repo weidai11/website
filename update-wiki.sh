@@ -23,18 +23,17 @@ for dir in $(find "$WIKI_DIR/skins" -name '.git'); do
     cd "$dir/.."
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull
-    for txx in $(find "$PWD" -type d -name 'test*'); do
-	rm -rf "$txx"
-    done
 done
 
 for dir in $(find "$WIKI_DIR/extensions" -name '.git'); do
     cd "$dir/.."
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull
-    for txx in $(find "$PWD" -type d -name 'test*'); do
-        rm -rf "$txx"
-    done
+done
+
+# Remove all test frameworks
+for dir in $(find "$WIKI_DIR" -iname 'test*'); do
+    rm -rf "$dir" 2>/dev/null
 done
 
 if [[ -f "$WIKI_DIR/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize" ]]; then
@@ -43,8 +42,17 @@ fi
 
 # Set proper ownership permissions. This is a required step after unpacking a new
 # MediaWiki or cloning a new Skin or Extension. The permissions are never correct.
+echo "Fixing MediaWiki permissions"
 chown -R root:apache "$WIKI_DIR/"
 chmod -R o-rwx "$WIKI_DIR/"
+
+# Images/ must be writable by group
+for dir in $(find "$WIKI_DIR/images" -type d); do
+    chmod -R ug+rwx "$dir"
+done
+for file in $(find "$WIKI_DIR/images" -type f); do
+    chmod -R ug+rw "$file"
+done
 
 # Fix Apache logging permissions
 for dir in $(find "$LOG_DIR" -type d -name 'httpd*'); do
