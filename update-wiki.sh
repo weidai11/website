@@ -48,17 +48,17 @@ chmod -R o-rwx "$WIKI_DIR/"
 
 # Images/ must be writable by group
 for dir in $(find "$WIKI_DIR/images" -type d); do
-    chmod -R ug+rwx "$dir"
+    chmod ug+rwx "$dir"
 done
 for file in $(find "$WIKI_DIR/images" -type f); do
-    chmod -R ug+rw "$file"
+    chmod ug+rw "$file"
 done
 
 # Fix Apache logging permissions
 for dir in $(find "$LOG_DIR" -type d -name 'httpd*'); do
-    chown -R root:apache "$dir"
-    chmod -R ug+rwx "$dir"
-    chmod -R o-rwx  "$dir"
+    chown root:apache "$dir"
+    chmod ug+rwx "$dir"
+    chmod o-rwx  "$dir"
 done
 
 for file in $(find "$LOG_DIR" -type f -name '*log*'); do
