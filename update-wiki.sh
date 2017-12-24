@@ -47,29 +47,50 @@ chown -R root:apache "$WIKI_DIR/"
 chmod -R o-rwx "$WIKI_DIR/"
 
 # Images/ must be writable by group
+echo "Fixing MediaWiki images/ permissions"
 for dir in $(find "$WIKI_DIR/images" -type d); do
     chmod ug+rwx "$dir"
+    chmod o-rwx  "$dir"
 done
 for file in $(find "$WIKI_DIR/images" -type f); do
     chmod ug+rw "$file"
+    chmod ug-x  "$file"
+    chmod o-rwx "$file"
 done
 
-# Fix Apache logging permissions
-for dir in $(find "$LOG_DIR" -type d -name 'httpd*'); do
+echo "Fixing Apache logging permissions"
+for dir in $(find "$LOG_DIR" -type d -name 'httpd' -o -name 'httpd24'); do
     chown root:apache "$dir"
     chmod ug+rwx "$dir"
     chmod o-rwx  "$dir"
 done
-
-for file in $(find "$LOG_DIR" -type f -name '*log*'); do
+for file in $(find "$LOG_DIR/httpd" -type f -name '*log*'); do
+    chown root:apache "$file"
+    chmod ug+rw "$file"
+    chmod ug-x  "$file"
+    chmod o-rwx "$file"
+done
+for file in $(find "$LOG_DIR/httpd24" -type f -name '*log*'); do
     chown root:apache "$file"
     chmod ug+rw "$file"
     chmod ug-x  "$file"
     chmod o-rwx "$file"
 done
 
+echo "Fixing MariaDB logging permissions"
+chown mysql:mysql "$LOG_DIR/mariadb"
+for file in $(find "$LOG_DIR/mariadb" -type f -name '*log*'); do
+    chown mysql:mysql "$file"
+    chmod ug+rw "$file"
+    chmod ug-x  "$file"
+    chmod o-rwx "$file"
+done
+
 # Cleanup backup files
+echo "Cleaning backup files"
 find /var/www/ -name '*~' -exec rm {} \;
+find /opt -name '*~' -exec rm {} \;
+find /etc -name '*~' -exec rm {} \;
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 php "$WIKI_DIR/maintenance/update.php" --quick
