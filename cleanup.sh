@@ -61,5 +61,10 @@ done
 
 # Delete trailing whitespace
 "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' *.css
+ 
+# Fix html-tidy hacking European names
+"$SED" "${SED_OPTS[@]}" -e's/L&Atilde;&iexcl;szl&Atilde;&sup3;/László/g' *.html
+
+"$SED" "${SED_OPTS[@]}" -e's/B&Atilde;&para;sz&Atilde;&para;rm&Atilde;&copy;nyi/Böszörményi/g' *.html
 
 [[ "$0" = "$BASH_SOURCE" ]] && exit 0 || return 0
