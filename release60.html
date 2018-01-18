@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <title>Crypto++ Library | 6.0 Release</title>
+  <meta name="description" content=
+  "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
+  <meta name="keywords" content=
+  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+  <link rel="stylesheet" type="text/css" href="cryptopp.css">
+</head>
+
+<body>
+  <!-- Child pages menu bar at top of page. Differs from home page -->
+
+  <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
+    <tbody>
+      <tr>
+        <td><b><big><a href="index.html">Home Page</a></big></b></td>
+
+        <td><a href="index.html#download">Download</a></td>
+
+        <td><a href="docs/ref/">Manual</a></td>
+
+        <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
+
+        <td><a href="wiki/">Wiki and FAQ</a></td>
+
+        <td><a href="index.html#lists">Mailing lists</a></td>
+
+        <td><a href="index.html#contributions">Contributions</a></td>
+
+        <td><a href="wiki/Related_Links">Related links</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Crypto++ 6.0</h2>
+
+  <p>Crypto++ 6.0 was released on January 22, 2017. The 6.0 release was a major relase
+  and broke ABI compatibility. The release included two CVE fixes.</p>
+
+  <p>The first CVE, CVE-2016-9939, was a transient DoS due to allocating an oversized
+  buffer on attacker controlled data. The transitivity was due to a zeroizer which wiped
+  memory, even if it was unused.</p>
+
+  <p>The second CVE, CVE-2017-9434, was an misidentified finding that arose during
+  fuzzing. The project detected a memory error that was due to a violation of aliasing
+  rules in the test software, and not the library proper.</p>
+
+  <h2>Download</h2>
+
+  <p>The download is available from the Crypto++ website. The checksums for the download
+  are below.</p>
+
+  <ul>
+    <li><a href="cryptopp60.zip">Original cryptopp60.zip</a></li>
+
+    <li>SHA1: TODO</li>
+
+    <li>SHA256: TODO</li>
+
+    <li>SHA512: TODO</li>
+
+    <li>WHIRLPOOL: TODO</li>
+  </ul>
+
+  <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
+  different because the service creates the archive from sources.</p>
+
+  <ul>
+    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_6_0">GitHub
+    cryptopp60.zip</a></li>
+  </ul>
+
+  <h2>Release Notes</h2>
+
+  <p>The release notes for Crypto++ 6.0 follows.</p>
+
+  <ul>
+    <li>Major release, recompile of programs required</li>
+
+    <li>expanded community input and support
+
+      <ul>
+        <li>42 unique contributors as of this release</li>
+      </ul>
+    </li>
+
+    <li>fixed CVE-2016-9939 (Issue 346, transient DoS)</li>
+
+    <li>fixed CVE-2017-9434 (Issue 414, misidentified memory error)</li>
+
+    <li>converted to BASE+SIMD implementation
+
+      <ul>
+        <li>BASE provides an architecture neutral C++ implementation</li>
+
+        <li>SIMD provides architecture specific hardware acceleration</li>
+      </ul>
+    </li>
+
+    <li>added IBM Power4, Power7 and Power8 support</li>
+
+    <li>added ARIA, Kalyna, NaCl interface, NIST DRBGs, Padlock RNG, Poly1305, Simon,
+    Speck, SM3, SM4, Threefish algorithms</li>
+
+    <li>x25519 key exhange and ed25519 signing provided through NaCl interfaces</li>
+
+    <li>improved Testing and QA</li>
+
+    <li>ported to MSVC 2017, Xcode 8.1, Sun Studio 12.5, GCC 7.0, MacPorts GCC 7.0, Clang
+    4.0, Intel C++ 17.00, IBM XL C/C++ 13.1</li>
+  </ul>
+
+  <h2>Bug Fixes and Minor Issues</h2>
+
+  <p>The bug fix and minor issue list for Crypto++ 6.0 follows. Many non-trivial issues
+  are tracked for auditing and C&amp;A purposes, but the list may not be complete. A
+  number in parenthesis is the <a href=
+  "http://github.com/weidai11/cryptopp/issues">GitHub Issue number</a>, if it was
+  tracked. Sometimes a Git commit is referenced, but many trivial GitHub commits are
+  omitted. Missing Issue numbers or lack of consecutiveness usually indicates feature
+  requests and "won't fix/can't fix" type reports.</p>
+
+  <ul>
+    <li>fixed CVE-2016-9939 (Issue 346, transient DoS)</li>
+
+    <li>fixed CVE-2017-9434 (Issue 414, misidentified memory error)</li>
+
+    <li>Updated documentation</li>
+  </ul>
+
+  <h2>File Changes</h2>
+
+  <p>Below is a list of <em>all</em> files that were added or deleted at Crypto++
+  6.0.</p>
+  <pre>
+$ git diff-tree -r --summary CRYPTOPP_5_6_5 master | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+create   TestData/aria.dat
+create   TestData/rsa2048a.dat
+create   TestVectors/aria.txt
+create   TestVectors/kalyna.txt
+create   TestVectors/sha1_160_fips_180.txt
+create   TestVectors/sha1_fips_180.txt
+create   TestVectors/sha2.txt
+create   TestVectors/sha2_224_fips_180.txt
+create   TestVectors/sha2_256_fips_180.txt
+create   TestVectors/sha2_384_fips_180.txt
+create   TestVectors/sha2_512_fips_180.txt
+create   TestVectors/sha2_fips_180.txt
+create   TestVectors/sha3.txt
+create   TestVectors/simon.txt
+create   TestVectors/siphash.txt
+create   TestVectors/sm3.txt
+create   TestVectors/sm4.txt
+create   TestVectors/speck.txt
+create   TestVectors/threefish.txt
+create   adv-simd.h
+create   aria-simd.cpp
+create   aria.cpp
+create   aria.h
+create   ariatab.cpp
+create   blake2-simd.cpp
+create   crc-simd.cpp
+create   drbg.h
+create   ecpoint.h
+create   gcm-simd.cpp
+create   hashfwd.h
+create   kalyna.cpp
+create   kalyna.h
+create   kalynatab.cpp
+create   nacl.h
+create   neon-simd.cpp
+create   padlkrng.cpp
+create   padlkrng.h
+create   poly1305.cpp
+create   poly1305.h
+create   ppc-simd.cpp
+create   ppc-simd.h
+delete   regtest.cpp
+create   regtest1.cpp
+create   regtest2.cpp
+create   regtest3.cpp
+create   rijndael-simd.cpp
+create   sha-simd.cpp
+create   shacal2-simd.cpp
+create   simon-simd.cpp
+create   simon.cpp
+create   simon.h
+create   siphash.h
+create   sm3.cpp
+create   sm3.h
+create   sm4.cpp
+create   sm4.h
+create   speck-simd.cpp
+create   speck.cpp
+create   speck.h
+create   sse-simd.cpp
+create   threefish.cpp
+create   threefish.h
+create   tweetnacl.cpp
+create   tweetnacl.h
+create   validat0.cpp
+create   validat4.cpp
+</pre>
+
+  <h2>Notes for Distros</h2>
+
+  <p>There are three items of interest for distros. First, we fixed the ABI breaks by
+  bumping to Crypto++ 6.0. We aplogize for the problems it caused in Crypto++ 5.6.5.</p>
+
+  <p>Second, we have an unoffical Autotools project at <a href=
+  "https://github.com/noloader/cryptopp-autotools">Crypto++ | Autoools</a>. It is based
+  on the Autotools project files supplied by Debian and László
+  Böszörményi. Autotools has several contributors,
+  including László, so it should be mostly up to date.</p>
+
+  <p>Third, we have an unoffical Cmake project at <a href=
+  "https://github.com/noloader/cryptopp-cmake">Crypto++ | Cmake</a>. It is based on the
+  Cmake project files that were removed from the distribution. There are fewer
+  contributors to the Cmake project and the files may not be up to date.</p>
+</body>
+</html>
