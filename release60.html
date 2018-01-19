@@ -103,7 +103,7 @@
       </ul>
     </li>
 
-    <li>improved IBM Power4, Power7 and Power8 support</li>
+    <li>improved PowerPC Power4, Power7 and Power8 support</li>
 
     <li>added ARIA, EC German DSA, Kalyna, NIST Hash and HMAC DRBG, Padlock RNG,
     Poly1305, SipHash, Simon, Speck, SM3, SM4, Threefish algorithms</li>
@@ -132,11 +132,204 @@
   requests and "won't fix/can't fix" type reports.</p>
 
   <ul>
-    <li>fixed CVE-2016-9939 (Issue 346, transient DoS)</li>
+    <li>Fixed CVE-2016-9939 (Issue 346, transient DoS)</li>
 
-    <li>fixed CVE-2017-9434 (Issue 414, misidentified memory error)</li>
+    <li>Fixed CVE-2017-9434 (Issue 414, misidentified memory error)</li>
 
     <li>Updated documentation</li>
+
+    <li>Fixed x64dll.asm included in Windows Phone using MSbuilds (Issue 316)</li>
+
+    <li>Remove dependencies on WINVER and _WIN32_WINNT (Issue 318)</li>
+
+    <li>Fixed memcpy_s has not been declared on MinGW (Issue 319)</li>
+
+    <li>Fixed undeclared identifier '_mm_clmulepi64_si128' with Clang (Issue 320)</li>
+
+    <li>Fixed MASM RDRAND and access violation under VS2013 (Issue 321)</li>
+
+    <li>Fixed WSAStringToAddress was not declared in this scope on Cygwin (Issue
+    322)</li>
+
+    <li>Updated curve25519 OIDs (Issue 323)</li>
+
+    <li>Fixed error: operator '&gt;=' has no left operand on Solaris (Issue 329)</li>
+
+    <li>Fixed Error: character following name is not '#' on Debian Hurd (Issue 330)</li>
+
+    <li>Fixed zeroizer removal by the optimizer (Issue 331)</li>
+
+    <li>Added AND, OR and XOR bitops to Integer class (Issue 336)</li>
+
+    <li>Fixed missing Integer ctor overload body (Issue 337)</li>
+
+    <li>Removed VC++ 5.0/6.0 support (Issue 342)</li>
+
+    <li>Updated DefaultEncryptor, DefaultEncryptorWithMAC with modern algorithms (Issue
+    345)</li>
+
+    <li>Added SipHash (Issue 348)</li>
+
+    <li>Increased Socket::Listen backlog (Issue 349)</li>
+
+    <li>Fixed RoundUpToMultipleOf bug (Issue 360)</li>
+
+    <li>Fixed &lt;arm_acle.h&gt; include for Apple and LLVM Clang (Issue 362)</li>
+
+    <li>Fixed Apple Clang and numeric_limits&lt;word128&gt;::max() returns 0 (Issue
+    362)</li>
+
+    <li>Fixed 32-bit SHA-384 and SHA-512 (Issue 365)</li>
+
+    <li>Fixed poor performance on ARMv8/Aarch64 with Cortex-A57 (Issue 367)</li>
+
+    <li>Removed MAINTAIN_BACKWARDS_COMPATIBILITY (Issue 369)</li>
+
+    <li>Added HeaderVersion() and LibraryVersion() functions (Issue 371)</li>
+
+    <li>Singleton::Ref() crashes on VS2012/2013 (Issue 372, 391)</li>
+
+    <li>Fixed Hang and loader lock on WinXP (Issue 373, 435)</li>
+
+    <li>Converted encoders to thread safe initialization (Issue 376)</li>
+
+    <li>Fixed OS_NO_DEPENDENCE in osrng.h (Issue 377)</li>
+
+    <li>Added Test namespace within CryptoPP namespace (Issue 379)</li>
+
+    <li>Converted to BASE+SIMD source code pattern (Issue 380)</li>
+
+    <li>Removed NULL_CHANNEL and Code Warrior 8 workaround (Issue 382)</li>
+
+    <li>Added support for C++11 nullptr (Issue 383)</li>
+
+    <li>Converted to WSAStringToAddressA for Windows (Issue 385)</li>
+
+    <li>Added Random Number Generator benchmarks (Issue 386)</li>
+
+    <li>Improved RDRAND and RDSEED performance (Issue 387, 388)</li>
+
+    <li>Fixed EGCC assembler error on OpenBSD (Issue 395)</li>
+
+    <li>Fixed SIGBUS crashes in cryptest.exe on Solaris (Issue 403)</li>
+
+    <li>Fixed Inlining failed ... target specific option mismatch (Issue 407)</li>
+
+    <li>Added Kalyna block cipher (Issue 411)</li>
+
+    <li>Reduced fiddling with warnings in config.h (Issue 412)</li>
+
+    <li>Fixed incorrect BLAKE2 hash (Issue 415)</li>
+
+    <li>Added Gzip Filename, Filetime and Comment support (Issue 420)</li>
+
+    <li>Added Threefish block cipher (Issue 422)</li>
+
+    <li>Added Polynomials for CMAC and GCM mode (Issue 423)</li>
+
+    <li>Enabled SHA intrinsics when __SHA__ is not defined (BASE+SIMD pattern) (Issue
+    427)</li>
+
+    <li>Enabled SHA intrinsics when __CRC__ is not defined (BASE+SIMD pattern) (Issue
+    428)</li>
+
+    <li>Enabled SHA intrinsics when __AES__ is not defined (BASE+SIMD pattern) (Issue
+    429)</li>
+
+    <li>Enabled SHA intrinsics when __PCLMUL__ is not defined (BASE+SIMD pattern) (Issue
+    430)</li>
+
+    <li>Fixed GCC7 and -Wimplicit-fallthrough warnings (Issue 411)</li>
+
+    <li>Fixed compile with C++17 due to std::byte (Issue 442, 447, 458)</li>
+
+    <li>Make SecBlock&lt;T,A&gt; data members protected (Issue 448)</li>
+
+    <li>Fixed Clang and sequence point warning (Issue 449)</li>
+
+    <li>Added OldRandomPool for pre-Crypto++ 5.5 compatibility (Issue 452)</li>
+
+    <li>Switched from -O2 to -O3 in the makefile (Issue 454)</li>
+
+    <li>Fixed static SHA::Transform on Intel SHA (Issue 455, 456)</li>
+
+    <li>Added ARMv8 AES (Issue 458)</li>
+
+    <li>Fixed inlining failed in call on MinGW (Issue 466)</li>
+
+    <li>Fixed Clang 3.8 and SHA assembler error on OpenBSD (Issue 468)</li>
+
+    <li>Fixed crash in ARIA_ProcessAndXorBlock_Xor_SSSE3 (Issue 473)</li>
+
+    <li>Fixed SecBlock compile failure due to lack of strongly typed enums with VS2010
+    (Issue 400)</li>
+
+    <li>Fixed ARM feature detection with BASE+SIMD (Issue 480)</li>
+
+    <li>Fixed load/store on ARM NEON using BASE+SIMD (Issue 481)</li>
+
+    <li>Fixed GCC 6 compile failure with -std=c++03 on AIX (Issue 485)</li>
+
+    <li>Improved under-aligned buffers for AltiVec and Power8 (Issue 487)</li>
+
+    <li>Fixed AOSP_STL_INC using setenv-android.sh (Issue 490)</li>
+
+    <li>Fixed Android ARM compile using setenv-android.sh (Issue 491)</li>
+
+    <li>Fixed CentOS 6.6 amd64 compile error (Issue 494)</li>
+
+    <li>Added Power8 AES (Issue 497)</li>
+
+    <li>Fixed DL_PrivateKey_GFP&lt;GP&gt;::~DL_PrivateKey_GFP() section type conflict on
+    AIX (Issue 499)</li>
+
+    <li>Fixed CpuID function using Borland (Issue 500)</li>
+
+    <li>Fixed SHA512 failed self tests on AIX (Issue 502)</li>
+
+    <li>Fixed TEA failed self tests on AIX (Issue 502)</li>
+
+    <li>Removed CMake from library sources (Issue 506)</li>
+
+    <li>Fixed Android x86 compile using setenv-android.sh (Issue 508)</li>
+
+    <li>Fixed Android ARMEABI compile using setenv-android.sh (Issue 509)</li>
+
+    <li>Added CRYPTOPP_NO_CPU_FEATURE_PROBES to disable SIGILL probes (Issue 511,
+    521)</li>
+
+    <li>Fixed compile with Borland 2010 (Issue 512)</li>
+
+    <li>Added SHA3 OIDs for signature schemes (Issue 517)</li>
+
+    <li>Fixed long compile time for BLAKE2 using MSVC (Issue 527)</li>
+
+    <li>Fixed Poly1305 link error (Issue 528)</li>
+
+    <li>Added CRYPTOPP_NO_CXX11 for old compilers (Issue 529)</li>
+
+    <li>Fixed RSA signature failures when using libcryptopp.dylib on OS X (Issue
+    533)</li>
+
+    <li>Removed variable block size support for block ciphers (Issue 535)</li>
+
+    <li>Added SPECK-64 and SPECK-128 block ciphers (Issue 538)</li>
+
+    <li>Added SIMON-64 and SIMON-128 block ciphers (Issue 539)</li>
+
+    <li>Added SM4 block cipher (Issue 540)</li>
+
+    <li>Added SM3 hash function (Issue 541)</li>
+
+    <li>Fixed no such instruction: 'sha1rnds4 $0,%xmm0,%xmm7' (Issue 551)</li>
+
+    <li>Fixed SM3 failed self tests at -O3 on AIX (Issue 553)</li>
+
+    <li>Fixed impossible register constraint in 'asm' (Issue 554)</li>
+
+    <li>Removed Remove DL_PrivateKey_GFP_OldFormat (Issue 567)</li>
+
+    <li>Removed all BACKWARDS_COMPATIBILITY code and macros</li>
   </ul>
 
   <h2>File Changes</h2>
