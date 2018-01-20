@@ -326,7 +326,7 @@
 
     <li>Added SM3 hash function (Issue 541)</li>
 
-    <li>Fixed no such instruction: 'sha1rnds4 $0,%xmm0,%xmm7' (Issue 551)</li>
+    <li>Fixed no such instruction: 'sha1rnds4 $0,%xmm0,%xmm7' on Solaris (Issue 551)</li>
 
     <li>Fixed SM3 failed self tests at -O3 on AIX (Issue 553)</li>
 
@@ -335,6 +335,8 @@
     <li>Removed Remove DL_PrivateKey_GFP_OldFormat (Issue 567)</li>
 
     <li>Removed all BACKWARDS_COMPATIBILITY code and macros</li>
+
+    <li>Fixed approximately 45 Coverity findings</li>
   </ul>
 
   <h2>File Changes</h2>
