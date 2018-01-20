@@ -57,7 +57,7 @@
   are below.</p>
 
   <ul>
-    <li><a href="cryptopp60.zip">Original cryptopp60.zip</a></li>
+    <li><a href="cryptopp600.zip">Original cryptopp600.zip</a></li>
 
     <li>SHA1: TODO</li>
 
@@ -72,8 +72,8 @@
   different because the service creates the archive from sources.</p>
 
   <ul>
-    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_6_0">GitHub
-    cryptopp60.zip</a></li>
+    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_6_0_0">GitHub
+    cryptopp600.zip</a></li>
   </ul>
 
   <h2>Release Notes</h2>
@@ -334,9 +334,12 @@
 
     <li>Removed Remove DL_PrivateKey_GFP_OldFormat (Issue 567)</li>
 
-    <li>Removed all BACKWARDS_COMPATIBILITY code and macros</li>
+    <li>Improved &lt;arm_acle.h&gt; include for GCC, Apple and LLVM Clang on ARM, Aarch32
+    and Aarch64 (Issue 568)</li>
 
-    <li>Fixed approximately 45 Coverity findings</li>
+    <li>Removed all BACKWARDS_COMPATIBILITY code and macros. The clock is reset.</li>
+
+    <li>Fixed approximately 55 Coverity findings</li>
   </ul>
 
   <h2>File Changes</h2>
@@ -416,7 +419,7 @@ create   validat4.cpp
   <h2>Notes for Distros</h2>
 
   <p>There are three items of interest for distros. First, we fixed the ABI breaks by
-  bumping to Crypto++ 6.0. We aplogize for the problems it caused in Crypto++ 5.6.5.</p>
+  bumping to Crypto++ 6.0. We apologize for the problems it caused in Crypto++ 5.6.5.</p>
 
   <p>Second, we have an unoffical Autotools project at <a href=
   "https://github.com/noloader/cryptopp-autotools">Crypto++ | Autoools</a>. It is based
