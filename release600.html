@@ -105,8 +105,9 @@
 
     <li>improved PowerPC Power4, Power7 and Power8 support</li>
 
-    <li>added ARIA, EC German DSA, Kalyna, NIST Hash and HMAC DRBG, Padlock RNG,
-    Poly1305, SipHash, Simon, Speck, SM3, SM4, Threefish algorithms</li>
+    <li>added ARIA, EC German DSA, deterministic signatures, Kalyna, NIST Hash and HMAC
+    DRBG, Padlock RNG, Poly1305, SipHash, Simon, Speck, SM3, SM4, Threefish
+    algorithms</li>
 
     <li>added NaCl interface from the compact library
 
@@ -186,7 +187,7 @@
 
     <li>Fixed 32-bit SHA-384 and SHA-512 (Issue 365)</li>
 
-    <li>Fixed poor performance on ARMv8/Aarch64 with Cortex-A57 (Issue 367)</li>
+    <li>Fixed poor performance with ARMv8/Aarch64 on Cortex-A57 (Issue 367)</li>
 
     <li>Removed MAINTAIN_BACKWARDS_COMPATIBILITY (Issue 369)</li>
 
@@ -194,7 +195,7 @@
 
     <li>Singleton::Ref() crashes on VS2012/2013 (Issue 372, 391)</li>
 
-    <li>Fixed Hang and loader lock on WinXP (Issue 373, 435)</li>
+    <li>Fixed Hang and loader lock on WinXP (Issues 373, 435)</li>
 
     <li>Converted encoders to thread safe initialization (Issue 376)</li>
 
@@ -202,7 +203,7 @@
 
     <li>Added Test namespace within CryptoPP namespace (Issue 379)</li>
 
-    <li>Converted to BASE+SIMD source code pattern (Issue 380)</li>
+    <li>Converted to BASE+SIMD source code pattern (Issue 380, PR 461)</li>
 
     <li>Removed NULL_CHANNEL and Code Warrior 8 workaround (Issue 382)</li>
 
@@ -233,20 +234,20 @@
     <li>Added Polynomials for CMAC and GCM mode (Issue 423)</li>
 
     <li>Enabled SHA intrinsics when __SHA__ is not defined (BASE+SIMD pattern) (Issue
-    427)</li>
+    427, PR 461)</li>
 
-    <li>Enabled SHA intrinsics when __CRC__ is not defined (BASE+SIMD pattern) (Issue
-    428)</li>
+    <li>Enabled CRC32 intrinsics when __CRC__ is not defined (BASE+SIMD pattern) (Issue
+    428, PR 461)</li>
 
-    <li>Enabled SHA intrinsics when __AES__ is not defined (BASE+SIMD pattern) (Issue
-    429)</li>
+    <li>Enabled AES intrinsics when __AES__ is not defined (BASE+SIMD pattern) (Issue
+    429, PR 461)</li>
 
-    <li>Enabled SHA intrinsics when __PCLMUL__ is not defined (BASE+SIMD pattern) (Issue
-    430)</li>
+    <li>Enabled CLMUL intrinsics when __PCLMUL__ is not defined (BASE+SIMD pattern)
+    (Issue 430, PR 461)</li>
 
     <li>Fixed GCC7 and -Wimplicit-fallthrough warnings (Issue 411)</li>
 
-    <li>Fixed compile with C++17 due to std::byte (Issue 442, 447, 458)</li>
+    <li>Fixed compile with C++17 due to std::byte (Issues 442, 447, 458)</li>
 
     <li>Make SecBlock&lt;T,A&gt; data members protected (Issue 448)</li>
 
@@ -269,9 +270,9 @@
     <li>Fixed SecBlock compile failure due to lack of strongly typed enums with VS2010
     (Issue 400)</li>
 
-    <li>Fixed ARM feature detection with BASE+SIMD (Issue 480)</li>
+    <li>Fixed ARM feature detection with BASE+SIMD (Issue 480, PR 461)</li>
 
-    <li>Fixed load/store on ARM NEON using BASE+SIMD (Issue 481)</li>
+    <li>Fixed load/store on ARM NEON using BASE+SIMD (Issue 481, PR 461)</li>
 
     <li>Fixed GCC 6 compile failure with -std=c++03 on AIX (Issue 485)</li>
 
@@ -300,7 +301,7 @@
 
     <li>Fixed Android ARMEABI compile using setenv-android.sh (Issue 509)</li>
 
-    <li>Added CRYPTOPP_NO_CPU_FEATURE_PROBES to disable SIGILL probes (Issue 511,
+    <li>Added CRYPTOPP_NO_CPU_FEATURE_PROBES to disable SIGILL probes (Issues 511,
     521)</li>
 
     <li>Fixed compile with Borland 2010 (Issue 512)</li>
@@ -332,14 +333,67 @@
 
     <li>Fixed impossible register constraint in 'asm' (Issue 554)</li>
 
-    <li>Removed Remove DL_PrivateKey_GFP_OldFormat (Issue 567)</li>
+    <li>Removed DL_PrivateKey_GFP_OldFormat (Issue 567)</li>
 
     <li>Improved &lt;arm_acle.h&gt; include for GCC, Apple and LLVM Clang on ARM, Aarch32
     and Aarch64 (Issue 568)</li>
 
+    <li>Removed AsymmetricAlgorithm::BERDecode and DEREncode (Issue 569)</li>
+
+    <li>Fixed Clang warnings in pkcspad.h (Pull Request 270)</li>
+
+    <li>Improved Keccak and SHA3 support (Pull Requests 280, 291, 296)</li>
+
+    <li>Fixed MARS key sizes (Pull Requests 281, 282)</li>
+
+    <li>Fixed VS2012 project files (Pull Request 286)</li>
+
+    <li>Fixed GCC warning "type qualifiers ignored on function return type" (Pull Request
+    339)</li>
+
+    <li>Fixed CRYPTOPP_ASSERT (Pull Request 356)</li>
+
+    <li>Fixed VS2017 warnings (Pull Request 363)</li>
+
+    <li>Added W3C padding support (Pull Request 368)</li>
+
+    <li>Added DragonFly support (Pull Request 378)</li>
+
+    <li>Removed static from reference to singleton (Pull Request 392)</li>
+
+    <li>Improved SunCC support (Pull Request 402)</li>
+
+    <li>Fixed Sun SPARC alignment (Pull Request 405)</li>
+
+    <li>Fixed BLAKE2 when using non-standard digest sizes (Pull Request 416)</li>
+
+    <li>Implemented reproducible builds (Pull Request 426)</li>
+
+    <li>Improved Windows XP support under VS2015 (Pull Request 439)</li>
+
+    <li>Removed -march=native as default in Makefile (Pull Request 465)</li>
+
+    <li>Removed WORKAROUND_MS_BUG_Q258000 (Pull Request 478)</li>
+
+    <li>Fixed Clang FreeBSD 10.3 builds (Pull Request 483)</li>
+
+    <li>Added Android cpufeatures library integration (Pull Request 489)</li>
+
+    <li>Improved MinGW support (Pull Request 531)</li>
+
+    <li>Updated shared object build rules (Pull Request 547)</li>
+
+    <li>Fixed C++ Builder compiles (Pull Request 552)</li>
+
+    <li>Fixed deterministic signatures for EC (Pull Request 560)</li>
+
+    <li>Added interface to TweetNaCl library (Pull Request 566)</li>
+
     <li>Removed all BACKWARDS_COMPATIBILITY code and macros. The clock is reset.</li>
 
-    <li>Fixed approximately 55 Coverity findings</li>
+    <li>Fixed approximately 25 Asan and UBsan findings</li>
+
+    <li>Fixed approximately 50 Coverity findings</li>
   </ul>
 
   <h2>Notes for Distros</h2>
