@@ -342,6 +342,22 @@
     <li>Fixed approximately 55 Coverity findings</li>
   </ul>
 
+  <h2>Notes for Distros</h2>
+
+  <p>There are three items of interest for distros. First, we fixed the ABI breaks by
+  bumping to Crypto++ 6.0. We apologize for the problems it caused in Crypto++ 5.6.5.</p>
+
+  <p>Second, we have an unoffical Autotools project at <a href=
+  "https://github.com/noloader/cryptopp-autotools">Crypto++ | Autoools</a>. It is based
+  on the Autotools project files supplied by Debian and László
+  Böszörményi. Autotools has several contributors,
+  including László, so it should be mostly up to date.</p>
+
+  <p>Third, we have an unoffical Cmake project at <a href=
+  "https://github.com/noloader/cryptopp-cmake">Crypto++ | Cmake</a>. It is based on the
+  Cmake project files that were removed from the distribution. There are fewer
+  contributors to the Cmake project and the files may not be up to date.</p>
+
   <h2>File Changes</h2>
 
   <p>Below is a list of <em>all</em> files that were added or deleted at Crypto++
@@ -415,21 +431,5 @@ create   tweetnacl.h
 create   validat0.cpp
 create   validat4.cpp
 </pre>
-
-  <h2>Notes for Distros</h2>
-
-  <p>There are three items of interest for distros. First, we fixed the ABI breaks by
-  bumping to Crypto++ 6.0. We apologize for the problems it caused in Crypto++ 5.6.5.</p>
-
-  <p>Second, we have an unoffical Autotools project at <a href=
-  "https://github.com/noloader/cryptopp-autotools">Crypto++ | Autoools</a>. It is based
-  on the Autotools project files supplied by Debian and László
-  Böszörményi. Autotools has several contributors,
-  including László, so it should be mostly up to date.</p>
-
-  <p>Third, we have an unoffical Cmake project at <a href=
-  "https://github.com/noloader/cryptopp-cmake">Crypto++ | Cmake</a>. It is based on the
-  Cmake project files that were removed from the distribution. There are fewer
-  contributors to the Cmake project and the files may not be up to date.</p>
 </body>
 </html>
