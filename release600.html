@@ -41,7 +41,7 @@
   <h2>Crypto++ 6.0</h2>
 
   <p>Crypto++ 6.0 was released on January 22, 2018. The 6.0 release was a major relase
-  and broke ABI compatibility. The release included two CVE fixes.</p>
+  and the ABI changed. The release included two CVE fixes.</p>
 
   <p>The first CVE, CVE-2016-9939, was a transient DoS due to allocating an oversized
   buffer on attacker controlled data. The transitivity was due to a zeroizer which
@@ -123,6 +123,78 @@
     <li>ported to MSVC 2017, Xcode 8.1, Sun Studio 12.5, GCC 7.0, MacPorts GCC 7.0, Clang
     4.0, Intel C++ 17.00, IBM XL C/C++ 13.1</li>
   </ul>
+
+  <h2>BASE + SIMD</h2>
+
+  <p>Crypto++ switched to BASE+SIMD to better support distros. BASE provides an agnostic
+  C++ implementation, while SIMD provides a specialized implementation like ARMv8 or
+  Intel for AES and SHA. The SIMD files, like <tt>rijndael-simd.cpp</tt> or
+  <tt>sha-simd.cpp</tt>, require architecture specific flags, like <tt>-msse4.1
+  -maes</tt> and <tt>-march=armv8-a+crypto</tt>.</p>
+
+  <p>Both the Crypto++ makefile and the unoffical <a href=
+  "https://github.com/noloader/cryptopp-autotools">Autoools project</a> adds them. If you
+  encounter errors like shown below, then be sure your build tool is adding the necessary
+  flags.</p>
+  <pre>
+$ g++ -g2 -O3 rijndael-simd.cpp -c
+In file included from rijndael-simd.cpp:37:0:
+...
+/usr/lib/gcc/x86_64-redhat-linux/7/include/wmmintrin.h:61:1:
+  error: inlining failed in call to always_inline '__m128i _mm_aesenc_si128(__m128i, __m128i)':
+  target specific option mismatch
+ _mm_aesenc_si128 (__m128i __X, __m128i __Y)
+ ^~~~~~~~~~~~~~~~
+rijndael-simd.cpp:377:33: note: called from here
+         block = _mm_aesenc_si128(block, skeys[i+1]);
+</pre>
+
+  <h2>Autotools project</h2>
+
+  <p>BASE+SIMD caused a lot of extra work for Debian and
+  László Böszörményi.
+  We teamed with László and added an unofficial <a href=
+  "https://github.com/noloader/cryptopp-autotools">Autoools project</a> to remove some of
+  the burden. The Autotools project can be used to build Crypto++ by distributions.</p>
+
+  <p>If you experience a failed compile due to missing architecture flags, then run the
+  makefile or Autool's configure. Autotools will provide summary information with the
+  necessary flags:</p>
+  <pre>
+$ autoreconf -f -i
+...
+
+$ ./configure
+...
+
+Auto-configuration complete. A summary of options are below. If
+something looks wrong then please modify config.h and please report
+it at http://github.com/noloader/cryptopp-autotools.
+
+   Build triplet: x86_64-pc-linux-gnu
+ Compiler target: x86_64-redhat-linux
+Compiler version: g++ (GCC) 7.2.1 20170915 (Red Hat 7.2.1-2)
+
+Static library: yes
+Shared library: yes
+
+CRYPTOPP_SSE_FLAG: -msse2
+CRYPTOPP_ARIA_FLAG: -mssse3
+CRYPTOPP_BLAKE2_FLAG: -msse4.1
+CRYPTOPP_CRC_FLAG: -msse4.2
+CRYPTOPP_AES_FLAG: -msse4.1 -maes
+CRYPTOPP_SHA_FLAG: -msse4.2 -msha
+CRYPTOPP_SPECK_FLAG: -msse4.1
+CRYPTOPP_SIMON_FLAG: -msse4.1
+
+Automake flags (can be overridden by user flags):
+AM_CXXFLAGS:  -pthread -fdata-sections -ffunction-sections -pipe
+AM_LDFLAGS:  -pthread -Wl,--gc-sections -Wl,--exclude-libs,ALL
+
+User flags (overrides Automake flags on conflict):
+CXXFLAGS: -g -O2
+LDFLAGS:
+</pre>
 
   <h2>Bug Fixes and Minor Issues</h2>
 
@@ -386,6 +458,8 @@
     <li>Updated shared object build rules (Pull Request 547)</li>
 
     <li>Fixed C++ Builder compiles (Pull Request 552)</li>
+
+    <li>Used lambda instead of std::bind2nd in C++11 (Pull Request 559)</li>
 
     <li>Fixed deterministic signatures for EC (Pull Request 560)</li>
 
