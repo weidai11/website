@@ -131,14 +131,22 @@
 
   <p>Crypto++ switched to BASE+SIMD to better support distros. BASE provides an agnostic
   C++ implementation, while SIMD provides a specialized implementation like ARMv8 or
-  Intel for AES and SHA. The SIMD files, like <tt>rijndael-simd.cpp</tt> or
+  Intel for AES or SHA. The SIMD files, like <tt>rijndael-simd.cpp</tt> or
   <tt>sha-simd.cpp</tt>, require architecture specific flags, like <tt>-msse4.1
   -maes</tt> and <tt>-march=armv8-a+crypto</tt>.</p>
 
   <p>Both the Crypto++ makefile and the unoffical <a href=
   "https://github.com/noloader/cryptopp-autotools">Autoools project</a> adds the
-  architecture specific flags. If you encounter errors like shown below, then be sure
-  your build tool is adding the necessary flags.</p>
+  architecture specific flags. The makefile still honors your <tt>CXXFLAGS</tt>:</p>
+  <pre>
+# AESNI, ARMv8a or Power8 available
+rijndael-simd.o : rijndael-simd.cpp
+        $(CXX) $(strip $(CXXFLAGS) $(AES_FLAG) -c) $&lt;
+
+</pre>
+
+  <p>If you encounter errors like shown below, then be sure your build tool is adding the
+  necessary flags.</p>
   <pre>
 $ g++ -g2 -O3 rijndael-simd.cpp -c
 In file included from rijndael-simd.cpp:37:0:
