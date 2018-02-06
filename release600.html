@@ -127,6 +127,13 @@
     4.0, Intel C++ 17.00, IBM XL C/C++ 13.1</li>
   </ul>
 
+  <h2>std::byte</h2>
+  
+  <p>Crypto++ moved <tt>byte</tt> into the <tt>CryptoPP</tt> namespace. The change could cause
+  problems with some user programs. There is a wiki page available for fixing user programs at <a href="https://www.cryptopp.com/wiki/std::byte"><tt>std::byte</tt></a>.</p>
+  
+  <p>The change was due to C++17 <tt>std::byte</tt> causing ambiguous symbol references. Formerly Crypto++ <tt>byte</tt> was in the gobal namespace to avoid ambiguous symbol references due to Microsoft SDK's placement of a <tt>byte</tt> in the gobal namespace.</p> After the change Microsoft <tt>byte</tt> and <tt>std::byte</tt> will still cause ambiguous symbol references, and the wiki page should help user programs make a choice.
+
   <h2>BASE + SIMD</h2>
 
   <p>Crypto++ switched to BASE+SIMD to better support distros. BASE provides an agnostic
