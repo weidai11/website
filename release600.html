@@ -248,6 +248,10 @@ CRYPTOPP_SIMON_FLAG: -march=armv8-a
 
     <li>Fixed CVE-2017-9434 (Issue 414, misidentified memory error)</li>
 
+    <li>Added std::byte, fixed compiles (Issues 442, 447, 458)</li>
+
+    <li>Converted to BASE+SIMD source code pattern (Issue 380, PR 461)</li>
+
     <li>Updated documentation</li>
 
     <li>Fixed x64dll.asm included in Windows Phone using MSbuilds (Issue 316)</li>
@@ -309,8 +313,6 @@ CRYPTOPP_SIMON_FLAG: -march=armv8-a
 
     <li>Added Test namespace within CryptoPP namespace (Issue 379)</li>
 
-    <li>Converted to BASE+SIMD source code pattern (Issue 380, PR 461)</li>
-
     <li>Removed NULL_CHANNEL and Code Warrior 8 workaround (Issue 382)</li>
 
     <li>Added support for C++11 nullptr (Issue 383)</li>
@@ -352,8 +354,6 @@ CRYPTOPP_SIMON_FLAG: -march=armv8-a
     (Issue 430, PR 461)</li>
 
     <li>Fixed GCC7 and -Wimplicit-fallthrough warnings (Issue 411)</li>
-
-    <li>Fixed compile with C++17 due to std::byte (Issues 442, 447, 458)</li>
 
     <li>Make SecBlock&lt;T,A&gt; data members protected (Issue 448)</li>
 
