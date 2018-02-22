@@ -690,6 +690,20 @@
     Unix), and compiler (output of "gcc -v" if using GCC)</li>
   </ul>
 
+  <h2><a name="sidechannel" id="sidechannel">Side Channel Attacks</a></h2>
+
+  <p>Crypto++ attempts to resist side channel attacks using various remediations. We
+  believe the library is hardened but the remdiations may be incomplete. The first line
+  of defense uses hardware instructions when possible. The library also uses cache-aware
+  algoirthms and access patterns to minimize leakage. If you suspect or find an
+  information leak then please report it.</p>
+
+  <p>Crypto++ does not enagage Specter remediations at this time. The GCC options for
+  Specter are <tt>-mfunction-return=thunk</tt> and <tt>-mindirect-branch=thunk</tt>. If
+  you want the Specter workarounds then add the GCC options to your <tt>CXXFLAGS</tt>
+  when building the library. The library tests uses the options and they should work as
+  expected.</p>
+
   <h2><a name="contributions" id="contributions">Source Code and Contributions</a></h2>
 
   <p>The source code and its planned changes are available at the following
