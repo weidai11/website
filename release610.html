@@ -96,13 +96,13 @@
 
     <li>fix missing flags for SIMON and SPECK in GNUMakefile-cross</li>
 
-    <li>fix ARM and MinGW misdetection</li>
+    <li>fix ARM and MinGW misdetection in GNUMakefile</li>
 
     <li>port setenv-android.sh to latest NDK</li>
 
-    <li>fix Clang check for C++11 lambdas</li>
+    <li>fix Clang check for C++11 lambdas on FreeBSD</li>
 
-    <li>Simon and Speck to little-endian implementation</li>
+    <li>convert Simon and Speck to little-endian implementation</li>
 
     <li>use LIB_MAJOR for ABI compatibility</li>
 
@@ -120,7 +120,7 @@
   little-endian. Formerly we followed the published test vectors from the paper, but they
   turned out to be incorrect. We later learned we should have followed the algorithmic
   description from the paper. The Crypto++ implementation now aligns with the Simon and
-  Speck paper and the Linux kernel.</p>
+  Speck paper's algorithmic description and the Linux kernel.</p>
 
   <p>The Simon and Speck changed was tracked via <a href=
   "https://github.com/weidai11/cryptopp/issues/585">Issue 585</a>.</p>
