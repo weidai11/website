@@ -125,6 +125,34 @@
   <p>The Simon and Speck changed was tracked via <a href=
   "https://github.com/weidai11/cryptopp/issues/585">Issue 585</a>.</p>
 
+  <h2>Meltdown and Spectre</h2>
+
+  <p>Meltdown and Spectre are security defects present in modern CPU's due to speulative
+  exectution that allow attackers to recover secrets and other sensitve information. The
+  vulnerabilites were announced in December 2017. More reading is available at <a href=
+  "https://meltdownattack.com/">Meltdown and Spectre website</a>.</p>
+
+  <p>Crypto++ 6.1 (and Crypto++ 6.0) did not ship with Meltdown and Spectre remediations
+  in place. The first remediations appeared in GCC 7.3 dated January 29, 2018. If you
+  want to build Crypto++ with GCC remediations in place then you should add
+  <tt>-mfunction-return=thunk</tt> and <tt>-mindirect-branch=thunk</tt> to your
+  <tt>CXXFLAGS</tt>. Optionally, you can disable assembly language routines. The steps to
+  add the hardening:</p>
+
+  <ul>
+    <li>Optionally uncomment <tt>#define CRYPTOPP_DISABLE_ASM 1</tt> in <tt>config.h</tt>
+    around line 60.</li>
+
+    <li>Add the appropriate flags to <tt>CXXFLAGS</tt>. For example, with GCC use
+    <tt>CXXFLAGS="-DNDEBUG -g2 -O3 -mfunction-return=thunk
+    -mindirect-branch=thunk"</tt>.</li>
+  </ul>
+
+  <p>It is hard to say how effective <tt>CRYPTOPP_DISABLE_ASM</tt> is when containing
+  Meltdown and Spectre. Crypto++ has a fair amount of assembly langauge routines,
+  including hardware accelerated AES and SHA. Downgrading back to C++ means other side
+  channel leakage are present that were remediated with the hardware intructions.</p>
+
   <h2>Bug Fixes and Minor Issues</h2>
 
   <p>The bug fix and minor issue list for Crypto++ 6.1 follows. Many non-trivial issues
