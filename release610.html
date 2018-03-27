@@ -128,16 +128,16 @@
   <h2>Meltdown and Spectre</h2>
 
   <p>Meltdown and Spectre are security vulnerabilities announced in December 2017. The
-  defects are present in modern CPU's due to speulative execution and allow attackers to
+  defects are present in modern CPU's due to speculative execution and allow attackers to
   recover secrets and other sensitve information. More reading is available at <a href=
   "https://meltdownattack.com/">Meltdown and Spectre website</a>.</p>
 
   <p>Crypto++ 6.1 (and Crypto++ 6.0) did not ship with Meltdown and Spectre remediations
-  in place. The first remediations appeared in GCC 7.3 dated January 29, 2018. If you
+  in place. The first remediations appeared in GCC 7.3 at the end of January 2018. If you
   want to build Crypto++ with GCC remediations in place then you should add
   <tt>-mfunction-return=thunk</tt> and <tt>-mindirect-branch=thunk</tt> to your
   <tt>CXXFLAGS</tt>. Optionally, you can disable assembly language routines. The steps to
-  add the hardening:</p>
+  engage the hardening are:</p>
 
   <ul>
     <li>Optionally uncomment <tt>#define CRYPTOPP_DISABLE_ASM 1</tt> in <tt>config.h</tt>
@@ -151,7 +151,8 @@
   <p>It is hard to say how effective <tt>CRYPTOPP_DISABLE_ASM</tt> is when containing
   Meltdown and Spectre. Crypto++ has a fair amount of assembly langauge routines,
   including hardware accelerated AES and SHA. Downgrading back to C++ means other side
-  channel leakage are present that were remediated with the hardware intructions.</p>
+  channel leakage could be present that were remediated with the hardware
+  intructions.</p>
 
   <h2>Bug Fixes and Minor Issues</h2>
 

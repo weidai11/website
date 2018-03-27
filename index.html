@@ -9,7 +9,7 @@
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
   <meta name="keywords" content=
-  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE3, SSE4, AESNI, VIA Padlock, RDRAND, RDSEED, ARMv7a, ARMv8a, NEON, ASIMD, PowerPC, Power8, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE3, SSE4, AESNI, SHANI, VIA Padlock, RDRAND, RDSEED, ARMv7a, ARMv8a, NEON, ASIMD, PowerPC, POWER8, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
   <link rel="icon" type="image/png" href="cryptopp.png">
 </head>
@@ -230,8 +230,8 @@
       </ul>
     </li>
 
-    <li>x86, x64 (x86-64), x32 (ILP32), ARM-32, Aarch32, Aarch64 and Power8 in-core code
-    for the commonly used algorithms
+    <li>x86, x64 (x86-64), x32 (ILP32), ARM-32, Aarch32, Aarch64 and POWER8 code for the
+    commonly used algorithms
 
       <ul>
         <li>run-time CPU feature detection and code selection</li>
@@ -243,7 +243,10 @@
         <li>ARM-32, Aarch32 and Aarch64 provides NEON, ASIMD and ARMv8
         implementations</li>
 
-        <li>Power8 provides in-core AES using NX Crypto Acceleration</li>
+        <li>PowerPC provides POWER4, POWER7 and POWER8 implementations</li>
+
+        <li>AES, CRC, GCM and SHA use ARM, Intel and PowerPC hardware acceleration when
+        available</li>
       </ul>
     </li>
 
@@ -359,7 +362,7 @@
           </ul>
         </li>
 
-        <li>improved PowerPC Power4, Power7 and Power8 support</li>
+        <li>improved PowerPC Power4, Power7 and POWER8 support</li>
 
         <li>added ARIA, EC German DSA, Deterministic signatures (RFC 6979), Kalyna, NIST
         Hash and HMAC DRBG, Padlock RNG, Poly1305, SipHash, Simon, Speck, SM3, SM4,
