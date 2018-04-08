@@ -5,7 +5,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-  <title>Crypto++ Library | 6.1 Release</title>
+  <title>Crypto++ Library | 7.0 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
   <meta name="keywords" content=
@@ -38,10 +38,10 @@
     </tbody>
   </table>
 
-  <h2>Crypto++ 6.1</h2>
+  <h2>Crypto++ 7.0</h2>
 
-  <p>Crypto++ 6.1 was released on February 22, 2018. The 6.1 release was a minor, planned
-  release. There were no CVE fixes.</p>
+  <p>Crypto++ 7.0 was released on April 8, 2018. The 7.0 release was a major, planned
+  release. The major release was due to an ABI break. There were no CVE fixes.</p>
 
   <h2>Download</h2>
 
@@ -49,114 +49,84 @@
   are below.</p>
 
   <ul>
-    <li><a href="cryptopp610.zip">Original cryptopp610.zip</a></li>
+    <li><a href="cryptopp700.zip">Original cryptopp700.zip</a></li>
 
-    <li>SHA1: c4e7c14ad17b6fae6a1b84d0824b4365f2a779e6</li>
+    <li>SHA1: 1288682ae2f3062ea3a82ca2e90bd06d147568a4</li>
 
-    <li>SHA256: 21289d2511101a9350c87c8eb1f4982d4a266e8037b19dab79a32cc13ea108c7</li>
+    <li>SHA256: a4bc939910edd3d29fb819a6fc0dfdc293f686fa62326f61c56d72d0a366ceb0</li>
 
     <li>SHA512:
-    cb01330ffb2f34bf51ca5a9d530b0be987c7cf36ab2be0e562a61bd39748f9fa5533be43050c7505f8be22b03a9dece829c1b27987b9c9c5cb7ecf51d75bf6a3</li>
+    8fd8d680e5ceaf10b3c32cb1504bda4b32abc9fcaa2c6e61e3b5e67aca805c792579884bc6a749c29a99105304c421d03d7fe7909fc58f750b3155c7c5cec8ec</li>
 
     <li>BLAKE2b:
-    6a869fb29981168c3fbe4d6e7f6813d155f0f149e2ec917916018c426cfe0805e88284866bfa9e7bd3ac7ccdd2569abd50469229798f9b517853ca3c18282c9a</li>
+    1b1a60e240a9d94b4edfea16beef0ec48ec26c61f7f9a3d89d29bd2e77b13a83ce942f81467bb90d3086253560a3c4acd6b89178dcb416ed4328340ad5222dfd</li>
 
     <li>WHIRLPOOL:
-    f6f0cc618091aefbf01e169e00e9e6024cd2dd8f6cfa2c2c4703af896e4598fec00772ba0297aef8588fc4c98d0ede6fe49147d236d5c18b8575a71bf4e5b391</li>
+    dd7133b278fd751f89ad462bd9b84cdabe0ed80e2d19a1b1df6487c5930a092d69feb6303aacc13562ac555e3109bdac9f231079ed5c4318f3c6d686ed6220e3</li>
   </ul>
 
   <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
   different because the service creates the archive from sources.</p>
 
   <ul>
-    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_6_1_0">GitHub
-    cryptopp610.zip</a></li>
+    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_7_0_0">GitHub
+    cryptopp700.zip</a></li>
   </ul>
 
   <h2>Release Notes</h2>
 
-  <p>The release notes for Crypto++ 6.1 follows.</p>
+  <p>The release notes for Crypto++ 7.0 follows.</p>
 
   <ul>
-    <li>minor release, maintenance items</li>
+    <li>major release, recompile of programs required</li>
 
     <li>expanded community input and support</li>
 
     <li style="list-style: none">
       <ul>
-        <li>46 unique contributors as of this release</li>
+        <li>48 unique contributors as of this release</li>
       </ul>
     </li>
 
-    <li>use 2048-bit modulus default for DSA</li>
+    <li>fix incorrect result when using Integer::ModInverse</li>
 
-    <li>fix build under Linuxbrew</li>
+    <li style="list-style: none">
+      <ul>
+        <li>may be CVE worthy, but request was not submitted</li>
+      </ul>
+    </li>
 
-    <li>use /bin/sh in GNUmakefile</li>
+    <li>fix ARIA/CTR bus error on Sparc64</li>
 
-    <li>fix missing flags for SIMON and SPECK in GNUMakefile-cross</li>
+    <li>fix incorrect result when using a_exp_b_mod_c</li>
 
-    <li>fix ARM and MinGW misdetection in GNUMakefile</li>
+    <li>fix undeclared identifier uint32_t on early Visual Studio</li>
 
-    <li>port setenv-android.sh to latest NDK</li>
+    <li>fix iPhoneSimulator build on i386</li>
 
-    <li>fix Clang check for C++11 lambdas on FreeBSD</li>
+    <li>fix incorrect adler32 in ZlibDecompressor</li>
 
-    <li>convert Simon and Speck to little-endian implementation</li>
+    <li>fix Power7 test using PPC_FEATURE_ARCH_2_06</li>
 
-    <li>use LIB_MAJOR for ABI compatibility</li>
+    <li>workaround incorrect Glibc sysconf return value on ppc64-le</li>
 
-    <li>fix ODR violation in AdvancedProcessBlocks_{ARCH} templates</li>
+    <li>add KeyDerivationFunction interface</li>
 
-    <li>handle C++17 std::uncaught_exceptions</li>
+    <li>add scrypt key derivation function</li>
 
-    <li>ported to MSVC 2017, Xcode 8.1, Sun Studio 12.5, GCC 8.0.1, MacPorts GCC 7.0,
-    Clang 4.0, Intel C++ 17.00, IBM XL C/C++ 13.1</li>
+    <li>add Salsa20_Core transform callable from outside class</li>
+
+    <li>add sbyte, sword16, sword32 and sword64</li>
+
+    <li>remove s_nullNameValuePairs from unnamed namespace</li>
+
+    <li>ported to MSVC 2017, Xcode 9.3, Sun Studio 12.5, GCC 8.0.1, MacPorts GCC 7.0,
+    Clang 5.0, Intel C++ 17.00, IBM XL C/C++ 13.1</li>
   </ul>
-
-  <h2>Simon and Speck</h2>
-
-  <p>Crypto++ changed its implementation for Simon and Speck from big-endian to
-  little-endian. Formerly we followed the published test vectors from the paper, but they
-  turned out to be incorrect. We later learned we should have followed the algorithmic
-  description from the paper. The Crypto++ implementation now aligns with the Simon and
-  Speck paper's algorithmic description and the Linux kernel.</p>
-
-  <p>The Simon and Speck changed was tracked via <a href=
-  "https://github.com/weidai11/cryptopp/issues/585">Issue 585</a>.</p>
-
-  <h2>Meltdown and Spectre</h2>
-
-  <p>Meltdown and Spectre are security vulnerabilities announced in December 2017. The
-  defects are present in modern CPU's due to speculative execution and allow attackers to
-  recover secrets and other sensitve information. More reading is available at <a href=
-  "https://meltdownattack.com/">Meltdown and Spectre website</a>.</p>
-
-  <p>Crypto++ 6.1 (and Crypto++ 6.0) did not ship with Meltdown and Spectre remediations
-  in place. The first remediations appeared in GCC 7.3 at the end of January 2018. If you
-  want to build Crypto++ with GCC remediations in place then you should add
-  <tt>-mfunction-return=thunk</tt> and <tt>-mindirect-branch=thunk</tt> to your
-  <tt>CXXFLAGS</tt>. Optionally, you can disable assembly language routines. The steps to
-  engage the hardening are:</p>
-
-  <ul>
-    <li>Optionally uncomment <tt>#define CRYPTOPP_DISABLE_ASM 1</tt> in <tt>config.h</tt>
-    around line 60.</li>
-
-    <li>Add the appropriate flags to <tt>CXXFLAGS</tt>. For example, with GCC use
-    <tt>CXXFLAGS="-DNDEBUG -g2 -O3 -mfunction-return=thunk
-    -mindirect-branch=thunk"</tt>.</li>
-  </ul>
-
-  <p>It is hard to say how effective <tt>CRYPTOPP_DISABLE_ASM</tt> is when containing
-  Meltdown and Spectre. Crypto++ has a fair amount of assembly langauge routines,
-  including hardware accelerated AES and SHA. Downgrading back to C++ means other side
-  channel leakage could be present that were remediated with the hardware
-  intructions.</p>
 
   <h2>Bug Fixes and Minor Issues</h2>
 
-  <p>The bug fix and minor issue list for Crypto++ 6.1 follows. Many non-trivial issues
+  <p>The bug fix and minor issue list for Crypto++ 7.0 follows. Many non-trivial issues
   are tracked for auditing and C&amp;A purposes, but the list may not be complete. A
   number in parenthesis is the <a href=
   "http://github.com/weidai11/cryptopp/issues">GitHub Issue number</a>, if it was
@@ -165,41 +135,66 @@
   requests and "won't fix/can't fix" type reports.</p>
 
   <ul>
-    <li>use 2048-bit modulus default for DSA (Issue 571)</li>
+    <li>fix incorrect result when using Integer::ModInverse (Issue 602)</li>
 
-    <li>add Kalyna typedefs (Issue 535)</li>
+    <li style="list-style: none">
+      <ul>
+        <li>may be CVE worthy, but a request was not submitted</li>
+      </ul>
+    </li>
 
-    <li>fix build under Linuxbrew (Issue 575)</li>
+    <li>fix warning due to different string alignments in mqueue.cpp (Issue 591, PR
+    603)</li>
 
-    <li>use /bin/sh in GNUmakefile (Issue 573)</li>
+    <li>add PowerPC Power8 SHA hashing (Issue 513)</li>
 
-    <li>fix missing flags for SIMON and SPECK in GNUMakefile-cross (Issue 577)</li>
+    <li>define AT_HWCAP/AT_HWCAP2 if getauxval unavailable (PR 594)</li>
 
-    <li>fix MinGW misdetection (Issue 573)</li>
+    <li>fix compile error on Windows due to symbol U collision (Issue 599)</li>
 
-    <li>fix ARM misdetection (Issue 573)</li>
+    <li>fix Adler32 checksum error in ZlibDecompressor in multithreaded programs (Issue
+    596, PR 600)</li>
 
-    <li>fix SHA-512 crash on Debian X32 (Issue 578)</li>
+    <li>fix ARIA/CTR bus error on Sparc64 (Issue 597)</li>
 
-    <li>fix misaligned SSE2 allocations on FreeBSD (Issue 562)</li>
+    <li>fix GCC version for RDSEED intrinsic (PR 598)</li>
 
-    <li>switch to posix_memalign when available (Commit 22e783a378bb)</li>
+    <li>fix incorrect result when using a_exp_b_mod_c (Issue 602)</li>
 
-    <li>use install program for GNUmakefile (Issue 582)</li>
+    <li>fix undeclared identifier uint32_t on early Visual Studio (Issue 608)</li>
 
-    <li>port setenv-android.sh to latest NDK</li>
+    <li>add sbyte, sword16, sword32 and sword64 (Issue 608, 609)</li>
 
-    <li>fix Clang check for C++11 lambdas (Issue 587)</li>
+    <li>add KeyDerivationFunction interface (Issue 610)</li>
 
-    <li>convert Simon and Speck to little-endian (Issue 588)</li>
+    <li>cutover PBKDF to KeyDerivationFunction interface (PR 612)</li>
 
-    <li>fix signed integer overflow on ppc64 (Issue 588)</li>
+    <li>add Scrypt key derivation function (Issue 613)</li>
 
-    <li>use LIB_MAJOR for ABI compatibility (Issue 589)</li>
+    <li>remove extraneous semi-colons in source files (PR 605-625)</li>
 
-    <li>fix ODR violation in AdvancedProcessBlocks_{ARCH} templates (Issue 588)</li>
+    <li>re-enable OS X and iOS on Travis (PR 627)</li>
 
-    <li>handle C++17 std::uncaught_exceptions (Issue 590)</li>
+    <li>add OpenMP support to Scrypt (PR 628)</li>
+
+    <li>add Salsa20_Core transform (Issue 630)</li>
+
+    <li>remove s_nullNameValuePairs from unnamed namespace (Issue 631)</li>
+
+    <li>rename ECGDSA_ISO15946 -&gt; ECGDSA (PR 634)</li>
+
+    <li>fix iPhoneSimulator build on i386 (Issue 635)</li>
+
+    <li>make CAST temporaries class members (Commit 71e9fece8795)</li>
+
+    <li>fix Coverity finding CID 189203, 189204, 189205 (Commit 11e076003a1a)</li>
+
+    <li>change order of initialization for ASN.1 decoders (Commit 64a15cf51b8f)</li>
+
+    <li>make AuthenticatedSymmetricCipher::AlgorithmName non-pure (Commit
+    62a9574f3fd6)</li>
+
+    <li>add CPU feature queries for AIX (Commit 04e361889efd)</li>
   </ul>
 
   <h2>Notes for Distros</h2>
