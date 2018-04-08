@@ -199,15 +199,13 @@
     <li>add CPU feature queries for AIX (Commit 04e361889efd)</li>
   </ul>
 
-  <h2>Notes for Distros</h2>
+  <h2>Memory error</h2>
 
-  <p>The incorrect result when using <a href=
-  "https://github.com/weidai11/cryptopp/issues/602">Integer::InverseMod (Issue 602)</a>
-  is a memory error. The issue may be CVE worthy, and it is the reason for the Crypto++
-  7.0 release. The library itself was not at risk of memory problems due to the way the
-  library used the Integer class. User programs prior to Crypto++ 7.0 could be at risk
-  because they might call the mod operation with an operand large enough to witness the
-  problem.</p>
+  <p>The <tt>Integer</tt> class had a memory error in member function <tt>InverseMod</tt>
+  that could cause a heap corruption. The error surfaced when <tt>x % m</tt> was used and
+  <tt>x</tt> was much larger than <tt>m</tt>. The error usually occured when the bit
+  count of <tt>x</tt> was larger than the bit count <tt>m</tt> by about 128-bits or
+  256-bits.</p>
 
   <p>Below is the new code for <tt>InverseMod</tt> located in <tt>integer.cpp</tt>.
   <tt>InverseMod</tt> was fixed, and <tt>InverseModNext</tt> was added. The problem was
@@ -248,6 +246,19 @@ Integer Integer::InverseModNext(const Integer &amp;m) const
     return r;
 }
 </pre>
+
+  <h2>Notes for Distros</h2>
+
+  <p>The incorrect result when using <a href=
+  "https://github.com/weidai11/cryptopp/issues/602">Integer::InverseMod (Issue 602)</a>
+  is a memory error. The issue may be CVE worthy, and it is the reason for the Crypto++
+  7.0 release. The library itself was not at risk of memory problems due to the way the
+  library used the Integer class. User programs prior to Crypto++ 7.0 could be at risk
+  because they might call the mod operation with an operand large enough to witness the
+  problem.</p>
+
+  <p>The 7.0 version bump was not due to the memory error. The major version bump was due
+  to ABI breaks caused by <tt>KeyDerivationFunction</tt> interface.</p>
 
   <h2>File Changes</h2>
 
