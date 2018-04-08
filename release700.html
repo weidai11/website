@@ -199,10 +199,23 @@
 
   <h2>Notes for Distros</h2>
 
-  <p>None.</p>
+  <p>The incorrect result when using <a href=
+  "https://github.com/weidai11/cryptopp/issues/602">Integer::ModInverse (Issue 602)</a>
+  is a memory error. The issue may be CVE worthy, and it is the reason for the Crypto++
+  7.0 release.</p>
+
+  <p>The library itself was not at risk of memory problems due to the way the library
+  used the Integer class. User programs prior to Crypto++ 7.0 are at risk because they
+  might call the mod operation with an operand large enough to witness the problem. We
+  are not aware of problems in the field with user code.</p>
 
   <h2>File Changes</h2>
 
-  <p>None.</p>
+  <p>Below is a list of all files that were added at Crypto++ 7.0.</p>
+  <pre>
+$ git diff-tree -r --summary CRYPTOPP_6_1_0 CRYPTOPP_7_0_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+create   scrypt.cpp
+create   scrypt.h
+</pre>
 </body>
 </html>
