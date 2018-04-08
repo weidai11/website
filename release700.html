@@ -88,7 +88,7 @@
       </ul>
     </li>
 
-    <li>fix incorrect result when using Integer::ModInverse</li>
+    <li>fix incorrect result when using Integer::InverseMod</li>
 
     <li style="list-style: none">
       <ul>
@@ -135,7 +135,7 @@
   requests and "won't fix/can't fix" type reports.</p>
 
   <ul>
-    <li>fix incorrect result when using Integer::ModInverse (Issue 602)</li>
+    <li>fix incorrect result when using <tt>Integer::InverseMod</tt> (Issue 602)</li>
 
     <li style="list-style: none">
       <ul>
@@ -148,20 +148,21 @@
 
     <li>add PowerPC Power8 SHA hashing (Issue 513)</li>
 
-    <li>define AT_HWCAP/AT_HWCAP2 if getauxval unavailable (PR 594)</li>
+    <li>define <tt>AT_HWCAP/AT_HWCAP2</tt> if getauxval unavailable (PR 594)</li>
 
-    <li>fix compile error on Windows due to symbol U collision (Issue 599)</li>
+    <li>fix compile error on Windows due to symbol <tt>U</tt> collision (Issue 599)</li>
 
-    <li>fix Adler32 checksum error in ZlibDecompressor in multithreaded programs (Issue
-    596, PR 600)</li>
+    <li>fix Adler32 error in ZlibDecompressor in multithreaded programs (Issue 596, PR
+    600)</li>
 
     <li>fix ARIA/CTR bus error on Sparc64 (Issue 597)</li>
 
     <li>fix GCC version for RDSEED intrinsic (PR 598)</li>
 
-    <li>fix incorrect result when using a_exp_b_mod_c (Issue 602)</li>
+    <li>fix incorrect result when using <tt>a_exp_b_mod_c</tt> (Issue 602)</li>
 
-    <li>fix undeclared identifier uint32_t on early Visual Studio (Issue 608)</li>
+    <li>fix undeclared identifier <tt>uint32_t</tt> on early Visual Studio (Issue
+    608)</li>
 
     <li>add sbyte, sword16, sword32 and sword64 (Issue 608, 609)</li>
 
@@ -173,13 +174,13 @@
 
     <li>remove extraneous semi-colons in source files (PR 605-625)</li>
 
-    <li>re-enable OS X and iOS on Travis (PR 627)</li>
+    <li>re-enable OS X and iOS tests on Travis (PR 627)</li>
 
     <li>add OpenMP support to Scrypt (PR 628)</li>
 
-    <li>add Salsa20_Core transform (Issue 630)</li>
+    <li>add <tt>Salsa20_Core</tt> transform (Issue 630)</li>
 
-    <li>remove s_nullNameValuePairs from unnamed namespace (Issue 631)</li>
+    <li>remove <tt>s_nullNameValuePairs</tt> from unnamed namespace (Issue 631)</li>
 
     <li>rename ECGDSA_ISO15946 -&gt; ECGDSA (PR 634)</li>
 
@@ -189,9 +190,10 @@
 
     <li>fix Coverity finding CID 189203, 189204, 189205 (Commit 11e076003a1a)</li>
 
-    <li>change order of initialization for ASN.1 decoders (Commit 64a15cf51b8f)</li>
+    <li>change order of member initialization in ASN.1 decoders (Commit
+    64a15cf51b8f)</li>
 
-    <li>make AuthenticatedSymmetricCipher::AlgorithmName non-pure (Commit
+    <li>make <tt>AuthenticatedSymmetricCipher::AlgorithmName</tt> non-pure (Commit
     62a9574f3fd6)</li>
 
     <li>add CPU feature queries for AIX (Commit 04e361889efd)</li>
@@ -200,7 +202,7 @@
   <h2>Notes for Distros</h2>
 
   <p>The incorrect result when using <a href=
-  "https://github.com/weidai11/cryptopp/issues/602">Integer::ModInverse (Issue 602)</a>
+  "https://github.com/weidai11/cryptopp/issues/602">Integer::InverseMod (Issue 602)</a>
   is a memory error. The issue may be CVE worthy, and it is the reason for the Crypto++
   7.0 release. The library itself was not at risk of memory problems due to the way the
   library used the Integer class. User programs prior to Crypto++ 7.0 could be at risk
