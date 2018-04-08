@@ -209,6 +209,46 @@
   might call the mod operation with an operand large enough to witness the problem. We
   are not aware of problems in the field with user code.</p>
 
+  <p>Below is the new code for <tt>InverseMod</tt> located in <tt>integer.cpp</tt>.
+  <tt>InverseMod</tt> was fixed, and <tt>InverseModNext</tt> was added. The problem was
+  <tt>Integer r</tt> was too small, and <tt>AlmostInverse</tt> wrote beyond the integer's
+  internal buffer. Also see <a href=
+  "https://github.com/weidai11/cryptopp/issues/602#issuecomment-376222204">Issue
+  602</a>.</p>
+  <pre>
+Integer Integer::InverseMod(const Integer &amp;m) const
+{
+    if (IsNegative())
+        return Modulo(m).InverseModNext(m);
+
+    // http://github.com/weidai11/cryptopp/issues/602
+    if (*this &gt;= m)
+        return Modulo(m).InverseModNext(m);
+
+    return InverseModNext(m);
+}
+
+Integer Integer::InverseModNext(const Integer &amp;m) const
+{
+    if (m.IsEven())
+    {
+        if (!m || IsEven())
+            return Zero();    // no inverse
+        if (*this == One())
+            return One();
+
+        Integer u = m.Modulo(*this).InverseModNext(*this);
+        return !u ? Zero() : (m*(*this-u)+1)/(*this);
+    }
+
+    IntegerSecBlock T(m.reg.size() * 4);
+    Integer r((word)0, m.reg.size());
+    unsigned k = AlmostInverse(r.reg, T, reg, reg.size(), m.reg, m.reg.size());
+    DivideByPower2Mod(r.reg, r.reg, k, m.reg, m.reg.size());
+    return r;
+}
+</pre>
+
   <h2>File Changes</h2>
 
   <p>Below is a list of all files that were added at Crypto++ 7.0.</p>
