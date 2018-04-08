@@ -202,19 +202,17 @@
   <p>The incorrect result when using <a href=
   "https://github.com/weidai11/cryptopp/issues/602">Integer::ModInverse (Issue 602)</a>
   is a memory error. The issue may be CVE worthy, and it is the reason for the Crypto++
-  7.0 release.</p>
-
-  <p>The library itself was not at risk of memory problems due to the way the library
-  used the Integer class. User programs prior to Crypto++ 7.0 are at risk because they
-  might call the mod operation with an operand large enough to witness the problem. We
-  are not aware of problems in the field with user code.</p>
+  7.0 release. The library itself was not at risk of memory problems due to the way the
+  library used the Integer class. User programs prior to Crypto++ 7.0 could be at risk
+  because they might call the mod operation with an operand large enough to witness the
+  problem.</p>
 
   <p>Below is the new code for <tt>InverseMod</tt> located in <tt>integer.cpp</tt>.
   <tt>InverseMod</tt> was fixed, and <tt>InverseModNext</tt> was added. The problem was
   <tt>Integer r</tt> was too small, and <tt>AlmostInverse</tt> wrote beyond the integer's
   internal buffer. Also see <a href=
-  "https://github.com/weidai11/cryptopp/issues/602#issuecomment-376222204">Issue
-  602</a>.</p>
+  "https://github.com/weidai11/cryptopp/issues/602#issuecomment-376222204">Issue 602 |
+  Comment 376222204</a>.</p>
   <pre>
 Integer Integer::InverseMod(const Integer &amp;m) const
 {
