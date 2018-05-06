@@ -248,6 +248,16 @@ Integer Integer::InverseModNext(const Integer &amp;m) const
 }
 </pre>
 
+  <h2>AES Decryption</h2>
+
+  <p>After the Crypto++ 7.0 release it was reported that AES Decryption was not working
+  properly on Windows 10 with the Visual C++ compiler version 15.6.7. The issue is not
+  present in earlier releases of the Visual Studio 2017 compiler, or earlier relase of
+  Visual Studio.</p>
+
+  <p>The project is tracking the bug at <a href=
+  "https://github.com/weidai11/cryptopp/issues/649">Issue 649</a>.</p>
+
   <h2>Notes for Distros</h2>
 
   <p>The incorrect result when using <a href=

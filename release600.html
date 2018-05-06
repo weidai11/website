@@ -156,7 +156,6 @@
 # AESNI, ARMv8a or Power8 available
 rijndael-simd.o : rijndael-simd.cpp
         $(CXX) $(strip $(CXXFLAGS) $(AES_FLAG) -c) $&lt;
-
 </pre>
 
   <p>If you encounter errors like shown below, then be sure your build tool is adding the
@@ -173,6 +172,9 @@ In file included from rijndael-simd.cpp:37:0:
 rijndael-simd.cpp:377:33: note: called from here
          block = _mm_aesenc_si128(block, skeys[i+1]);
 </pre>
+
+  <p>Also see the <a href="https://www.cryptopp.com/wiki/BASE+SIMD">BASE+SIMD</a> wiki
+  page.</p>
 
   <h2>Autotools project</h2>
 
