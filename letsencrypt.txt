@@ -1,21 +1,32 @@
 
-1. Log-in to VM, su to root.
-   CD to root's home.
-   An existing CSR using the existing key is in Home
+1. Log-in to VM, su to root with "sudo su -".
+   CD to root's home with "cd ~".
+   An existing CSR using the existing key is in Home.
 
-2. Open a second terminal, su to root
-   CD to cd /var/www/html/.well-known/acme-challenge/
-   Remove past challenges
+2. Open a second terminal, su to root.
+   CD to /var/www/html/.well-known/acme-challenge/.
+   Remove past challenges.
  
 3. letsencrypt --manual --csr ~/cryptopp-com.req.pem auth
    This terminal is now occupied by LE client.
    LE client will send requests and receive responses.
-   You will create the nessary files in the second terminal
-   Once the challenges have been accepted client will download new cert.
+
+   LE client will tell you to create a file with specific content.
+   Create the nessary files in the other terminal. Once the
+   challenges have been accepted client will download new cert.
 
 4. Once the certifcate issues, copy it to cryptopp-com.pem
-   # cp 0003_chain.pem /etc/pki/tls/certs/cryptopp-com.pem
+
+   # cp 0000_cert.pem /etc/pki/tls/certs/cryptopp-com.pem
    cp: overwrite ‘/etc/pki/tls/certs/cryptopp-com.pem’? y
+
+   The existing chain should be OK, but it can be copied if desired.
+   Test the website. Once tested it is OK to delete the local
+   Let's Encrypt artifacts in Home.
+
+   It is also OK to execute the procedure multiple times while
+   learning the process. Let's Encrypt will issue a new certifcate
+   on a second or thrid run.
 
 ----------
 
