@@ -1,0 +1,25 @@
+
+1. Log-in to VM, su to root.
+   CD to root's home.
+   An existing CSR using the existing key is in Home
+
+2. Open a second terminal, su to root
+   CD to cd /var/www/html/.well-known/acme-challenge/
+   Remove past challenges
+ 
+3. letsencrypt --manual --csr ~/cryptopp-com.req.pem auth
+   This terminal is now occupied by LE client.
+   LE client will send requests and receive responses.
+   You will create the nessary files in the second terminal
+   Once the challenges have been accepted client will download new cert.
+
+4. Once the certifcate issues, copy it to cryptopp-com.pem
+   # cp 0003_chain.pem /etc/pki/tls/certs/cryptopp-com.pem
+   cp: overwrite ‘/etc/pki/tls/certs/cryptopp-com.pem’? y
+
+----------
+
+# find /etc/ -name 'cryptopp*.pem'
+/etc/pki/tls/private/cryptopp-com.key.pem
+/etc/pki/tls/certs/cryptopp-com.pem
+/etc/pki/tls/certs/cryptopp-com.chain.pem
