@@ -35,14 +35,14 @@ for dir in $(find "$WIKI_DIR/skins" -name '.git'); do
     cd "$dir/.."
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull
-    git checkout "$WIKI_REL"
+    git checkout -f "$WIKI_REL"
 done
 
 for dir in $(find "$WIKI_DIR/extensions" -name '.git'); do
     cd "$dir/.."
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull
-    git checkout "$WIKI_REL"
+    git checkout -f "$WIKI_REL"
 done
 
 # Remove all test frameworks
