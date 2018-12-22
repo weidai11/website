@@ -42,9 +42,9 @@ Step 4 - Disable server hardening
    - allow_url_include=Off
    - disable_functions=apache_note ...
 
-Step (2) is dangerous. It allows all the popular attack vectors.
+Step (2) is dangerous. It allows many popular attack vectors.
 This change must be undone after composer has been run.
-  
+
 Step 5 - Install composer
 =========================
 
@@ -54,9 +54,9 @@ Step 5 - Install composer
 1. yum install composer
 2. Copy the list of dependencies
 
-Step (1) is dangerous. It is a developer tool that brings in 30+
-dependencies. Composer and friends require unsafe functions. They
-must be removed after the Mediawiki upgrade.
+Step (1) is dangerous. Composer is a developer tool that brings
+in 30+ dependencies. Composer and friends require unsafe functions.
+They must be removed after the Mediawiki upgrade.
 
 Step 6 - Download Media Wiki
 ============================
