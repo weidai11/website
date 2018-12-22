@@ -1,0 +1,132 @@
+Installing a new version of Mediawiki sucks for a several reasons.
+First, it happens too frequently. Second, we have to disable some
+of our security hardening and reenable it later. Third, we have to
+install a bunch of developer tools and then remove them. Fourth,
+Mediawiki uses bleeding edge components but CentOS provides
+antique software.
+
+Step 1 - Get root
+=================
+
+1. sudo su -
+
+Step 2 - Incremental backup
+===========================
+
+1. bash /etc/cron.daily/bitvise-backup
+
+Step 3 - Local backup of wiki only
+==================================
+
+Make a local backup for quick restoration:
+
+1. cp -r /var/www/html/w /var/www/html/wiki-backup
+
+Delete the current vendor directory:
+
+2. rm -rf /var/www/html/w/vendor/*
+
+Step 4 - Disable server hardening
+=================================
+
+1. Open /etc/opt/rh/rh-php71/php.d/security.ini
+2. Comment out:
+   - open_basedir="..."
+   - allow_url_fopen=Off
+   - allow_url_include=Off
+   - disable_functions=apache_note ...
+
+Step (2) is dangerous. It allows all the popular attack vectors.
+This change must be undone after composer has been run.
+  
+Step 5 - Install composer
+=========================
+
+# This gets an old composer with dependencies.
+# Red Hat SCL does not supply an updated composer.
+
+1. yum install composer
+2. Copy the list of dependencies
+
+Step (1) is dangerous. It is a developer tool that brings in 30+
+dependencies. Composer and friends require unsafe functions. They
+must be removed after the Mediawiki upgrade.
+
+Step 6 - Download Media Wiki
+============================
+
+Temporary unpack:
+
+1. cd /tmp
+2. wget https://releases.wikimedia.org/mediawiki/1.30/mediawiki-1.30.1.tar.gz
+3. tar -xzf mediawiki-1.30.1.tar.gz
+4. mv mediawiki-1.30.1/ w
+5. rsync -avh --dry-run /tmp/w /var/www/html/
+
+And then:
+
+6. rsync -avh /tmp/w /var/www/html/
+
+It is OK to delete the artifacts in /tmp.
+
+Step 7 - Update Mediawiki dependencies
+======================================
+
+Use composer to update Mediawiki dependencies. This is needed
+because the relase tarball does not include them.
+
+1. cd /var/www/html/w/
+2. php -d extension=phar.so composer.phar update
+
+If you experience errors in vendor/ then revisit Step (3).
+
+Step 8 - Restore LocalSettings.php
+======================================
+
+1. cp /var/www/html/wiki-backup/LocalSettings.php .
+
+Step 9 - Update for new Mediawiki
+======================================
+
+1. Open update-wiki.sh
+2. Change WIKI_REL=REL1_30 to appropriate version
+
+Next, cross your fingers:
+
+3. bash /var/www/html/w/update-wiki.sh
+
+The head notes cover what update-wiki.sh does. It includes
+updating the components in skins/ and extensions/, running
+maintenance/update.php, and fixing permissions.
+
+The script also restarts MySQL and Apache.
+
+Step 10 - Restore server hardening
+==================================
+
+1. Open /etc/opt/rh/rh-php71/php.d/security.ini
+2. Re-enable:
+   - open_basedir="..."
+   - allow_url_fopen=Off
+   - allow_url_include=Off
+   - disable_functions=apache_note ...
+  
+Step 11 - Remove Composer
+=========================
+
+The list from Step (5) should be cribbed away. Here is the one
+produced by CentOS 7 during install:
+
+1. yum remove composer php-PsrLog php-composer-ca-bundle \
+   php-composer-semver php-composer-spdx-licenses \
+   php-composer-xdebug-handler php-fedora-autoloader \
+   php-jsonlint php-justinrainbow-json-schema5 php-mbstring \
+   php-password-compat php-seld-phar-utils php-symfony-browser-kit \
+   php-symfony-class-loader php-symfony-common php-symfony-config \
+   php-symfony-console php-symfony-css-selector php-symfony-debug \
+   php-symfony-dependency-injection php-symfony-dom-crawler \
+   php-symfony-event-dispatcher php-symfony-expression-language \
+   php-symfony-filesystem php-symfony-finder \
+   php-symfony-http-foundation php-symfony-http-kernel \
+   php-symfony-polyfill php-symfony-process \
+   php-symfony-var-dumper php-symfony-yaml
