@@ -87,12 +87,12 @@ because the relase tarball does not include them.
 If you experience errors in vendor/ then revisit Step (3).
 
 Step 8 - Restore LocalSettings.php
-======================================
+==================================
 
 1. cp /var/www/html/wiki-backup/LocalSettings.php .
 
 Step 9 - Update for new Mediawiki
-======================================
+=================================
 
 1. Open update-wiki.sh
 2. Change WIKI_REL=REL1_30 to appropriate version
