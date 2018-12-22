@@ -101,6 +101,11 @@ maintenance/update.php, and fixing permissions.
 
 The script also restarts MySQL and Apache.
 
+At this point you should be able to test the installation by
+visiting Special:Version:
+
+4. https://www.cryptopp.com/wiki/Special:Version
+
 Step 10 - Restore server hardening
 ==================================
 
