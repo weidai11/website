@@ -6,31 +6,69 @@ in LocalSettings.php. The branch, REL1_30, should be kept in sync with
 the Mediawiki software being run. Once something is installed it can be
 updated with update-wiki.sh script.
 
-git clone https://github.com/wikimedia/mediawiki-skins-Vector.git
-mv mediawiki-skins-Vector Vector
-cd Vector
-git checkout REL1_30
-
-git clone https://github.com/wikimedia/mediawiki-skins-Timeless.git
-mv mediawiki-skins-Timeless Timeless
-cd Timeless
-git checkout REL1_30
-
 git clone https://github.com/wikimedia/mediawiki-skins-CologneBlue.git
 mv mediawiki-skins-CologneBlue CologneBlue
 cd CologneBlue
 git checkout REL1_30
 cd ..
 
-git clone https://github.com/wikimedia/mediawiki-skins-WPtouch.git
-mv mediawiki-skins-WPtouch WPtouch
-cd WPtouch
+git clone https://github.com/wikimedia/mediawiki-skins-Gamepress.git
+mv mediawiki-skins-Gamepress Gamepress
+cd Gamepress
+git checkout REL1_30
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-Jony.git
+mv mediawiki-skins-Jony Jony
+cd Jony
 git checkout REL1_30
 cd ..
 
 git clone https://github.com/wikimedia/mediawiki-skins-MonoBook.git
 mv mediawiki-skins-MonoBook MonoBook
 cd MonoBook
+git checkout REL1_30
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-Pivot.git
+mv mediawiki-skins-Pivot Pivot
+cd Pivot
+git checkout REL1_30
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-Refreshed.git
+mv mediawiki-skins-Refreshed Refreshed
+cd Refreshed
+git checkout REL1_30
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-Tempo.git
+mv mediawiki-skins-Tempo Tempo
+cd Tempo
+git checkout REL1_30
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-Timeless.git
+mv mediawiki-skins-Timeless Timeless
+cd Timeless
+git checkout REL1_30
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-Tweeki.git
+mv mediawiki-skins-Tweeki Tweeki
+cd Tweeki
+git checkout REL1_30
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-Vector.git
+mv mediawiki-skins-Vector Vector
+cd Vector
+git checkout REL1_30
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-WPtouch.git
+mv mediawiki-skins-WPtouch WPtouch
+cd WPtouch
 git checkout REL1_30
 cd ..
 
