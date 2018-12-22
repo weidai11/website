@@ -1,0 +1,95 @@
+Skins
+==========
+
+Skins are installed in $WIKI_DIR/skins. Once installed they are enabled
+in LocalSettings.php. The branch, REL1_28, should be kept in sync with
+the Mediawiki software being run. Once something is installed it can be
+updated with update-wiki.sh script.
+
+git clone https://github.com/wikimedia/mediawiki-skins-Vector.git
+mv mediawiki-skins-Vector Vector
+cd Vector
+git checkout REL1_28
+
+git clone https://github.com/wikimedia/mediawiki-skins-Timeless.git
+mv mediawiki-skins-Timeless Timeless
+cd Timeless
+git checkout REL1_28
+
+git clone https://github.com/wikimedia/mediawiki-skins-CologneBlue.git
+mv mediawiki-skins-CologneBlue CologneBlue
+cd CologneBlue
+git checkout REL1_28
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-WPtouch.git
+mv mediawiki-skins-WPtouch WPtouch
+cd WPtouch
+git checkout REL1_28
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-skins-MonoBook.git
+mv mediawiki-skins-MonoBook MonoBook
+cd MonoBook
+git checkout REL1_28
+cd ..
+
+Extensions
+==========
+
+Extensions are installed in $WIKI_DIR/extensions. Once installed they are
+enabled in LocalSettings.php. The branch, REL1_28, should be kept in sync
+with the Mediawiki software being run. Once something is installed it can
+be updated with update-wiki.sh script.
+
+# No extra gyrations necessary.
+git clone https://github.com/jmnote/SimpleMathJax.git
+
+git clone https://github.com/wikimedia/mediawiki-extensions-SpamBlacklist.git
+mv mediawiki-extensions-SpamBlacklist SpamBlacklist
+cd SpamBlacklist
+git checkout REL1_28
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit.git
+mv mediawiki-extensions-ConfirmEdit ConfirmEdit
+cd ConfirmEdit
+git checkout REL1_28
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-extensions-ParserFunctions.git
+mv mediawiki-extensions-ParserFunctions ParserFunctions
+cd ParserFunctions
+git checkout REL1_28
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-extensions-AntiSpoof.git
+mv mediawiki-extensions-AntiSpoof AntiSpoof
+cd AntiSpoof
+git checkout REL1_28
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-extensions-Nuke.git
+mv mediawiki-extensions-Nuke Nuke
+cd Nuke
+git checkout REL1_28
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-extensions-Gadgets.git
+mv mediawiki-extensions-Gadgets Gadgets
+cd Gadgets
+git checkout REL1_28
+cd ..
+
+git clone https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git
+mv mediawiki-extensions-SyntaxHighlight_GeSHi SyntaxHighlight
+cd SyntaxHighlight
+git checkout REL1_28
+cd ..
+
+# Problem in MW 1.28
+git clone https://github.com/wikimedia/mediawiki-extensions-MobileFrontend.git
+mv mediawiki-extensions-MobileFrontend MobileFrontend
+cd MobileFrontend
+git checkout REL1_28
+cd ..
