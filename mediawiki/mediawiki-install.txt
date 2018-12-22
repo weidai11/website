@@ -5,6 +5,10 @@ install a bunch of developer tools and then remove them. Fourth,
 Mediawiki uses bleeding edge components but CentOS provides
 antique software.
 
+In the instructions below the Crypto++ Wiki is located at
+/var/www/html/w. https://www.cryptopp.com/wiki works because
+of a mod-rewrite rule.
+
 Step 1 - Get root
 =================
 
@@ -18,13 +22,15 @@ Step 2 - Incremental backup
 Step 3 - Local backup of wiki only
 ==================================
 
-Make a local backup for quick restoration:
+Make a local backup for quick restoration and delete a
+previous local backup, if present:
 
-1. cp -r /var/www/html/w /var/www/html/wiki-backup
+1. rm -rf /var/www/html/wiki-backup
+2. cp -r /var/www/html/w /var/www/html/wiki-backup
 
 Delete the current vendor directory:
 
-2. rm -rf /var/www/html/w/vendor/*
+3. rm -rf /var/www/html/w/vendor/*
 
 Step 4 - Disable server hardening
 =================================
