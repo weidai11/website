@@ -50,6 +50,7 @@ for dir in $(find "$WIKI_DIR" -iname 'test*'); do
     rm -rf "$dir" 2>/dev/null
 done
 
+# Fix this permission
 if [[ -f "$WIKI_DIR/extensions/SyntaxHighlight/pygments/pygmentize" ]]; then
     chmod ug+x "$WIKI_DIR/extensions/SyntaxHighlight/pygments/pygmentize"
 fi
@@ -63,31 +64,31 @@ chmod -R o-rwx "$WIKI_DIR/"
 
 # Images/ must be writable by group
 echo "Fixing MediaWiki images/ permissions"
-for dir in $(find "$WIKI_DIR/images" -type d); do
+for dir in $(find "$WIKI_DIR/images" -type d 2>/dev/null); do
     chmod ug+rwx "$dir"
     chmod o-rwx  "$dir"
 done
-for file in $(find "$WIKI_DIR/images" -type f); do
+for file in $(find "$WIKI_DIR/images" -type f 2>/dev/null); do
     chmod ug+rw "$file"
     chmod ug-x  "$file"
     chmod o-rwx "$file"
 done
 
 echo "Fixing Apache logging permissions"
-for dir in $(find "$LOG_DIR" -type d -o -name 'httpd' -type d -o -name 'httpd24'); do
+for dir in $(find "$LOG_DIR" -type d -name 'httpd*' 2>/dev/null); do
     if [[ ! -d "$dir" ]]; then continue; fi
     chown root:apache "$dir"
     chmod ug+rwx "$dir"
     chmod o-rwx  "$dir"
 done
-for file in $(find "$LOG_DIR/httpd" -type f -name '*log*'); do
-    if [[ ! -d "$dir" ]]; then continue; fi
+for file in $(find "$LOG_DIR/httpd" -type f -name '*log*' 2>/dev/null); do
+    if [[ ! -f "$file" ]]; then continue; fi
     chown root:apache "$file"
     chmod ug+rw "$file"
     chmod ug-x  "$file"
     chmod o-rwx "$file"
 done
-for file in $(find "$LOG_DIR/httpd24" -type f -name '*log*'); do
+for file in $(find "$LOG_DIR/httpd24" -type f -name '*log*' 2>/dev/null); do
     if [[ ! -f "$file" ]]; then continue; fi
     chown root:apache "$file"
     chmod ug+rw "$file"
@@ -97,7 +98,7 @@ done
 
 echo "Fixing MariaDB logging permissions"
 chown mysql:mysql "$LOG_DIR/mariadb"
-for file in $(find "$LOG_DIR/mariadb" -type f -name '*log*'); do
+for file in $(find "$LOG_DIR/mariadb" -type f -name '*log*' 2>/dev/null); do
     if [[ ! -f "$file" ]]; then continue; fi
     chown mysql:mysql "$file"
     chmod ug+rw "$file"
