@@ -95,7 +95,7 @@ Step 9 - Update for new Mediawiki
 =================================
 
 1. Open update-wiki.sh
-2. Change WIKI_REL=REL1_30 to appropriate version
+2. Change WIKI_REL=REL1_31 to appropriate version
 
 Next, cross your fingers:
 

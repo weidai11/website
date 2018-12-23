@@ -13,7 +13,7 @@
 
 # Important variables
 WIKI_DIR="/var/www/html/w"
-WIKI_REL=REL1_28
+WIKI_REL=REL1_31
 LOG_DIR="/var/log"
 
 THIS_DIR=$(pwd)
@@ -24,7 +24,7 @@ trap finish EXIT
 
 # Privileges?
 if [[ ($(id -u) != "0") ]]; then
-    echo "You must be root to update the docs"
+    echo "You must be root to update the wiki"
     [[ "$0" = "$BASH_SOURCE" ]] && exit 0 || return 0
 fi
 
