@@ -7,7 +7,7 @@
    CD to /var/www/html/.well-known/acme-challenge/.
    Remove past challenges.
  
-3. letsencrypt --manual --csr ~/cryptopp-com.req.pem auth
+3. letsencrypt --manual --email webmaster@cryptopp.com --csr ~/cryptopp-com.req.pem auth
    This terminal is now occupied by LE client.
    LE client will send requests and receive responses.
 
