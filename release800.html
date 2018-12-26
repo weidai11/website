@@ -215,11 +215,13 @@
 
     <li>Add ability to Seek64 in test framework (Issue 732)</li>
 
-    <li>Sync CRYPTOPP_{BIG|LITTLE}_ENDIAN with Autotools (Commit c601213ce13f)</li>
+    <li>Sync <tt>CRYPTOPP_{BIG|LITTLE}_ENDIAN</tt> with Autotools (Commit
+    c601213ce13f)</li>
 
-    <li>Sync CRYPTOPP_ARM_ACLE_AVAILABLE with Autotools (Commit d3a3189ba34f)</li>
+    <li>Sync <tt>CRYPTOPP_ARM_ACLE_AVAILABLE</tt> with Autotools (Commit
+    d3a3189ba34f)</li>
 
-    <li>Fix ambiguous symbol BTEA::StaticAlgorithmName (Issue 726)</li>
+    <li>Fix ambiguous symbol <tt>BTEA::StaticAlgorithmName</tt> (Issue 726)</li>
 
     <li>Fix <tt>LegacyDecryptor</tt> and <tt>LegacyDecryptorWithMAC</tt> (Issue 714)</li>
 
@@ -242,7 +244,7 @@
       </ul>
     </li>
 
-    <li>Fix SecBlock ELEMS_MAX in Visual Studio .Net (2002 and 2003) (Commit
+    <li>Fix SecBlock <tt>ELEMS_MAX</tt> in Visual Studio .Net (2002 and 2003) (Commit
     d47f69acf376)</li>
 
     <li>Fix compiler crash in Visual Studio .Net (2002 and 2003) due to GCM (Commit
@@ -259,7 +261,7 @@
 
     <li>Disable ASM for iOS simulators (Commit 3753a4301d0f)</li>
 
-    <li>Refactored <tt>bench{N}.cpp</tt>, <tt>regtest{N}.cpp</tt> and
+    <li>Refactor <tt>bench{N}.cpp</tt>, <tt>regtest{N}.cpp</tt> and
     <tt>validate{N}.cpp</tt>
 
       <ul>
@@ -281,7 +283,7 @@
     <li>Fix missing <tt>Deflator::IsolatedInitialize</tt> during Gzip init (Issue
     660)</li>
 
-    <li>Remove CRYPTOPP_ALLOW_UNALIGNED_DATA_ACCESS support (Issue 682)</li>
+    <li>Remove <tt>CRYPTOPP_ALLOW_UNALIGNED_DATA_ACCESS</tt> support (Issue 682)</li>
 
     <li>Remove unneeded code to accomodate variable block size (Issue 535)</li>
 
@@ -301,11 +303,18 @@
 
     <li>Back-off on Hash asserts (Issue 652)</li>
 
-    <li>Use CRYPTOPP_ASSERT in Keccak and SHA3 (#654)</li>
+    <li>Use <tt>CRYPTOPP_ASSERT</tt> in Keccak and SHA3 (Issue 654)</li>
 
     <li>Add AdditionalOptions property to VCXPROJ files (Issue 649)</li>
 
     <li>Fix visibility for SIMON and SPECK (Issue 644)</li>
+
+    <li>Remove OS sockets and threads (Issue 178, Issue 208, Commit f2171cbe2f49)
+
+      <ul>
+        <li>C++11 socket, threads and synchronization classes may be used</li>
+      </ul>
+    </li>
   </ul>
 
   <h2>Sockets and threads</h2>
