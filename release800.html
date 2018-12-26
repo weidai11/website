@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <title>Crypto++ Library | 8.0 Release</title>
+  <meta name="description" content=
+  "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
+  <meta name="keywords" content=
+  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+  <link rel="stylesheet" type="text/css" href="cryptopp.css">
+</head>
+
+<body>
+  <!-- Child pages menu bar at top of page. Differs from home page -->
+
+  <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
+    <tbody>
+      <tr>
+        <td><b><big><a href="index.html">Home Page</a></big></b></td>
+
+        <td><a href="index.html#download">Download</a></td>
+
+        <td><a href="docs/ref/">Manual</a></td>
+
+        <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
+
+        <td><a href="wiki/">Wiki and FAQ</a></td>
+
+        <td><a href="index.html#lists">Mailing lists</a></td>
+
+        <td><a href="index.html#contributions">Contributions</a></td>
+
+        <td><a href="wiki/Related_Links">Related links</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Crypto++ 8.0</h2>
+
+  <p>Crypto++ 8.0 was released on December 28, 2018. The 8.0.0 release was a major,
+  planned release. There are no CVE fixes.</p>
+
+  <p>This release was scheduled as a minor version bump, but we lost ABI
+  compatibility.</p>
+
+  <h2>Download</h2>
+
+  <p>The download is available from the Crypto++ website. The checksums for the download
+  are below.</p>
+
+  <ul>
+    <li><a href="cryptopp800.zip">Original cryptopp800.zip</a></li>
+
+    <li>SHA1: XXX</li>
+
+    <li>SHA256: XXX</li>
+
+    <li>SHA512: XXX</li>
+
+    <li>BLAKE2b: XXX</li>
+
+    <li>WHIRLPOOL: XXX</li>
+  </ul>
+
+  <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
+  different because the service creates the archive from sources.</p>
+
+  <ul>
+    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_8_0_0">GitHub
+    cryptopp800.zip</a></li>
+  </ul>
+
+  <h2>Release Notes</h2>
+
+  <p>The release notes for Crypto++ 8.0 follows.</p>
+
+  <ul>
+    <li>major release, recompile of programs required</li>
+
+    <li>expanded community input and support</li>
+
+    <li style="list-style: none">
+      <ul>
+        <li>54 unique contributors as of this release</li>
+      </ul>
+    </li>
+
+    <li>Add x25519 key exchange and ed25519 signature scheme</li>
+
+    <li>Add limited Asymmetric Key Package support from RFC 5958</li>
+
+    <li>Add Power9 DARN random number generator support</li>
+
+    <li>Add CHAM, HC-128, HC-256, Hight, LEA, Rabbit, Simeck</li>
+
+    <li>Fix FixedSizeAllocatorWithCleanup may be unaligned on some platforms</li>
+
+    <li>Cutover to GNU Make-based cpu feature tests</li>
+
+    <li>Rename files with dashes to underscores</li>
+
+    <li>Fix LegacyDecryptor and LegacyDecryptorWithMAC use wrong MAC</li>
+
+    <li>Fix incorrect AES/CBC decryption on Windows</li>
+
+    <li>Avoid <tt>Singleton&lt;T&gt;</tt> when possible, avoid <tt>std::call_once</tt>
+    completely</li>
+
+    <li>Fix SPARC alignment problems due to <tt>GetAlignmentOf&lt;T&gt;()</tt> on
+    <tt>word64</tt></li>
+
+    <li>Add ARM AES asm implementation from Cryptogams</li>
+
+    <li>Remove <tt>CRYPTOPP_ALLOW_UNALIGNED_DATA_ACCESS</tt> support</li>
+
+    <li>ported to MSVC 2017, Xcode 10.0, Sun Studio 12.6, GCC 8.0.1, MacPorts GCC 7.0,
+    Clang 7.0, Intel C++ 17.00, IBM XL C/C++ 13.3</li>
+  </ul>
+
+  <h2>Bug Fixes and Minor Issues</h2>
+
+  <p>The bug fix and minor issue list for Crypto++ 8.0 follows. Many non-trivial issues
+  are tracked for auditing and C&amp;A purposes, but the list may not be complete. A
+  number in parenthesis is the <a href=
+  "http://github.com/weidai11/cryptopp/issues">GitHub Issue number</a>, if it was
+  tracked. Sometimes a Git commit is referenced, but many trivial GitHub commits are
+  omitted. Missing Issue numbers or lack of consecutiveness usually indicates feature
+  requests and "won't fix/can't fix" type reports.</p>
+
+  <ul>
+    <li>fix</li>
+  </ul>
+
+  <h2>Sockets and threads</h2>
+
+  <p>Crypto++ removed Operating System specific code for sockets and threads. OS specific
+  socket and thread support was removed to streamline the library and focus on the
+  cryptography. The removal will also avoid porting troubles which surface on occassion.
+  Users can utilize C++11 support, if desired.</p>
+
+  <p>The list of files removed are as follows.</p>
+
+  <ul>
+    <li>network.cpp</li>
+
+    <li>network.h</li>
+
+    <li>socketft.cpp</li>
+
+    <li>socketft.h</li>
+
+    <li>trdlocal.cpp</li>
+
+    <li>trdlocal.h</li>
+
+    <li>wait.cpp</li>
+
+    <li>wait.h</li>
+
+    <li>winpipes.cpp</li>
+
+    <li>winpipes.h</li>
+  </ul>
+
+  <p>A wiki page was setup to document the change and provide the old source files at
+  <a href="https://www.cryptopp.com/wiki/Sockets_and_Threads">Sockets and
+  Threads</a>.</p>
+
+  <h2>File Changes</h2>
+
+  <p>Below is a list of all files that were added at Crypto++ 8.0. At this release we
+  renamed files using a dash to an underscoe. For example, <tt>adv-simd.h</tt> was
+  renamed <tt>adv_simd.h</tt>. The renames were not included in the list.</p>
+  <pre>
+$ git diff-tree -r --summary CRYPTOPP_7_0_0 CRYPTOPP_8_0_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+create   aes_armv4.S
+create   aes_armv4.h
+create   chacha_avx.cpp
+create   chacha_simd.cpp
+create   cham.cpp
+create   cham.h
+create   cham_simd.cpp
+create   darn.cpp
+create   darn.h
+create   donna.h
+create   donna_32.cpp
+create   donna_32.h
+create   donna_64.cpp
+create   donna_64.h
+create   donna_sse.cpp
+create   donna_sse.h
+create   hc128.cpp
+create   hc128.h
+create   hc256.cpp
+create   hc256.h
+create   hight.cpp
+create   hight.h
+create   keccakc.cpp
+create   keccakc.h
+create   lea.cpp
+create   lea.h
+create   lea_simd.cpp
+create   ppc_power7.cpp
+create   ppc_power8.cpp
+create   ppc_power9.cpp
+create   ppc_simd.cpp
+create   ppc_simd.h
+create   rabbit.cpp
+create   rabbit.h
+create   simeck.cpp
+create   simeck.h
+create   simeck_simd.cpp
+create   sm4_simd.cpp
+create   validat10.cpp
+create   validat5.cpp
+create   validat6.cpp
+create   validat7.cpp
+create   validat8.cpp
+create   validat9.cpp
+create   xed25519.cpp
+create   xed25519.h
+</pre>
+</body>
+</html>
