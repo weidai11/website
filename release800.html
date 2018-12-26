@@ -303,7 +303,7 @@
 
     <li>back-off <tt>HashTransformation</tt> asserts (Issue 652)</li>
 
-    <li>Use <tt>CRYPTOPP_ASSERT</tt> in Keccak and SHA3 (Issue 654)</li>
+    <li>use <tt>CRYPTOPP_ASSERT</tt> in Keccak and SHA3 (Issue 654)</li>
 
     <li>add AdditionalOptions property to VCXPROJ files (Issue 649)</li>
 
@@ -369,8 +369,9 @@
   <h2>File Changes</h2>
 
   <p>Below is a list of all files that were added at Crypto++ 8.0. At this release we
-  renamed files using a dash to an underscoe. For example, <tt>adv-simd.h</tt> was
-  renamed <tt>adv_simd.h</tt>. The renames were not included in the list.</p>
+  renamed files using a dash to an underscore for GDB debugging (autocomplete does not
+  work when using a dash). For example, <tt>adv-simd.h</tt> was renamed
+  <tt>adv_simd.h</tt>. The renames were not included in the list.</p>
   <pre>
 $ git diff-tree -r --summary CRYPTOPP_7_0_0 CRYPTOPP_8_0_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
 create   aes_armv4.S
