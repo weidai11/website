@@ -88,33 +88,33 @@
       </ul>
     </li>
 
-    <li>Add x25519 key exchange and ed25519 signature scheme</li>
+    <li>add x25519 key exchange and ed25519 signature scheme</li>
 
-    <li>Add limited Asymmetric Key Package support from RFC 5958</li>
+    <li>add limited Asymmetric Key Package support from RFC 5958</li>
 
-    <li>Add Power9 DARN random number generator support</li>
+    <li>add Power9 DARN random number generator support</li>
 
-    <li>Add CHAM, HC-128, HC-256, Hight, LEA, Rabbit, Simeck</li>
+    <li>add CHAM, HC-128, HC-256, Hight, LEA, Rabbit, Simeck</li>
 
-    <li>Fix FixedSizeAllocatorWithCleanup may be unaligned on some platforms</li>
+    <li>fix FixedSizeAllocatorWithCleanup may be unaligned on some platforms</li>
 
-    <li>Cutover to GNU Make-based cpu feature tests</li>
+    <li>cutover to GNU Make-based cpu feature tests</li>
 
-    <li>Rename files with dashes to underscores</li>
+    <li>rename files with dashes to underscores</li>
 
-    <li>Fix LegacyDecryptor and LegacyDecryptorWithMAC use wrong MAC</li>
+    <li>fix LegacyDecryptor and LegacyDecryptorWithMAC use wrong MAC</li>
 
-    <li>Fix incorrect AES/CBC decryption on Windows</li>
+    <li>fix incorrect AES/CBC decryption on Windows</li>
 
-    <li>Avoid <tt>Singleton&lt;T&gt;</tt> when possible, avoid <tt>std::call_once</tt>
+    <li>avoid <tt>Singleton&lt;T&gt;</tt> when possible, avoid <tt>std::call_once</tt>
     completely</li>
 
-    <li>Fix SPARC alignment problems due to <tt>GetAlignmentOf&lt;T&gt;()</tt> on
+    <li>fix SPARC alignment problems due to <tt>GetAlignmentOf&lt;T&gt;()</tt> on
     <tt>word64</tt></li>
 
-    <li>Add ARM AES asm implementation from Cryptogams</li>
+    <li>add ARM AES asm implementation from Cryptogams</li>
 
-    <li>Remove <tt>CRYPTOPP_ALLOW_UNALIGNED_DATA_ACCESS</tt> support</li>
+    <li>remove <tt>CRYPTOPP_ALLOW_UNALIGNED_DATA_ACCESS</tt> support</li>
 
     <li>ported to MSVC 2017, Xcode 10.0, Sun Studio 12.6, GCC 8.0.1, MacPorts GCC 7.0,
     Clang 7.0, Intel C++ 17.00, IBM XL C/C++ 13.3</li>
@@ -131,192 +131,192 @@
   requests and "won't fix/can't fix" type reports.</p>
 
   <ul>
-    <li>Add ed25519 signatures (Issue 764, PR 767)</li>
+    <li>add ed25519 signatures (Issue 764, PR 767)</li>
 
-    <li>Add x25519 key exchange (Issue 761, PR 762)</li>
+    <li>add x25519 key exchange (Issue 761, PR 762)</li>
 
-    <li>Add Hygon Dhyana processor support (PR 765)</li>
+    <li>add Hygon Dhyana processor support (PR 765)</li>
 
-    <li>Add Power9 DARN rng support (Issue 747, PR 748)</li>
+    <li>add Power9 DARN rng support (Issue 747, PR 748)</li>
 
-    <li>Add HC-128 stream cipher (Issue 679)</li>
+    <li>add HC-128 stream cipher (Issue 679)</li>
 
-    <li>Add Rabbit stream cipher (Issue 678)</li>
+    <li>add Rabbit stream cipher (Issue 678)</li>
 
-    <li>Add Simeck lightweight block cipher (Issue 675)</li>
+    <li>add Simeck lightweight block cipher (Issue 675)</li>
 
-    <li>Add HIGHT lightweight block cipher (Issue 672)</li>
+    <li>add HIGHT lightweight block cipher (Issue 672)</li>
 
-    <li>Add CHAM lightweight block cipher (PR 670)</li>
+    <li>add CHAM lightweight block cipher (PR 670)</li>
 
-    <li>Add LEA lightweight block cipher (Issue 669)</li>
+    <li>add LEA lightweight block cipher (Issue 669)</li>
 
-    <li>Add ARM AES asm from Cryptogams (Issue 683)</li>
+    <li>add ARM AES asm from Cryptogams (Issue 683)</li>
 
-    <li>Add Make-based cpu feature tests (Issue 741, Issue 737)</li>
+    <li>add Make-based cpu feature tests (Issue 741, Issue 737)</li>
 
-    <li>Add VectorSource (Issue 730)</li>
+    <li>add VectorSource (Issue 730)</li>
 
-    <li>Add AES-NI accelerated SM4 encryption (Issue 540)</li>
+    <li>add AES-NI accelerated SM4 encryption (Issue 540)</li>
 
-    <li>Add XOP aware ChaCha (Commit ed4d57cecbd4)</li>
+    <li>add XOP aware ChaCha (Commit ed4d57cecbd4)</li>
 
-    <li>Add XOP aware SIMON and SPECK (Commit 210995b867b0)</li>
+    <li>add XOP aware SIMON and SPECK (Commit 210995b867b0)</li>
 
-    <li>Add XOP aware CHAM and LEA (Commit babdf8b38b2b)</li>
+    <li>add XOP aware CHAM and LEA (Commit babdf8b38b2b)</li>
 
-    <li>Add XOP aware SIMECK (Commit 67f421174ccc)</li>
+    <li>add XOP aware SIMECK (Commit 67f421174ccc)</li>
 
-    <li>Add SSSE3 rotates when available (Commit b4c4c5aa14c7)</li>
+    <li>add SSSE3 rotates when available (Commit b4c4c5aa14c7)</li>
 
-    <li>Add SONAME to shared object for Solaris (Commit 9886b555d073)</li>
+    <li>add SONAME to shared object for Solaris (Commit 9886b555d073)</li>
 
-    <li>Add search for test vectors and test data (Issue 760)
+    <li>add search for test vectors and test data (Issue 760)
 
       <ul>
-        <li>Only search well known locations for Linux LSB install</li>
+        <li>only search well known locations for Linux LSB install</li>
       </ul>
     </li>
 
-    <li>Disable Panama ASM on X86 (Issue 758)</li>
+    <li>disable Panama ASM on X86 (Issue 758)</li>
 
-    <li>Add <tt>CRYPTOPP_DISABLE_MIXED_ASM</tt> define (Issue 756, PR 757)
+    <li>add <tt>CRYPTOPP_DISABLE_MIXED_ASM</tt> define (Issue 756, PR 757)
 
       <ul>
-        <li>Folds two previous defines <tt>CRYPTOPP_CLANG_INTEGRATED_ASSEMBER</tt> and
+        <li>folds two previous defines <tt>CRYPTOPP_CLANG_INTEGRATED_ASSEMBER</tt> and
         <tt>CRYPTOPP_DISABLE_INTEL_ASM</tt></li>
       </ul>
     </li>
 
-    <li>Various SunCC improvements for Solaris</li>
+    <li>various SunCC improvements for Solaris</li>
 
-    <li>Various XLC improvements for PowerPC</li>
+    <li>various XLC improvements for PowerPC</li>
 
-    <li>Make GF2_32 class member of RawIDA</li>
+    <li>make GF2_32 class member of RawIDA</li>
 
-    <li>Move <tt>DEFAULT_CHANNEL</tt> and <tt>AAD_CHANNEL</tt> into <tt>cryptlib.cpp</tt>
+    <li>move <tt>DEFAULT_CHANNEL</tt> and <tt>AAD_CHANNEL</tt> into <tt>cryptlib.cpp</tt>
     (Issue 751)</li>
 
-    <li>Various updates to <tt>GNUmakefile</tt> and <tt>GNUmakefile-cross</tt></li>
+    <li>various updates to <tt>GNUmakefile</tt> and <tt>GNUmakefile-cross</tt></li>
 
-    <li>Fix PowerMac G4 and G5 builds (Issue 741)</li>
+    <li>fix PowerMac G4 and G5 builds (Issue 741)</li>
 
-    <li>Rewrite BLAKE2 classes (Issue 731, Commit a65d55a3fd0b)</li>
+    <li>rewrite BLAKE2 classes (Issue 731, Commit a65d55a3fd0b)</li>
 
-    <li>Use C++ compiler for all source files (PR 733)</li>
+    <li>use C++ compiler for all source files (PR 733)</li>
 
-    <li>Fix missing cpu-features.o in Android shared object (PR 733)</li>
+    <li>fix missing cpu-features.o in Android shared object (PR 733)</li>
 
-    <li>Rename PPC vector functions from VectorFunc to VecFunc (Commit f6e04e5f338d)</li>
+    <li>rename PPC vector functions from VectorFunc to VecFunc (Commit f6e04e5f338d)</li>
 
-    <li>Fix global optimization bug for ChaCha AVX2 under VS2017 (Issue 735)</li>
+    <li>fix global optimization bug for ChaCha AVX2 under VS2017 (Issue 735)</li>
 
-    <li>Fix global optimization bug for AES SSE4.1 under VS2017 (Issue 649)</li>
+    <li>fix global optimization bug for AES SSE4.1 under VS2017 (Issue 649)</li>
 
-    <li>Add ability to Seek64 in test framework (Issue 732)</li>
+    <li>add ability to Seek64 in test framework (Issue 732)</li>
 
-    <li>Sync <tt>CRYPTOPP_{BIG|LITTLE}_ENDIAN</tt> with Autotools (Commit
+    <li>sync <tt>CRYPTOPP_{BIG|LITTLE}_ENDIAN</tt> with Autotools (Commit
     c601213ce13f)</li>
 
-    <li>Sync <tt>CRYPTOPP_ARM_ACLE_AVAILABLE</tt> with Autotools (Commit
+    <li>sync <tt>CRYPTOPP_ARM_ACLE_AVAILABLE</tt> with Autotools (Commit
     d3a3189ba34f)</li>
 
-    <li>Fix ambiguous symbol <tt>BTEA::StaticAlgorithmName</tt> (Issue 726)</li>
+    <li>fix ambiguous symbol <tt>BTEA::StaticAlgorithmName</tt> (Issue 726)</li>
 
-    <li>Fix <tt>LegacyDecryptor</tt> and <tt>LegacyDecryptorWithMAC</tt> (Issue 714)</li>
+    <li>fix <tt>LegacyDecryptor</tt> and <tt>LegacyDecryptorWithMAC</tt> (Issue 714)</li>
 
-    <li>Add <tt>-xregs=no%appl</tt> for SunCC on SPARC (Commit 03297cdfa6f3)</li>
+    <li>add <tt>-xregs=no%appl</tt> for SunCC on SPARC (Commit 03297cdfa6f3)</li>
 
-    <li>Fix missed conditions for XTR-DH domain parameters generation (Commit
+    <li>fix missed conditions for XTR-DH domain parameters generation (Commit
     44cd7eb1ed84)</li>
 
-    <li>Fix <tt>FixedSizeAllocatorWithCleanup</tt> may be unaligned on some platforms
+    <li>fix <tt>FixedSizeAllocatorWithCleanup</tt> may be unaligned on some platforms
     (Issue 709)</li>
 
-    <li>Avoid <tt>Singleton&lt;T&gt;</tt> when possible (Issue 708)</li>
+    <li>avoid <tt>Singleton&lt;T&gt;</tt> when possible (Issue 708)</li>
 
     <li>avoid <tt>std::call_once</tt> completely (Issue 707)</li>
 
-    <li>Add keccack.h and keccack.cpp for shared F1600 (Commit b9a6034a816b)
+    <li>add keccack.h and keccack.cpp for shared F1600 (Commit b9a6034a816b)
 
       <ul>
         <li>Provides common core function for SHA-3 and Keccack</li>
       </ul>
     </li>
 
-    <li>Fix SecBlock <tt>ELEMS_MAX</tt> in Visual Studio .Net (2002 and 2003) (Commit
+    <li>fix SecBlock <tt>ELEMS_MAX</tt> in Visual Studio .Net (2002 and 2003) (Commit
     d47f69acf376)</li>
 
-    <li>Fix compiler crash in Visual Studio .Net (2002 and 2003) due to GCM (Commit
+    <li>fix compiler crash in Visual Studio .Net (2002 and 2003) due to GCM (Commit
     c24f17b7a26b)</li>
 
-    <li>Fix compile on Visual Studio 2005 without service packs (Commit
+    <li>fix compile on Visual Studio 2005 without service packs (Commit
     874f79c32061)</li>
 
-    <li>Disable X32 inline assembly (Issue 686, PR 704)</li>
+    <li>disable X32 inline assembly (Issue 686, PR 704)</li>
 
-    <li>Fix build with Embarcadero C++ Builder 10.2.3 (Issue 696)</li>
+    <li>fix build with Embarcadero C++ Builder 10.2.3 (Issue 696)</li>
 
-    <li>Rewrite RDRAND and RDSEED classes (Commit 1bd18dd5ba62)</li>
+    <li>rewrite RDRAND and RDSEED classes (Commit 1bd18dd5ba62)</li>
 
-    <li>Disable ASM for iOS simulators (Commit 3753a4301d0f)</li>
+    <li>disable ASM for iOS simulators (Commit 3753a4301d0f)</li>
 
-    <li>Refactor <tt>bench{N}.cpp</tt>, <tt>regtest{N}.cpp</tt> and
+    <li>refactor <tt>bench{N}.cpp</tt>, <tt>regtest{N}.cpp</tt> and
     <tt>validate{N}.cpp</tt>
 
       <ul>
-        <li>Resource constrained devices and SunCC could not compile them without
+        <li>resource constrained devices and SunCC could not compile them without
         hassles</li>
       </ul>
     </li>
 
-    <li>Fix SPARC alignment problems due to <tt>GetAlignmentOf&lt;T&gt;()</tt> on
+    <li>fix SPARC alignment problems due to <tt>GetAlignmentOf&lt;T&gt;()</tt> on
     <tt>word64</tt> (Issue 691, Issue 690, Issue 689, Issue 403)</li>
 
-    <li>Fix Apple feature detection (Issue 685)</li>
+    <li>fix Apple feature detection (Issue 685)</li>
 
-    <li>Fix "Error: symbol SHA512_Round is already defined" (Issue 684)</li>
+    <li>fix "Error: symbol SHA512_Round is already defined" (Issue 684)</li>
 
-    <li>Workaround GCC and Clang in handling of same buffer for in and out (Commit
+    <li>workaround GCC and Clang in handling of same buffer for in and out (Commit
     49d852ee8c7c, Commit e580ed588a1c)</li>
 
-    <li>Fix missing <tt>Deflator::IsolatedInitialize</tt> during Gzip init (Issue
+    <li>fix missing <tt>Deflator::IsolatedInitialize</tt> during Gzip init (Issue
     660)</li>
 
-    <li>Remove <tt>CRYPTOPP_ALLOW_UNALIGNED_DATA_ACCESS</tt> support (Issue 682)</li>
+    <li>remove <tt>CRYPTOPP_ALLOW_UNALIGNED_DATA_ACCESS</tt> support (Issue 682)</li>
 
-    <li>Remove unneeded code to accomodate variable block size (Issue 535)</li>
+    <li>remove unneeded code to accomodate variable block size (Issue 535)</li>
 
-    <li>Fix bad CHAM-64/ECB decryption with Clang at -O1 (Issue 677)</li>
+    <li>fix bad CHAM-64/ECB decryption with Clang at -O1 (Issue 677)</li>
 
-    <li>Add AVX and AVX2 runtime feature detection (Issue 671)</li>
+    <li>add AVX and AVX2 runtime feature detection (Issue 671)</li>
 
-    <li>Fix missing <tt>Kalyna512_Info</tt> parameter (Issue 662)</li>
+    <li>fix missing <tt>Kalyna512_Info</tt> parameter (Issue 662)</li>
 
-    <li>Fix Threefish blocksize parameter (Issue 663)</li>
+    <li>fix Threefish blocksize parameter (Issue 663)</li>
 
-    <li>Fix overcommit resources for Scrypt parallelization (Issue 641)</li>
+    <li>fix overcommit resources for Scrypt parallelization (Issue 641)</li>
 
-    <li>Fix various Clang warnings in headers (Issue 655)</li>
+    <li>fix various Clang warnings in headers (Issue 655)</li>
 
-    <li>Add recipe to install the library only (Issue 653)</li>
+    <li>add recipe to install the library only (Issue 653)</li>
 
-    <li>Back-off on Hash asserts (Issue 652)</li>
+    <li>back-off <tt>HashTransformation</tt> asserts (Issue 652)</li>
 
     <li>Use <tt>CRYPTOPP_ASSERT</tt> in Keccak and SHA3 (Issue 654)</li>
 
-    <li>Add AdditionalOptions property to VCXPROJ files (Issue 649)</li>
+    <li>add AdditionalOptions property to VCXPROJ files (Issue 649)</li>
 
-    <li>Fix visibility for SIMON and SPECK (Issue 644)</li>
+    <li>fix visibility for SIMON and SPECK (Issue 644)</li>
 
-    <li>Remove OS sockets and threads (Issue 178, Issue 208, PR 703)
+    <li>remove OS sockets and threads (Issue 178, Issue 208, PR 703)
 
       <ul>
         <li>C++11 socket, threads and synchronization classes may be used</li>
       </ul>
     </li>
 
-    <li>Add algorithm provider member function to Algorithm class (PR 681)</li>
+    <li>add algorithm provider member function to Algorithm class (PR 681)</li>
   </ul>
 
   <h2>Sockets and threads</h2>
