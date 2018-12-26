@@ -169,6 +169,18 @@
   <a href="https://www.cryptopp.com/wiki/Sockets_and_Threads">Sockets and
   Threads</a>.</p>
 
+  <h2>setenv-android.sh</h2>
+
+  <p>The cross-compile script <tt>setenv-android.sh</tt> is no longer viable for building
+  the library using the Android NDK. Recent NDK changes has mostly obsoleted the script.
+  We are moving to a new script but it is not ready at the moment. Also see Issue 763,
+  <a href="https://github.com/weidai11/cryptopp/issues/763">Building for Android using
+  NDK not supported on Windows hosts</a>.</p>
+
+  <p>We have a GitHub setup with yet another build system at <a href=
+  "https://github.com/noloader/cryptopp-android">cryptopp-android</a>. It provides
+  <tt>Android.mk</tt> for Android's build system.</p>
+
   <h2>File Changes</h2>
 
   <p>Below is a list of all files that were added at Crypto++ 8.0. At this release we
