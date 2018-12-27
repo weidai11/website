@@ -172,10 +172,19 @@
 
     <li>add SONAME to shared object for Solaris (Commit 9886b555d073)</li>
 
+    <li>add <tt>AlgorithmProvider</tt> member function to <tt>Algorithm</tt> class (PR 681)</li>
+
     <li>add search for test vectors and test data (Issue 760)
 
       <ul>
         <li>only search well known locations for Linux LSB install</li>
+      </ul>
+    </li>
+
+    <li>remove OS sockets and threads (Issue 178, Issue 208, PR 703)
+
+      <ul>
+        <li>C++11 socket, threads and synchronization classes may be used</li>
       </ul>
     </li>
 
@@ -309,23 +318,20 @@
     <li>add AdditionalOptions property to VCXPROJ files (Issue 649)</li>
 
     <li>fix visibility for SIMON and SPECK (Issue 644)</li>
-
-    <li>remove OS sockets and threads (Issue 178, Issue 208, PR 703)
-
-      <ul>
-        <li>C++11 socket, threads and synchronization classes may be used</li>
-      </ul>
-    </li>
-
-    <li>add algorithm provider member function to Algorithm class (PR 681)</li>
   </ul>
+
+  <h2>MinGW 32-bit</h2>
+
+  <p>MinGW 32-bit is failing self tests for LEA, SIMON, SPECK and SM4. 64-bit is OK. We don't know the cause and don't have a work-around.</p>
+  
+  <p>We are tracking the problem at <A HREF="https://github.com/weidai11/cryptopp/issues/768">Issue 768, 32-bit MinGW self test failures</A>.
 
   <h2>Sockets and threads</h2>
 
   <p>Crypto++ removed Operating System specific code for sockets and threads. OS specific
   socket and thread support was removed to streamline the library and focus on the
   cryptography. The removal will also avoid porting troubles which surface on occassion.
-  Users can utilize C++11 support, if desired.</p>
+  Users can re-install the files or utilize C++11 support, if desired.</p>
 
   <p>The list of files removed are as follows.</p>
 
