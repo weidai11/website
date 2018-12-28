@@ -41,7 +41,7 @@
   <h2>Crypto++ 8.0</h2>
 
   <p>Crypto++ 8.0 was released on December 28, 2018. The 8.0.0 release was a major,
-  planned release. There are no CVE fixes or memory error fixes.</p>
+  planned release. There are no CVEs or memory errors.</p>
 
   <p>This release was scheduled as a minor version bump, but we lost ABI compatibility
   due to adding <tt>AlgorithmProvider</tt> at <a href=
@@ -55,15 +55,18 @@
   <ul>
     <li><a href="cryptopp800.zip">Original cryptopp800.zip</a></li>
 
-    <li>SHA1: XXX</li>
+    <li>SHA1: a678c9d02da4d20fc339c6daa0244611f15c176e</li>
 
-    <li>SHA256: XXX</li>
+    <li>SHA256: 15eeeea71d291eb714792baeea0450383a7c41c3bf444fb15f03bc9e1036bba1</li>
 
-    <li>SHA512: XXX</li>
+    <li>SHA512:
+    0916ae1a87c9eb0e19e43ced1f283efef345bca359785017e995ac4f502d4dee55c4c3d6f98a5a872b896aa3e49a5a4b67b0e5a372362227ec845fb1ae16f23e</li>
 
-    <li>BLAKE2b: XXX</li>
+    <li>BLAKE2b:
+    c567d555f6b793ba37f7b9c602da4a6487e966b5a6895e7d350eedc23afac35ee23870bf277663423e494b4eab83158bcbf61daace9417837acdb1c56f6c9de9</li>
 
-    <li>WHIRLPOOL: XXX</li>
+    <li>WHIRLPOOL:
+    20cb255dcf610b5d5808cd36f7bb8886fe342c84eabd493fcb2a6326726bb305350c4f811260f6690ec7c31eb8ad1597283a52ebea4b1ed85b3c6588d78d7aec</li>
   </ul>
 
   <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
@@ -172,7 +175,8 @@
 
     <li>add SONAME to shared object for Solaris (Commit 9886b555d073)</li>
 
-    <li>add <tt>AlgorithmProvider</tt> member function to <tt>Algorithm</tt> class (PR 681)</li>
+    <li>add <tt>AlgorithmProvider</tt> member function to <tt>Algorithm</tt> class (PR
+    681)</li>
 
     <li>add search for test vectors and test data (Issue 760)
 
@@ -322,9 +326,12 @@
 
   <h2>MinGW 32-bit</h2>
 
-  <p>MinGW 32-bit is failing self tests for LEA, SIMON, SPECK and SM4. 64-bit is OK. We don't know the cause and don't have a work-around.</p>
-  
-  <p>We are tracking the problem at <A HREF="https://github.com/weidai11/cryptopp/issues/768">Issue 768, 32-bit MinGW self test failures</A>.
+  <p>MinGW 32-bit is failing self tests for LEA, SIMON, SPECK and SM4. 64-bit is OK. We
+  don't know the cause and don't have a work-around.</p>
+
+  <p>We are tracking the problem at <a href=
+  "https://github.com/weidai11/cryptopp/issues/768">Issue 768, 32-bit MinGW self test
+  failures</a>.</p>
 
   <h2>Sockets and threads</h2>
 
