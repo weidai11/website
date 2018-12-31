@@ -67,4 +67,6 @@ done
 
 "$SED" "${SED_OPTS[@]}" -e's/B&Atilde;&para;sz&Atilde;&para;rm&Atilde;&copy;nyi/Böszörményi/g' *.html
 
+"$SED" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' *.html
+
 [[ "$0" = "$BASH_SOURCE" ]] && exit 0 || return 0
