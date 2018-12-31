@@ -342,11 +342,13 @@
   requires a clean compile and link to deem a feature available.</p>
 
   <p>The change was necessary because we were mis-detecting too many corner cases, like
-  when <tt>arm_acle.h</tt> is available and which options less frequently used compilers
-  support, like Oracle's SunCC and IBM's XL C/C++. Toolchains were also giving us
-  problems because new compilers can be paired with older assemblers and linkers.</p>
+  when <tt>arm_acle.h</tt> is available and which options some compilers support, like
+  Oracle's SunCC and IBM's XL C/C++. Toolchains were also giving us problems because new
+  compilers can be paired with older assemblers and linkers.</p>
 
-  <p>Features are now tested similar to below.</p>
+  <p>Features are now tested similar to below. <tt>TCXXFLAGS</tt> strips some
+  <tt>CXXFLAGS</tt> flags like <tt>-Werror</tt>. <tt>ZOPT=-O0</tt> to avoid the
+  optimizer. <tt>TOUT</tt> is <tt>/dev/null</tt> to avoid writing to the filesystem.</p>
   <pre>
 ifeq ($(SUN_COMPILER),1)
   ...
@@ -368,22 +370,28 @@ endif
 </pre>
 
   <p>The new feature testing works well since the test merely looks for the cleanliness
-  of a build using <tt>tr ' ' '\n' | wc -l</tt>. Any output causes <tt>HAVE_OPT</tt> to
-  be non-0, which is interpreted as a failure in the toolchain. This follows the "dark
-  and silent" cockpit design used in aviation.</p>
+  of a build using <tt>tr ' ' '\n' | wc -l</tt>. The expression calculates a word count,
+  and any output causes <tt>HAVE_OPT</tt> to be non-0. Non-0 output is interpreted as a
+  failure in the toolchain. This follows the "dark and silent" cockpit design used in
+  aviation.</p>
 
-  <p>The reworked testing is language agnostic. Formerly we tested a method that looked
-  for bad messages, like <tt>illegal option</tt>. The problem was, we were checking for
-  English messages. Error messages are localized to a user's language so we missed
-  messages like <tt>opción ilegal</tt> in Spanish.</p>
+  <p>The new tests do not suffer traditional failures, like checking inaccurate compiler
+  or linker return codes, or missing compiler diagnostics like <tt>illegal option
+  -xarch=sha</tt>. The case of <tt>illegal option -xarch=sha</tt> is from SunCC. SunCC as
+  of Sun Studio 12.6 does not support SHA extensions, and the compiler (incorrectly?)
+  returned success instead of failure when testing <tt>-xarch=sha</tt>. Autotools and
+  CMake reported the option available which lead to a compile failure when
+  <tt>sha_simd.cpp</tt> was compiled.</p>
 
-  <p>Finally, the new tests do not suffer traditional failures, like checking inaccurate
-  compiler or linker return codes or missing compiler diagnostics like <tt>illegal option
-  -xarch=sha</tt>. The case of <tt>illegal option -xarch=sha</tt> is from SunCC. SunCC
-  does not support SHA extensions, and the compiler (incorrectly?) returned success
-  instead of failure when testing <tt>-xarch=sha</tt>. Autotools and CMake both reported
-  the option available which lead to a compile failure when <tt>sha_simd.cpp</tt> was
-  compiled.</p>
+  <p>Toolchains that adhere to dark and silent cockpits include those found on AIX, BSDs,
+  iOS, Linux, OS X, Solaris and Unix. Compilers include Clang, GCC, ICC, SunCC and XL
+  C/C++.</p>
+
+  <p>Also see <a href="https://github.com/weidai11/cryptopp/issues/741">Issue 741,
+  Make-based feature tests and language</a>, and <a href=
+  "https://github.com/weidai11/cryptopp/commit/f8b1a997c55b">Commit f8b1a997c55b</a>.
+  Commit f8b1a997c55b was the initial test on PowerPC, which included Apple G4 and G5;
+  IBM Power7, Power8 and Power9; and Apple GCC, GNU GCC, LLVM Clang and IBM XL C/C++.</p>
 
   <h2>Sockets and threads</h2>
 
@@ -435,9 +443,9 @@ endif
   <h2>Notes for Distros</h2>
 
   <p>The self tests were changed to make it easier to locate the <tt>TestData</tt> and
-  <tt>TestVector</tt> folders. The change was made to make it easier on a typical user
-  who did not RTFM or know how to set defines through the command line. However, the
-  change increases attack surface slightly since there's a search involved.</p>
+  <tt>TestVector</tt> folders. The change was for a typical user who did not RTFM or know
+  how to set defines through the command line. However, the change increases attack
+  surface slightly since there's a search involved.</p>
 
   <p>The new behavior is to search for the test data and vectors in:</p>
 
@@ -458,7 +466,7 @@ endif
   <p>Distributions can go back to the former behavior of only using
   <tt>CRYPTOPP_DATA_DIR</tt> by opening <tt>config.h</tt> and uncommenting
   <tt>CRYPTOPP_DISABLE_DATA_DIR_SEARCH</tt>. However, we recommend distros do nothing as
-  they are only data files so they will be either (1) well formed and parsed; or (2)
+  they are only data files so they will be either (1) well-formed and parsed; or (2)
   ill-formed and rejected. The project does not try to interpret them as code or exectute
   them.</p>
 
