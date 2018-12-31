@@ -405,11 +405,16 @@
   "https://wiki.linuxfoundation.org/lsb/start">Linux Standard Base (LSB)</a> and
   accomodates a staged install with <tt>DESTDIR</tt>.</p>
 
-  <p>Distributions can go back to the former behavior by opening <tt>config.h</tt> and
-  uncommenting <tt>CRYPTOPP_DISABLE_DATA_DIR_SEARCH</tt>. However, we recommend distros
-  do nothing as they are only data files so they will be either (1) well formed and
-  parsed; or (2) ill-formed and rejected. The project does not try to interpret them as
-  code or exectute them.</p>
+  <p>Distributions can go back to the former behavior of only using
+  <tt>CRYPTOPP_DATA_DIR</tt> by opening <tt>config.h</tt> and uncommenting
+  <tt>CRYPTOPP_DISABLE_DATA_DIR_SEARCH</tt>. However, we recommend distros do nothing as
+  they are only data files so they will be either (1) well formed and parsed; or (2)
+  ill-formed and rejected. The project does not try to interpret them as code or exectute
+  them.</p>
+
+  <p>Also see <a href="https://www.cryptopp.com/wiki/DataDir">DataDir</a> on the Crypto++
+  wiki and <a href="https://github.com/weidai11/cryptopp/issues/760">Issue 760</a> for
+  detailed information on the change, including commits.</p>
 
   <h2>File Changes</h2>
 
