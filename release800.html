@@ -463,16 +463,16 @@ endif
   <p>The new behavior is to search for the test data and vectors in:</p>
 
   <ol>
+    <li><tt>$ORIGIN/../share</tt> (for users, post-install)</li>
+
     <li>current working directory (for users, pre-install)</li>
 
     <li><tt>CRYPTOPP_DATA_DIR</tt> (for distros)</li>
-
-    <li><tt>../share</tt> (for users, post-install)</li>
   </ol>
 
-  <p>The differences which increase attack surface are (1) and (3). They are new for
+  <p>The differences which increase attack surface are (1) and (2). They are new for
   users, and they ensure <tt>./cryptest.exe v</tt> works before and after installation
-  without setting <tt>CRYPTOPP_DATA_DIR</tt>. Item (3) conforms to <a href=
+  without setting <tt>CRYPTOPP_DATA_DIR</tt>. Item (1) conforms to <a href=
   "https://wiki.linuxfoundation.org/lsb/start">Linux Standard Base (LSB)</a> and
   accomodates a staged install with <tt>DESTDIR</tt>.</p>
 
