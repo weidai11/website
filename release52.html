@@ -1,10 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
   <title>Crypto++ Library | 5.2 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
@@ -12,93 +10,61 @@
   "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
 </head>
-
 <body>
   <!-- Child pages menu bar at top of page. Differs from home page -->
-
   <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
     <tbody>
       <tr>
         <td><b><big><a href="index.html">Home Page</a></big></b></td>
-
         <td><a href="index.html#download">Download</a></td>
-
         <td><a href="docs/ref/">Manual</a></td>
-
         <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
-
         <td><a href="wiki/">Mediawiki</a></td>
-
         <td><a href="index.html#lists">Mailing lists</a></td>
-
         <td><a href="index.html#contributions">Contributions</a></td>
-
         <td><a href="wiki/Related_Links">Related links</a></td>
       </tr>
     </tbody>
   </table>
-
   <h2>Crypto++ 5.2</h2>
-
   <p>Crypto++ 5.2 was released on June 29, 2004. The 5.2 release rolled up previous minor
   bug fixes and added several new classes.</p>
-
   <h2>Download</h2>
-
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below.</p>
-
   <ul>
     <li><a href="crypto52.zip">Original crypto52.zip</a></li>
-
     <li>SHA1: 1fef7da7d7cdc23a4d51906d585e0b91c163693d</li>
-
     <li>SHA256: 103bf2cab8f3a0e245c50af9992aca1583796b4c2dcccc16a0207a09a17a2a66</li>
-
     <li>SHA512:
     6db7037da24d965a6cbb31b45ac39f2a9738cc77ed87a6079198c65d52dd7d3216812dcf8151d6caffb33dd2d7efa4ccab68fbd5ca19b1d6096581aac27db4cf</li>
-
     <li>WHIRLPOOL:
     324a25f31388bd3a0a1bdac7b28e7bcaa46cd3e67fbba4caa0cd1d5069781cace5f00d0a234467c512c1d15c3db72012452fb9f884b394b1542670d6e06715c7</li>
   </ul>
-
   <p>Mirrors for the download are below. Note that GitHub and Sourceforge checksums on
   the ZIP or TAR are different because each creates the archive from sources.</p>
-
   <ul>
     <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_2">GitHub
     crypto52.zip</a></li>
-
     <li><a href="//prdownloads.sourceforge.net/cryptopp/crypto52.zip" target=
     "_blank">Sourceforge crypto52.zip</a></li>
   </ul>
-
   <h2>Release Notes</h2>
-
   <p>The release notes for Crypto++ 5.2 follows.</p>
-
   <ul>
     <li>merged in changes for 5.01 through 5.0.4</li>
-
     <li>added support for using encoding parameters and key derivation parameters with
     public key encryption (implemented by OAEP and DL/ECIES)</li>
-
     <li>added Camellia, SHACAL-2, Two-Track-MAC, Whirlpool, RIPEMD-320, RIPEMD-128,
     RIPEMD-256, Base-32 coding, FIPS variant of CFB mode</li>
-
     <li>added ThreadUserTimer for timing thread CPU usage</li>
-
     <li>added option for password-based key derivation functions to iterate until a
     mimimum elapsed thread CPU time is reached</li>
-
     <li>added option (on by default) for DEFLATE compression to detect uncompressible
     files and process them more quickly</li>
-
     <li>improved compatibility and performance on 64-bit platforms, including Alpha,
     IA-64, x86-64, PPC64, Sparc64, and MIPS64</li>
-
     <li>fixed ONE_AND_ZEROS_PADDING to use 0x80 instead 0x01 as padding.</li>
-
     <li>fixed encoding/decoding of PKCS #8 privateKeyInfo to properly handle optional
     attributes</li>
   </ul><!--#include virtual="/footer.html" -->
