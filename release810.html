@@ -139,11 +139,12 @@
   "https://gcc.gnu.org/bugzilla/show_bug.cgi?id=88234">GCC Issue 88234</a> and <a href=
   "https://bugs.llvm.org/show_bug.cgi?id=39704">LLVM Issue 39704</a>. If needed you
   should incorporate the compiler patches before resorting to
-  <tt>-DCRYPTOPP_DISABLE_ASM</tt>.</p>
+  <tt>-DCRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt> or <tt>-DCRYPTOPP_DISABLE_ASM</tt>.</p>
   <p>IBM XLC/C++ also fails some of its self tests. We were not able to reduce the
   failure to a minimum test case so the problem remains unreported to IBM. However, IBM
   XLC/C++ 13.1 uses the LLVM front-end and we suspect it is a similar problem reported to
-  GCC and LLVM.</p>
+  GCC and LLVM. You should use <tt>-DCRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt> or
+  <tt>-DCRYPTOPP_DISABLE_ASM</tt> to work around the problem.</p>
   <h2>Notes for Distros</h2>
   <p>None.</p>
   <h2>File Changes</h2>
