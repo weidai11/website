@@ -87,9 +87,13 @@
       </ul>
     </li>
 
-    <li>add Microsoft ARM64 support</li>
+    <li>fix OS X PowerPC builds with Clang (GH #769)</li>
+
+    <li>add Microsoft ARM64 support (GH #776)</li>
 
     <li>fix iPhone Simulator build due to missign symbols (GH #779)</li>
+
+    <li>Add <tt>CRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt> (GH #782)</li>
 
     <li>add carryless multiplies for NIST b233 and k233 curves (GH #783)</li>
 
@@ -118,23 +122,61 @@
   requests and "won't fix/can't fix" type reports.</p>
 
   <ul>
-    <li>add Microsoft ARM64 support</li>
+    <li>fix GCM build on x86 when using GCC 3.3 (Commit 8edc5cf2d58e)</li>
+
+    <li>fix SIMECK build on x86 when SSSE3 not available (Commit fc2ead427c77)</li>
+
+    <li>fix SIMON build on x86 when SSSE3 not available (Commit 58772f3491a5)</li>
+
+    <li>fix SPECK build on x86 when SSSE3 not available (Commit a9bd504b2f12)</li>
+
+    <li>fix LEA build on x86 when SSSE3 not available (Commit d00b614e4623)</li>
+
+    <li>fix CHAM build on x86 when SSSE3 not available (Commit df47185573d9)</li>
+
+    <li>fix OS X PowerPC builds with Clang (GH #769)</li>
+
+    <li>add Microsoft ARM64 support (GH #776)</li>
 
     <li>fix iPhone Simulator build due to missign symbols (Issue 779)</li>
+
+    <li>fix Donna self-test failure on PowerPC with IBM XLC/C++ at <tt>-O3</tt> (Commit 3d07010ac86b)</li>
+
+    <li>Fix <tt>_M_IX86</tt> typo in <tt>Integer</tt> class (Commit 1f1c90cc290d)</tt>
+
+    <li>Add <tt>CRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt> (Issue 782)</li>
 
     <li>add carryless multiplies for NIST b233 and k233 curves (Issue 783)</li>
 
     <li>fix OpenMP build due to use of OpenMP 4 with down-level compilers (Issue 787)</li>
 
+    <li>move <tt>NumericLimitsMin</tt> and <tt>NumericLimitsMax</tt> to CryptoPP namespace (Issue 793)</li>
+
     <li>add SignStream and VerifyStream for ed25519 and large files (Issue 796)</li>
+
+    <li>add <tt>SecretToPublicKey</tt> function for x25519 (Commit cae5f8e0fd23)</li>
+
+    <li>use IsPowerOf2 in Integer::Divide (Commit 48531785b74d)</li>
+
+    <li>fix Fedora 7 compile using SSE4.2 (Commit 5b1e6fd28fde)</li>
+
+    <li>add GNU Hurd support (Commits 4d24876490c0, ef1c8c2bb48b)</li>
+
+    <li>latch previous ROUNDS in Salsa and ChaCha (Issue 800, PR 804)</li>
+
+    <li>switch to RFC 8439 for ChaCha-TLS (commit 76bdb328a681)</li>
+
+    <li>refactor ChaCha and ChaChaTLS use a common core (Commit 70dcd29e0b86)</li>
 
     <li>fix missing AlgorithmProvider in PanamaHash (Issue 801)</li>
 
     <li>add SHAKE-128 and SHAKE-256 (Issue 805)</li>
 
-    <li>fix AVX2 build due to <tt>_mm256_broadcastsi128_si256</tt> (Pull Request 809)</li>
+    <li>fix AVX2 build due to <tt>_mm256_broadcastsi128_si256</tt> (PR 809, Commit a809dbdbc469)</li>
 
     <li>add IETF ChaCha, XChaCha and XChaChaPoly1305 (Issue 727)</li>
+
+    <li>fix missing symbols in Windows DLL (Commit 3185e93fe303)</li>
   </ul>
 
   <h2>setenv-android.sh</h2>
