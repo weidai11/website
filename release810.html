@@ -122,6 +122,10 @@
   requests and "won't fix/can't fix" type reports.</p>
 
   <ul>
+    <li>avoid use of &lt;stdint.h&gt; types in Donna source code (Commit 9c58ba8f2bae)</li>
+
+    <li>fix missing <tt>ExtendedControlRegister</tt> when <tt>CRYPTOPP_DISABLE_ASM</tt> (Commit 29d1c1772d05)</li>
+
     <li>fix GCM build on x86 when using GCC 3.3 (Commit 8edc5cf2d58e)</li>
 
     <li>fix SIMECK build on x86 when SSSE3 not available (Commit fc2ead427c77)</li>
