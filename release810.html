@@ -130,16 +130,20 @@
   <p>We have a GitHub setup with yet another build system at <a href=
   "https://github.com/noloader/cryptopp-android">cryptopp-android</a>. It provides
   <tt>Android.mk</tt> for Android's build system.</p>
-  <h2>GCC and LLVM PowerPC bugs</h2>
+  <h2>PowerPC failed self tests</h2>
   <p>The Crypto++ library had trouble passing its self tests on PowerPC platforms using
-  recent versions of GCC and Clang. We were aware of the problem for some time but we
-  were not able to isolate the problem in our code.</p>
+  recent versions of GCC, Clang and IBM XLC/C++. We were aware of the problem for some
+  time but we were not able to isolate the problem in our code.</p>
   <p>We recently learned of issues in GCC and LLVM which caused the runtime problems. The
   issues and compiler patches are available at <a href=
   "https://gcc.gnu.org/bugzilla/show_bug.cgi?id=88234">GCC Issue 88234</a> and <a href=
   "https://bugs.llvm.org/show_bug.cgi?id=39704">LLVM Issue 39704</a>. If needed you
   should incorporate the compiler patches before resorting to
   <tt>-DCRYPTOPP_DISABLE_ASM</tt>.</p>
+  <p>IBM XLC/C++ also fails some of its self tests. We were not able to reduce the
+  failure to a minimum test case so the problem remains unreported to IBM. However, IBM
+  XLC/C++ 13.1 uses the LLVM front-end and we suspect it is a similar problem reported to
+  GCC and LLVM.</p>
   <h2>Notes for Distros</h2>
   <p>None.</p>
   <h2>File Changes</h2>
