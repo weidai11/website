@@ -1,8 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
   <title>Crypto++ Library | 7.0 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
@@ -10,79 +12,122 @@
   "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
 </head>
+
 <body>
   <!-- Child pages menu bar at top of page. Differs from home page -->
+
   <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
     <tbody>
       <tr>
         <td><b><big><a href="index.html">Home Page</a></big></b></td>
+
         <td><a href="index.html#download">Download</a></td>
+
         <td><a href="docs/ref/">Manual</a></td>
+
         <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
+
         <td><a href="wiki/">Mediawiki</a></td>
+
         <td><a href="index.html#lists">Mailing lists</a></td>
+
         <td><a href="index.html#contributions">Contributions</a></td>
+
         <td><a href="wiki/Related_Links">Related links</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2>Crypto++ 7.0</h2>
+
   <p>Crypto++ 7.0 was released on April 8, 2018. The 7.0.0 release was a major, unplanned
   release. There are no CVE fixes but there is a fix for a memory error.</p>
+
   <h2>Download</h2>
+
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below. Release signatures can be verified using GnuPG according to <a href=
   "signing.html">Release Signing</a>.</p>
+
   <ul>
     <li>Download: <a href="cryptopp700.zip">cryptopp700.zip</a>, <a href=
     "cryptopp700.zip.sig">cryptopp700.zip.sig</a></li>
+
     <li>SHA1: 1288682ae2f3062ea3a82ca2e90bd06d147568a4</li>
+
     <li>SHA256: a4bc939910edd3d29fb819a6fc0dfdc293f686fa62326f61c56d72d0a366ceb0</li>
+
     <li>SHA512:
     8fd8d680e5ceaf10b3c32cb1504bda4b32abc9fcaa2c6e61e3b5e67aca805c792579884bc6a749c29a99105304c421d03d7fe7909fc58f750b3155c7c5cec8ec</li>
+
     <li>BLAKE2b:
     1b1a60e240a9d94b4edfea16beef0ec48ec26c61f7f9a3d89d29bd2e77b13a83ce942f81467bb90d3086253560a3c4acd6b89178dcb416ed4328340ad5222dfd</li>
+
     <li>WHIRLPOOL:
     dd7133b278fd751f89ad462bd9b84cdabe0ed80e2d19a1b1df6487c5930a092d69feb6303aacc13562ac555e3109bdac9f231079ed5c4318f3c6d686ed6220e3</li>
   </ul>
+
   <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
   different because the service creates the archive from sources.</p>
+
   <ul>
     <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_7_0_0">GitHub
     cryptopp700.zip</a></li>
   </ul>
+
   <h2>Release Notes</h2>
+
   <p>The release notes for Crypto++ 7.0 follows.</p>
+
   <ul>
     <li>major release, recompile of programs required</li>
+
     <li>expanded community input and support</li>
+
     <li style="list-style: none">
       <ul>
         <li>48 unique contributors as of this release</li>
       </ul>
     </li>
+
     <li>fix incorrect result when using Integer::InverseMod</li>
+
     <li style="list-style: none">
       <ul>
         <li>may be CVE worthy, but request was not submitted</li>
       </ul>
     </li>
+
     <li>fix ARIA/CTR bus error on Sparc64</li>
+
     <li>fix incorrect result when using a_exp_b_mod_c</li>
+
     <li>fix undeclared identifier uint32_t on early Visual Studio</li>
+
     <li>fix iPhoneSimulator build on i386</li>
+
     <li>fix incorrect adler32 in ZlibDecompressor</li>
+
     <li>fix Power7 test using PPC_FEATURE_ARCH_2_06</li>
+
     <li>workaround incorrect Glibc sysconf return value on ppc64-le</li>
+
     <li>add KeyDerivationFunction interface</li>
+
     <li>add scrypt key derivation function</li>
+
     <li>add Salsa20_Core transform callable from outside class</li>
+
     <li>add sbyte, sword16, sword32 and sword64</li>
+
     <li>remove s_nullNameValuePairs from unnamed namespace</li>
+
     <li>ported to MSVC 2017, Xcode 9.3, Sun Studio 12.5, GCC 8.0.1, MacPorts GCC 7.0,
     Clang 5.0, Intel C++ 17.00, IBM XL C/C++ 13.1</li>
   </ul>
+
   <h2>Bug Fixes and Minor Issues</h2>
+
   <p>The bug fix and minor issue list for Crypto++ 7.0 follows. Many non-trivial issues
   are tracked for auditing and C&amp;A purposes, but the list may not be complete. A
   number in parenthesis is the <a href=
@@ -90,51 +135,81 @@
   tracked. Sometimes a Git commit is referenced, but many trivial GitHub commits are
   omitted. Missing Issue numbers or lack of consecutiveness usually indicates feature
   requests and "won't fix/can't fix" type reports.</p>
+
   <ul>
     <li>fix incorrect result when using <tt>Integer::InverseMod</tt> (Issue 602)</li>
+
     <li style="list-style: none">
       <ul>
         <li>may be CVE worthy, but a request was not submitted</li>
       </ul>
     </li>
+
     <li>fix warning due to different string alignments in mqueue.cpp (Issue 591, PR
     603)</li>
+
     <li>add PowerPC Power8 SHA hashing (Issue 513)</li>
+
     <li>define <tt>AT_HWCAP/AT_HWCAP2</tt> if getauxval unavailable (PR 594)</li>
+
     <li>fix compile error on Windows due to symbol <tt>U</tt> collision (Issue 599)</li>
+
     <li>fix Adler32 error in ZlibDecompressor in multithreaded programs (Issue 596, PR
     600)</li>
+
     <li>fix ARIA/CTR bus error on Sparc64 (Issue 597)</li>
+
     <li>fix GCC version for RDSEED intrinsic (PR 598)</li>
+
     <li>fix incorrect result when using <tt>a_exp_b_mod_c</tt> (Issue 602)</li>
+
     <li>fix undeclared identifier <tt>uint32_t</tt> on early Visual Studio (Issue
     608)</li>
+
     <li>add sbyte, sword16, sword32 and sword64 (Issue 608, 609)</li>
+
     <li>add KeyDerivationFunction interface (Issue 610)</li>
+
     <li>cutover PBKDF to KeyDerivationFunction interface (PR 612)</li>
+
     <li>add Scrypt key derivation function (Issue 613)</li>
+
     <li>remove extraneous semi-colons in source files (PR 605-625)</li>
+
     <li>re-enable OS X and iOS tests on Travis (PR 627)</li>
+
     <li>add OpenMP support to Scrypt (PR 628)</li>
+
     <li>add <tt>Salsa20_Core</tt> transform (Issue 630)</li>
+
     <li>remove <tt>s_nullNameValuePairs</tt> from unnamed namespace (Issue 631)</li>
+
     <li>rename ECGDSA_ISO15946 -&gt; ECGDSA (PR 634)</li>
+
     <li>fix iPhoneSimulator build on i386 (Issue 635)</li>
+
     <li>make CAST temporaries class members (Commit 71e9fece8795)</li>
+
     <li>fix Scrypt and Coverity findings CID 189203, 189204, 189205 (Commit
     11e076003a1a)</li>
+
     <li>change order of member initialization in ASN.1 decoders (Commit
     64a15cf51b8f)</li>
+
     <li>make <tt>AuthenticatedSymmetricCipher::AlgorithmName</tt> non-pure (Commit
     62a9574f3fd6)</li>
+
     <li>add CPU feature queries for AIX (Commit 04e361889efd)</li>
   </ul>
+
   <h2>Memory error</h2>
+
   <p>The <tt>Integer</tt> class had a memory error in member function <tt>InverseMod</tt>
   that could cause a heap corruption. The error surfaced when <tt>x % m</tt> was used and
   <tt>x</tt> was much larger than <tt>m</tt>. The error usually occured when the bit
   count of <tt>x</tt> was larger than the bit count <tt>m</tt> by about 128-bits or
   256-bits.</p>
+
   <p>Below is the new code for <tt>InverseMod</tt> located in <tt>integer.cpp</tt>.
   <tt>InverseMod</tt> was fixed, and <tt>InverseModNext</tt> was added. The problem was
   <tt>Integer r</tt> was too small, and <tt>AlmostInverse</tt> wrote beyond the integer's
@@ -174,14 +249,19 @@ Integer Integer::InverseModNext(const Integer &amp;m) const
     return r;
 }
 </pre>
+
   <h2>AES Decryption</h2>
+
   <p>After the Crypto++ 7.0 release it was reported that AES Decryption was not working
   properly on Windows 10 with the Visual C++ compiler version 15.6.7. The issue is not
   present in earlier releases of the Visual Studio 2017 compiler, or earlier relase of
   Visual Studio.</p>
+
   <p>The project is tracking the bug at <a href=
   "https://github.com/weidai11/cryptopp/issues/649">Issue 649</a>.</p>
+
   <h2>Notes for Distros</h2>
+
   <p>The incorrect result when using <a href=
   "https://github.com/weidai11/cryptopp/issues/602">Integer::InverseMod (Issue 602)</a>
   is a memory error. The issue may be CVE worthy, and it is the reason for the Crypto++
@@ -189,9 +269,12 @@ Integer Integer::InverseModNext(const Integer &amp;m) const
   library used the Integer class. User programs prior to Crypto++ 7.0 could be at risk
   because they might call the mod operation with an operand large enough to witness the
   problem.</p>
+
   <p>The 7.0 version bump was not due to the memory error. The major version bump was due
   to ABI breaks caused by <tt>KeyDerivationFunction</tt> interface.</p>
+
   <h2>File Changes</h2>
+
   <p>Below is a list of all files that were added at Crypto++ 7.0.</p>
   <pre>
 $ git diff-tree -r --summary CRYPTOPP_6_1_0 CRYPTOPP_7_0_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'

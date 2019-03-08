@@ -1,8 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
   <title>Crypto++ Library | 8.1 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
@@ -10,71 +12,112 @@
   "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
 </head>
+
 <body>
   <!-- Child pages menu bar at top of page. Differs from home page -->
+
   <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
     <tbody>
       <tr>
         <td><b><big><a href="index.html">Home Page</a></big></b></td>
+
         <td><a href="index.html#download">Download</a></td>
+
         <td><a href="docs/ref/">Manual</a></td>
+
         <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
+
         <td><a href="wiki/">Mediawiki</a></td>
+
         <td><a href="index.html#lists">Mailing lists</a></td>
+
         <td><a href="index.html#contributions">Contributions</a></td>
+
         <td><a href="wiki/Related_Links">Related links</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2>Crypto++ 8.1</h2>
+
   <p>Crypto++ 8.1 was released on February 22, 2019. The 8.1 release was a minor, planned
   release. There are no CVEs or memory errors.</p>
+
   <h2>Download</h2>
+
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below. Release signatures can be verified using GnuPG according to <a href=
   "signing.html">Release Signing</a>.</p>
+
   <ul>
     <li>Download: <a href="cryptopp810.zip">cryptopp810.zip</a>, <a href=
     "cryptopp810.zip.sig">cryptopp810.zip.sig</a></li>
+
     <li>SHA1: 4653c1ea83a0c1bcc07ad46f129916588459e28d</li>
+
     <li>SHA256: f609b453e42abbab7163191dfe060964121f04da212e2e4f2f0ebe94b7e806ae</li>
+
     <li>SHA512:
     750da21eab5afe47b00196d874e242556561740d9108b562080dec6184142db039c709fec27ac4058bdcb69a1bbe973ed9fb95bde18db767ad14dfa9ca29dc36</li>
+
     <li>BLAKE2b:
     cdf5ee809f36ced69816f320fd26286f804b2fbb91ef7078afdfbd187c0e4b21a0b4fdbb508d3261c2a305924d77798d137084aa501c37aeca925df56d514c35</li>
+
     <li>WHIRLPOOL:
     b3fe9806179016e150238fb43c534f73aa7813fa220124bfc7d956f2467801e69fbb2598abdc07bed1c4b0a2e42029670745387ad6a56ea20f101f76841b6710</li>
   </ul>
+
   <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
   different because the service creates the archive from sources.</p>
+
   <ul>
     <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_8_1_0">GitHub
     cryptopp810.zip</a></li>
   </ul>
+
   <h2>Release Notes</h2>
+
   <p>The release notes for Crypto++ 8.1 follows.</p>
+
   <ul>
     <li>minor release, no recompile of programs required</li>
+
     <li>expanded community input and support</li>
+
     <li style="list-style: none">
       <ul>
         <li>56 unique contributors as of this release</li>
       </ul>
     </li>
+
     <li>fix OS X PowerPC builds with Clang</li>
+
     <li>add Microsoft ARM64 support</li>
+
     <li>fix iPhone Simulator build due to missign symbols</li>
+
     <li>add <tt>CRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt></li>
+
     <li>add carryless multiplies for NIST b233 and k233 curves</li>
+
     <li>fix OpenMP build due to use of OpenMP 4 with down-level compilers</li>
-    <li>add <tt>SignStream</tt> and <tt>VerifyStream</tt> for ed25519 and large files</li>
+
+    <li>add <tt>SignStream</tt> and <tt>VerifyStream</tt> for ed25519 and large
+    files</li>
+
     <li>fix missing <tt>AlgorithmProvider</tt> in PanamaHash</li>
+
     <li>add SHAKE-128 and SHAKE-256</li>
+
     <li>fix AVX2 build due to <tt>_mm256_broadcastsi128_si256</tt></li>
+
     <li>add IETF ChaCha, XChaCha, ChaChaPoly1305 and XChaChaPoly1305</li>
+
     <li>fix missing symbols in Windows DLL</li>
   </ul>
+
   <h2>Bug fixes and Minor Issues</h2>
+
   <p>The bug fix and minor issue list for Crypto++ 8.1 follows. Many non-trivial issues
   are tracked for auditing and C&amp;A purposes, but the list may not be complete. A
   number in parenthesis is the <a href=
@@ -82,74 +125,123 @@
   tracked. Sometimes a Git commit is referenced, but many trivial GitHub commits are
   omitted. Missing Issue numbers or lack of consecutiveness usually indicates feature
   requests and "won't fix/can't fix" type reports.</p>
+
   <ul>
     <li>avoid use of &lt;stdint.h&gt; types in Donna source code (Commit
     9c58ba8f2bae)</li>
+
     <li>fix missing <tt>ExtendedControlRegister</tt> when <tt>CRYPTOPP_DISABLE_ASM</tt>
     (Commit 29d1c1772d05)</li>
+
     <li>fix GCM build on x86 when using GCC 3.3 (Commit 8edc5cf2d58e)</li>
+
     <li>fix SIMECK build on x86 when SSSE3 not available (Commit fc2ead427c77)</li>
+
     <li>fix SIMON build on x86 when SSSE3 not available (Commit 58772f3491a5)</li>
+
     <li>fix SPECK build on x86 when SSSE3 not available (Commit a9bd504b2f12)</li>
+
     <li>fix LEA build on x86 when SSSE3 not available (Commit d00b614e4623)</li>
+
     <li>fix CHAM build on x86 when SSSE3 not available (Commit df47185573d9)</li>
+
     <li>fix OS X PowerPC builds with Clang (GH #769)</li>
+
     <li>add Microsoft ARM64 support (GH #776)</li>
+
     <li>fix iPhone Simulator build due to missign symbols (Issue 779)</li>
+
     <li>fix Donna self-test failure on PowerPC with IBM XLC/C++ at <tt>-O3</tt> (Commit
     3d07010ac86b)</li>
+
     <li>fix <tt>_M_IX86</tt> typo in <tt>Integer</tt> class (Commit 1f1c90cc290d)</li>
+
     <li>add <tt>CRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt> (Issue 782)</li>
+
     <li>add carryless multiplies for NIST b233 and k233 curves (Issue 783)</li>
+
     <li>fix OpenMP build due to use of OpenMP 4 with down-level compilers (Issue
     787)</li>
+
     <li>move <tt>NumericLimitsMin</tt> and <tt>NumericLimitsMax</tt> to CryptoPP
     namespace (Issue 793)</li>
+
     <li>add <tt>SignStream</tt> and <tt>VerifyStream</tt> for ed25519 and large files
     (Issue 796)</li>
+
     <li>add <tt>SecretToPublicKey</tt> function for x25519 (Commit cae5f8e0fd23)</li>
+
     <li>use <tt>IsPowerOf2</tt> in <tt>Integer::Divide</tt> (Commit 48531785b74d)</li>
+
     <li>fix Fedora 7 compile using SSE4.2 (Commit 5b1e6fd28fde)</li>
+
     <li>add GNU Hurd support (Commits 4d24876490c0, ef1c8c2bb48b)</li>
+
     <li>latch previous <tt>ROUNDS</tt> in Salsa and ChaCha (Issue 800, PR 804)</li>
+
     <li>switch to RFC 8439 for ChaCha-TLS (commit 76bdb328a681)</li>
+
     <li>refactor ChaCha and ChaChaTLS use a common core (Commit 70dcd29e0b86)</li>
+
     <li>fix missing <tt>AlgorithmProvider</tt> in PanamaHash (Issue 801)</li>
+
     <li>add SHAKE-128 and SHAKE-256 (Issue 805)</li>
+
     <li>fix AVX2 build due to <tt>_mm256_broadcastsi128_si256</tt> (PR 809, Commit
     a809dbdbc469)</li>
+
     <li>add IETF ChaCha, XChaCha, ChaChaPoly1305 and XChaChaPoly1305 (Issue 727)</li>
+
     <li>fix missing symbols in Windows DLL (Commit 3185e93fe303)</li>
   </ul>
+
   <h2>setenv-android.sh</h2>
+
   <p>The cross-compile script <tt>setenv-android.sh</tt> is no longer viable for building
   the library using the Android NDK. Recent NDK changes has mostly obsoleted the script.
   We are moving to a new script but it is not ready at the moment. Also see Issue 763,
   <a href="https://github.com/weidai11/cryptopp/issues/763">Building for Android using
   NDK not supported on Windows hosts</a>.</p>
+
   <p>We have a GitHub setup with yet another build system at <a href=
   "https://github.com/noloader/cryptopp-android">cryptopp-android</a>. It provides
   <tt>Android.mk</tt> for Android's build system.</p>
+
   <h2>PowerPC failed self tests</h2>
+
   <p>The Crypto++ library had trouble passing its self tests on PowerPC platforms using
   recent versions of GCC, Clang and IBM XLC/C++. We were aware of the problem for some
   time but we were not able to isolate the problem in our code.</p>
+
   <p>We recently learned of issues in GCC and LLVM which caused the runtime problems. The
   issues and compiler patches are available at <a href=
   "https://gcc.gnu.org/bugzilla/show_bug.cgi?id=88234">GCC Issue 88234</a> and <a href=
   "https://bugs.llvm.org/show_bug.cgi?id=39704">LLVM Issue 39704</a>. If needed you
   should incorporate the compiler patches before resorting to
   <tt>-DCRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt> or <tt>-DCRYPTOPP_DISABLE_ASM</tt>.</p>
+
   <p>IBM XLC/C++ also fails some of its self tests. We were not able to reduce the
   failure to a minimum test case so the problem remains unreported to IBM. However, IBM
   XLC/C++ 13.1 uses the LLVM front-end and we suspect it is a similar problem reported to
   GCC and LLVM. You should use <tt>-DCRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt> or
   <tt>-DCRYPTOPP_DISABLE_ASM</tt> to work around the problem.</p>
+
   <h2>Notes for Distros</h2>
-  <p>ARMEL may not build correctly because the makefile may mis-identify the availability of NEON. If ARMEL fails to build then apply <A HREF="https://github.com/weidai11/cryptopp/commit/84ab1f3c66a5">Commit 84ab1f3c66a5</A>.</p>
-  <p>Aarch64 may not build correctly because the makefile may use the wrong <tt>CXXFLAGS</tt> during feature testing. If Aarch64 fails to build then apply <A HREF="https://github.com/weidai11/cryptopp/commit/7c7a12c58422">Commit 7c7a12c58422</A>.</p>
-  <p>Thanks to László Böszörményi and Nicolas Chauvet for help with the problems.</p>
+
+  <p>ARMEL may not build correctly because the makefile may mis-identify the availability
+  of NEON. If ARMEL fails to build then apply <a href=
+  "https://github.com/weidai11/cryptopp/commit/84ab1f3c66a5">Commit 84ab1f3c66a5</a>.</p>
+
+  <p>Aarch64 may not build correctly because the makefile may use the wrong
+  <tt>CXXFLAGS</tt> during feature testing. If Aarch64 fails to build then apply <a href=
+  "https://github.com/weidai11/cryptopp/commit/7c7a12c58422">Commit 7c7a12c58422</a>.</p>
+
+  <p>Thanks to László
+  Böszörményi and Nicolas Chauvet for help with
+  the problems.</p>
+
   <h2>File Changes</h2>
+
   <p>Below is a list of all files that were added at Crypto++ 8.1. <tt>keccakc.h</tt> and
   <tt>keccakc.cpp</tt> were refactored and deleted.</p>
   <pre>

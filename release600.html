@@ -1,8 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
   <title>Crypto++ Library | 6.0 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
@@ -10,100 +12,145 @@
   "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
 </head>
+
 <body>
   <!-- Child pages menu bar at top of page. Differs from home page -->
+
   <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
     <tbody>
       <tr>
         <td><b><big><a href="index.html">Home Page</a></big></b></td>
+
         <td><a href="index.html#download">Download</a></td>
+
         <td><a href="docs/ref/">Manual</a></td>
+
         <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
+
         <td><a href="wiki/">Mediawiki</a></td>
+
         <td><a href="index.html#lists">Mailing lists</a></td>
+
         <td><a href="index.html#contributions">Contributions</a></td>
+
         <td><a href="wiki/Related_Links">Related links</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2>Crypto++ 6.0</h2>
+
   <p>Crypto++ 6.0 was released on January 22, 2018. The 6.0 release was a major relase
   and the ABI changed. The release included two CVE fixes.</p>
+
   <p>The first CVE, CVE-2016-9939, was a transient DoS due to allocating an oversized
   buffer on attacker controlled data. The transitivity was due to a zeroizer which
   cleared memory, even if the memory was unused.</p>
+
   <p>The second CVE, CVE-2017-9434, was a misidentified finding that arose during
   fuzzing. The project detected a memory error that was due to a violation of aliasing
   rules in the test software, and not the library proper.</p>
+
   <h2>Download</h2>
+
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below. Release signatures can be verified using GnuPG according to <a href=
   "signing.html">Release Signing</a>.</p>
+
   <ul>
     <li>Download: <a href="cryptopp600.zip">cryptopp600.zip</a>, <a href=
     "cryptopp600.zip.sig">cryptopp600.zip.sig</a></li>
+
     <li>SHA1: 290dfc1948b860b29da40f8c5559f6559ce787db</li>
+
     <li>SHA256: 64ac2db96b3f1b7a23675e2be95d16c96055edffa2d5e2de6245fdb6baa92dda</li>
+
     <li>SHA512:
     7a60c28be1fc9418adeabe8c66d868b46e65fb3d77d308b9431b16905cde7faa670180619150e849ae44d70f44aa8501a0a0c4354ec84f194fd8138d14aca9bf</li>
+
     <li>BLAKE2b:
     0acdb3f95fa9f267d71badaa48b3f033c0595ebb29dbb1c756a82e807e500748789ef55bd56347072ce23798e0002ed93b1a227ce3a40ed99ff8e35b0f5cee6d</li>
+
     <li>WHIRLPOOL:
     ad242b14a3e54fbcb5cb43b1de270b3021801edd24eeb8d92cf37892567937287e0cda852b8bb4863a438ccaba905f2eb1eff3d67112e4899b62c5b8fbd29f6e</li>
   </ul>
+
   <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
   different because the service creates the archive from sources.</p>
+
   <ul>
     <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_6_0_0">GitHub
     cryptopp600.zip</a></li>
   </ul>
+
   <h2>Release Notes</h2>
+
   <p>The release notes for Crypto++ 6.0 follows.</p>
+
   <ul>
     <li>Major release, recompile of programs required</li>
+
     <li>expanded community input and support
+
       <ul>
         <li>43 unique contributors as of this release</li>
       </ul>
     </li>
+
     <li>fixed CVE-2016-9939 (Issue 346, transient DoS)</li>
+
     <li>fixed CVE-2017-9434 (Issue 414, misidentified memory error)</li>
+
     <li>converted to BASE+SIMD implementation
+
       <ul>
         <li>BASE provides an architecture neutral C++ implementation</li>
+
         <li>SIMD provides architecture specific hardware acceleration</li>
       </ul>
     </li>
+
     <li>improved PowerPC Power4, Power7 and Power8 support</li>
+
     <li>added ARIA, EC German DSA, Deterministic signatures (RFC 6979), Kalyna, NIST Hash
     and HMAC DRBG, Padlock RNG, Poly1305, SipHash, Simon, Speck, SM3, SM4, Threefish
     algorithms</li>
+
     <li>added NaCl interface from the compact library
+
       <ul>
         <li>x25519 key exhange and ed25519 signing provided through NaCl interface</li>
       </ul>
     </li>
+
     <li>improved Testing and QA</li>
+
     <li>ported to MSVC 2017, Xcode 8.1, Sun Studio 12.5, GCC 7.0, MacPorts GCC 7.0, Clang
     4.0, Intel C++ 17.00, IBM XL C/C++ 13.1</li>
   </ul>
+
   <h2>std::byte</h2>
+
   <p>Crypto++ moved <tt>byte</tt> into the <tt>CryptoPP</tt> namespace. The change could
   cause problems with some user programs. There is a wiki page available for fixing user
   programs at <a href=
   "https://www.cryptopp.com/wiki/std::byte"><tt>std::byte</tt></a>.</p>
+
   <p>The change was due to C++17 <tt>std::byte</tt> causing ambiguous symbol references.
   Formerly Crypto++ <tt>byte</tt> was in the gobal namespace to avoid ambiguous symbol
   references due to Microsoft SDK's placement of a <tt>byte</tt> in the gobal
   namespace.</p>After the change Microsoft <tt>byte</tt> and <tt>std::byte</tt> will
   still cause ambiguous symbol references, and the wiki page should help user programs
   make a choice.
+
   <h2>BASE + SIMD</h2>
+
   <p>Crypto++ switched to BASE+SIMD to better support distros. BASE provides an agnostic
   C++ implementation, while SIMD provides a specialized implementation like ARMv8 or
   Intel for AES or SHA. The SIMD files, like <tt>rijndael-simd.cpp</tt> or
   <tt>sha-simd.cpp</tt>, require architecture specific flags, like <tt>-msse4.1
   -maes</tt> and <tt>-march=armv8-a+crypto</tt>.</p>
+
   <p>Both the Crypto++ makefile and the unoffical <a href=
   "https://github.com/noloader/cryptopp-autotools">Autoools project</a> adds the
   architecture specific flags. The makefile still honors your <tt>CXXFLAGS</tt>:</p>
@@ -112,6 +159,7 @@
 rijndael-simd.o : rijndael-simd.cpp
         $(CXX) $(strip $(CXXFLAGS) $(AES_FLAG) -c) $&lt;
 </pre>
+
   <p>If you encounter errors like shown below, then be sure your build tool is adding the
   necessary flags.</p>
   <pre>
@@ -126,13 +174,18 @@ In file included from rijndael-simd.cpp:37:0:
 rijndael-simd.cpp:377:33: note: called from here
          block = _mm_aesenc_si128(block, skeys[i+1]);
 </pre>
+
   <p>Also see the <a href="https://www.cryptopp.com/wiki/BASE+SIMD">BASE+SIMD</a> wiki
   page.</p>
+
   <h2>Autotools project</h2>
-  <p>BASE+SIMD caused a lot of extra work for Debian and László Böszörményi. We teamed
-  with László and added an unofficial <a href=
+
+  <p>BASE+SIMD caused a lot of extra work for Debian and
+  László Böszörményi.
+  We teamed with László and added an unofficial <a href=
   "https://github.com/noloader/cryptopp-autotools">Autoools project</a> to remove some of
   the burden. The Autotools project can be used to build Crypto++ by distributions.</p>
+
   <p>If you experience a failed compile due to missing architecture flags, then run the
   makefile or Autool's configure. Autotools will provide summary information with the
   necessary flags:</p>
@@ -171,6 +224,7 @@ User flags (overrides Automake flags on conflict):
 CXXFLAGS: -g -O2
 LDFLAGS:
 </pre>
+
   <p>Running <tt>configure</tt> on an Aarch64 machine produces similar results for
   ARMv8:</p>
   <pre>
@@ -184,7 +238,9 @@ CRYPTOPP_SHA_FLAG: -march=armv8-a+crypto
 CRYPTOPP_SPECK_FLAG: -march=armv8-a
 CRYPTOPP_SIMON_FLAG: -march=armv8-a
 </pre>
+
   <h2>Bug Fixes and Minor Issues</h2>
+
   <p>The bug fix and minor issue list for Crypto++ 6.0 follows. Many non-trivial issues
   are tracked for auditing and C&amp;A purposes, but the list may not be complete. A
   number in parenthesis is the <a href=
@@ -192,160 +248,291 @@ CRYPTOPP_SIMON_FLAG: -march=armv8-a
   tracked. Sometimes a Git commit is referenced, but many trivial GitHub commits are
   omitted. Missing Issue numbers or lack of consecutiveness usually indicates feature
   requests and "won't fix/can't fix" type reports.</p>
+
   <p>CMake bugs were not included in the list below. There were approximately 40 of them.
   CMake did not achieve stability, and it was removed under Issue 506. The build tool was
   repsonsible for a disproportionate number of bugs between Crypto++ 5.6.4 and Crypto++
   6.0. We did not have the resources to work the reports.</p>
+
   <ul>
     <li>Fixed CVE-2016-9939 (Issue 346, transient DoS)</li>
+
     <li>Fixed CVE-2017-9434 (Issue 414, misidentified memory error)</li>
+
     <li>Added std::byte, fixed compiles (Issues 442, 447, 458)</li>
+
     <li>Converted to BASE+SIMD source code pattern (Issue 380, PR 461)</li>
+
     <li>Updated documentation</li>
+
     <li>Fixed x64dll.asm included in Windows Phone using MSbuilds (Issue 316)</li>
+
     <li>Remove dependencies on WINVER and _WIN32_WINNT (Issue 318)</li>
+
     <li>Fixed memcpy_s has not been declared on MinGW (Issue 319)</li>
+
     <li>Fixed undeclared identifier '_mm_clmulepi64_si128' with Clang (Issue 320)</li>
+
     <li>Fixed MASM RDRAND and access violation under VS2013 (Issue 321)</li>
+
     <li>Fixed WSAStringToAddress was not declared in this scope on Cygwin (Issue
     322)</li>
+
     <li>Updated curve25519 OIDs (Issue 323)</li>
+
     <li>Fixed error: operator '&gt;=' has no left operand on Solaris (Issue 329)</li>
+
     <li>Fixed Error: character following name is not '#' on Debian Hurd (Issue 330)</li>
+
     <li>Fixed zeroizer removal by the optimizer (Issue 331)</li>
+
     <li>Added AND, OR and XOR bitops to Integer class (Issue 336)</li>
+
     <li>Fixed missing Integer ctor overload body (Issue 337)</li>
+
     <li>Removed VC++ 5.0/6.0 support (Issue 342)</li>
+
     <li>Updated DefaultEncryptor, DefaultEncryptorWithMAC with modern algorithms (Issue
     345)</li>
+
     <li>Added SipHash (Issue 348)</li>
+
     <li>Increased Socket::Listen backlog (Issue 349)</li>
+
     <li>Fixed RoundUpToMultipleOf bug (Issue 360)</li>
+
     <li>Fixed &lt;arm_acle.h&gt; include for Apple and LLVM Clang (Issue 362)</li>
+
     <li>Fixed Apple Clang and numeric_limits&lt;word128&gt;::max() returns 0 (Issue
     362)</li>
+
     <li>Fixed 32-bit SHA-384 and SHA-512 (Issue 365)</li>
+
     <li>Fixed poor performance with ARMv8/Aarch64 on Cortex-A57 (Issue 367)</li>
+
     <li>Removed MAINTAIN_BACKWARDS_COMPATIBILITY (Issue 369)</li>
+
     <li>Added HeaderVersion() and LibraryVersion() functions (Issue 371)</li>
+
     <li>Singleton::Ref() crashes on VS2012/2013 (Issue 372, 391)</li>
+
     <li>Fixed Hang and loader lock on WinXP (Issues 373, 435)</li>
+
     <li>Converted encoders to thread safe initialization (Issue 376)</li>
+
     <li>Fixed OS_NO_DEPENDENCE in osrng.h (Issue 377)</li>
+
     <li>Added Test namespace within CryptoPP namespace (Issue 379)</li>
+
     <li>Removed NULL_CHANNEL and Code Warrior 8 workaround (Issue 382)</li>
+
     <li>Added support for C++11 nullptr (Issue 383)</li>
+
     <li>Converted to WSAStringToAddressA for Windows (Issue 385)</li>
+
     <li>Added Random Number Generator benchmarks (Issue 386)</li>
+
     <li>Improved RDRAND and RDSEED performance (Issue 387, 388)</li>
+
     <li>Fixed EGCC assembler error on OpenBSD (Issue 395)</li>
+
     <li>Fixed SIGBUS crashes in cryptest.exe on Solaris (Issue 403)</li>
+
     <li>Fixed Inlining failed ... target specific option mismatch (Issue 407)</li>
+
     <li>Added Kalyna block cipher (Issue 411)</li>
+
     <li>Reduced fiddling with warnings in config.h (Issue 412)</li>
+
     <li>Fixed incorrect BLAKE2 hash (Issue 415)</li>
+
     <li>Added Gzip Filename, Filetime and Comment support (Issue 420)</li>
+
     <li>Added Threefish block cipher (Issue 422)</li>
+
     <li>Added Polynomials for CMAC and GCM mode (Issue 423)</li>
+
     <li>Enabled SHA intrinsics when __SHA__ is not defined (BASE+SIMD pattern) (Issue
     427, PR 461)</li>
+
     <li>Enabled CRC32 intrinsics when __CRC__ is not defined (BASE+SIMD pattern) (Issue
     428, PR 461)</li>
+
     <li>Enabled AES intrinsics when __AES__ is not defined (BASE+SIMD pattern) (Issue
     429, PR 461)</li>
+
     <li>Enabled CLMUL intrinsics when __PCLMUL__ is not defined (BASE+SIMD pattern)
     (Issue 430, PR 461)</li>
+
     <li>Fixed GCC7 and -Wimplicit-fallthrough warnings (Issue 411)</li>
+
     <li>Make SecBlock&lt;T,A&gt; data members protected (Issue 448)</li>
+
     <li>Fixed Clang and sequence point warning (Issue 449)</li>
+
     <li>Added OldRandomPool for pre-Crypto++ 5.5 compatibility (Issue 452)</li>
+
     <li>Switched from -O2 to -O3 in the makefile (Issue 454)</li>
+
     <li>Fixed static SHA::Transform on Intel SHA (Issue 455, 456)</li>
+
     <li>Added ARMv8 AES (Issue 458)</li>
+
     <li>Fixed inlining failed in call on MinGW (Issue 466)</li>
+
     <li>Fixed Clang 3.8 and SHA assembler error on OpenBSD (Issue 468)</li>
+
     <li>Fixed crash in ARIA_ProcessAndXorBlock_Xor_SSSE3 (Issue 473)</li>
+
     <li>Fixed SecBlock compile failure due to lack of strongly typed enums with VS2010
     (Issue 400)</li>
+
     <li>Fixed ARM feature detection with BASE+SIMD (Issue 480, PR 461)</li>
+
     <li>Fixed load/store on ARM NEON using BASE+SIMD (Issue 481, PR 461)</li>
+
     <li>Fixed GCC 6 compile failure with -std=c++03 on AIX (Issue 485)</li>
+
     <li>Improved under-aligned buffers for AltiVec and Power8 (Issue 487)</li>
+
     <li>Fixed AOSP_STL_INC using setenv-android.sh (Issue 490)</li>
+
     <li>Fixed Android ARM compile using setenv-android.sh (Issue 491)</li>
+
     <li>Fixed CentOS 6.6 amd64 compile error (Issue 494)</li>
+
     <li>Added Power8 AES (Issue 497)</li>
+
     <li>Fixed DL_PrivateKey_GFP&lt;GP&gt;::~DL_PrivateKey_GFP() section type conflict on
     AIX (Issue 499)</li>
+
     <li>Fixed CpuID function using Borland (Issue 500)</li>
+
     <li>Fixed SHA512 failed self tests on AIX (Issue 502)</li>
+
     <li>Fixed TEA failed self tests on AIX (Issue 502)</li>
+
     <li>Removed CMake from library sources (Issue 506)</li>
+
     <li>Fixed Android x86 compile using setenv-android.sh (Issue 508)</li>
+
     <li>Fixed Android ARMEABI compile using setenv-android.sh (Issue 509)</li>
+
     <li>Added CRYPTOPP_NO_CPU_FEATURE_PROBES to disable SIGILL probes (Issues 511,
     521)</li>
+
     <li>Fixed compile with Borland 2010 (Issue 512)</li>
+
     <li>Added SHA3 OIDs for signature schemes (Issue 517)</li>
+
     <li>Fixed long compile time for BLAKE2 using MSVC (Issue 527)</li>
+
     <li>Fixed Poly1305 link error (Issue 528)</li>
+
     <li>Added CRYPTOPP_NO_CXX11 for old compilers (Issue 529)</li>
+
     <li>Fixed RSA signature failures when using libcryptopp.dylib on OS X (Issue
     533)</li>
+
     <li>Removed variable block size support for block ciphers (Issue 535)</li>
+
     <li>Added SPECK-64 and SPECK-128 block ciphers (Issue 538)</li>
+
     <li>Added SIMON-64 and SIMON-128 block ciphers (Issue 539)</li>
+
     <li>Added SM4 block cipher (Issue 540)</li>
+
     <li>Added SM3 hash function (Issue 541)</li>
+
     <li>Fixed no such instruction: 'sha1rnds4 $0,%xmm0,%xmm7' on Solaris (Issue 551)</li>
+
     <li>Fixed SM3 failed self tests at -O3 on AIX (Issue 553)</li>
+
     <li>Fixed impossible register constraint in 'asm' (Issue 554)</li>
+
     <li>Removed DL_PrivateKey_GFP_OldFormat (Issue 567)</li>
+
     <li>Improved &lt;arm_acle.h&gt; include for GCC, Apple and LLVM Clang on ARM, Aarch32
     and Aarch64 (Issue 568)</li>
+
     <li>Removed AsymmetricAlgorithm::BERDecode and DEREncode (Issue 569)</li>
+
     <li>Fixed Clang warnings in pkcspad.h (Pull Request 270)</li>
+
     <li>Improved Keccak and SHA3 support (Pull Requests 280, 291, 296)</li>
+
     <li>Fixed MARS key sizes (Pull Requests 281, 282)</li>
+
     <li>Fixed VS2012 project files (Pull Request 286)</li>
+
     <li>Fixed GCC warning "type qualifiers ignored on function return type" (Pull Request
     339)</li>
+
     <li>Fixed CRYPTOPP_ASSERT (Pull Request 356)</li>
+
     <li>Fixed VS2017 warnings (Pull Request 363)</li>
+
     <li>Added W3C padding support (Pull Request 368)</li>
+
     <li>Added DragonFly support (Pull Request 378)</li>
+
     <li>Removed static from reference to singleton (Pull Request 392)</li>
+
     <li>Improved SunCC support (Pull Request 402)</li>
+
     <li>Fixed Sun SPARC alignment (Pull Request 405)</li>
+
     <li>Fixed BLAKE2 when using non-standard digest sizes (Pull Request 416)</li>
+
     <li>Implemented reproducible builds (Pull Request 426)</li>
+
     <li>Improved Windows XP support under VS2015 (Pull Request 439)</li>
+
     <li>Removed -march=native as default in Makefile (Pull Request 465)</li>
+
     <li>Removed WORKAROUND_MS_BUG_Q258000 (Pull Request 478)</li>
+
     <li>Fixed Clang FreeBSD 10.3 builds (Pull Request 483)</li>
+
     <li>Added Android cpufeatures library integration (Pull Request 489)</li>
+
     <li>Improved MinGW support (Pull Request 531)</li>
+
     <li>Updated shared object build rules (Pull Request 547)</li>
+
     <li>Fixed C++ Builder compiles (Pull Request 552)</li>
+
     <li>Used lambda instead of std::bind2nd in C++11 (Pull Request 559)</li>
+
     <li>Fixed deterministic signatures for EC (Pull Request 560)</li>
+
     <li>Added interface to TweetNaCl library (Pull Request 566)</li>
+
     <li>Removed all BACKWARDS_COMPATIBILITY code and macros. The clock is reset.</li>
+
     <li>Fixed approximately 25 Asan and UBsan findings</li>
+
     <li>Fixed approximately 50 Coverity findings</li>
   </ul>
+
   <h2>Notes for Distros</h2>
+
   <p>There are three items of interest for distros. First, we fixed the ABI breaks by
   bumping to Crypto++ 6.0. We apologize for the problems it caused in Crypto++ 5.6.5.</p>
+
   <p>Second, we have an unoffical Autotools project at <a href=
   "https://github.com/noloader/cryptopp-autotools">Crypto++ | Autoools</a>. It is based
-  on the Autotools project files supplied by Debian and László Böszörményi. Autotools has
-  several contributors, including László, so it should be mostly up to date.</p>
+  on the Autotools project files supplied by Debian and László
+  Böszörményi. Autotools has several contributors,
+  including László, so it should be mostly up to date.</p>
+
   <p>Third, we have an unoffical Cmake project at <a href=
   "https://github.com/noloader/cryptopp-cmake">Crypto++ | Cmake</a>. It is based on the
   Cmake project files that were removed from the distribution. There are fewer
   contributors to the Cmake project and the files may not be up to date.</p>
+
   <h2>File Changes</h2>
+
   <p>Below is a list of <em>all</em> files that were added or deleted at Crypto++
   6.0.</p>
   <pre>
