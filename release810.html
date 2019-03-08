@@ -146,7 +146,9 @@
   GCC and LLVM. You should use <tt>-DCRYPTOPP_BUGGY_SIMD_LOAD_AND_STORE</tt> or
   <tt>-DCRYPTOPP_DISABLE_ASM</tt> to work around the problem.</p>
   <h2>Notes for Distros</h2>
-  <p>None.</p>
+  <p>ARMEL may not build correctly because the makefile may mis-identify the availability of NEON. If ARMEL fails to build then apply <A HREF="https://github.com/weidai11/cryptopp/commit/84ab1f3c66a5">Commit 84ab1f3c66a5</A>.</p>
+  <p>Aarch64 may not build correctly because the makefile may use the wrong <tt>CXXFLAGS</tt> during feature testing. If Aarch64 fails to build then apply <A HREF="https://github.com/weidai11/cryptopp/commit/7c7a12c58422">Commit 7c7a12c58422</A>.</p>
+  <p>Thanks to László Böszörményi and Nicolas Chauvet for help with the problems.</p>
   <h2>File Changes</h2>
   <p>Below is a list of all files that were added at Crypto++ 8.1. <tt>keccakc.h</tt> and
   <tt>keccakc.cpp</tt> were refactored and deleted.</p>
