@@ -85,7 +85,7 @@ Step 7 - Update Mediawiki dependencies
 ======================================
 
 Use composer to update Mediawiki dependencies. This is needed
-because the relase tarball does not include them.
+because the release tarball does not include them.
 
 1. cd /var/www/html/w/
 2. php -d extension=phar.so composer.phar update
