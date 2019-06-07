@@ -89,7 +89,10 @@ If you experience errors in vendor/ then revisit Step (3).
 Step 8 - Restore LocalSettings.php
 ==================================
 
-1. cp /var/www/html/wiki-backup/LocalSettings.php .
+Make a back up of the new LocalSettings.php in case it is needed.
+
+1. cp LocalSettings.php LocalSettings.php.bu
+2. cp /var/www/html/wiki-backup/LocalSettings.php .
 
 Step 9 - Update for new Mediawiki
 =================================
