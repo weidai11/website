@@ -5,6 +5,12 @@ install a bunch of developer tools and then remove them. Fourth,
 Mediawiki uses bleeding edge components but CentOS provides
 antique software.
 
+You should set aside about two hours for the migration. The process
+itself is copy/paste and should take about 15 minutes. Unfortunately
+something always breaks even on minor version bumps. You will need
+extra fiddling time. The last time we were trouble free on a
+migration was Media wiki 1.18 or 1.20.
+
 In the instructions below the Crypto++ Wiki is located at
 /var/www/html/w. https://www.cryptopp.com/wiki works because
 of a mod-rewrite rule.
