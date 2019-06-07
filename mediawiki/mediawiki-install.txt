@@ -113,6 +113,10 @@ The head notes cover what update-wiki.sh does. It includes
 updating the components in skins/ and extensions/, running
 maintenance/update.php, and fixing permissions.
 
+maintenance/update.php must succeed or the migration is a failure.
+You must fix failures or go back to the down-level version of
+MediaWiki saved at /var/www/html/wiki-backup.
+
 The script also restarts MySQL and Apache.
 
 At this point you should be able to test the installation by
