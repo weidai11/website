@@ -1,20 +1,15 @@
 #!/usr/bin/env bash
 
 # update-wiki.sh performs maintenance on the website's wiki installation.
-# The script does four things, give or take. First it updates GitHub
+# The script does three things, give or take. First it updates GitHub
 # based components in skins/ and extensions/. Second, it {re}sets
 # permissions on some files and folders, including logging files
-# in /var/log/. Third, it runs MediaWiki's update.php. Fourth, it
-# restarts the MySQL and Apache services.
+# in /var/log. Third, it runs MediaWiki's update.php and then restarts
+# the Apache service. update.php is important and it must be run anytime
+# a change occurs.
 #
-# update.php is important and it must be run anytime a change occurs.
-#
+# The script is located in the website directory, which is /var/www/html/.
 # We should probably schedule this script as a cron job.
-
-# Important variables
-WIKI_DIR="/var/www/html/w"
-WIKI_REL=REL1_31
-LOG_DIR="/var/log"
 
 THIS_DIR=$(pwd)
 function finish {
@@ -28,17 +23,22 @@ if [[ ($(id -u) != "0") ]]; then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 0 || return 0
 fi
 
-# This finds directories check'd out from Git and updates them.
+# Important variables
+WIKI_DIR="/var/www/html/w"
+WIKI_REL=REL1_32
+LOG_DIR="/var/log"
+
+# This finds directories check'd out from Git and updates them. 
 # It works surprisingly well. There has only been a couple of
 # minor problems.
-for dir in $(find "$WIKI_DIR/skins" -name '.git'); do
+for dir in $(find "$WIKI_DIR/skins" -name '.git' 2>/dev/null); do
     cd "$dir/.."
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull
     git checkout -f "$WIKI_REL"
 done
 
-for dir in $(find "$WIKI_DIR/extensions" -name '.git'); do
+for dir in $(find "$WIKI_DIR/extensions" -name '.git' 2>/dev/null); do
     cd "$dir/.."
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull
@@ -46,11 +46,10 @@ for dir in $(find "$WIKI_DIR/extensions" -name '.git'); do
 done
 
 # Remove all test frameworks
-for dir in $(find "$WIKI_DIR" -iname 'test*'); do
+for dir in $(find "$WIKI_DIR" -iname 'test*' 2>/dev/null); do
     rm -rf "$dir" 2>/dev/null
 done
 
-# Fix this permission
 if [[ -f "$WIKI_DIR/extensions/SyntaxHighlight/pygments/pygmentize" ]]; then
     chmod ug+x "$WIKI_DIR/extensions/SyntaxHighlight/pygments/pygmentize"
 fi
@@ -74,6 +73,13 @@ for file in $(find "$WIKI_DIR/images" -type f 2>/dev/null); do
     chmod o-rwx "$file"
 done
 
+echo "Fixing Apache data permissions"
+for dir in "/var/lib/pear/" "/var/lib/php/"; do
+    chown -R apache:apache "$dir"
+    chmod -R ug+rwx "$dir"
+    chmod -R o-rwx  "$dir"
+done
+
 echo "Fixing Apache logging permissions"
 for dir in $(find "$LOG_DIR" -type d -name 'httpd*' 2>/dev/null); do
     if [[ ! -d "$dir" ]]; then continue; fi
@@ -81,7 +87,7 @@ for dir in $(find "$LOG_DIR" -type d -name 'httpd*' 2>/dev/null); do
     chmod ug+rwx "$dir"
     chmod o-rwx  "$dir"
 done
-for file in $(find "$LOG_DIR/httpd" -type f -name '*log*' 2>/dev/null); do
+for file in $(find "$LOG_DIR/httpd*" -type f -name '*log*' 2>/dev/null); do
     if [[ ! -f "$file" ]]; then continue; fi
     chown root:apache "$file"
     chmod ug+rw "$file"
