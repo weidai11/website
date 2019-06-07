@@ -13,7 +13,7 @@ migration was Media wiki 1.18 or 1.20.
 
 In the instructions below the Crypto++ Wiki is located at
 /var/www/html/w. https://www.cryptopp.com/wiki works because
-of a mod-rewrite rule.
+of an Apache mod-rewrite rule.
 
 Step 1 - Get root
 =================
