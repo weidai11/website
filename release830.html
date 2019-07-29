@@ -219,8 +219,25 @@
 
   <p>Below is a list of all files that were added at Crypto++ 8.3.</p>
   <pre>
-$ git diff-tree -r --summary CRYPTOPP_8_1_0 CRYPTOPP_8_3_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
-create   TestVectors/skipjack.txt
+$ git diff-tree -r --summary CRYPTOPP_8_2_0 CRYPTOPP_8_3_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.S|\.txt|\.dat)'
+create   TestData/ecies_p160.dat
+create   TestData/ecies_t163.dat
+create   config_align.h
+create   config_asm.h
+create   config_cpu.h
+create   config_cxx.h
+create   config_dll.h
+create   config_int.h
+create   config_misc.h
+create   config_ns.h
+create   config_os.h
+create   config_ver.h
+create   sha1_armv4.S
+create   sha1_armv4.h
+create   sha256_armv4.S
+create   sha256_armv4.h
+create   sha512_armv4.S
+create   sha512_armv4.h
 </pre>
 </body>
 </html>
