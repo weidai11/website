@@ -37,7 +37,7 @@ do
     echo "**************** $file ****************"
 
     echo "tidy: processing file $file..."
-    "$HTML_TIDY" --quiet yes --output-bom no --indent auto --wrap 90 -m "$file"
+    "$HTML_TIDY" -utf8 --quiet yes --output-bom no --indent auto --wrap 90 -m "$file"
 
     echo "sed: processing file $file..."
 
@@ -48,9 +48,6 @@ do
     "$SED" "${SED_OPTS[@]}" -e'/<meta name="generator".*/d' "$file"
     "$SED" "${SED_OPTS[@]}" -e'/"HTML Tidy.*/d' "$file"
     "$SED" "${SED_OPTS[@]}" -e'/"*see www.w3.org*/d' "$file"
-
-    # Fix change from UTF-8 to ASCII
-    "$SED" "${SED_OPTS[@]}" -e's/charset=us-ascii/charset=utf-8/g' "$file"
 
     # Fix CRLF endings after sed
     unix2dos "$file"
@@ -63,14 +60,6 @@ done
 
 # Delete trailing whitespace
 "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' *.css
- 
-# Fix html-tidy hacking European names
-"$SED" "${SED_OPTS[@]}" -e's/L&Atilde;&iexcl;szl&Atilde;&sup3;/László/g' *.html
-
-"$SED" "${SED_OPTS[@]}" -e's/B&Atilde;&para;sz&Atilde;&para;rm&Atilde;&copy;nyi/Böszörményi/g' *.html
-
-"$SED" "${SED_OPTS[@]}" -e's/J&Atilde;&iexcl;n/Ján/g' *.html
-"$SED" "${SED_OPTS[@]}" -e's/Jan&Auml;&Atilde;&iexcl;r/Jančár/g' *.html
 
 "$SED" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' *.html
 
