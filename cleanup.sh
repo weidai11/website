@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # This script cleans up the web pages and style for the Crypto++ website.
-# Please ensure you have both (1) HTML Tidy and (2) DOS Tools installed and on-path
+# Please ensure you have both (1) HTML Tidy and (2) DOS Tools installed and on-path.
+
+export LANG=en_US.utf8
 
 SED=sed
 SED_OPTS=
@@ -66,6 +68,8 @@ done
 "$SED" "${SED_OPTS[@]}" -e's/L&Atilde;&iexcl;szl&Atilde;&sup3;/László/g' *.html
 
 "$SED" "${SED_OPTS[@]}" -e's/B&Atilde;&para;sz&Atilde;&para;rm&Atilde;&copy;nyi/Böszörményi/g' *.html
+
+"$SED" "${SED_OPTS[@]}" -e's/J&Atilde;&iexcl;n Jan&Auml;&Atilde;&iexcl;r/Ján Jančár/g' *.html
 
 "$SED" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' *.html
 
