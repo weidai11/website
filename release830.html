@@ -49,8 +49,14 @@
   in ECDSA due to leaking nonce length information. The second is information leaks in
   elliptic curve ECP class (prime fields) and the Add, Double and Multiply class member
   functions. The third is information leaks in elliptic curve EC2N class (binary fields)
-  and the Add, Double and Multiply class member functions. The CVE was tracked under
-  <a href="https://github.com/weidai11/cryptopp/issues/869">Issue 869</a>.</p>
+  and the Add, Double and Multiply class member functions.</p>
+
+  <p>It appears nearly all versions of Crypto++ are affected. Based on research of
+  antique Crypto++, I believe that means Crypto++ 3.2 and forward. Crypto++ 3.2 was
+  released March 20, 2000.</p>
+
+  <p>The CVE was tracked under <a href=
+  "https://github.com/weidai11/cryptopp/issues/869">Issue 869</a>.</p>
 
   <p>XXX</p>
 
