@@ -45,20 +45,9 @@
 
   <p>The 8.3 release cleared <a href=
   "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-14318">CVE-2019-14318</a>. Ján
-  Jančár discovered multiple information leaks in elliptic curve algorithms. The first is
-  in ECDSA due to leaking nonce length information. The second is information leaks in
-  elliptic curve ECP class (prime fields) and the Add, Double and Multiply class member
-  functions. The third is information leaks in elliptic curve EC2N class (binary fields)
-  and the Add, Double and Multiply class member functions.</p>
-
-  <p>It appears nearly all versions of Crypto++ are affected. Based on research of
-  antique Crypto++, I believe that means Crypto++ 3.2 and forward. Crypto++ 3.2 was
-  released March 20, 2000.</p>
-
-  <p>The CVE was tracked under <a href=
-  "https://github.com/weidai11/cryptopp/issues/869">Issue 869</a>.</p>
-
-  <p>XXX</p>
+  Jančár discovered multiple information leaks in elliptic curve algorithms. The CVE was
+  tracked under <a href="https://github.com/weidai11/cryptopp/issues/869">Issue 869</a>.
+  See the section CVE-2019-14318 below for more details.</p>
 
   <h2>Download</h2>
 
@@ -198,6 +187,20 @@
 
     <li>clear asserts in <tt>TestDataNameValuePairs</tt> (GH #827)</li>
   </ul>
+
+  <h2>CVE-2019-14318</h2>
+
+  <p>Ján Jančár discovered multiple information leaks in elliptic curve algorithms. The
+  first is in ECDSA due to leaking nonce length information. The second is information
+  leaks in elliptic curve ECP class (prime fields) and the Add, Double and Multiply class
+  member functions. The third is information leaks in elliptic curve EC2N class (binary
+  fields) and the Add, Double and Multiply class member functions.</p>
+
+  <p>Based on research of antique Crypto++, it appears the issue affects Crypto++ 3.2
+  and forward. Crypto++ 3.2 was released March 2000.</p>
+
+  <p>The CVE was tracked under <a href=
+  "https://github.com/weidai11/cryptopp/issues/869">Issue 869</a>.</p>
 
   <h2>setenv-android.sh</h2>
 
