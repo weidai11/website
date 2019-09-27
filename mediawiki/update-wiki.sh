@@ -17,10 +17,11 @@ function finish {
 }
 trap finish EXIT
 
-# Privileges?
+# Privileges? Exit 0 to keep things moving along
+# Errors will be printed to the terminal
 if [[ ($(id -u) != "0") ]]; then
     echo "You must be root to update the wiki"
-    [[ "$0" = "$BASH_SOURCE" ]] && exit 0 || return 0
+    exit 0
 fi
 
 # Important variables
@@ -136,3 +137,5 @@ if ! systemctl restart httpd24-httpd.service 2>&1; then
     systemctl stop httpd24-httpd.service 2>&1
     systemctl start httpd24-httpd.service 2>&1
 fi
+
+exit 0
