@@ -7,9 +7,8 @@ antique software.
 
 You should set aside about two hours for the migration. The process
 itself is copy/paste and should take about 15 minutes. Unfortunately
-something always breaks even on minor version bumps. You will need
-extra fiddling time. The last time we were trouble free on a
-migration was Media wiki 1.18 or 1.20.
+something usually breaks even on minor version bumps. You will most 
+likely need extra fiddling time.
 
 In the instructions below the Crypto++ Wiki is located at
 /var/www/html/w. https://www.cryptopp.com/wiki works because
@@ -70,9 +69,9 @@ Step 6 - Download Media Wiki
 Temporary unpack:
 
 1. cd /tmp
-2. wget https://releases.wikimedia.org/mediawiki/1.32/mediawiki-1.32.2.tar.gz
-3. tar -xzf mediawiki-1.32.2.tar.gz
-4. mv mediawiki-1.32.2/ w
+2. wget https://releases.wikimedia.org/mediawiki/1.32/mediawiki-1.32.3.tar.gz
+3. tar -xzf mediawiki-1.32.3.tar.gz
+4. mv mediawiki-1.32.3/ w
 5. rsync -avh --dry-run /tmp/w /var/www/html/
 
 And then:
@@ -100,6 +99,8 @@ If you experience errors in vendor/ then revisit Step (3).
 Step 8 - Restore LocalSettings.php
 ==================================
 
+The backup of LocalSettings.php is in /var/www/html/wiki-backup.
+
 Make a back up of the new LocalSettings.php in case it is needed.
 
 1. cp LocalSettings.php LocalSettings.php.bu
@@ -110,6 +111,8 @@ Step 9 - Update for new Mediawiki
 
 1. Open update-wiki.sh
 2. Change WIKI_REL=REL1_32 to appropriate version
+
+update-wiki.sh is available in this GitHub repo.
 
 Next, cross your fingers:
 
