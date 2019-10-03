@@ -6,7 +6,7 @@ with particular content.
 It is also OK to execute the procedure multiple times while learning the
 process. Let's Encrypt will issue a new certifcate on a second or thrid run.
 
-The process below reuses the existing webserver key for key continuity.
+The process below reuses the existing webserver keypair for key continuity.
 We also need to be mindful of unexpected key changes due to Public-Key-Pins
 header used for HTTP public key pinning.
 
