@@ -119,22 +119,26 @@ update-wiki.sh is available in this GitHub repo.
 
 Next, cross your fingers:
 
-3. bash /var/www/html/w/update-wiki.sh
+3. php /var/www/html/w/maintenance/update.php
 
-The head notes cover what update-wiki.sh does. It includes
-updating the components in skins/ and extensions/, running
-maintenance/update.php, and fixing permissions.
+And then:
+
+4. bash /var/www/html/w/update-wiki.sh
 
 maintenance/update.php must succeed or the migration is a failure.
 You must fix failures or go back to the down-level version of
 MediaWiki saved at /var/www/html/wiki-backup.
+
+The head notes cover what update-wiki.sh does. It includes
+updating the components in skins/ and extensions/, running
+maintenance/update.php, and fixing permissions.
 
 The script also restarts MySQL and Apache.
 
 At this point you should be able to test the installation by
 visiting Special:Version:
 
-4. https://www.cryptopp.com/wiki/Special:Version
+5. https://www.cryptopp.com/wiki/Special:Version
 
 Step 10 - Restore server hardening
 ==================================
