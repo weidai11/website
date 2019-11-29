@@ -37,7 +37,7 @@ do
     echo "**************** $file ****************"
 
     echo "tidy: processing file $file..."
-    "$HTML_TIDY" -utf8 --quiet yes --output-bom no --indent auto --wrap 90 -m "$file"
+    "$HTML_TIDY" -utf8 --quiet yes --output-bom no --indent auto --indent-spaces 2 --wrap 90 -m "$file"
 
     echo "sed: processing file $file..."
 
@@ -45,9 +45,9 @@ do
     "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
 
     # Delete the generator markup tag
-    "$SED" "${SED_OPTS[@]}" -e'/<meta name="generator".*/d' "$file"
-    "$SED" "${SED_OPTS[@]}" -e'/"HTML Tidy.*/d' "$file"
-    "$SED" "${SED_OPTS[@]}" -e'/"*see www.w3.org*/d' "$file"
+    #"$SED" "${SED_OPTS[@]}" -e'/<meta name="generator".*/d' "$file"
+    #"$SED" "${SED_OPTS[@]}" -e'/"HTML Tidy.*/d' "$file"
+    #"$SED" "${SED_OPTS[@]}" -e'/"*see www.w3.org*/d' "$file"
 
     # Fix CRLF endings after sed
     unix2dos "$file"

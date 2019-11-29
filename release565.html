@@ -1,10 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Apple macOS version 5.7.28">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
   <title>Crypto++ Library | 5.6.5 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
@@ -12,130 +11,88 @@
   "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
 </head>
-
 <body>
   <!-- Child pages menu bar at top of page. Differs from home page -->
-
   <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
     <tbody>
       <tr>
         <td><b><big><a href="index.html">Home Page</a></big></b></td>
-
         <td><a href="index.html#download">Download</a></td>
-
         <td><a href="docs/ref/">Manual</a></td>
-
         <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
-
         <td><a href="wiki/">Mediawiki</a></td>
-
         <td><a href="index.html#lists">Mailing lists</a></td>
-
         <td><a href="index.html#contributions">Contributions</a></td>
-
         <td><a href="wiki/Related_Links">Related links</a></td>
       </tr>
     </tbody>
   </table>
-
   <h2>Crypto++ 5.6.5</h2>
-
   <p>Crypto++ 5.6.5 was released on October 11, 2016. The 5.6.5 release was mostly a
   maintenance release. The release included two CVE fixes.</p>
-
   <p>The first, CVE-2016-7420, was a procedural finding due to external build systems
   failing to define <tt>NDEBUG</tt> for release builds. The gap was the project's failure
   to tell users to define <tt>NDEBUG</tt>. The second, CVE-2016-7544, was a potential
   memory corruption on Windows platforms when using Microsoft compilers due to use of
   <tt>_malloca</tt> and <tt>_freea</tt>.</p>
-
   <p>Due to CVE-2016-7420 and the possibility for an unwanted <tt>assert</tt> to egress
   data, users and distros are encouraged to recompile the library and all dependent
   programs.</p>
-
   <h2>Download</h2>
-
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below.</p>
-
   <ul>
     <li><a href="cryptopp565.zip">Original cryptopp565.zip</a></li>
-
     <li>SHA1: a74f207a315b6a133af9640a45bde9d6e378af4d</li>
-
     <li>SHA256: a75ef486fe3128008bbb201efee3dcdcffbe791120952910883b26337ec32c34</li>
-
     <li>SHA512:
     f13718d02ca69b0129aaf9e767c9d2e0333aa7538355f9c63d9eaf1ff369062084a18dc01489439ebf37797b3ea81b01beb072057d47ec962bfb824ddc72abc7</li>
-
     <li>WHIRLPOOL:
     376e8d7ad497d03f19542fd183181f26c83f38dfef800529cb5d5ce7238978f005d36e3e7cce63322af9b7dfc3a69fdb615c435bcf092bbd6abf6781dfd6d8a3</li>
   </ul>
-
   <p>Mirrors for the download are below. Note that GitHub and Sourceforge checksums on
   the ZIP or TAR are different because each creates the archive from sources.</p>
-
   <ul>
     <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_5">GitHub
     cryptopp565.zip</a></li>
-
     <li><a href="//prdownloads.sourceforge.net/cryptopp/cryptopp565.zip" target=
     "_blank">Sourceforge cryptopp565.zip</a></li>
   </ul>
-
   <h2>Release Notes</h2>
-
   <p>The release notes for Crypto++ 5.6.5 follows.</p>
-
   <ul>
     <li>maintenance release, recompile of programs recommended</li>
-
     <li>expanded community input and support
-
       <ul>
         <li>25 unique contributors as of this release</li>
       </ul>
     </li>
-
     <li>fixed CVE-2016-7420 (Issue 277, document <tt>NDEBUG</tt> for
     production/release)</li>
-
     <li>fixed CVE-2016-7544 (Issue 302, avoid <tt>_malloca</tt> and <tt>_freea</tt> for
     MSC compilers)</li>
-
     <li>shipped library in recommended state
-
       <ul>
         <li>backwards compatibility achieved with <tt>&lt;config.compat&gt;</tt></li>
       </ul>
     </li>
-
     <li>Visual Studio project file cleanup
-
       <ul>
         <li>improved X86 and X64 MSBuild support</li>
-
         <li>added ARM-based MSBuild awareness</li>
       </ul>
     </li>
-
     <li>improved Testing and QA
-
       <ul>
         <li>expanded platforms and compilers</li>
-
         <li>expanded Coverity into OS X and Windows platforms</li>
-
         <li>added Windows test scripts using Strawberry Perl</li>
       </ul>
     </li>
-
     <li>ported to MSVC 2015 SP3, Xcode 7.3, Sun Studio 12.5, GCC 7.0, MacPorts GCC 7.0,
     Clang 3.8, Intel C++ 17.00</li>
   </ul>
-
   <h2>Bug Fixes and Minor Issues</h2>
-
   <p>The bug fix and minor issue list for Crypto++ 5.6.5 follows. Most non-trivial issues
   are tracked for auditing and C&amp;A purposes, but the list may not be complete. A
   number in parenthesis is the <a href=
@@ -143,84 +100,53 @@
   tracked. Sometimes a Git commit is referenced, but many trivial GitHub commits are
   omitted. Missing Issue numbers or lack of consecutiveness usually indicates feature
   requests and "won't fix/can't fix" type reports.</p>
-
   <p>The list below has about 20 issues. The project's test scripts, <tt>cryptest.sh</tt>
   and <tt>cryptest.nmake</tt>, uncovered about 16 (80.0%) of them.</p>
-
   <ul>
     <li>Document need for <tt>NDEBUG</tt> in production/release (CVE-2016-7420, Issue
     277)</li>
-
     <li>Add CRYPTOPP_ASSERT(); avoid Posix assert() (CVE-2016-7420, Issue 277)</li>
-
     <li>Potential memory corruption when using <tt>_malloca</tt> and <tt>_freea</tt> for
     MSC compilers (CVE-2016-7544, Issue 302)</li>
-
     <li>Fix missing <tt>CryptoPP::memcpy_s</tt> on MinGW32 (Issue 319)</li>
-
     <li>Visual Studio 2010 project file cleanup (Issue 314)</li>
-
     <li>Improved MSBuild support, including future ARM-based builds (Issue 316)</li>
-
     <li>Cygwin, Newlib and broken compile when <tt>-std=XXX</tt> due to
     <tt>&lt;signal.h&gt;</tt> (Issue 315)</li>
-
     <li>Sun Studio 12.2-12.4 and failed debug compile due to <tt>&lt;signal.h&gt;</tt>
     (Issue 289)</li>
-
     <li>Sun Studio 12.3-12.4, integer.cpp and "Types cannot be declared in anonymous
     union" (Issue 274)</li>
-
     <li>Sun Studio 12.5 and incorrect results for GCM when using SSE2 ASM (Issue
     284)</li>
-
     <li>Solaris GCC and "error: constructor priorities are not supported" (Issue
     289)</li>
-
     <li>Clang 3.3, i686 and "error: unknown use of instruction mnemonic without a size
     suffix (Issue 264)</li>
-
     <li>Clang 3.7 warnings for missing/undefined variable templates definitions in
     <tt>&lt;pkcspad.h&gt;</tt></li>
-
     <li>Additional test scripts for Windows and OS X testing (Issue 303)</li>
-
     <li>Approximately 80 miscellaneous Coverity findings on Windows (Issues 310-12, all
     minor or false positives)</li>
-
     <li>Approximately 20 miscellaneous Coverity findings on OS X (Issues 295 and 299, all
     minor or false positives)</li>
-
     <li>MARS max keysize is limited at 32 bytes (Issue 278)</li>
-
     <li>CMake improvements (Issues 276)</li>
-
     <li>CMake, Solaris and output artifacts that can't be linked due to missing PIC
     (Issue 271)</li>
-
     <li>CMake, CMakeList.txt calls out GNUInstallDirs (Issue 268)</li>
-
     <li>Fix port forwarding in <tt>cryptest.exe</tt> program on Unix</li>
-
     <li>Move file scope statics into anonymous namespace</li>
-
     <li>Rewrite some Windows socket code, remove <tt>_WINSOCK_DEPRECATED_NO_WARNINGS</tt>
     (Issue 19)</li>
-
     <li>Guard DEBUG_NEW for Visual Studio and leak detection</li>
-
     <li>Remove library supplied aesenc, aesdec and friends (Issue 206)</li>
-
     <li>Use <tt>__BIGGEST_ALIGNMENT__</tt> in <tt>&lt;secblock.h&gt;</tt> if its smaller
     than <tt>sizeof(T)</tt></li>
-
     <li>Re-enable AES-NI/CLMUL when using Clang Integrated Assembler</li>
-
     <li>Updated documentation</li>
   </ul>
-
   <h2>File Changes</h2>
-
   <p>Below is a list of <em>all</em> files that were added or deleted at Crypto++
   5.6.5.</p>The header file <tt>ossig.h</tt> is new and needs to be distributed.
   Additions to <tt>TestScripts</tt> can probably be ignored.
@@ -233,9 +159,7 @@ create TestScripts/cryptest-coverity.cpp
 create TestVectors/tls_chacha.txt
 create ossig.h
 </pre>
-
   <h2>Note for Distros</h2>
-
   <p>If you start getting bug reports on missing symbols that implicate <tt>unsigned long
   long</tt>, then this applies to you. Depending on what you are using in Crypto++, it
   may surface as:</p>
@@ -251,14 +175,12 @@ dyld: Symbol not found: CryptoPP::RandomPool::GenerateIntoBufferedTransformation
   Expected in: .../libcryptopp.dylib
  in .../cryptest.exe
 </pre>
-
   <p>In Crypto++ 5.6.4 and below <b><tt>word64</tt></b> was unconditionally defined to
   <b><tt>unsigned long long</tt></b> on 32-bit and 64-bit platforms. Crypto++ 5.6.5
   defined <b><tt>word64</tt></b> to <b><tt>unsigned long</tt></b> on 64-bit machines due
   to compile problems with GCC and Clang when using SSE and NEON data types through
   intrinsics. Crypto++ 5.6.5 increased use of SSE and NEON intrinsics, and calls to SSE
   and NEON APIs had some hacks that were cleaned up.</p>
-
   <p>Below if from <tt>config.h</tt>, and it is reposnsible for the <em>"missing unsigned
   long long"</em> issue.</p>
   <pre>
@@ -273,7 +195,6 @@ dyld: Symbol not found: CryptoPP::RandomPool::GenerateIntoBufferedTransformation
         #define W64LIT(x) x##ULL
 #endif
 </pre>
-
   <p>To go back to Crypto++ 5.6.4, you have two choices. First, you can use
   <tt>config.compat</tt> in place of <tt>config.h</tt> to restore the compatibility.
   Second, you can remove the <tt>__LP64__</tt> block. Be advised we did not test this
@@ -288,7 +209,6 @@ dyld: Symbol not found: CryptoPP::RandomPool::GenerateIntoBufferedTransformation
         #define W64LIT(x) x##ULL
 #endif
 </pre>
-
   <p>Since this break was unknown to the project, it was identified as a gap in our
   testing process. <a href=
   "http://github.com/weidai11/cryptopp/commit/385a3914d6cfdc88002f113bd4955f7b7ae2266a">Commit

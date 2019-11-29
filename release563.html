@@ -1,10 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 <head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Apple macOS version 5.7.28">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
   <title>Crypto++ Library | 5.6.3 Release</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
@@ -12,155 +11,93 @@
   "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, elliptic curve">
   <link rel="stylesheet" type="text/css" href="cryptopp.css">
 </head>
-
 <body>
   <!-- Child pages menu bar at top of page. Differs from home page -->
-
   <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
     <tbody>
       <tr>
         <td><b><big><a href="index.html">Home Page</a></big></b></td>
-
         <td><a href="index.html#download">Download</a></td>
-
         <td><a href="docs/ref/">Manual</a></td>
-
         <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
-
         <td><a href="wiki/">Mediawiki</a></td>
-
         <td><a href="index.html#lists">Mailing lists</a></td>
-
         <td><a href="index.html#contributions">Contributions</a></td>
-
         <td><a href="wiki/Related_Links">Related links</a></td>
       </tr>
     </tbody>
   </table>
-
   <h2>Crypto++ 5.6.3</h2>
-
   <p>Crypto++ 5.6.3 was released on November 20, 2015. The 5.6.3 release was mostly a
   maintenance release. The release included a few new minor classes, like <a href=
   "//wiki/Base64URLEncoder">Base64URLEncoder</a> to provide encoding and decoding using a
   web safe alphabet.</p>
-
   <h2>Download</h2>
-
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below.</p>
-
   <ul>
     <li><a href="cryptopp563.zip">Original cryptopp563.zip</a></li>
-
     <li>SHA-1: f2fcd1fbf884bed70a69b565970ecd8b33a68cc4</li>
-
     <li>SHA-256: 9390670a14170dd0f48a6b6b06f74269ef4b056d4718a1a329f6f6069dc957c9</li>
-
     <li>SHA-512:
     b3b963e87d937aeae03aa41849c23bb03fc0a8e627afddb8aa74bc07edf51949888aaa25cb4888053455524e7c5dd8de1f11e227acfab3a3ea344285b6408ce0</li>
-
     <li>WHIRLPOOL:
     1f7716f143a6677be213e29330ed0cbcd16db0fe575487b35c071e3ee12bff0471b1c82fa43590ac708c06dbcd4d9c39499a4b8dfa89a3f410d3b0be376f5268</li>
   </ul>
-
   <p>Mirrors for the download are below. Note that GitHub and Sourceforge checksums on
   the ZIP or TAR are different because each creates the archive from sources.</p>
-
   <ul>
     <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_5_6_3">GitHub
     cryptopp563.zip</a></li>
-
     <li><a href="//prdownloads.sourceforge.net/cryptopp/cryptopp563.zip" target=
     "_blank">Sourceforge cryptopp563.zip</a></li>
   </ul>
-
   <h2>Release Notes</h2>
-
   <p>The release notes for Crypto++ 5.6.3 follows.</p>
-
   <ul>
     <li>fixed CVE-2015-2141</li>
-
     <li>cleared most Undefined Behavior Sanitizer (UBsan) findings</li>
-
     <li>cleared all Address Sanitizer (Asan) findings</li>
-
     <li>cleared all Valgrind findings</li>
-
     <li>cleared all Coverity findings</li>
-
     <li>cleared all Enterprise Analysis (/analyze) findings</li>
-
     <li>cleared most GCC warnings with -Wall</li>
-
     <li>cleared most Clang warnings with -Wall</li>
-
     <li>cleared most MSVC warnings with /W4</li>
-
     <li>added -fPIC to 64-bit builds (off for 32-bit builds)</li>
-
     <li>added HKDF class from RFC 5869</li>
-
     <li>switched to member_ptr due to C++ 11 warnings for auto_ptr</li>
-
     <li>initialization of C++ static objects, off by default
-
       <ul>
         <li>GCC and init_priotirty/constructor attributes</li>
-
         <li>MSVC and init_seg(lib)</li>
-
         <li>CRYPTOPP_INIT_PRIORITY disabled by default, but available</li>
       </ul>
     </li>
-
     <li>improved OS X support</li>
-
     <li>improved GNUmakefile support for Testing and QA</li>
-
     <li>added self tests for additional Testing and QA</li>
-
     <li>added cryptest.sh for systematic Testing and QA</li>
-
     <li>added GNU Gold linker support</li>
-
     <li>added Visual Studio 2010 solution and project files in vs2010.zip</li>
-
     <li>added Clang integrated assembler support</li>
-
     <li>unconditionally define CRYPTOPP_NO_UNALIGNED_DATA_ACCESS for Makefile target
     'ubsan' and at -O3</li>
-
     <li>workaround ARMEL/GCC 5.2 bug and failed self test</li>
-
     <li>fixed crash in MQV due to GCC 4.9+ and inlining</li>
-
     <li>fixed hang in SHA due to GCC 4.9+ and inlining</li>
-
     <li>fixed missing rdtables::Te under VS with ALIGNED_DATA_ACCESS</li>
-
     <li>fixed S/390 and big endian feature detection</li>
-
     <li>fixed S/390 and int128_t/uint128_t detection</li>
-
     <li>fixed X32 (ILP32) feature detection</li>
-
     <li>removed _CRT_SECURE_NO_DEPRECATE for Microsoft platforms</li>
-
     <li>utilized bound checking interfaces from ISO/IEC TR 24772 when available</li>
-
     <li>improved ARM, ARM64, MIPS, MIPS64, S/390 and X32 (ILP32) support</li>
-
     <li>introduced CRYPTOPP_MAINTAIN_BACKWARDS_COMPATIBILITY_562</li>
-
     <li>added additional Doxygen-based documentation</li>
-
     <li>ported to MSVC 2015, Xcode 7.2, GCC 5.2, Clang 3.7, Intel C++ 16.00</li>
   </ul>
-
   <h2>File Changes</h2>
-
   <p>Below is a list of files that were added or deleted at Crypto++ 5.6.3.</p>
   <pre>
 $ git diff-tree -r --summary CRYPTOPP_5_6_2 CRYPTOPP_5_6_3 | grep -v "change" | awk '{$2=$3=""; print $0}'
