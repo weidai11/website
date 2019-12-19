@@ -48,7 +48,7 @@ Step 4 - Install composer
 # This gets an old composer with dependencies.
 # Red Hat SCL does not supply an updated composer.
 
-1. yum install composer
+1. yum -y install composer
 2. Copy the list of dependencies
 
 Step (1) is dangerous. Composer is a developer tool that brings
@@ -158,7 +158,7 @@ Step 11 - Remove Composer
 The list from Step (5) should be cribbed away. Here is the one
 produced by CentOS 7 during install:
 
-1. yum remove composer php-PsrLog php-composer-ca-bundle \
+1. yum -y remove composer php-PsrLog php-composer-ca-bundle \
    php-composer-semver php-composer-spdx-licenses \
    php-composer-xdebug-handler php-fedora-autoloader \
    php-jsonlint php-justinrainbow-json-schema5 php-mbstring \
@@ -171,3 +171,5 @@ produced by CentOS 7 during install:
    php-symfony-http-foundation php-symfony-http-kernel \
    php-symfony-polyfill php-symfony-process \
    php-symfony-var-dumper php-symfony-yaml
+
+2. yum -y autoremove
