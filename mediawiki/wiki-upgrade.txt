@@ -6,7 +6,7 @@ Mediawiki uses bleeding edge components but CentOS provides
 antique software.
 
 You should set aside about 30 minutes to one hour for the migration.
-The process itself is copy/paste and should take about 8 minutes.
+The process itself is copy/paste and should take about 10 minutes.
 Unfortunately something usually breaks even on minor version bumps.
 You will most likely need extra fiddling time.
 
@@ -45,11 +45,16 @@ previous local backup, if present:
 Do not skip the backup step. Later you will need LocalSettings.php
 from the local backup.
 
-Delete the current vendor directory:
+Step 5 - Delete the Vendor directory
+====================================
 
-3. rm -rf /var/www/html/w/vendor/*
+Delete the current vendor directory. It holds code and tools for
+the previous version of the Mediawiki software. New versions will
+be installed using Composer.
 
-Step 5 - Install composer
+1. rm -rf /var/www/html/w/vendor/*
+
+Step 6 - Install composer
 =========================
 
 # This gets an old composer with dependencies.
@@ -63,7 +68,7 @@ Step (1) is dangerous. Composer is a developer tool that brings
 in 30+ dependencies. Composer and friends require unsafe functions.
 They must be removed after the Mediawiki upgrade.
 
-Step 6 - Disable server hardening
+Step 7 - Disable server hardening
 =================================
 
 1. cp /etc/opt/rh/rh-php71/php.d/security.ini.weak /etc/opt/rh/rh-php71/php.d/security.ini
@@ -77,8 +82,8 @@ security.ini.weak allows:
 Step (2) is dangerous. It allows many popular attack vectors.
 This change must be undone after composer has been run.
 
-Step 7 - Download Media Wiki
-============================
+Step 8 - Download latest Mediawiki
+==================================
 
 Clear old artifacts:
 
@@ -98,7 +103,7 @@ And then:
 
 It is OK to delete the artifacts in /tmp.
 
-Step 8 - Update Mediawiki dependencies
+Step 9 - Update Mediawiki dependencies
 ======================================
 
 Use composer to update Mediawiki dependencies. This is needed
@@ -112,10 +117,10 @@ disable plugins or scripts in the third-party projects. The
 third-party projects effectively have full control over
 the web server and virtual machine.
 
-If you experience errors in vendor/ then revisit Step (4).
+If you experience errors in vendor/ then revisit Step (5).
 
-Step 9 - Restore LocalSettings.php
-==================================
+Step 10 - Restore LocalSettings.php
+===================================
 
 The backup of LocalSettings.php is in /var/www/html/wiki-backup.
 
@@ -124,11 +129,11 @@ Make a back up of the new LocalSettings.php in case it is needed.
 1. cp LocalSettings.php LocalSettings.php.bu
 2. cp /var/www/html/wiki-backup/LocalSettings.php .
 
-Step 10 - Update for new Mediawiki
-=================================
+Step 11 - Update for new Mediawiki
+==================================
 
 1. Open update-wiki.sh
-2. Change WIKI_REL=REL1_32 to appropriate version
+2. Change WIKI_REL=REL1_33 to appropriate version
 
 update-wiki.sh is available in this GitHub repo.
 
@@ -155,8 +160,8 @@ visiting Special:Version:
 
 5. https://www.cryptopp.com/wiki/Special:Version
 
-Step 11 - Restore server hardening
-==================================
+Step 12- Restore server hardening
+=================================
 
 1. cp /etc/opt/rh/rh-php71/php.d/security.ini.hard /etc/opt/rh/rh-php71/php.d/security.ini
 
@@ -166,7 +171,7 @@ security.ini.hard re-enables:
    - allow_url_include=Off
    - disable_functions="apache_note ..."
   
-Step 12 - Remove Composer
+Step 13 - Remove Composer
 =========================
 
 The list from Step (5) should be cribbed away. Here is the one
