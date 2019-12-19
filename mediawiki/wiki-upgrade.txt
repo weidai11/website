@@ -65,12 +65,13 @@ They must be removed after the Mediawiki upgrade.
 Step 6 - Disable server hardening
 =================================
 
-1. Open /etc/opt/rh/rh-php71/php.d/security.ini
-2. Comment out:
-   - open_basedir="..."
-   - allow_url_fopen=Off
-   - allow_url_include=Off
-   - disable_functions=apache_note ...
+1. cp /etc/opt/rh/rh-php71/php.d/security.ini.weak /etc/opt/rh/rh-php71/php.d/security.ini
+
+security.ini.weak allows:
+   - open_basedir=<any>
+   - allow_url_fopen=On
+   - allow_url_include=On
+   - disable_functions=<none>
 
 Step (2) is dangerous. It allows many popular attack vectors.
 This change must be undone after composer has been run.
@@ -152,8 +153,9 @@ visiting Special:Version:
 Step 11 - Restore server hardening
 ==================================
 
-1. Open /etc/opt/rh/rh-php71/php.d/security.ini
-2. Re-enable:
+1. cp /etc/opt/rh/rh-php71/php.d/security.ini.hard /etc/opt/rh/rh-php71/php.d/security.ini
+
+security.ini.hard re-enables:
    - open_basedir="..."
    - allow_url_fopen=Off
    - allow_url_include=Off
