@@ -112,7 +112,7 @@ disable plugins or scripts in the third-party projects. The
 third-party projects effectively have full control over
 the web server and virtual machine.
 
-If you experience errors in vendor/ then revisit Step (3).
+If you experience errors in vendor/ then revisit Step (4).
 
 Step 9 - Restore LocalSettings.php
 ==================================
