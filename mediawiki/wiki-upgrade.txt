@@ -56,7 +56,8 @@ Step 5 - Install composer
 # Red Hat SCL does not supply an updated composer.
 
 1. yum -y install composer
-2. Copy the list of dependencies
+2. hash -r
+3. Copy the list of dependencies
 
 Step (1) is dangerous. Composer is a developer tool that brings
 in 30+ dependencies. Composer and friends require unsafe functions.
@@ -86,9 +87,9 @@ Clear old artifacts:
 Temporary unpack:
 
 1. cd /tmp
-2. wget https://releases.wikimedia.org/mediawiki/1.32/mediawiki-1.32.6.tar.gz
-3. tar -xzf mediawiki-1.32.6.tar.gz
-4. mv mediawiki-1.32.6/ w
+2. wget https://releases.wikimedia.org/mediawiki/1.33/mediawiki-1.33.2.tar.gz
+3. tar -xzf mediawiki-1.33.2.tar.gz
+4. mv mediawiki-1.33.2/ w
 5. rsync -avh --dry-run /tmp/w /var/www/html/
 
 And then:
@@ -163,7 +164,7 @@ security.ini.hard re-enables:
    - open_basedir="..."
    - allow_url_fopen=Off
    - allow_url_include=Off
-   - disable_functions=apache_note ...
+   - disable_functions="apache_note ..."
   
 Step 12 - Remove Composer
 =========================

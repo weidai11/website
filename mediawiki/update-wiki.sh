@@ -26,7 +26,7 @@ fi
 
 # Important variables
 WIKI_DIR="/var/www/html/w"
-WIKI_REL=REL1_32
+WIKI_REL=REL1_33
 LOG_DIR="/var/log"
 
 # This finds directories check'd out from Git and updates them. 
