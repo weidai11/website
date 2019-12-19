@@ -79,6 +79,10 @@ This change must be undone after composer has been run.
 Step 7 - Download Media Wiki
 ============================
 
+Clear old artifacts:
+
+1. rm -rf /tmp/mediawiki* /tmp/w/
+
 Temporary unpack:
 
 1. cd /tmp
