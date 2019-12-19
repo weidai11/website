@@ -194,4 +194,6 @@ produced by CentOS 7 during install:
    php-symfony-polyfill php-symfony-process \
    php-symfony-var-dumper php-symfony-yaml
 
-2. yum -y autoremove
+2. hash -r
+
+3. yum -y autoremove
