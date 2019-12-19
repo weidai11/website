@@ -72,9 +72,9 @@ Step 6 - Download Media Wiki
 Temporary unpack:
 
 1. cd /tmp
-2. wget https://releases.wikimedia.org/mediawiki/1.32/mediawiki-1.32.5.tar.gz
-3. tar -xzf mediawiki-1.32.5.tar.gz
-4. mv mediawiki-1.32.5/ w
+2. wget https://releases.wikimedia.org/mediawiki/1.32/mediawiki-1.32.6.tar.gz
+3. tar -xzf mediawiki-1.32.6.tar.gz
+4. mv mediawiki-1.32.6/ w
 5. rsync -avh --dry-run /tmp/w /var/www/html/
 
 And then:
