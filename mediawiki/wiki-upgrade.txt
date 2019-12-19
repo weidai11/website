@@ -1,6 +1,6 @@
 Installing a new version of Mediawiki sucks for a several reasons.
 First, it happens too frequently. Second, we have to disable some
-of our security hardening and reenable it later. Third, we have to
+of our security hardening and re-enable it later. Third, we have to
 install a bunch of developer tools and then remove them. Fourth,
 Mediawiki uses bleeding edge components but CentOS provides
 antique software.
@@ -124,7 +124,7 @@ Step 10 - Restore LocalSettings.php
 
 The backup of LocalSettings.php is in /var/www/html/wiki-backup.
 
-Make a back up of the new LocalSettings.php in case it is needed.
+Make a backup of the new LocalSettings.php in case it is needed.
 
 1. cp LocalSettings.php LocalSettings.php.bu
 2. cp /var/www/html/wiki-backup/LocalSettings.php .
