@@ -35,15 +35,27 @@ php "$wiki_root/maintenance/cleanupUsersWithNoId.php" "${script_args[@]}" --pref
 php "$wiki_root/maintenance/cleanupUsersWithNoId.php" "${script_args[@]}" --prefix="wikilounge_" --force
 
 php "$wiki_root/maintenance/cleanupAncientTables.php" "${script_args[@]}" --force
+
 php "$wiki_root/maintenance/cleanupBlocks.php" "${script_args[@]}"
+
 php "$wiki_root/maintenance/cleanupCaps.php" "${script_args[@]}"
+
 php "$wiki_root/maintenance/cleanupEmptyCategories.php" "${script_args[@]}"
+
 php "$wiki_root/maintenance/cleanupImages.php" "${script_args[@]}"
+
 php "$wiki_root/maintenance/cleanupInvalidDbKeys.php" "${script_args[@]}"
+
 php "$wiki_root/maintenance/cleanupRemovedModules.php" "${script_args[@]}"
+
 php "$wiki_root/maintenance/cleanupRevActorPage.php" "${script_args[@]}" --force
+
 php "$wiki_root/maintenance/cleanupTitles.php" "${script_args[@]}"
+
 php "$wiki_root/maintenance/cleanupUploadStash.php" "${script_args[@]}"
+
 php "$wiki_root/maintenance/cleanupWatchlist.php" "${script_args[@]}" --fix
+
 php "$wiki_root/maintenance/cleanupPreferences.php" "${script_args[@]}" --hidden
+
 php "$wiki_root/maintenance/cleanupPreferences.php" "${script_args[@]}" --unknown
