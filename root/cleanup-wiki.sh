@@ -15,7 +15,7 @@ script_args=(
     "--server=https://www.cryptopp.com/wiki/"
 )
 
-php "$wiki_root/maintenance/deleteArchivedFiles.php" "${script_args[@]}" --delete
+php "$wiki_root/maintenance/deleteArchivedFiles.php" "${script_args[@]}" --delete --force
 
 php "$wiki_root/maintenance/deleteArchivedRevisions.php" "${script_args[@]}" --delete
 
