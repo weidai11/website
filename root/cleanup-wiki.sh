@@ -29,8 +29,6 @@ php "$wiki_root/maintenance/deleteOldRevisions.php" "${script_args[@]}"
 
 php "$wiki_root/maintenance/deleteOrphanedRevisions.php" "${script_args[@]}"
 
-php "$wiki_root/maintenance/deleteSelfExternals.php" "${script_args[@]}"
-
 php "$wiki_root/maintenance/cleanupUsersWithNoId.php" "${script_args[@]}" --prefix="wikicryptopp_" --force
 php "$wiki_root/maintenance/cleanupUsersWithNoId.php" "${script_args[@]}" --prefix="wikilounge_" --force
 
