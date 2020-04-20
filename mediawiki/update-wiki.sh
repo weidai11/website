@@ -127,8 +127,7 @@ systemctl start mariadb.service
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 echo "Running update.php"
-/opt/rh/rh-php72/root/usr/bin/php "$WIKI_DIR/maintenance/update.php" --quick --server=
-"https://www.cryptopp.com/wiki" 2>&1
+/opt/rh/rh-php72/root/usr/bin/php "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki" 2>&1
 
 echo "Restarting Apache service"
 if ! systemctl restart httpd24-httpd.service 2>&1; then
