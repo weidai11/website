@@ -129,8 +129,12 @@ The backup of LocalSettings.php is in /var/www/html/wiki-backup.
 
 Make a backup of the new LocalSettings.php in case it is needed.
 
-1. cp LocalSettings.php LocalSettings.php.bu
+1. cp LocalSettings.php LocalSettings.php.orig
 2. cp /var/www/html/wiki-backup/LocalSettings.php .
+
+At this point you can diff LocalSettings.php, if desired:
+
+   diff LocalSettings.php.orig LocalSettings.php
 
 Step 11 - Update for new Mediawiki
 ==================================
