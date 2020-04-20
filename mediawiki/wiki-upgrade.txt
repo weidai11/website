@@ -95,7 +95,7 @@ Clear old artifacts:
 Temporary unpack:
 
 1. cd /tmp
-2. wget https://releases.wikimedia.org/mediawiki/1.33/mediawiki-1.34.1.tar.gz
+2. wget https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.1.tar.gz
 3. tar -xzf mediawiki-1.34.1.tar.gz
 4. mv mediawiki-1.34.1/ w
 5. rsync -avh --dry-run /tmp/w /var/www/html/
