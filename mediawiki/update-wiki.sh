@@ -26,7 +26,7 @@ fi
 
 # Important variables
 WIKI_DIR="/var/www/html/w"
-WIKI_REL=REL1_33
+WIKI_REL=REL1_34
 LOG_DIR="/var/log"
 
 # This finds directories check'd out from Git and updates them. 
@@ -127,7 +127,7 @@ systemctl start mariadb.service
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 echo "Running update.php"
-/opt/rh/rh-php71/root/usr/bin/php "$WIKI_DIR/maintenance/update.php" --quick --server=
+/opt/rh/rh-php72/root/usr/bin/php "$WIKI_DIR/maintenance/update.php" --quick --server=
 "https://www.cryptopp.com/wiki" 2>&1
 
 echo "Restarting Apache service"
