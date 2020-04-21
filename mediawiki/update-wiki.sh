@@ -65,10 +65,12 @@ chmod -R o-rwx "$WIKI_DIR/"
 # Images/ must be writable by group
 echo "Fixing MediaWiki images/ permissions"
 for dir in $(find "$WIKI_DIR/images" -type d 2>/dev/null); do
+    if [[ ! -d "$dir" ]]; then continue; fi
     chmod ug+rwx "$dir"
     chmod o-rwx  "$dir"
 done
 for file in $(find "$WIKI_DIR/images" -type f 2>/dev/null); do
+    if [[ ! -f "$file" ]]; then continue; fi
     chmod ug+rw "$file"
     chmod ug-x  "$file"
     chmod o-rwx "$file"
@@ -76,6 +78,7 @@ done
 
 echo "Fixing Apache data permissions"
 for dir in "/var/lib/pear/" "/var/lib/php/"; do
+    if [[ ! -d "$dir" ]]; then continue; fi
     chown -R apache:apache "$dir"
     chmod -R ug+rwx "$dir"
     chmod -R o-rwx  "$dir"
