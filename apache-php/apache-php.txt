@@ -1,30 +1,40 @@
-The Crypto++ virtual machine is a CentOS 7 VM provided by GoDaddy.
-The webserver uses a LAMP stack with Apache, PHP and MySQL. The
-webserver also uses Mediawiki software.
+This document details the webserver's configuration. The Crypto++ virtual
+machine is a CentOS 7 VM provided by GoDaddy. The webserver uses a LAMP
+stack with Apache, PHP and MySQL. The webserver also uses Mediawiki software.
 
 Apache, PHP and Mediawiki supplied by Red Hat are too old to be useful
-nowadays. To get something newer we enable Software Collections (SCL).
+nowadays. To get something newer we enable Red Hat's Software Collection (SCL).
 SCL supplies an updated Apache, Python and PHP. Mediawiki is not supplied.
 Also see https://wiki.centos.org/AdditionalResources/Repositories/SCL
 on the CentOS wiki.
 
-The following instructions install Apache and PHP from Red Hat's SCL.
-After installing Apache and PHP we need to install Mediawiki from
-sources using a Long Term Release version of the software.
+The following instructions install Apache and PHP from Red Hat's SCL and
+detail the important settings for the webserver. After installing Apache and
+PHP we need to install Mediawiki from sources using a Long Term Release version
+of the software.
 
 Perform the following to setup the Virtual Machine using SCL:
 
-  yum install centos-release-scl scl-utils-build
-  yum update
+  # yum install centos-release-scl scl-utils-build
+  # yum update
 
-After SCL is enabled, remove old Apache and PHP, if present:
+Remove old Apache and PHP packages, if present:
 
-  yum remove httpd php
+  # yum list installed | grep -E 'php|httpd'
+  php.x86_64
+  php-cli.x86_64
+  php-common.x86_64
+  ...
+  httpd.x86_64
+  httpd-tools.x86_64
+  ...
 
-And then install newer Apache and PHP:
+  # yum remove httpd php
 
-  yum install httpd24-httpd httpd24-mod_ssl httpd24-mod_security httpd24-httpd-tools
-  yum install rh-php72 rh-php72-php rh-php72-php-cli rh-php72-php-common rh-php72-php-gd rh-php72-php-json rh-php72-php-mbstring rh-php72-php-mysqlnd rh-php72-php-pdo rh-php72-php-pear rh-php72-php-process rh-php72-php-xml rh-php72-php-zip rh-php72-runtime
+And then install newer Apache and PHP packages:
+
+  # yum install httpd24-httpd httpd24-mod_ssl httpd24-mod_security httpd24-httpd-tools
+  # yum install rh-php72 rh-php72-php rh-php72-php-cli rh-php72-php-common rh-php72-php-gd rh-php72-php-json rh-php72-php-mbstring rh-php72-php-mysqlnd rh-php72-php-pdo rh-php72-php-pear rh-php72-php-process rh-php72-php-xml rh-php72-php-zip rh-php72-runtime
 
 Once installed the new gear is located in /opt/rh. However, some of the configuration files are located in /etc.
 
@@ -47,7 +57,7 @@ Crypto++ uses a hardened PHP configuration. Copy security.ini to /etc/opt/rh/rh-
 
   /etc/opt/rh/rh-php72/php.d/security.ini
 
-Open /etc/opt/rh/rh-php72/php.ini, and add the following:
+Open /etc/opt/rh/rh-php72/php.ini, and add the following to the tail:
 
   # tail -n 5 /etc/opt/rh/rh-php72/php.ini
   ;; Security hardening in security.ini
@@ -55,6 +65,28 @@ Open /etc/opt/rh/rh-php72/php.ini, and add the following:
   log_errors_max_len = 1024
   error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
   error_log = /var/log/httpd24/error_log
+
+Open /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf and verify logging settings:
+
+  ErrorLog /var/log/httpd24/error_log
+  TransferLog /var/log/httpd24/access_log
+
+Open /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf and verify the SSL/TLS VirtualHost settings:
+
+  DocumentRoot "/var/www/html"
+  ServerName www.cryptopp.com:443
+  ServerAlias *.cryptopp.com cryptopp.com
+
+  SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2
+  SSLCipherSuite HIGH:!aNULL:!kRSA:!MD5:!RC4
+
+  SSLCertificateFile /etc/pki/tls/certs/cryptopp-com.pem
+  SSLCertificateChainFile /etc/pki/tls/certs/cryptopp-com.chain.pem
+  SSLCertificateKeyFile /etc/pki/tls/private/cryptopp-com.key.pem
+
+  ErrorLog /var/log/httpd24/error_log
+  TransferLog /var/log/httpd24/access_log
+  LogLevel warn
 
 Reboot the machine. Then, check the programs are on-path as expected:
 
