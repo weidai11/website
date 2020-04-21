@@ -19,12 +19,12 @@ Perform the following to setup the Virtual Machine using SCL:
 
 After SCL is enabled, remove old Apache and PHP, if present:
 
-1. yum remove httpd php
+  yum remove httpd php
 
 And then istall newer Apache and PHP:
 
-1. yum install httpd24-httpd httpd24-mod_ssl httpd24-mod_security httpd24-httpd-tools
-2. yum install rh-php72 rh-php72-php rh-php72-php-cli rh-php72-php-common rh-php72-php-gd rh-php72-php-json rh-php72-php-mbstring rh-php72-php-mysqlnd rh-php72-php-pdo rh-php72-php-pear rh-php72-php-process rh-php72-php-xml rh-php72-php-zip rh-php72-runtime
+  yum install httpd24-httpd httpd24-mod_ssl httpd24-mod_security httpd24-httpd-tools
+  yum install rh-php72 rh-php72-php rh-php72-php-cli rh-php72-php-common rh-php72-php-gd rh-php72-php-json rh-php72-php-mbstring rh-php72-php-mysqlnd rh-php72-php-pdo rh-php72-php-pear rh-php72-php-process rh-php72-php-xml rh-php72-php-zip rh-php72-runtime
 
 Once installed the new gear is located in /opt/rh. However, some of the configuration files are located in /etc.
 
