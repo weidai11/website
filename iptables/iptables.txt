@@ -42,6 +42,10 @@ traffic is accepted. I.e., place the Deny rule before the Allow rules.
   # Constant probes by hosts in Pakistan
   -A INPUT -p all -s 118.107.131.0/24 -j DROP
 
+Finally, reload iptables:
+
+  systemctl restart iptables
+
 If the site's administrator states they have tended to their host, then remove
 the ban. The ban is intended to protect the Crypto++ webserver. The ban is not
 punitive.
