@@ -1,13 +1,18 @@
 The Crypto++ virtual machine is a CentOS 7 VM provided by GoDaddy.
-The webserver is a LAMP stack using Apache, PHP and MySQL. The
-server also uses Mediawiki software.
+The webserver uses a LAMP stack with Apache, PHP and MySQL. The
+webserver also uses Mediawiki software.
 
 Apache, PHP and Mediawiki supplied by Red Hat are too old to be useful
 nowadays. To get something newer we enable Software Collections (SCL).
+SCL supplies an updated Apache, Python and PHP. Mediawiki is not supplied.
 Also see https://wiki.centos.org/AdditionalResources/Repositories/SCL
 on the CentOS wiki.
 
-Perform the following to setup the Virtual Machine:
+The following instructions install Apache and PHP from Red Hat's SCL.
+After installing Apache and PHP we need to install Mediawiki from
+sources using a Long Term Release version of the software.
+
+Perform the following to setup the Virtual Machine using SCL:
 
   yum install centos-release-scl scl-utils-build
   yum update
