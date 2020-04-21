@@ -1,0 +1,48 @@
+On occassion the webserver experiences questionable behavior from some clients.
+For example:
+
+# cat /var/log/httpd24/access_log | grep Talk
+...
+118.107.131.57 - - [20/Apr/2020:21:42:28 -0400] "GET /w/index.php?title=Talk:Main_Page&oldid=11370 HTTP/1.1" 301 281
+118.107.131.57 - - [20/Apr/2020:21:42:29 -0400] "GET /w/index.php?title=Talk:Main_Page&mobileaction=toggle_view_mobile HTTP/1.1" 301 301
+118.107.131.57 - - [20/Apr/2020:21:43:29 -0400] "GET /wiki/Talk:Authenticated_Encryption HTTP/1.1" 200 4045
+118.107.131.57 - - [20/Apr/2020:21:48:32 -0400] "GET /w/index.php?title=Talk:Diffie-Hellman&oldid=4429 HTTP/1.1" 301 285
+118.107.131.57 - - [20/Apr/2020:21:48:33 -0400] "GET /w/index.php?title=Talk:Diffie-Hellman&mobileaction=toggle_view_mobile HTTP/1.1" 301 306
+
+The host at 118.107.131.57 seems to be crawling the site or probing for
+weaknesses. It is OK to index pages like RSA and DSA, but there is no reason
+to spider the Talk pages. It increases the server's load and wastes cpu cycles.
+In fact, in April 2020, one misbehaving host drove cpu usage over 80% and
+GoDaddy threatened to suspend our service.
+
+It is OK to block misbehaving hosts. To block a host, determine the netblock
+information for the host:
+
+  $ whois 118.107.131.57
+  ...
+  inetnum: 118.107.131.0 - 118.107.131.255
+
+Second, send an email to the Whois contacts and inform them the netblock is
+being banned. Tell them the ban will be lifted if they tend to their
+misbehaving host.
+
+  $ whois 118.107.131.57 | grep '@'
+  % Abuse contact for '118.107.131.0 - 118.107.131.255' is 'dirit@sco.gov.pk'
+  e-mail:         dirit@sco.gov.pk
+  abuse-mailbox:  dirit@sco.gov.pk
+  e-mail:         ddit@sco.gov.pk
+
+Don't worry if you don't receive a response. Accurate administrative and
+technical contact information is an ICANN contractual requirement. It is the
+site's responsiblity to provide accurate information.
+
+Third, open /etc/sysconfig/iptables and ban the block. Add the block before
+traffic is accepted. I.e., place the Deny rule before the Allow rules.
+
+  # Constant probes by hosts in Pakistan
+  -A INPUT -p all -s 118.107.131.0/24 -j DROP
+
+If the site's administrator states they have tended to their host, then remove
+the ban. The ban is intended to protect the Crypto++ webserver. The ban is not
+punitive.
+
