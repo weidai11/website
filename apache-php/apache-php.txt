@@ -1,17 +1,19 @@
-This document details the webserver's configuration. The Crypto++ virtual
+This document details the Crypto++ webserver's configuration. The virtual
 machine is a CentOS 7 VM provided by GoDaddy. The webserver uses a LAMP
 stack with Apache, PHP and MySQL. The webserver also uses Mediawiki software.
 
 Apache, PHP and Mediawiki supplied by Red Hat are too old to be useful
-nowadays. To get something newer we enable Red Hat's Software Collection (SCL).
-SCL supplies an updated Apache, Python and PHP. Mediawiki is not supplied.
-Also see https://wiki.centos.org/AdditionalResources/Repositories/SCL
-on the CentOS wiki.
+nowadays. The version of MySQL is OK, so it uses the base package. To get
+something newer we enable Red Hat's Software Collection (SCL). SCL supplies an
+updated Apache, Python and PHP. Mediawiki is not supplied by SCL, so we use the
+latest version from Mediawiki Fondation. Also see
+https://wiki.centos.org/AdditionalResources/Repositories/SCL on the
+CentOS wiki.
 
-The following instructions install Apache and PHP from Red Hat's SCL and
-detail some of the important settings for the webserver. After installing
-Apache and PHP we need to install Mediawiki from sources using a Long Term
-Release version of the software.
+The following instructions install Apache and PHP from Red Hat's SCL and detail
+some of the important settings for the webserver. After installing Apache and
+PHP we need to install Mediawiki from sources using a Long Term Release version
+of the software.
 
 Perform the following to setup the Virtual Machine using SCL:
 
@@ -36,7 +38,8 @@ And then install newer Apache and PHP packages:
   # yum install httpd24-httpd httpd24-mod_ssl httpd24-mod_security httpd24-httpd-tools
   # yum install rh-php72 rh-php72-php rh-php72-php-cli rh-php72-php-common rh-php72-php-gd rh-php72-php-json rh-php72-php-mbstring rh-php72-php-mysqlnd rh-php72-php-pdo rh-php72-php-pear rh-php72-php-process rh-php72-php-xml rh-php72-php-zip rh-php72-runtime
 
-Once installed the new gear is located in /opt/rh. However, some of the configuration files are located in /etc.
+Once installed the new gear is located in /opt/rh. However, some of the
+configuration files are located in /etc.
 
   $ ls /opt/rh/
   httpd24  rh-php72
@@ -71,17 +74,20 @@ Open /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf and verify logging settings:
   ErrorLog /var/log/httpd24/error_log
   TransferLog /var/log/httpd24/access_log
 
-Open /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-mpm.conf, and ensure prefork is used.
-We tried to cutover to mpm_event_module, but it is incompatible with other components.
+Open /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-mpm.conf, and ensure
+prefork is used. We tried to cutover to mpm_event_module, but it is
+incompatible with other components.
 
   LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
 
-Open /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-base.conf, and comment-out unneeded modules.
-In particular, http2_module is not compatible with the mpm prefork module:
+Open /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-base.conf, and
+comment-out unneeded modules. In particular, http2_module is not compatible
+with the mpm prefork module:
 
   #LoadModule http2_module modules/mod_http2.so
 
-Open /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf and verify the SSL/TLS VirtualHost settings:
+Open /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf and verify the SSL/TLS
+VirtualHost settings:
 
   DocumentRoot "/var/www/html"
   ServerName www.cryptopp.com:443
@@ -113,4 +119,5 @@ And verify Apache is running:
    Active: active (running) since Mon 2020-04-20 22:15:15 EDT; 44min ago
    ...
 
-Finally, install Mediawiki software. Mediawiki installation is covered in wiki-upgrade.txt.
+Finally, install Mediawiki software. Mediawiki installation is covered in
+wiki-upgrade.txt.
