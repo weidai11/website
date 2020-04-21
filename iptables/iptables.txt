@@ -45,4 +45,3 @@ traffic is accepted. I.e., place the Deny rule before the Allow rules.
 If the site's administrator states they have tended to their host, then remove
 the ban. The ban is intended to protect the Crypto++ webserver. The ban is not
 punitive.
-
