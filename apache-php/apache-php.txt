@@ -21,7 +21,7 @@ After SCL is enabled, remove old Apache and PHP, if present:
 
   yum remove httpd php
 
-And then istall newer Apache and PHP:
+And then install newer Apache and PHP:
 
   yum install httpd24-httpd httpd24-mod_ssl httpd24-mod_security httpd24-httpd-tools
   yum install rh-php72 rh-php72-php rh-php72-php-cli rh-php72-php-common rh-php72-php-gd rh-php72-php-json rh-php72-php-mbstring rh-php72-php-mysqlnd rh-php72-php-pdo rh-php72-php-pear rh-php72-php-process rh-php72-php-xml rh-php72-php-zip rh-php72-runtime
@@ -62,5 +62,13 @@ Reboot the machine. Then, check versions of programs:
   /opt/rh/httpd24/root/usr/sbin/apachectl
   # command -v php
   /opt/rh/rh-php72/root/usr/bin/php
+
+And verify Apache is running:
+
+# systemctl status httpd24-httpd
+● httpd24-httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd24-httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Mon 2020-04-20 22:15:15 EDT; 44min ago
+   ...
 
 Finally, install Mediawiki software. Mediawiki installation is covered in wiki-upgrade.txt.
