@@ -19,7 +19,7 @@ Be sure to restart Apache after the process so the new certifcate is used.
 2. Open a second terminal, su to root.
    CD to /var/www/html/.well-known/acme-challenge/.
    Remove past challenges.
- 
+
 3. letsencrypt --manual --email webmaster@cryptopp.com --csr ~/cryptopp-com.req.pem auth
    This terminal is now occupied by LE client.
    LE client will send requests and receive responses.

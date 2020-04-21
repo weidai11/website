@@ -43,7 +43,7 @@ Once installed the new gear is located in /opt/rh. However, some of the configur
 
 To use the new gear create a couple of scripts in the /etc/profile.d/ directory:
 
-  # cat /etc/profile.d/enable-scl-httpd24.sh 
+  # cat /etc/profile.d/enable-scl-httpd24.sh
   #!/usr/bin/env bash
   source scl_source enable httpd24
 

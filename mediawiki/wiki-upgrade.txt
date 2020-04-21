@@ -177,7 +177,7 @@ security.ini.hard re-enables:
    - allow_url_fopen=Off
    - allow_url_include=Off
    - disable_functions="apache_note ..."
-  
+
 Step 13 - Remove Composer
 =========================
 
