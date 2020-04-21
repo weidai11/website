@@ -39,7 +39,7 @@ To use the new gear create a couple of scripts in the /etc/profile.d/ directory:
 
 And:
 
-  # cat /etc/profile.d/enable-scl-php72.sh 
+  # cat /etc/profile.d/enable-scl-php72.sh
   #!/usr/bin/env bash
   source scl_source enable rh-php72
 
