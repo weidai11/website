@@ -51,6 +51,11 @@ for dir in $(find "$WIKI_DIR" -iname 'test*' 2>/dev/null); do
     rm -rf "$dir" 2>/dev/null
 done
 
+# And benchmarks
+for dir in $(find "$WIKI_DIR" -iname 'benchmarks' 2>/dev/null); do
+    rm -rf "$dir" 2>/dev/null
+done
+
 if [[ -f "$WIKI_DIR/extensions/SyntaxHighlight/pygments/pygmentize" ]]; then
     chmod ug+x "$WIKI_DIR/extensions/SyntaxHighlight/pygments/pygmentize"
 fi
