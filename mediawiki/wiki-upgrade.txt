@@ -88,7 +88,7 @@ security.ini.weak allows:
 Step (1) is dangerous. It allows many popular attack vectors.
 This change must be undone after Composer has been run.
 
-Step 8 - Download latest Mediawiki
+Step 8 - Install latest Mediawiki
 ==================================
 
 Clear old artifacts:
