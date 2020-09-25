@@ -138,9 +138,9 @@ Make a backup of the new LocalSettings.php in case it is needed.
 1. cp LocalSettings.php LocalSettings.php.orig
 2. cp /var/wiki-backup/LocalSettings.php .
 
-At this point you can diff LocalSettings.php, if desired:
-
-3. diff LocalSettings.php.orig LocalSettings.php
+Note: Mediawiki does not provide a LocalSettings.php in the
+tarball. You have to use the existing LocalSettings.php that
+was backed up in Step 4.
 
 Step 11 - Update for new Mediawiki
 ==================================
