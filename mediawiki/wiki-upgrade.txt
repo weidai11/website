@@ -39,8 +39,11 @@ Step 4 - Local backup of wiki only
 Delete a previous local backup, if present. Make a local backup
 for quick restoration, if needed.
 
-1. rm -rf /var/www/html/wiki-backup
-2. cp -r /var/www/html/w /var/www/html/wiki-backup
+Note: the backup is stored at /var/wiki-backup so /var/www/html
+can be restored quickly without the need to restore a local backup.
+
+1. rm -rf /var/wiki-backup
+2. cp -r /var/www/html/w /var/wiki-backup
 
 Do not skip the backup step. Later you will need LocalSettings.php
 from the local backup.
@@ -94,17 +97,19 @@ Clear old artifacts:
 
 Temporary unpack:
 
-1. cd /tmp
-2. wget https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.4.tar.gz
-3. tar -xzf mediawiki-1.34.4.tar.gz
-4. mv mediawiki-1.34.4/ w
-5. rsync -avh --dry-run /tmp/w /var/www/html/
+2. cd /tmp
+3. wget https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.4.tar.gz
+4. tar -xzf mediawiki-1.34.4.tar.gz
+5. mv mediawiki-1.34.4/ w
+6. rsync -avh --dry-run /tmp/w /var/www/html/
 
 And then:
 
-6. rsync -avh /tmp/w /var/www/html/
+7. rsync -avh /tmp/w /var/www/html/
 
-It is OK to delete the artifacts in /tmp.
+It is OK to delete the artifacts in /tmp:
+
+8. rm -rf /tmp/mediawiki* /tmp/w/
 
 Step 9 - Update Mediawiki dependencies
 ======================================
@@ -125,16 +130,16 @@ If you experience errors in vendor/ then revisit Step (5).
 Step 10 - Restore LocalSettings.php
 ===================================
 
-The backup of LocalSettings.php is in /var/www/html/wiki-backup.
+The backup of LocalSettings.php is in /var/wiki-backup.
 
 Make a backup of the new LocalSettings.php in case it is needed.
 
 1. cp LocalSettings.php LocalSettings.php.orig
-2. cp /var/www/html/wiki-backup/LocalSettings.php .
+2. cp /var/wiki-backup/LocalSettings.php .
 
 At this point you can diff LocalSettings.php, if desired:
 
-   diff LocalSettings.php.orig LocalSettings.php
+3. diff LocalSettings.php.orig LocalSettings.php
 
 Step 11 - Update for new Mediawiki
 ==================================
@@ -154,7 +159,7 @@ And then:
 
 maintenance/update.php must succeed or the migration is a failure.
 You must fix failures or go back to the down-level version of
-MediaWiki saved at /var/www/html/wiki-backup.
+MediaWiki saved at /var/wiki-backup.
 
 The head notes cover what update-wiki.sh does. It includes
 updating the components in skins/ and extensions/, running
@@ -167,7 +172,7 @@ visiting Special:Version:
 
 5. https://www.cryptopp.com/wiki/Special:Version
 
-Step 12- Restore server hardening
+Step 12 - Restore server hardening
 =================================
 
 1. cp /etc/opt/rh/rh-php72/php.d/security.ini.hard /etc/opt/rh/rh-php72/php.d/security.ini
