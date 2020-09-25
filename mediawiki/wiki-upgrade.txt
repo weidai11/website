@@ -44,6 +44,7 @@ can be restored quickly without the need to restore a local backup.
 
 1. rm -rf /var/wiki-backup
 2. cp -r /var/www/html/w /var/wiki-backup
+3. chown root:root /var/wiki-backup
 
 Do not skip the backup step. Later you will need LocalSettings.php
 from the local backup.
