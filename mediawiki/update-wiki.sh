@@ -60,10 +60,10 @@ if [[ -f "$WIKI_DIR/extensions/SyntaxHighlight/pygments/pygmentize" ]]; then
     chmod ug+x "$WIKI_DIR/extensions/SyntaxHighlight/pygments/pygmentize"
 fi
 
-if [[ -f create-sitemap.sh ]]; then
+if [[ -f "$WIKI_DIR/create-sitemap.sh" ]]; then
     echo "Creating MediaWiki sitemap"
     rm -rf "$WIKI_DIR/sitemap"
-    bash create-sitemap.sh 1>/dev/null
+    bash "$WIKI_DIR/create-sitemap.sh" 1>/dev/null
 fi
 
 # Set proper ownership permissions. This is a required step after unpacking a
