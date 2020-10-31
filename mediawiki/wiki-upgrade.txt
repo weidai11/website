@@ -133,6 +133,8 @@ third-party projects effectively have full control over
 the web server and virtual machine.
 
 If you experience errors in vendor/ then revisit Step (5).
+Step (5) deletes the old vendor/ directory in preparation
+for the Composer updates.
 
 Step 10 - Restore LocalSettings.php
 ===================================
