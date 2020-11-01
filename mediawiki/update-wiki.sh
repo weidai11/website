@@ -27,7 +27,18 @@ fi
 # Important variables
 WIKI_DIR="/var/www/html/w"
 WIKI_REL=REL1_34
+PHP_DIR=/opt/rh/rh-php72/root/usr/bin
 LOG_DIR="/var/log"
+
+if [[ ! -d "${WIKI_DIR}" ]]; then
+    echo "WIKI_DIR is not vaild."
+    exit 1
+fi
+
+if [[ ! -d "${PHP_DIR}" ]]; then
+    echo "PHP_DIR is not vaild."
+    exit 1
+fi
 
 # This finds directories check'd out from Git and updates them. 
 # It works surprisingly well. There has only been a couple of
@@ -109,13 +120,13 @@ for file in $(find "$LOG_DIR/httpd*" -type f -name '*log*' 2>/dev/null); do
     chmod ug-x  "$file"
     chmod o-rwx "$file"
 done
-for file in $(find "$LOG_DIR/httpd24" -type f -name '*log*' 2>/dev/null); do
-    if [[ ! -f "$file" ]]; then continue; fi
-    chown root:apache "$file"
-    chmod ug+rw "$file"
-    chmod ug-x  "$file"
-    chmod o-rwx "$file"
-done
+#for file in $(find "$LOG_DIR/httpd24" -type f -name '*log*' 2>/dev/null); do
+#    if [[ ! -f "$file" ]]; then continue; fi
+#    chown root:apache "$file"
+#    chmod ug+rw "$file"
+#    chmod ug-x  "$file"
+#    chmod o-rwx "$file"
+#done
 
 echo "Fixing MariaDB logging permissions"
 chown mysql:mysql "$LOG_DIR/mariadb"
@@ -127,29 +138,30 @@ for file in $(find "$LOG_DIR/mariadb" -type f -name '*log*' 2>/dev/null); do
     chmod o-rwx "$file"
 done
 
+# Make sure MySQL is running for update.php. It is a chronic
+# source of problems because the Linux OOM killer targets mysqld.
+echo "Restarting MySQL"
+# systemctl restart mariadb.service &>/dev/null
+systemctl stop mariadb.service 2>/dev/null
+systemctl start mariadb.service 2>&1
+
+# Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
+echo "Running update.php"
+"${PHP_DIR}/php" "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki" 2>&1
+
+echo "Restarting Apache service"
+if ! systemctl restart httpd24-httpd.service 2>&1; then
+    echo "Restart failed. Sleeping for 3 seconds"
+    sleep 3
+    echo "Restarting Apache service"
+    systemctl stop httpd24-httpd.service 2>/dev/null
+    systemctl start httpd24-httpd.service 2>&1
+fi
+
 # Cleanup backup files
 echo "Cleaning backup files"
 find /var/www/ -name '*~' -exec rm {} \;
 find /opt -name '*~' -exec rm {} \;
 find /etc -name '*~' -exec rm {} \;
-
-# Make sure MySQL is running. It is a chronic source of problems because
-# the Linux OOM killer targets mysqld.
-echo "Restarting MySQL"
-# systemctl restart mariadb.service &>/dev/null
-systemctl start mariadb.service
-
-# Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
-echo "Running update.php"
-/opt/rh/rh-php72/root/usr/bin/php "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki" 2>&1
-
-echo "Restarting Apache service"
-if ! systemctl restart httpd24-httpd.service 2>&1; then
-    echo "Restart failed. Sleeping for 3"
-    sleep 3
-    echo "Restarting Apache service"
-    systemctl stop httpd24-httpd.service 2>&1
-    systemctl start httpd24-httpd.service 2>&1
-fi
 
 exit 0
