@@ -16,6 +16,9 @@ In the instructions below the Crypto++ Wiki is located at
 /var/www/html/w. https://www.cryptopp.com/wiki works because
 of an Apache mod-rewrite rule.
 
+WARNING: CentOS 7 and the SCL only provides PHP 7.3.11. Do not migrate
+to Mediawiki 1.35 because 1.35 requires PHP 7.3.19.
+
 Step 1 - Get root
 =================
 
