@@ -201,10 +201,10 @@ Step 13 - Remove Composer
 The list from Step (5) should be cribbed away. Here is the one
 produced by CentOS 7 during install:
 
-1. yum -y remove composer php-PsrLog php-cli php-common \
-php-composer-ca-bundle php-composer-semver php-composer-spdx-licenses \
-php-composer-xdebug-handler php-fedora-autoloader php-gd php-intl \
-php-jsonlint php-justinrainbow-json-schema5 php-mbstring \
+1. yum -y remove composer libicu libzip t1lib php-PsrLog php-cli \
+php-common php-composer-ca-bundle php-composer-semver \
+php-composer-spdx-licenses php-composer-xdebug-handler php-fedora-autoloader \
+php-gd php-intl php-jsonlint php-justinrainbow-json-schema5 php-mbstring \
 php-paragonie-random-compat php-password-compat php-pdo php-process \
 php-seld-phar-utils php-symfony-browser-kit php-symfony-class-loader \
 php-symfony-common php-symfony-config php-symfony-console \
