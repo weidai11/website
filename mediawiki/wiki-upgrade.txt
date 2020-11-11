@@ -63,38 +63,7 @@ be installed using Composer.
 
 1. rm -rf /var/www/html/w/vendor/*
 
-Step 6 - Install Composer
-=========================
-
-# This gets an old Composer with dependencies.
-# Red Hat SCL does not supply an updated composer.
-
-1. yum -y install composer
-2. hash -r
-3. Copy the list of dependencies
-
-Step (1) is dangerous. Composer is a developer tool that brings
-in 30+ dependencies. Composer and friends require unsafe functions.
-They must be removed after the Mediawiki upgrade.
-
-Step 7 - Disable server hardening
-=================================
-
-Composer needs access to directories and functions we have disabled.
-Temporarily renable them for Composer.
-
-1. cp /etc/opt/rh/rh-php72/php.d/security.ini.weak /etc/opt/rh/rh-php72/php.d/security.ini
-
-security.ini.weak allows:
-   - open_basedir=<any>
-   - allow_url_fopen=On
-   - allow_url_include=On
-   - disable_functions=<none>
-
-Step (1) is dangerous. It allows many popular attack vectors.
-This change must be undone after Composer has been run.
-
-Step 8 - Install latest Mediawiki
+Step 6 - Install latest Mediawiki
 ==================================
 
 Clear old artifacts:
@@ -116,6 +85,37 @@ And then:
 It is OK to delete the artifacts in /tmp:
 
 8. rm -rf /tmp/mediawiki* /tmp/w/
+
+Step 7 - Install Composer
+=========================
+
+# This gets an old Composer with dependencies.
+# Red Hat SCL does not supply an updated composer.
+
+1. yum -y install composer
+2. hash -r
+3. Copy the list of dependencies
+
+Step (1) is dangerous. Composer is a developer tool that brings
+in 30+ dependencies. Composer and friends require unsafe functions.
+They must be removed after the Mediawiki upgrade.
+
+Step 8 - Disable server hardening
+=================================
+
+Composer needs access to directories and functions we have disabled.
+Temporarily renable them for Composer.
+
+1. cp /etc/opt/rh/rh-php72/php.d/security.ini.weak /etc/opt/rh/rh-php72/php.d/security.ini
+
+security.ini.weak allows:
+   - open_basedir=<any>
+   - allow_url_fopen=On
+   - allow_url_include=On
+   - disable_functions=<none>
+
+Step (1) is dangerous. It allows many popular attack vectors.
+This change must be undone after Composer has been run.
 
 Step 9 - Update Mediawiki dependencies
 ======================================
