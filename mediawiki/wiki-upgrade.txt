@@ -1,6 +1,6 @@
 Installing a new version of Mediawiki sucks for a several reasons.
 First, we have to disable some of our security hardening and re-enable
-it later. Second, we have to nstall a bunch of developer tools and
+it later. Second, we have to install a bunch of developer tools and
 then remove them. Third, Mediawiki uses bleeding edge components but
 CentOS provides antique software.
 
@@ -64,21 +64,27 @@ be installed using Composer.
 1. rm -rf /var/www/html/w/vendor/*
 
 Step 6 - Install latest Mediawiki
-==================================
+=================================
 
 Clear old artifacts:
 
 1. rm -rf /tmp/mediawiki* /tmp/w/
 
-Temporary unpack:
+Download the latest Mediawiki in tmp/:
 
 2. cd /tmp
 3. wget https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.4.tar.gz
+
+Temporary unpack in tmp/:
+
 4. tar -xzf mediawiki-1.34.4.tar.gz
 5. mv mediawiki-1.34.4/ w
+
+Test the copy to the filesystem:
+
 6. rsync -avh --dry-run /tmp/w /var/www/html/
 
-And then:
+Perform the copy to the filesystem:
 
 7. rsync -avh /tmp/w /var/www/html/
 
@@ -104,7 +110,7 @@ Step 8 - Disable server hardening
 =================================
 
 Composer needs access to directories and functions we have disabled.
-Temporarily renable them for Composer.
+Temporarily re-enable them for Composer.
 
 1. cp /etc/opt/rh/rh-php72/php.d/security.ini.weak /etc/opt/rh/rh-php72/php.d/security.ini
 
@@ -153,39 +159,58 @@ Note: Mediawiki does not provide a LocalSettings.php in the
 tarball. You have to use the existing LocalSettings.php that
 was backed up in Step 4.
 
-Step 11 - Update for new Mediawiki
+Step 11 - Database maintenance
+==============================
+
+We are now at the point of no return. Prior to this point
+we could copy the old wiki installation from /var/wiki-backup
+and go back to the old version. At this step we burn that bridge.
+Once the database is updated we are married to the new version
+(unless you want to perform a restore using duplicity).
+
+Next, cross your fingers:
+
+1. php /var/www/html/w/maintenance/update.php
+
+If update.php succeeds, then the migration is mostly complete.
+
+If update.php fails, then fix the errors until it succeeds. If it
+still fails, then you have to go back to the old installation located
+in /var/wiki-backup.
+
+Step 12 - Update for new Mediawiki
 ==================================
+
+update-wiki.sh is our tool to perform additional updates on the wiki.
+Each time we run 'yum update' we also run update-wiki.sh.
+
+update-wiki.sh updates extensions and skins on a regular basis. It
+also fixes file permissions on files from the tarball and extensions.
+The file permissions are always screwed up, like PHP files without the
+eXecute bit, and JPEG files with the eXecute bit.
+
+update-wiki.sh is available in this GitHub repo.
 
 1. Open update-wiki.sh
 2. Change WIKI_REL=REL1_34 to appropriate version
 
-update-wiki.sh is available in this GitHub repo.
-
-Next, cross your fingers:
-
-3. php /var/www/html/w/maintenance/update.php
-
 And then:
 
-4. bash /var/www/html/w/update-wiki.sh
-
-maintenance/update.php must succeed or the migration is a failure.
-You must fix failures or go back to the down-level version of
-MediaWiki saved at /var/wiki-backup.
+3. bash /var/www/html/w/update-wiki.sh
 
 The head notes cover what update-wiki.sh does. It includes
 updating the components in skins/ and extensions/, running
 maintenance/update.php, and fixing permissions.
 
-The script also restarts MySQL and Apache.
+update-wiki.sh also restarts MySQL and Apache.
 
 At this point you should be able to test the installation by
-visiting Special:Version:
+visiting Special:Version wiki page:
 
 5. https://www.cryptopp.com/wiki/Special:Version
 
-Step 12 - Restore server hardening
-=================================
+Step 13 - Restore server hardening
+==================================
 
 1. cp /etc/opt/rh/rh-php72/php.d/security.ini.hard /etc/opt/rh/rh-php72/php.d/security.ini
 
@@ -195,7 +220,7 @@ security.ini.hard re-enables:
    - allow_url_include=Off
    - disable_functions="apache_note ..."
 
-Step 13 - Remove Composer
+Step 14 - Remove Composer
 =========================
 
 The list from Step (5) should be cribbed away. Here is the one
@@ -217,3 +242,9 @@ php-symfony-process php-symfony-var-dumper php-symfony-yaml php-xml
 2. hash -r
 
 3. yum -y autoremove
+
+Miscellaneous
+=============
+
+Note well: You may need to reinstall librsync-devel if duplicity has a failure.
+'yum -y autoremove' seems to remove it even though it is needed by duplicity.
