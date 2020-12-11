@@ -34,8 +34,9 @@ Some actions in the database are delayed. Run them now.
 Step 3 - Incremental system backup
 ==================================
 
-This step performs a full system backup using duplicity.
-The backup takes about 20 to 25 minutes.
+This step performs a system backup using duplicity. The backups
+are usually incremental. Every three months a full backup is
+performed. The incremental backup takes about 20 to 25 minutes.
 
 1. bash /etc/cron.daily/bitvise-backup
 
