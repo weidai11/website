@@ -198,10 +198,6 @@ And then:
 
 3. bash /var/www/html/w/update-wiki.sh
 
-The head notes cover what update-wiki.sh does. It includes
-updating the components in skins/ and extensions/, running
-maintenance/update.php, and fixing permissions.
-
 update-wiki.sh also restarts MySQL and Apache.
 
 At this point you should be able to test the installation by
