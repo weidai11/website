@@ -31,12 +31,13 @@ Some actions in the database are delayed. Run them now.
 
 1. php /var/www/html/w/maintenance/runJobs.php
 
-Step 3 - Incremental backup
-===========================
+Step 3 - Incremental system backup
+==================================
+
+This step performs a full system backup using duplicity.
+The backup takes about 20 to 25 minutes.
 
 1. bash /etc/cron.daily/bitvise-backup
-
-The backup takes about 20 to 25 minutes.
 
 Step 4 - Local backup of wiki only
 ==================================
