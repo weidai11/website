@@ -46,7 +46,8 @@ Delete a previous local backup, if present. Make a local backup
 for quick restoration, if needed.
 
 Note: the backup is stored at /var/wiki-backup so /var/www/html
-can be restored quickly without the need to restore a local backup.
+can be restored quickly without the need to restore a copy
+using duplicity.
 
 1. rm -rf /var/wiki-backup
 2. cp -r /var/www/html/w /var/wiki-backup
