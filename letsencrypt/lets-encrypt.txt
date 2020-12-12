@@ -7,7 +7,7 @@ It is also OK to execute the procedure multiple times while learning the
 process. Let's Encrypt will issue a new certificate on a second or third run.
 
 The process below reuses the existing webserver keypair for key continuity.
-We also need to be mindful of unexpected key changes due to Public-Key-Pins
+We need to be mindful of unexpected key changes due to Public-Key-Pins
 header used for HTTP public key pinning.
 
 Be sure to restart Apache after the process so the new certificate is used.
