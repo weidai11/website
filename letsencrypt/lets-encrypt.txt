@@ -6,7 +6,7 @@ with particular content.
 It is also OK to execute the procedure multiple times while learning the
 process. Let's Encrypt will issue a new certificate on a second or third run.
 
-The process below reuses the existing webserver keypair for key continuity.
+The process below reuses the existing web server keypair for key continuity.
 We need to be mindful of unexpected key changes due to Public-Key-Pins
 header used for HTTP public key pinning.
 
@@ -40,6 +40,11 @@ Be sure to restart Apache after the process so the new certificate is used.
 5. Restart the Apache web server
 
    systemctl restart httpd24-httpd.service
+
+6. Verify the new web server certificate.
+
+   * https://www.ssllabs.com/ssltest/analyze.html?d=www.cryptopp.com&latest
+   * https://www.sslshopper.com/ssl-checker.html#hostname=www.cryptopp.com
 
 ----------
 
