@@ -1,16 +1,16 @@
-The Let's Encrypt process uses two teminals. In the first terminal, the
+The Let's Encrypt process uses two terminals. In the first terminal, the
 'letsencrypt' program runs and tells you to do things. In the second
 terminal you do what the 'letsencrypt' program says, like create files
 with particular content.
 
 It is also OK to execute the procedure multiple times while learning the
-process. Let's Encrypt will issue a new certifcate on a second or thrid run.
+process. Let's Encrypt will issue a new certificate on a second or third run.
 
 The process below reuses the existing webserver keypair for key continuity.
 We also need to be mindful of unexpected key changes due to Public-Key-Pins
 header used for HTTP public key pinning.
 
-Be sure to restart Apache after the process so the new certifcate is used.
+Be sure to restart Apache after the process so the new certificate is used.
 
 1. Log-in to VM, su to root with "sudo su -".
    CD to root's home with "cd ~".
@@ -25,10 +25,10 @@ Be sure to restart Apache after the process so the new certifcate is used.
    LE client will send requests and receive responses.
 
    LE client will tell you to create a file with specific content.
-   Create the nessary files in the other terminal. Once the
+   Create the necessary files in the other terminal. Once the
    challenges have been accepted client will download a new cert.
 
-4. Once the certifcate issues, copy it to cryptopp-com.pem
+4. Once the certificate issues, copy it to cryptopp-com.pem
 
    # cp 0000_cert.pem /etc/pki/tls/certs/cryptopp-com.pem
    cp: overwrite ‘/etc/pki/tls/certs/cryptopp-com.pem’? y
