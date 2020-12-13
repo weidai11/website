@@ -46,15 +46,15 @@ fi
 for dir in $(find "$WIKI_DIR/skins" -name '.git' 2>/dev/null); do
     cd "$dir/.."
     echo "Updating ${dir::-4}"
-    git reset --hard HEAD && git pull
-    git checkout -f "$WIKI_REL"
+    git reset --hard HEAD && git pull && \
+    git checkout -f "$WIKI_REL" && git pull
 done
 
 for dir in $(find "$WIKI_DIR/extensions" -name '.git' 2>/dev/null); do
     cd "$dir/.."
     echo "Updating ${dir::-4}"
-    git reset --hard HEAD && git pull
-    git checkout -f "$WIKI_REL"
+    git reset --hard HEAD && git pull && \
+    git checkout -f "$WIKI_REL" && git pull
 done
 
 # Remove all test frameworks
@@ -141,21 +141,20 @@ done
 # Make sure MySQL is running for update.php. It is a chronic
 # source of problems because the Linux OOM killer targets mysqld.
 echo "Restarting MySQL"
-# systemctl restart mariadb.service &>/dev/null
 systemctl stop mariadb.service 2>/dev/null
-systemctl start mariadb.service 2>&1
+systemctl start mariadb.service
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 echo "Running update.php"
-"${PHP_DIR}/php" "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki" 2>&1
+"${PHP_DIR}/php" "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki"
 
 echo "Restarting Apache service"
-if ! systemctl restart httpd24-httpd.service 2>&1; then
+if ! systemctl restart httpd24-httpd.service; then
     echo "Restart failed. Sleeping for 3 seconds"
     sleep 3
     echo "Restarting Apache service"
     systemctl stop httpd24-httpd.service 2>/dev/null
-    systemctl start httpd24-httpd.service 2>&1
+    systemctl start httpd24-httpd.service
 fi
 
 # Cleanup backup files
