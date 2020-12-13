@@ -3,8 +3,8 @@
 # update-wiki.sh performs maintenance on the website's wiki installation.
 # The script does three things, give or take. First it updates GitHub
 # based components in skins/ and extensions/. Second, it {re}sets
-# permissions on some files and folders, including logging files
-# in /var/log. Third, it runs MediaWiki's update.php and then restarts
+# ownership and permissions on some files and folders, including logging
+# files in /var/log. Third, it runs MediaWiki's update.php and then restarts
 # the Apache service. update.php is important and it must be run anytime
 # a change occurs.
 #
@@ -77,9 +77,10 @@ if [[ -f "$WIKI_DIR/create-sitemap.sh" ]]; then
     bash "$WIKI_DIR/create-sitemap.sh" 1>/dev/null
 fi
 
-# Set proper ownership permissions. This is a required step after unpacking a
-# new MediaWiki or cloning a new Skin or Extension. The permissions are never
-# correct.
+# Set proper ownership and permissions. This is required after unpacking a
+# new MediaWiki or cloning a Skin or Extension. The permissions are never
+# correct. Executable files will be missing +x, and images will have +x.
+
 echo "Fixing MediaWiki permissions"
 chown -R root:apache "$WIKI_DIR/"
 chmod -R o-rwx "$WIKI_DIR/"
@@ -120,13 +121,6 @@ for file in $(find "$LOG_DIR/httpd*" -type f -name '*log*' 2>/dev/null); do
     chmod ug-x  "$file"
     chmod o-rwx "$file"
 done
-#for file in $(find "$LOG_DIR/httpd24" -type f -name '*log*' 2>/dev/null); do
-#    if [[ ! -f "$file" ]]; then continue; fi
-#    chown root:apache "$file"
-#    chmod ug+rw "$file"
-#    chmod ug-x  "$file"
-#    chmod o-rwx "$file"
-#done
 
 echo "Fixing MariaDB logging permissions"
 chown mysql:mysql "$LOG_DIR/mariadb"
@@ -159,7 +153,7 @@ fi
 
 # Cleanup backup files
 echo "Cleaning backup files"
-find /var/www/ -name '*~' -exec rm {} \;
+find /var/www -name '*~' -exec rm {} \;
 find /opt -name '*~' -exec rm {} \;
 find /etc -name '*~' -exec rm {} \;
 
