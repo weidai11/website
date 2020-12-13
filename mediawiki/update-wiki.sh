@@ -83,43 +83,51 @@ fi
 
 echo "Fixing MediaWiki permissions"
 chown -R root:apache "$WIKI_DIR/"
-chmod -R o-rwx "$WIKI_DIR/"
+chmod -R u+rw,g+r,g-w,o-rwx "$WIKI_DIR/"
 
-# Images/ must be writable by group
+# Make Python and PHP executable
+echo "Fixing Python and PHP permissions"
+for file in $(find "$WIKI_DIR" -type f -name '*.py' 2>/dev/null); do
+    if [[ ! -f "$file" ]]; then continue; fi
+    chmod u+rwx,g+rx,g-w,o-rwx "$file"
+done
+for file in $(find "$WIKI_DIR" -type f -name '*.php' 2>/dev/null); do
+    if [[ ! -f "$file" ]]; then continue; fi
+    chmod u+rwx,g+rx,g-w,o-rwx "$file"
+done
+for file in $(find "$WIKI_DIR" -type f -name '*.sh' 2>/dev/null); do
+    if [[ ! -f "$file" ]]; then continue; fi
+    chmod u+rwx,g+rx,g-w,o-rwx "$file"
+done
+
+# Images/ must be writable by apache group
 echo "Fixing MediaWiki images/ permissions"
 for dir in $(find "$WIKI_DIR/images" -type d 2>/dev/null); do
     if [[ ! -d "$dir" ]]; then continue; fi
-    chmod ug+rwx "$dir"
-    chmod o-rwx  "$dir"
+    chmod ug+rwx,o-rwx "$dir"
 done
 for file in $(find "$WIKI_DIR/images" -type f 2>/dev/null); do
     if [[ ! -f "$file" ]]; then continue; fi
-    chmod ug+rw "$file"
-    chmod ug-x  "$file"
-    chmod o-rwx "$file"
+    chmod ug+rw,ug-x,o-rwx "$file"
 done
 
 echo "Fixing Apache data permissions"
 for dir in "/var/lib/pear/" "/var/lib/php/"; do
     if [[ ! -d "$dir" ]]; then continue; fi
     chown -R apache:apache "$dir"
-    chmod -R ug+rwx "$dir"
-    chmod -R o-rwx  "$dir"
+    chmod -R ug+rwx,o-rwx "$dir"
 done
 
 echo "Fixing Apache logging permissions"
 for dir in $(find "$LOG_DIR" -type d -name 'httpd*' 2>/dev/null); do
     if [[ ! -d "$dir" ]]; then continue; fi
     chown root:apache "$dir"
-    chmod ug+rwx "$dir"
-    chmod o-rwx  "$dir"
+    chmod ug+rwx,o-rwx "$dir"
 done
 for file in $(find "$LOG_DIR/httpd*" -type f -name '*log*' 2>/dev/null); do
     if [[ ! -f "$file" ]]; then continue; fi
     chown root:apache "$file"
-    chmod ug+rw "$file"
-    chmod ug-x  "$file"
-    chmod o-rwx "$file"
+    chmod ug+rw,ug-x,o-rwx "$file"
 done
 
 echo "Fixing MariaDB logging permissions"
@@ -127,9 +135,7 @@ chown mysql:mysql "$LOG_DIR/mariadb"
 for file in $(find "$LOG_DIR/mariadb" -type f -name '*log*' 2>/dev/null); do
     if [[ ! -f "$file" ]]; then continue; fi
     chown mysql:mysql "$file"
-    chmod ug+rw "$file"
-    chmod ug-x  "$file"
-    chmod o-rwx "$file"
+    chmod ug+rw,ug-x,o-rwx "$file"
 done
 
 # Make sure MySQL is running for update.php. It is a chronic
