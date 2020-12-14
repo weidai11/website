@@ -117,7 +117,7 @@ do
     chmod ug=rw,o= "$file"
 done
 
-echo "Fixing Apache data permissions"
+echo "Fixing Apache session permissions"
 if [[ -d "/var/lib/pear" ]]
 then
     chown -R apache:apache "/var/lib/pear"
