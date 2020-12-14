@@ -147,13 +147,12 @@ fi
 echo "Fixing Apache logging permissions"
 IFS= find "$LOG_DIR" -type d -name 'httpd*' | while read -r dir
 do
-    chown root:apache "$dir"
+    chown -R root:apache "$dir"
     chmod ug=rwx,o= "$dir"
-done
-IFS= find "$LOG_DIR/httpd*" -type f -name '*log*' | while read -r file
-do
-    chown root:apache "$file"
-    chmod ug=rw,o= "$file"
+    IFS= find "$dir" -type f -name '*log*' | while read -r file
+    do
+        chmod ug=rw,o= "$file"
+    done
 done
 
 echo "Fixing MariaDB logging permissions"
