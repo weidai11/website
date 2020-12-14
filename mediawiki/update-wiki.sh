@@ -16,11 +16,11 @@
 #
 # This script takes about 10 minutes to run.
 
-THIS_DIR=$(pwd)
-function finish {
-    cd "$THIS_DIR"
-}
-trap finish EXIT
+# Important variables
+WIKI_DIR="/var/www/html/w"
+WIKI_REL=REL1_34
+PHP_DIR=/opt/rh/rh-php72/root/usr/bin
+LOG_DIR="/var/log"
 
 # Privileges? Exit 0 to keep things moving along
 # Errors will be printed to the terminal
@@ -28,12 +28,6 @@ if [[ ($(id -u) != "0") ]]; then
     echo "You must be root to update the wiki"
     exit 0
 fi
-
-# Important variables
-WIKI_DIR="/var/www/html/w"
-WIKI_REL=REL1_34
-PHP_DIR=/opt/rh/rh-php72/root/usr/bin
-LOG_DIR="/var/log"
 
 if [[ ! -d "${WIKI_DIR}" ]]; then
     echo "WIKI_DIR is not valid."
