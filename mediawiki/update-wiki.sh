@@ -9,7 +9,7 @@
 # a change occurs.
 #
 # We have to use the safer form of the find command because some skins and
-# extensions use whitespace in the filenames of some of their files.
+# extensions use whitespace in some of their file names.
 #
 # The script is located in the wiki directory, which is /var/www/html/w.
 # We should probably schedule this script as a cron job.
@@ -156,7 +156,7 @@ do
 done
 
 echo "Fixing MariaDB logging permissions"
-chown mysql:mysql "$LOG_DIR/mariadb"
+chown -R mysql:mysql "$LOG_DIR/mariadb"
 IFS= find "$LOG_DIR/mariadb" -type f -name '*log*' | while read -r file
 do
     chown mysql:mysql "$file"
