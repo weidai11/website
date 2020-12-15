@@ -64,7 +64,7 @@ do
     rm -rf "$dir" 2>/dev/null
 done
 
-# Remove all benchmark frameworks in	production. We are not PHP developers.
+# Remove all benchmark frameworks in production. We are not PHP developers.
 IFS= find "$WIKI_DIR" -iname 'benchmark*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
