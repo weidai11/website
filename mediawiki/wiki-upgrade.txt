@@ -115,7 +115,7 @@ Step 8 - Disable server hardening
 Composer needs access to directories and functions we have disabled.
 Temporarily re-enable them for Composer.
 
-1. cp /etc/opt/rh/rh-php72/php.d/security.ini.weak /etc/opt/rh/rh-php72/php.d/security.ini
+1. cp /etc/opt/rh/rh-php73/php.d/security.ini.weak /etc/opt/rh/rh-php73/php.d/security.ini
 
 security.ini.weak allows:
    - open_basedir=<any>
@@ -211,7 +211,7 @@ visiting Special:Version wiki page:
 Step 13 - Restore server hardening
 ==================================
 
-1. cp /etc/opt/rh/rh-php72/php.d/security.ini.hard /etc/opt/rh/rh-php72/php.d/security.ini
+1. cp /etc/opt/rh/rh-php73/php.d/security.ini.hard /etc/opt/rh/rh-php73/php.d/security.ini
 
 security.ini.hard re-enables:
    - open_basedir="..."

@@ -19,7 +19,7 @@
 # Important variables
 WIKI_DIR="/var/www/html/w"
 WIKI_REL=REL1_34
-PHP_DIR=/opt/rh/rh-php72/root/usr/bin
+PHP_DIR=/opt/rh/rh-php73/root/usr/bin
 LOG_DIR="/var/log"
 
 # Privileges? Exit 0 to keep things moving along
