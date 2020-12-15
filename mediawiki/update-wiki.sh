@@ -58,13 +58,13 @@ do
       git checkout -f "$WIKI_REL" && git pull
 done
 
-# Remove all test frameworks
+# Remove all test frameworks in production. We are not PHP developers.
 IFS= find "$WIKI_DIR" -iname 'test*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
-# And benchmarks
+# Remove all benchmark frameworks in	production. We are not PHP developers.
 IFS= find "$WIKI_DIR" -iname 'benchmark*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
