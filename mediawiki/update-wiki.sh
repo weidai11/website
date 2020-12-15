@@ -18,7 +18,7 @@
 
 # Important variables
 WIKI_DIR="/var/www/html/w"
-WIKI_REL=REL1_34
+WIKI_REL=REL1_35
 PHP_DIR=/opt/rh/rh-php73/root/usr/bin
 LOG_DIR="/var/log"
 

@@ -73,12 +73,12 @@ Clear old artifacts:
 Download the latest Mediawiki in tmp/:
 
 2. cd /tmp
-3. wget https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.4.tar.gz
+3. wget https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.0.tar.gz
 
 Temporary unpack in tmp/:
 
-4. tar -xzf mediawiki-1.34.4.tar.gz
-5. mv mediawiki-1.34.4/ w
+4. tar -xzf mediawiki-1.35.0.tar.gz
+5. mv mediawiki-1.35.0/ w
 
 Test the copy to the filesystem:
 
