@@ -192,7 +192,7 @@ eXecute bit, and JPEG files with the eXecute bit.
 update-wiki.sh is available in this GitHub repo.
 
 1. Open update-wiki.sh
-2. Change WIKI_REL=REL1_34 to appropriate version
+2. Change WIKI_REL=REL1_35 to appropriate version
 
 And then:
 
