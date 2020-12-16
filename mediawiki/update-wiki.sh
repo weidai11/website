@@ -62,7 +62,7 @@ done
 IFS= find "$WIKI_DIR" -iname 'test*' -print | while read -r fso
 do
     # Be careful of this name. It is not part of test frameworks
-    if [[ "$fso" == *"TestCanonicalRedirectHook.php"* ]]; then continue;
+    if [[ "$fso" == *"TestCanonicalRedirectHook.php"* ]]; then continue; fi
     rm -rf "$fso" 2>/dev/null
 done
 
