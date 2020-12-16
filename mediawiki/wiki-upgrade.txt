@@ -185,18 +185,19 @@ update-wiki.sh is our tool to perform additional updates on the wiki.
 Each time we run 'yum update' we also run update-wiki.sh.
 
 update-wiki.sh updates extensions and skins on a regular basis. It
-also fixes file permissions on files from the tarball and extensions.
-The file permissions are always screwed up, like PHP files without the
-eXecute bit, and JPEG files with the eXecute bit.
+also fixes file permissions on files from the tarball, skins and
+extensions. The file permissions are always screwed up, like PHP files
+without the eXecute bit, and JPEG files with the eXecute bit.
 
 update-wiki.sh is available in this GitHub repo.
 
 1. Open update-wiki.sh
 2. Change WIKI_REL=REL1_35 to appropriate version
+3. Change PHP_DIR=/opt/rh/rh-php73/root/usr/bin as needed
 
 And then:
 
-3. bash /var/www/html/w/update-wiki.sh
+4. bash /var/www/html/w/update-wiki.sh
 
 update-wiki.sh also restarts MySQL and Apache.
 
