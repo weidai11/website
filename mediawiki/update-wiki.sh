@@ -59,15 +59,17 @@ do
 done
 
 # Remove all test frameworks in production. We are not PHP developers.
-IFS= find "$WIKI_DIR" -iname 'test*' -print | while read -r dir
+IFS= find "$WIKI_DIR" -iname 'test*' -print | while read -r fso
 do
-    rm -rf "$dir" 2>/dev/null
+    # Be careful of this name. It is not part of test frameworks
+    if [[ "$fso" == *"TestCanonicalRedirectHook.php"* ]]; then continue;
+    rm -rf "$fso" 2>/dev/null
 done
 
 # Remove all benchmark frameworks in production. We are not PHP developers.
-IFS= find "$WIKI_DIR" -iname 'benchmark*' -print | while read -r dir
+IFS= find "$WIKI_DIR" -iname 'benchmark*' -print | while read -r fso
 do
-    rm -rf "$dir" 2>/dev/null
+    rm -rf "$fso" 2>/dev/null
 done
 
 echo "Creating MediaWiki sitemap"

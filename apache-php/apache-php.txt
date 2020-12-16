@@ -96,7 +96,7 @@ VirtualHost settings:
   ServerName www.cryptopp.com:443
   ServerAlias *.cryptopp.com cryptopp.com
 
-  SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2
+  SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2 +TLSv1.3
   SSLCipherSuite HIGH:!aNULL:!kRSA:!MD5:!RC4
 
   SSLCertificateFile /etc/pki/tls/certs/cryptopp-com.pem
