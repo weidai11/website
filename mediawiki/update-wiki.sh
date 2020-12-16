@@ -40,7 +40,7 @@ if [[ ! -d "${PHP_DIR}" ]]; then
 fi
 
 # This finds directories check'd out from Git and updates them. 
-# It works surprisingly well. There has only been a couple of
+# It works surprisingly well. There have only been a couple of
 # minor problems.
 IFS= find "$WIKI_DIR/skins" -type d -name '.git' -print | while read -r dir
 do
