@@ -19,6 +19,8 @@ if [[ ! -d /etc/systemd/system ]]; then
     exit 1
 fi
 
+########## Bitvise backup script ##########
+
 # Clean previous installations, if present
 systemctl disable bitvise-backup.service &>/dev/null
 systemctl disable bitvise-backup.timer &>/dev/null
@@ -45,6 +47,40 @@ if ! systemctl start bitvise-backup.timer; then
     exit 1
 fi
 
+echo "Installed bitvise-backup service"
+
+########## Gdrive backup script ##########
+
+# Clean previous installations, if present
+systemctl disable gdrive-backup.service &>/dev/null
+systemctl disable gdrive-backup.timer &>/dev/null
+find /etc/systemd -name 'gdrive-backup.*' -exec rm -f {} \;
+
+# Copy our Systemd units
+cp gdrive-backup.service /etc/systemd/system
+cp gdrive-backup.timer /etc/systemd/system
+
+# Copy our backup script
+cp "/root/backup-scripts/gdrive-backup" /usr/sbin/gdrive-backup
+chown root:root /usr/sbin/gdrive-backup
+chmod u=rwx,g=rx,o= /usr/sbin/gdrive-backup
+
+# Enable gdrive-backup timer
+if ! systemctl enable gdrive-backup.timer; then
+    echo "Failed to enable gdrive-backup.timer"
+    exit 1
+fi
+
+# Start gdrive-backup timer
+if ! systemctl start gdrive-backup.timer; then
+    echo "Failed to start gdrive-backup.timer"
+    exit 1
+fi
+
+echo "Installed gdrive-backup service"
+
+########## Systemd services ##########
+
 # Reload services
 if ! systemctl daemon-reload 2>/dev/null; then
     echo "Failed to daemon-reload"
@@ -53,7 +89,5 @@ fi
 if ! systemctl reset-failed; then
     echo "Failed to reset-failed"
 fi
-
-echo "Installed bitvise-backup service"
 
 exit 0
