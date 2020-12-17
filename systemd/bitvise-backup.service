@@ -1,0 +1,8 @@
+[Unit]
+Description=Update the system once a day without user prompts
+Documentation=https://github.com/weidai11/website
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/sbin/bitvise-backup

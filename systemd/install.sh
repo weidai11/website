@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+# This script installs bitvise-backup as a system service. The Systemd units (timer and service)
+# are located in the Website GitHub. The backup script (bitvise-backup) is located in Root's
+# home directory and not GitHub because passwords are hardcoded in the script.
+
+if [[ "$EUID" -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+if [[ -z $(command -v systemctl 2>/dev/null) ]]; then
+    echo "systemctl not found"
+    exit 1
+fi
+
+if [[ ! -d /etc/systemd/system ]]; then
+    echo "Systemd directory not found"
+    exit 1
+fi
+
+# Clean previous installations, if present
+systemctl disable bitvise-backup.service &>/dev/null
+systemctl disable bitvise-backup.timer &>/dev/null
+find /etc/systemd -name 'bitvise-backup.*' -exec rm -f {} \;
+
+# Copy our Systemd units
+cp bitvise-backup.service /etc/systemd/system
+cp bitvise-backup.timer /etc/systemd/system
+
+# Copy our backup script
+cp "/root/backup-scripts/bitvise-backup" /usr/sbin/bitvise-backup
+chown root:root /usr/sbin/bitvise-backup
+chmod u=rwx,g=rx,o= /usr/sbin/bitvise-backup
+
+# Enable bitvise-backup timer
+if ! systemctl enable bitvise-backup.timer; then
+    echo "Failed to enable bitvise-backup.timer"
+    exit 1
+fi
+
+# Start bitvise-backup timer
+if ! systemctl start bitvise-backup.timer; then
+    echo "Failed to start bitvise-backup.timer"
+    exit 1
+fi
+
+# Reload services
+if ! systemctl daemon-reload 2>/dev/null; then
+    echo "Failed to daemon-reload"
+fi
+
+if ! systemctl reset-failed; then
+    echo "Failed to reset-failed"
+fi
+
+echo "Installed bitvise-backup service"
+
+exit 0
