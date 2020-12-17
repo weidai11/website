@@ -47,6 +47,8 @@ do
     # Fix encoding
     "$SED" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' "$file"
 
+    echo "unix2dos: processing file $file..."
+
     # Fix CRLF endings after sed
     unix2dos "$file" 1>/dev/null
 
@@ -60,11 +62,17 @@ done
 
 IFS= find . -type f -iname '*.css' -print | while read -r file
 do
+    echo "**************** $file ****************"
+
+    echo "sed: processing file $file..."
+
     # Delete the generator markup tag
     "$SED" "${SED_OPTS[@]}" -e'/<meta name="generator"/d' "$file"
 
     # Delete trailing whitespace
     "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
+
+    echo "unix2dos: processing file $file..."
 
     # Fix CRLF endings after sed
     unix2dos "$file" 1>/dev/null
