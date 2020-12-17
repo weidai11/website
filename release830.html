@@ -165,15 +165,6 @@
   forward. Crypto++ 3.2 was released March 2000.</p>
   <p>The CVE was tracked under <a href=
   "https://github.com/weidai11/cryptopp/issues/869">Issue 869</a>.</p>
-  <h2>setenv-android.sh</h2>
-  <p>The cross-compile script <tt>setenv-android.sh</tt> is no longer viable for building
-  the library using the Android NDK. Recent NDK changes has mostly obsoleted the script.
-  We are moving to a new script but it is not ready at the moment. Also see Issue 763,
-  <a href="https://github.com/weidai11/cryptopp/issues/763">Building for Android using
-  NDK not supported on Windows hosts</a>.</p>
-  <p>We have a GitHub setup with yet another build system at <a href=
-  "https://github.com/noloader/cryptopp-android">cryptopp-android</a>. It provides
-  <tt>Android.mk</tt> for Android's build system.</p>
   <h2>FIPS DLL deprecation</h2>
   <p>The FIPS DLL used to be an important artifact for Windows builds. NIST moved the
   Crypto++ library to the Historical Validation List in 2014. The Windows DLL is no
