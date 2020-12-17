@@ -75,7 +75,7 @@
         <li>SIMD provides architecture specific hardware acceleration</li>
       </ul>
     </li>
-    <li>improved PowerPC Power4, Power7 and Power8 support</li>
+    <li>improved PowerPC Altivec, POWER7 and POWER8 support</li>
     <li>added ARIA, EC German DSA, Deterministic signatures (RFC 6979), Kalyna, NIST Hash
     and HMAC DRBG, Padlock RNG, Poly1305, SipHash, Simon, Speck, SM3, SM4, Threefish
     algorithms</li>
@@ -109,7 +109,7 @@
   "https://github.com/noloader/cryptopp-autotools">Autoools project</a> adds the
   architecture specific flags. The makefile still honors your <tt>CXXFLAGS</tt>:</p>
   <pre>
-# AESNI, ARMv8a or Power8 available
+# AESNI, ARMv8a or POWER8 available
 rijndael-simd.o : rijndael-simd.cpp
         $(CXX) $(strip $(CXXFLAGS) $(AES_FLAG) -c) $&lt;
 </pre>
@@ -271,11 +271,11 @@ CRYPTOPP_SIMON_FLAG: -march=armv8-a
     <li>Fixed ARM feature detection with BASE+SIMD (Issue 480, PR 461)</li>
     <li>Fixed load/store on ARM NEON using BASE+SIMD (Issue 481, PR 461)</li>
     <li>Fixed GCC 6 compile failure with -std=c++03 on AIX (Issue 485)</li>
-    <li>Improved under-aligned buffers for AltiVec and Power8 (Issue 487)</li>
+    <li>Improved under-aligned buffers for AltiVec and POWER8 (Issue 487)</li>
     <li>Fixed AOSP_STL_INC using setenv-android.sh (Issue 490)</li>
     <li>Fixed Android ARM compile using setenv-android.sh (Issue 491)</li>
     <li>Fixed CentOS 6.6 amd64 compile error (Issue 494)</li>
-    <li>Added Power8 AES (Issue 497)</li>
+    <li>Added POWER8 AES (Issue 497)</li>
     <li>Fixed DL_PrivateKey_GFP&lt;GP&gt;::~DL_PrivateKey_GFP() section type conflict on
     AIX (Issue 499)</li>
     <li>Fixed CpuID function using Borland (Issue 500)</li>
