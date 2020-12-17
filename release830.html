@@ -57,14 +57,34 @@
     <li>expanded community input and support</li>
     <li style="list-style: none">
       <ul>
-        <li>58 unique contributors as of this release</li>
+        <li>66 unique contributors as of this release</li>
       </ul>
     </li>
+    <li>fix potential buffer overflow in ECDSA</li>
+    <li>fix missing <tt>CRYPTOPP_CXX17_EXCEPTIONS</tt> with Clang</li>
+    <li>fix potential buffer overflow in GCM mode</li>
+    <li>add <tt>configure.sh</tt> when macros fail</li>
+    <li>fix potential buffer overflow in SipHash</li>
+    <li>fix compile on POWER9 due to <tt>vec_xl_be</tt></li>
+    <li>fix POWER8 using <tt>K233</tt></li>
+    <li>add Cirrus CI testing</li>
+    <li>fix broken encryption for some 64-bit ciphers</li>
+    <li>fix Android <tt>cpu-features.c</tt> using C++ compiler</li>
+    <li>disable <tt>RDRAND</tt> and <tt>RDSEED</tt> for some AMD processors</li>
+    <li>fix BLAKE2 hash calculation using Salt and Personalization</li>
+    <li>refresh Android and iOS builds</li>
+    <li>add XTS mode</li>
+    <li>fix circular dependency between <tt>misc.h</tt> and <tt>secblock.h</tt></li>
+    <li>add stub for X.509 Certificate interface</li>
+    <li>fix recursion in <tt>AES::Encryption</tt> without <tt>AESNI</tt></li>
+    <li>add missing OID for ElGamal encryption</li>
+    <li>fix missing override in KeyDerivationFunction-derived classes</li>
+    <li>fix RDSEED assemble under MSVC</li>
     <li>fix elliptic curve timing leaks (CVE-2019-14318)</li>
-    <li>add link-library variable to Makefiles</li>
-    <li>fix <tt>SIZE_MAX</tt> defintion in <tt>misc.h</tt></li>
-    <li>add <tt>GetWord64</tt> and <tt>PutWord64</tt> to
-    <tt>BufferedTransformation</tt></li>
+    <li>add link-library variable to Makefiles (GH #866)</li>
+    <li>fix <tt>SIZE_MAX</tt> definition in <tt>misc.h</tt></li>
+    <li>add <tt>GetWord64</tt> and <tt>PutWord64</tt> to <tt>BufferedTransformation</tt>
+    (GH #862, PR #863)</li>
     <li>use HKDF in AutoSeededX917RNG::Reseed</li>
     <li>fix Asan finding in VMAC on i686 in inline asm</li>
     <li>fix undeclared identifier <tt>_mm_roti_epi64</tt> on Gentoo</li>
@@ -73,12 +93,8 @@
     <li>refine ASN.1 encoders and decoders</li>
     <li>disable BMI2 code paths in Integer class</li>
     <li>fix use of <tt>CRYPTOPP_CLANG_VERSION</tt></li>
-    <li>enable Cryptogams SHA1 NEON function</li>
-    <li>enable Cryptogams SHA256 NEON function</li>
-    <li>enable Cryptogams SHA512 NEON function</li>
-    <li>add Cryptogams SHA1 ARM function</li>
-    <li>add Cryptogams SHA256 ARM function</li>
-    <li>add Cryptogams SHA512 ARM function</li>
+    <li>enable Cryptogams SHA1, SHA256 and SHA512 NEON function</li>
+    <li>add Cryptogams SHA1, SHA256 and SHA512 ARM function</li>
     <li>make config.h more autoconf friendly</li>
     <li>handle Clang triplet <tt>armv8l-unknown-linux-gnueabihf</tt></li>
     <li>fix reference binding to misaligned address in <tt>xed25519</tt></li>
@@ -93,29 +109,51 @@
   omitted. Missing Issue numbers or lack of consecutiveness usually indicates feature
   requests and "won't fix/can't fix" type reports.</p>
   <ul>
-    <li>fix elliptic curve timing leaks (CVE-2019-14318, GH #866, PR #870)</li>
+    <li>fix potential buffer overflow in ECDSA (GH #981)</li>
+    <li>fix missing <tt>CRYPTOPP_CXX17_EXCEPTIONS</tt> with Clang (GH #960)</li>
+    <li>fix potential buffer overflow in GCM mode (GH #954)</li>
+    <li>add <tt>configure.sh</tt> when macros fail (GH #950)</li>
+    <li>fix potential buffer overflow in SipHash (GH #948)</li>
+    <li>fix compile on POWER9 due to <tt>vec_xl_be</tt> (GH #944)</li>
+    <li>fix POWER8 using <tt>K233</tt> curve (GH #943)</li>
+    <li>add Cirrus CI testing (GH #940)</li>
+    <li>fix broken encryption for some 64-bit ciphers (GH #932, GH #945)</li>
+    <li>fix Android <tt>cpu-features.c</tt> using C++ compiler (GH #926)</li>
+    <li>disable <tt>RDRAND</tt> and <tt>RDSEED</tt> for some AMD processors (GH
+    #924)</li>
+    <li>fix BLAKE2 hash calculation using Salt and Personalization (GH #921)</li>
+    <li>refresh Android and iOS builds (GH #920, GH #936)</li>
+    <li>add XTS mode (GH #891)</li>
+    <li>fix circular dependency between <tt>misc.h</tt> and <tt>secblock.h</tt> (GH
+    #885)</li>
+    <li>add stub for X.509 Certificate interface (GH #884)</li>
+    <li>fix recursion in <tt>AES::Encryption</tt> without <tt>AESNI</tt> (GH #880)</li>
+    <li>add missing OID for ElGamal encryption (GH #876)</li>
+    <li>fix missing override in KeyDerivationFunction-derived classes (GH #874)</li>
+    <li>fix RDSEED assemble under MSVC (GH #872)</li>
+    <li>fix elliptic curve timing leaks (CVE-2019-14318, GH #869)</li>
     <li>add link-library variable to Makefiles (GH #866)</li>
-    <li>fix <tt>SIZE_MAX</tt> defintion in <tt>misc.h</tt> (GH #864)</li>
+    <li>fix <tt>SIZE_MAX</tt> definition in <tt>misc.h</tt> (GH #864)</li>
     <li>add <tt>GetWord64</tt> and <tt>PutWord64</tt> to <tt>BufferedTransformation</tt>
-    (GH #862)</li>
+    (GH #862, PR #863)</li>
     <li>use HKDF in AutoSeededX917RNG::Reseed (GH #861)</li>
-    <li>fix Asan finding in VMAC on i686 in inline asm (GH #860, GH #304)</li>
+    <li>fix Asan finding in VMAC on i686 in inline asm (GH #860)</li>
     <li>fix undeclared identifier <tt>_mm_roti_epi64</tt> on Gentoo (GH #859)</li>
-    <li>fix ECIES and <tt>GetSymmetricKeyLength</tt> on Gentoo (GH #856)</li>
+    <li>fix ECIES and <tt>GetSymmetricKeyLength</tt> (GH #856)</li>
     <li>fix possible divide by zero in <tt>PKCS5_PBKDF2_HMAC</tt> (GH #855)</li>
-    <li>refine ASN.1 encoders and decoders (GH #851)</li>
+    <li>refine ASN.1 encoders and decoders</li>
     <li>disable BMI2 code paths in Integer class (GH #850)</li>
     <li>fix use of <tt>CRYPTOPP_CLANG_VERSION</tt> (GH #845)</li>
-    <li>enable Cryptogams SHA1 NEON function (GH #847)</li>
-    <li>enable Cryptogams SHA256 NEON function (GH #847)</li>
-    <li>enable Cryptogams SHA512 NEON function (GH #847)</li>
-    <li>add Cryptogams SHA1 ARM function (GH #837)</li>
-    <li>add Cryptogams SHA256 ARM function (GH #839)</li>
-    <li>add Cryptogams SHA512 ARM function (GH #841)</li>
-    <li>make config.h more autoconf friendly (GH #835)</li>
-    <li>handle Clang triplet <tt>armv8l-unknown-linux-gnueabihf</tt> (GH #831)</li>
-    <li>fix reference binding to misaligned address in <tt>xed25519</tt> (GH #829)</li>
-    <li>clear asserts in <tt>TestDataNameValuePairs</tt> (GH #827)</li>
+    <li>enable Cryptogams SHA1 NEON function (GH #841, PR #842)</li>
+    <li>enable Cryptogams SHA256 NEON function (GH #839, PR #840)</li>
+    <li>enable Cryptogams SHA512 NEON function (GH #837, PR #838)</li>
+    <li>add Cryptogams SHA1 ARM function (GH #841, PR #842)</li>
+    <li>add Cryptogams SHA256 ARM function (GH #839, PR #840)</li>
+    <li>add Cryptogams SHA512 ARM function (GH #837, PR #838)</li>
+    <li>make config.h more autoconf friendly</li>
+    <li>handle Clang triplet <tt>armv8l-unknown-linux-gnueabihf</tt></li>
+    <li>fix reference binding to misaligned address in <tt>xed25519</tt></li>
+    <li>clear asserts in <tt>TestDataNameValuePairs</tt></li>
   </ul>
   <h2>CVE-2019-14318</h2>
   <p>Ján Jančár discovered multiple information leaks in elliptic curve algorithms. The
@@ -148,6 +186,9 @@
 $ git diff-tree -r --summary CRYPTOPP_8_2_0 CRYPTOPP_8_3_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.S|\.txt|\.dat)'
 create   TestData/ecies_p160.dat
 create   TestData/ecies_t163.dat
+create   TestVectors/xts.txt
+create   allocate.cpp
+create   allocate.h
 create   config_align.h
 create   config_asm.h
 create   config_cpu.h
@@ -158,12 +199,18 @@ create   config_misc.h
 create   config_ns.h
 create   config_os.h
 create   config_ver.h
+create   secblockfwd.h
 create   sha1_armv4.S
 create   sha1_armv4.h
 create   sha256_armv4.S
 create   sha256_armv4.h
 create   sha512_armv4.S
 create   sha512_armv4.h
+delete   simeck_simd.cpp
+delete   simon64_simd.cpp
+delete   speck64_simd.cpp
+create   xts.cpp
+create   xts.h
 </pre>
 </body>
 </html>
