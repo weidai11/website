@@ -39,6 +39,6 @@ The bitvise-backup script runs at 4:00 AM each night. The script performs a full
 
 ### Gdrive-backup
 
-The gdrive-backup script runs the Gdrive backup. The warez include a Systemd service, timer and backup script. The `gdrive-backup` scipt is placed at `/usr/sbin/gdrive-backup`. The script includes a password so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
+The gdrive-backup script runs the Gdrive backup. The warez include a Systemd service, timer and backup script. The `gdrive-backup` scipt is placed at `/usr/sbin/gdrive-backup`. The script includes a secret token so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
 The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a differential backup.
