@@ -14,6 +14,18 @@ then
 	exit 1
 fi
 
+if ! wget -O gdrive-backup.service https://raw.githubusercontent.com/weidai11/website/master/systemd/gdrive-backup.service;
+then
+	echo "Failed to download gdrive-backup.service"
+	exit 1
+fi
+
+if ! wget -O gdrive-backup.timer https://raw.githubusercontent.com/weidai11/website/master/systemd/gdrive-backup.timer;
+then
+	echo "Failed to download gdrive-backup.timer"
+	exit 1
+fi
+
 if ! wget -O install.sh https://raw.githubusercontent.com/weidai11/website/master/systemd/install.sh;
 then
 	echo "Failed to download install.sh"
