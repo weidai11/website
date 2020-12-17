@@ -192,7 +192,7 @@
         <li>x86, x64 (x86-64), x32 provides SSE2, SSE4 and AVX implementations</li>
         <li>ARM A-32, Aarch32 and Aarch64 provides ARMv7, NEON, ASIMD and ARMv8
         implementations</li>
-        <li>PowerPC provides Altivec, POWER7 and POWER8 implementations</li>
+        <li>PowerPC provides Altivec, POWER7, POWER8 and POWER9 implementations</li>
         <li>AES, CRC, GCM and SHA use ARM, Intel and PowerPC hardware acceleration when
         available</li>
       </ul>
@@ -287,7 +287,7 @@
             <li>56 unique contributors as of this release</li>
           </ul>
         </li>
-        <li>use PowerPC unaligned loads and stores with Power8</li>
+        <li>use PowerPC unaligned loads and stores with POWER8</li>
         <li>add SKIPJACK test vectors</li>
         <li>fix SHAKE-128 and SHAKE-256 compile</li>
         <li>removed IS_NEON from Makefile</li>
@@ -335,7 +335,7 @@
         </li>
         <li>add x25519 key exchange and ed25519 signature scheme</li>
         <li>add limited Asymmetric Key Package support from RFC 5958</li>
-        <li>add Power9 DARN random number generator support</li>
+        <li>add POWER9 DARN random number generator support</li>
         <li>add CHAM, HC-128, HC-256, Hight, LEA, Rabbit, Simeck</li>
         <li>fix FixedSizeAllocatorWithCleanup may be unaligned on some platforms</li>
         <li>cutover to GNU Make-based cpu feature tests</li>
@@ -372,7 +372,7 @@
         <li>fix undeclared identifier uint32_t on early Visual Studio</li>
         <li>fix iPhoneSimulator build on i386</li>
         <li>fix incorrect adler32 in ZlibDecompressor</li>
-        <li>fix Power7 test using PPC_FEATURE_ARCH_2_06</li>
+        <li>fix POWER7 test using PPC_FEATURE_ARCH_2_06</li>
         <li>workaround incorrect Glibc sysconf return value on ppc64-le</li>
         <li>add KeyDerivationFunction interface</li>
         <li>add scrypt key derivation function</li>
