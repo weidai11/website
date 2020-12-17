@@ -12,13 +12,24 @@ The warez in this section of the website are held in root's home directory at `$
 
 The install.sh script installs the warez. It should be run as root.
 
-You should re-run install.sh to re-install the scripts if they change.
+```
+cd backup-scripts
+./install.sh
+```
+
+You should re-run `install.sh` to re-install the scripts if they change. See `update.sh` below.
 
 ### Update.sh
 
 The artifacts in this section of the website need to be downloaded to the webserver and updated on occassion. Just run `update.sh` to perform the manual download and update.
 
-You should re-run install.sh to re-install the scripts if they change.
+```
+cd backup-scripts
+./update.sh
+./install.sh
+```
+
+You should re-run `install.sh` to re-install the scripts if they change.
 
 ### Bitvise-backup
 
