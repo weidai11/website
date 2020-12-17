@@ -79,6 +79,36 @@ fi
 
 echo "Installed gdrive-backup service"
 
+########## System update script ##########
+
+# Clean previous installations, if present
+systemctl disable system-update.service &>/dev/null
+systemctl disable system-update.timer &>/dev/null
+find /etc/systemd -name 'system-update.*' -exec rm -f {} \;
+
+# Copy our Systemd units
+cp system-update.service /etc/systemd/system
+cp system-update.timer /etc/systemd/system
+
+# Copy our backup script
+cp "/root/backup-scripts/system-update.sh" /usr/sbin/system-update.sh
+chown root:root /usr/sbin/system-update.sh
+chmod u=rwx,g=rx,o= /usr/sbin/system-update.sh
+
+# Enable system-update timer
+if ! systemctl enable system-update.timer; then
+    echo "Failed to enable system-update.timer"
+    exit 1
+fi
+
+# Start system-update timer
+if ! systemctl start system-update.timer; then
+    echo "Failed to start system-update.timer"
+    exit 1
+fi
+
+echo "Installed system-update service"
+
 ########## Systemd services ##########
 
 # Reload services

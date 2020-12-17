@@ -26,6 +26,18 @@ then
 	exit 1
 fi
 
+if ! wget -O system-update.service https://raw.githubusercontent.com/weidai11/website/master/systemd/system-update.service;
+then
+	echo "Failed to download system-update.service"
+	exit 1
+fi
+
+if ! wget -O system-update.timer https://raw.githubusercontent.com/weidai11/website/master/systemd/system-update.timer;
+then
+	echo "Failed to download system-update.timer"
+	exit 1
+fi
+
 if ! wget -O install.sh https://raw.githubusercontent.com/weidai11/website/master/systemd/install.sh;
 then
 	echo "Failed to download install.sh"
@@ -38,6 +50,12 @@ then
 	exit 1
 fi
 
-chmod ug=rwx,o= install.sh update.sh
+if ! wget -O system-update.sh https://raw.githubusercontent.com/weidai11/website/master/systemd/system-update.sh;
+then
+	echo "Failed to download system-update.sh"
+	exit 1
+fi
+
+chmod ug=rwx,o= install.sh update.sh system-update.sh
 
 exit 0
