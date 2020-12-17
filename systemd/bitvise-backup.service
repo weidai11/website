@@ -1,6 +1,6 @@
 [Unit]
 Description=Update the system once a day without user prompts
-Documentation=https://github.com/weidai11/website
+Documentation=https://github.com/weidai11/website/systemd
 
 [Service]
 Type=oneshot

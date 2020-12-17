@@ -1,6 +1,6 @@
 [Unit]
 Description=Run bitvise-backup.service once a day
-Documentation=https://github.com/weidai11/website
+Documentation=https://github.com/weidai11/website/systemd
 
 [Timer]
 OnCalendar=*-*-* 04:10:00
