@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script updates the other artifacts in the Stsyemd directory.
+# This script updates the artifacts in the website/systemd directory.
 
 if ! wget -O bitvise-backup.service https://raw.githubusercontent.com/weidai11/website/master/systemd/bitvise-backup.service;
 then
