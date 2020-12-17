@@ -42,3 +42,36 @@ The bitvise-backup script runs at 4:00 AM each night. The script performs a full
 The gdrive-backup script runs the Gdrive backup. The warez include a Systemd service, timer and backup script. The `gdrive-backup` scipt is placed at `/usr/sbin/gdrive-backup`. The script includes a secret token so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
 The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a differential backup.
+
+### Backup status
+
+You can check the status of the services and times with `systemctl`. The timer should be active, and the service should be inactive. The service will switch to active once triggered by the timer.
+
+```
+# systemctl status bitvise-backup.timer
+● bitvise-backup.timer - Run bitvise-backup.service once a day
+   Loaded: loaded (/etc/systemd/system/bitvise-backup.timer; enabled; vendor preset: disabled)
+   Active: active (waiting) since Thu 2020-12-17 04:57:46 EST; 56min ago
+     Docs: https://github.com/weidai11/website/systemd
+
+Dec 17 04:57:46 ftpit systemd[1]: Started Run bitvise-backup.service once a day.
+Hint: Some lines were ellipsized, use -l to show in full.
+
+# systemctl status bitvise-backup.service
+● bitvise-backup.service - Run bitvise-backup.service once a day
+   Loaded: loaded (/etc/systemd/system/bitvise-backup.service; static; vendor preset: disabled)
+   Active: inactive (dead)
+     Docs: https://github.com/weidai11/website/systemd
+```
+
+You can view messages produced by the scripts using `journalctl`.
+
+```
+# journalctl -xe | grep -E 'gdrive|bitvise'
+Dec 17 04:57:46 ftpit systemd[1]: Started Run bitvise-backup.service once a day.
+-- Subject: Unit bitvise-backup.timer has finished start-up
+-- Unit bitvise-backup.timer has finished starting up.
+Dec 17 05:46:44 ftpit systemd[1]: Started Run gdrive-backup.service once a day.
+-- Subject: Unit gdrive-backup.timer has finished start-up
+-- Unit gdrive-backup.timer has finished starting up.
+```
