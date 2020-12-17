@@ -1,4 +1,4 @@
-== Systemd services ==
+### Systemd services
 
 Most of the world has moved to Systemd for init and job scheduling. Systemd-systems include Red Hat, CentOS, Debian and Ubuntu. This section of the website holds Systemd scripts in place of Cron jobs.
 
@@ -8,21 +8,25 @@ The warez in this section of the website need to be downloaded manually. A Git c
 
 The warez in this section of the website are held in root's home directory at `$HOME/backup-scripts`.
 
-=== Update.sh ===
-
-The artifacts in this section of the website need to be downloaded to the webserver and updated on occassion. Just run `update.sh` to perform the manual download and update.
-
-=== Install.sh ===
+### Install.sh
 
 The install.sh script installs the warez. It should be run as root.
 
-=== Bitvise-backup ===
+You should re-run install.sh to re-install the scripts if they change.
+
+### Update.sh
+
+The artifacts in this section of the website need to be downloaded to the webserver and updated on occassion. Just run `update.sh` to perform the manual download and update.
+
+You should re-run install.sh to re-install the scripts if they change.
+
+### Bitvise-backup
 
 The bitvise-backup script runs the Bitvise backup. The warez include a Systemd service, timer and backup script. The `bitvise-backup` scipt is placed at `/usr/sbin/bitvise-backup`. The script includes a password so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
 The bitvise-backup script runs at 4:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a differential backup.
 
-=== Gdrive-backup ===
+### Gdrive-backup
 
 The gdrive-backup script runs the Gdrive backup. The warez include a Systemd service, timer and backup script. The `gdrive-backup` scipt is placed at `/usr/sbin/gdrive-backup`. The script includes a password so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
