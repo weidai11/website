@@ -33,7 +33,7 @@ You should re-run `install.sh` to re-install the scripts if they change.
 
 ### System-update
 
-The system-update script updates the system once a day without user prompts. The warez includes a Systemd service, timer and script. The `system-update` script is placed at `/usr/sbin/system-update.sh`.
+The system-update script updates the system once a day without user prompts. The script applies all updates, and not just security updates. The warez includes a Systemd service, timer and script. The `system-update` script is placed at `/usr/sbin/system-update.sh`.
 
 The system-update script runs at 3:00 AM each night. The script reboots the machine as required.
 
