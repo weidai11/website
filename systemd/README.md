@@ -1,6 +1,6 @@
 ### Systemd services
 
-Most of the world has moved to Systemd for init and job scheduling. Systemd-systems include Red Hat, CentOS, Debian and Ubuntu. This section of the website holds Systemd scripts in place of Cron jobs.
+Most of the world has moved to Systemd for init and job scheduling, including Red Hat, CentOS, Debian and Ubuntu. This section of the website holds Systemd scripts in place of Cron jobs.
 
 Cron jobs had a few drawbacks. The first was the lack of a "machine account". Lack of a machine account meant we had to tie a job to a user, like a backup job running for a user rather than a machine. The second is the difficulties to test/run a Cron job "right now" for testing. The third is lack of logging. /var/log/syslog shows a begin/end for a script identified by a session, but nothing else. Syslog does not provide a script name or messages from the script.
 
