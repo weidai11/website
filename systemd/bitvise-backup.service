@@ -1,5 +1,5 @@
 [Unit]
-Description=Update the system once a day without user prompts
+Description=Run bitvise-backup.service once a day
 Documentation=https://github.com/weidai11/website/systemd
 
 [Service]
