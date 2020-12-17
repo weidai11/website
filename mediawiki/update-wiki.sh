@@ -59,7 +59,8 @@ do
 done
 
 # Remove all developer gear in production. We are not PHP developers.
-IFS= find "$WIKI_DIR" -type d -iname 'dev*' -print | while read -r dir
+# Don't use a wildcard on 'dev'. It matches 'Device' and breaks MobileFrontEnd.
+IFS= find "$WIKI_DIR" -type d -iname 'dev' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
