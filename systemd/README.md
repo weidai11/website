@@ -54,9 +54,6 @@ You can check the status of the services and times with `systemctl`. The timer s
    Active: active (waiting) since Thu 2020-12-17 04:57:46 EST; 56min ago
      Docs: https://github.com/weidai11/website/systemd
 
-Dec 17 04:57:46 ftpit systemd[1]: Started Run bitvise-backup.service once a day.
-Hint: Some lines were ellipsized, use -l to show in full.
-
 # systemctl status bitvise-backup.service
 ● bitvise-backup.service - Run bitvise-backup.service once a day
    Loaded: loaded (/etc/systemd/system/bitvise-backup.service; static; vendor preset: disabled)
