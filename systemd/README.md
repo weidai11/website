@@ -21,7 +21,7 @@ You should re-run `install.sh` to re-install the scripts if they change. See `up
 
 ### Update.sh
 
-The artifacts in this section of the website need to be downloaded to the webserver and updated on occassion. Just run `update.sh` to perform the manual download and update.
+The artifacts in this section of the website need to be downloaded to the web server and updated on occassion. Just run `update.sh` to perform the manual download and update.
 
 ```
 cd backup-scripts
