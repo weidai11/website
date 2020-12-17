@@ -22,17 +22,17 @@ fi
 
 if [[ -z "$HTML_TIDY" ]]; then
     echo "ERROR: could not locate HTML Tidy"
-    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+    exit 1
 fi
 
 UNIX2DOS=$(command -v unix2dos)
 if [[ -z "$UNIX2DOS" ]]; then
     echo "ERROR: could not locate unix2dos"
-    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+    exit 1
 fi
 
 # Cleanup HTML files
-for file in *.html
+IFS= find . -type f -iname '*.html' -print | while read -r file
 do
     echo "**************** $file ****************"
 
@@ -44,23 +44,30 @@ do
     # Delete trailing whitespace
     "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
 
+    # Fix encoding
+    "$SED" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' "$file"
+
+    # Fix CRLF endings after sed
+    unix2dos "$file" 1>/dev/null
+
     # Delete the generator markup tag
     #"$SED" "${SED_OPTS[@]}" -e'/<meta name="generator".*/d' "$file"
     #"$SED" "${SED_OPTS[@]}" -e'/"HTML Tidy.*/d' "$file"
     #"$SED" "${SED_OPTS[@]}" -e'/"*see www.w3.org*/d' "$file"
 
-    # Fix CRLF endings after sed
-    unix2dos "$file"
-
     echo
 done
 
-# Delete the generator markup tag
-"$SED" "${SED_OPTS[@]}" -e'/<meta name="generator"/d' *.css
+IFS= find . -type f -iname '*.css' -print | while read -r file
+do
+    # Delete the generator markup tag
+    "$SED" "${SED_OPTS[@]}" -e'/<meta name="generator"/d' "$file"
 
-# Delete trailing whitespace
-"$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' *.css
+    # Delete trailing whitespace
+    "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
 
-"$SED" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' *.html
+    # Fix CRLF endings after sed
+    unix2dos "$file" 1>/dev/null
+done
 
-[[ "$0" = "$BASH_SOURCE" ]] && exit 0 || return 0
+exit 0
