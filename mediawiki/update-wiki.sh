@@ -12,7 +12,7 @@
 # extensions use whitespace in some of their file names.
 #
 # The script is located in the wiki directory, which is /var/www/html/w.
-# We should probably schedule this script as a cron job.
+# We should probably schedule this script as a cron job or systemd unit.
 #
 # This script takes about 10 minutes to run.
 
@@ -58,18 +58,28 @@ do
       git checkout -f "$WIKI_REL" && git pull
 done
 
-# Remove all test frameworks in production. We are not PHP developers.
-IFS= find "$WIKI_DIR" -iname 'test*' -print | while read -r fso
+# Remove all developer gear in production. We are not PHP developers.
+IFS= find "$WIKI_DIR" -type d -iname 'dev*' -print | while read -r dir
 do
-    # Be careful of this name. It is not part of test frameworks
-    if [[ "$fso" == *"TestCanonicalRedirectHook.php"* ]]; then continue; fi
-    rm -rf "$fso" 2>/dev/null
+    rm -rf "$dir" 2>/dev/null
+done
+
+# Remove all test frameworks in production. We are not PHP developers.
+IFS= find "$WIKI_DIR" -type d -iname 'test*' -print | while read -r dir
+do
+    rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all benchmark frameworks in production. We are not PHP developers.
-IFS= find "$WIKI_DIR" -iname 'benchmark*' -print | while read -r fso
+IFS= find "$WIKI_DIR" -type d -iname 'benchmark*' -print | while read -r dir
 do
-    rm -rf "$fso" 2>/dev/null
+    rm -rf "$dir" 2>/dev/null
+done
+
+# Remove all docs in production. No need to back them up.
+IFS= find "$WIKI_DIR" -type d -iname 'doc*' -print | while read -r dir
+do
+    rm -rf "$dir" 2>/dev/null
 done
 
 echo "Creating MediaWiki sitemap"
