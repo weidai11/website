@@ -47,8 +47,6 @@ do
     # Fix encoding
     "$SED" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' "$file"
 
-    echo "unix2dos: processing file $file..."
-
     # Fix CRLF endings after sed
     unix2dos "$file" 1>/dev/null
 
@@ -71,8 +69,6 @@ do
 
     # Delete trailing whitespace
     "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
-
-    echo "unix2dos: processing file $file..."
 
     # Fix CRLF endings after sed
     unix2dos "$file" 1>/dev/null
