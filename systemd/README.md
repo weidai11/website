@@ -4,7 +4,7 @@ Most of the world has moved to Systemd for init and job scheduling, including Re
 
 Cron jobs had a few drawbacks. The first problem was the lack of a "machine account". Lack of a machine account meant we had to tie a job to a user, like a backup job running for a user rather than a machine. Locating all Cron jobs for all users is problematic. The second problem is running a Cron job "right now" for testing. There's no simple way to do it. The third problem is lack of logging. /var/log/syslog shows a begin/end for a script identified by a session, but nothing else. Syslog does not provide a script name or messages from the script.
 
-The warez in this section of the website are held in root's home directory at `$HOME/backup-scripts`. The GitHub does NOT include the actual backup script because passwords are present. The actual backup scripts are located in `$HOME/backup-scripts`.
+The warez in this section of the website are copied in root's home directory at `$HOME/backup-scripts`. The GitHub does NOT include the actual backup script because passwords are present. The actual backup scripts are located in `$HOME/backup-scripts`.
 
 The warez in this section of the website need to be downloaded and updated manually. A Git clone brings in everything, but all we need are a few scripts. Git 2.19 would allow us to clone just Systemd, but the web server has Git 1.8. Also see https://stackoverflow.com/a/52269934.
 
