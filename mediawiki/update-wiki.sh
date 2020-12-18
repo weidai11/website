@@ -83,6 +83,12 @@ do
     rm -rf "$dir" 2>/dev/null
 done
 
+# Remove all screenshots in production. No need to back them up.
+IFS= find "$WIKI_DIR" -type d -iname 'screenshot*' -print | while read -r dir
+do
+    rm -rf "$dir" 2>/dev/null
+done
+
 echo "Creating MediaWiki sitemap"
 if [[ -f "$WIKI_DIR/create-sitemap.sh" ]]; then
     rm -rf "$WIKI_DIR/sitemap"
