@@ -3,7 +3,7 @@ Description=Update the system once a day without user prompts
 Documentation=https://github.com/weidai11/website/tree/master/systemd
 
 [Timer]
-OnCalendar=*-*-* 04:10:00
+OnCalendar=*-*-* 03:10:00
 RandomizedDelaySec=600
 Persistent=true
 
