@@ -49,7 +49,7 @@ The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd se
 
 The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a incremental backup.
 
-### Backup status
+### Systemctl status
 
 You can check the status of the services and times with `systemctl`. The timer should be active, and the service should be inactive. The service will switch to active once triggered by the timer.
 
