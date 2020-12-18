@@ -1,6 +1,6 @@
 ### Systemd services
 
-Most of the world has moved to Systemd for init and job scheduling, including Red Hat, CentOS, Debian and Ubuntu. This section of the website holds Systemd scripts in place of Cron jobs.
+Most of the world has moved to Systemd for init and job scheduling, including Red Hat, CentOS, Debian and Ubuntu. This section of the website holds Systemd scripts in place of Cron jobs. The scripts update the system and perform backups on a nightly basis.
 
 Cron jobs had a few drawbacks. The first problem was the lack of a "machine account". Lack of a machine account meant we had to tie a job to a user, like a backup job running for a user rather than a machine. Locating all Cron jobs for all users is problematic. The second problem is running a Cron job "right now" for testing. There's no simple way to do it. The third problem is lack of logging. /var/log/syslog shows a begin/end for a script identified by a session, but nothing else. Syslog does not provide a script name or messages from the script.
 
@@ -41,13 +41,13 @@ The system-update script runs at 3:00 AM each night. The script reboots the mach
 
 The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd service, timer and backup script. The `bitvise-backup` script is placed at `/usr/sbin/bitvise-backup`. The script includes a password so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
-The bitvise-backup script runs at 4:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a differential backup.
+The bitvise-backup script runs at 4:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a incremental backup.
 
 ### Gdrive-backup
 
 The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script includes a secret token so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
-The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a differential backup.
+The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a incremental backup.
 
 ### Backup status
 
