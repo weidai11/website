@@ -243,5 +243,6 @@ php-symfony-process php-symfony-var-dumper php-symfony-yaml php-xml
 Miscellaneous
 =============
 
-Note well: You may need to reinstall librsync-devel if duplicity has a failure.
-'yum -y autoremove' seems to remove it even though it is needed by duplicity.
+Note well: You may need to reinstall librsync-devel or python2-lockfile if
+duplicity has a failure. 'yum -y autoremove' seems to remove it even though
+it is needed by duplicity.
