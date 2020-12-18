@@ -51,7 +51,7 @@ The gdrive-backup script runs at 5:00 AM each night. The script performs a full 
 
 ### Systemctl status
 
-You can check the status of the services and times with `systemctl`. The timer should be active, and the service should be inactive. The service will switch to active once triggered by the timer.
+You can check the status of the services and timers with `systemctl`. The timer should be active, and the service should be inactive. The service will switch to active once triggered by the timer.
 
 ```
 # systemctl status bitvise-backup.timer
