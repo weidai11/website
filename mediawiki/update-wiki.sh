@@ -110,6 +110,16 @@ do
     chmod u=rw,g=r,o= "$file"
 done
 
+echo "Setting MediaWiki images/ permissions"
+IFS= find "$WIKI_DIR/images" -type d | while read -r dir
+do
+    chmod ug=rwx,o= "$dir"
+done
+IFS= find "$WIKI_DIR/images" -type f | while read -r file
+do
+    chmod ug=rw,o= "$file"
+done
+
 # Make Python and PHP executable
 echo "Setting file permissions"
 IFS= find "$WIKI_DIR" -type f -print | while read -r file
@@ -120,17 +130,6 @@ do
     else
         chmod u=rw,g=r,o= "${file}"
     fi
-done
-
-# Images/ must be writable by apache group
-echo "Setting MediaWiki images/ permissions"
-IFS= find "$WIKI_DIR/images" -type d | while read -r dir
-do
-    chmod ug=rwx,o= "$dir"
-done
-IFS= find "$WIKI_DIR/images" -type f | while read -r file
-do
-    chmod ug=rw,o= "$file"
 done
 
 echo "Setting Apache session permissions"
