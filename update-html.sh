@@ -51,6 +51,7 @@ if [ "${count}" -ne 0 ]; then
 fi
 
 # Ownership
+chown root:apache "${www_directory}"
 chown root:apache "${www_directory}"/*
 
 # And permissions
