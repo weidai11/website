@@ -678,10 +678,13 @@
   of defense uses hardware instructions when possible. The library also uses cache-aware
   algoirthms and access patterns to minimize leakage. If you suspect or find an
   information leak then please report it.</p>
+  <p>Elliptic curves over binary fields are believed to leak information. The task is a
+  work in progress. We don't believe binary fields are used in production, so we feel it
+  is a low risk at the moment.</p>
   <p>Crypto++ does not enagage Specter remediations at this time. The GCC options for
   Specter are <tt>-mfunction-return=thunk</tt> and <tt>-mindirect-branch=thunk</tt>. If
   you want the Specter workarounds then add the GCC options to your <tt>CXXFLAGS</tt>
-  when building the library. The library tests uses the options and they should work as
+  when building the library. The library tests the options and they should work as
   expected.</p>
   <h2><a name="contributions" id="contributions">Source Code and Contributions</a></h2>
   <p>The source code and its planned changes are available at the following
@@ -782,7 +785,7 @@
         <td width="33%" align="left">Originally written by <a href=
         "http://www.weidai.com">Wei Dai</a></td>
         <td width="33%" align="center">Last modified: April 28, 2019</td>
-        <td width="33%" align="right">Currently maintained by the Crypto++ community</td>
+        <td width="33%" align="right">Maintained by the Crypto++ community</td>
       </tr>
     </tbody>
   </table>
