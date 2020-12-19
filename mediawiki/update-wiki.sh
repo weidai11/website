@@ -99,6 +99,9 @@ fi
 # new MediaWiki or cloning a Skin or Extension. The permissions are never
 # correct. Executable files will be missing +x, and images will have +x.
 
+# We would like to skip images/ here, but find is too sideways.
+# images/ gets different permissions, but find's -prune does not
+# seem to work as expected.
 echo "Setting MediaWiki permissions"
 chown -R root:apache "$WIKI_DIR/"
 IFS= find "$WIKI_DIR" -type d -print | while read -r dir
@@ -110,6 +113,8 @@ do
     chmod u=rw,g=r,o= "$file"
 done
 
+# images/ must be writable by Apache. This is the upload
+# directory, and the directory where thumbnails are created.
 echo "Setting MediaWiki images/ permissions"
 IFS= find "$WIKI_DIR/images" -type d | while read -r dir
 do
@@ -120,7 +125,7 @@ do
     chmod ug=rw,o= "$file"
 done
 
-# Make Python and PHP executable
+# Make Python, PHP and friends executable
 echo "Setting Executable file permissions"
 IFS= find "$WIKI_DIR" -type f -print | while read -r file
 do
@@ -132,6 +137,9 @@ do
     fi
 done
 
+# The directories where session information is stored
+# must be writable by Apache. As far as we know that
+# is /var/lib/pear and /var/lib/php.
 echo "Setting Apache session permissions"
 if [[ -d "/var/lib/pear" ]]
 then
@@ -179,7 +187,7 @@ do
 done
 
 # Make sure MySQL is running for update.php. It is a chronic
-# source of problems because the Linux OOM killer targets mysqld.
+# problem because the Linux OOM killer targets mysqld.
 echo "Restarting MySQL"
 systemctl stop mariadb.service 2>/dev/null
 systemctl start mariadb.service
