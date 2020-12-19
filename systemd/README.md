@@ -43,11 +43,23 @@ The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd 
 
 The bitvise-backup script runs at 4:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a incremental backup.
 
+The bitvise-backup script uses the full path to executables because Systemd provides a different environment than the one specified in `/etc/profile.d`:
+
+* `/bin/mysqlcheck`
+* `/bin/mysqldump`
+* `/opt/rh/python27/root/usr/bin/duplicity`
+
 ### Gdrive-backup
 
 The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script includes a secret token so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
 The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a incremental backup.
+
+The gdrive-backup script uses the full path to executables because Systemd provides a different environment than the one specified in `/etc/profile.d`:
+
+* `/bin/mysqlcheck`
+* `/bin/mysqldump`
+* `/opt/rh/python27/root/usr/bin/duplicity`
 
 ### Systemctl status
 
