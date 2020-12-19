@@ -2,6 +2,7 @@
 
 # This script cleans up the web pages and style for the Crypto++ website.
 # Please ensure you have both (1) HTML Tidy and (2) DOS Tools installed and on-path.
+# Run the script after editing a web page and before a check-in.
 
 export LANG=en_US.utf8
 

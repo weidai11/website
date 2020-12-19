@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Use this script to move Doxygen documentation to the web server docs/ directory.
+# On the local machine, run 'make docs' and then scp CryptoPPRef.zip to the server.
+# The script will move and unpack CryptoPPRef.zip. The script sets ownership and
+# permissions as required.
+
 www_directory=/var/www/html
 
 # This follows Crypto++ release number

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Use this script to move website artifacts, like *.html
-# and *.css files, to the web server directory.
+# and *.css files, to the web server directory. The
+# script sets ownership and permissions as required.
 
 www_directory=/var/www/html
 
