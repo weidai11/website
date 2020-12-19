@@ -15,7 +15,7 @@
 # The script is located in the wiki directory, which is /var/www/html/w.
 # We should probably schedule this script as a cron job or systemd unit.
 #
-# This script takes about 10 minutes to run.
+# This script takes about 20 minutes to run.
 
 # Important variables
 WIKI_DIR="/var/www/html/w"
