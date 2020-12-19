@@ -675,9 +675,9 @@
   <h2><a name="sidechannel" id="sidechannel">Side Channel Attacks</a></h2>
   <p>Crypto++ attempts to resist side channel attacks using various remediations. We
   believe the library is hardened but the remdiations may be incomplete. The first line
-  of defense uses hardware instructions when possible. The library also uses cache-aware
-  algoirthms and access patterns to minimize leakage. If you suspect or find an
-  information leak then please report it.</p>
+  of defense uses hardware instructions when possible. The library also uses
+  constant-time, cache-aware algoirthms and access patterns to minimize leakage. If you
+  suspect or find an information leak then please report it.</p>
   <p>Elliptic curves over binary fields are believed to leak information. The task is a
   work in progress. We don't believe binary fields are used in production, so we feel it
   is a low risk at the moment.</p>
