@@ -39,7 +39,7 @@ The system-update script runs at 3:00 AM each night. The script reboots the mach
 
 ### Bitvise-backup
 
-The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd service, timer and backup script. The bitvise-backup script runs at 4:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a incremental backup.
+The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd service, timer and backup script. The bitvise-backup script runs at 4:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
 The `bitvise-backup` script is placed at `/usr/sbin/bitvise-backup`. The script includes a password so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
@@ -57,11 +57,11 @@ source scl_source enable python27
 
 ### Gdrive-backup
 
-The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The gdrive-backup script sources SCL's `python27` environment because Systemd blows away the machine's environment specified in `/etc/profile.d`.
+The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
 The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script includes a secret token so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
-The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs a incremental backup.
+The gdrive-backup script sources SCL's `python27` environment because Systemd blows away the machine's environment specified in `/etc/profile.d`.
 
 ```
 # cat gdrive-backup
