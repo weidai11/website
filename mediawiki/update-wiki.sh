@@ -19,7 +19,7 @@
 # Important variables
 WIKI_DIR="/var/www/html/w"
 WIKI_REL=REL1_35
-PHP_DIR=/opt/rh/rh-php73/root/usr/bin
+PHP_BIN=/opt/rh/rh-php73/root/usr/bin/php
 LOG_DIR="/var/log"
 
 # Privileges? Exit 0 to keep things moving along
@@ -34,8 +34,8 @@ if [[ ! -d "${WIKI_DIR}" ]]; then
     exit 1
 fi
 
-if [[ ! -d "${PHP_DIR}" ]]; then
-    echo "PHP_DIR is not valid."
+if [[ ! -f "${PHP_BIN}" ]]; then
+    echo "PHP_BIN is not valid."
     exit 1
 fi
 
@@ -99,7 +99,7 @@ fi
 # new MediaWiki or cloning a Skin or Extension. The permissions are never
 # correct. Executable files will be missing +x, and images will have +x.
 
-echo "Fixing MediaWiki permissions"
+echo "Setting MediaWiki permissions"
 chown -R root:apache "$WIKI_DIR/"
 IFS= find "$WIKI_DIR" -type d -print | while read -r dir
 do
@@ -111,22 +111,19 @@ do
 done
 
 # Make Python and PHP executable
-echo "Fixing Python and PHP permissions"
-IFS= find "$WIKI_DIR" -type f -name '*.py' -print | while read -r file
+echo "Setting file permissions"
+IFS= find "$WIKI_DIR" -type f -print | while read -r file
 do
-    chmod u=rwx,g=rx,o= "$file"
-done
-IFS= find "$WIKI_DIR" -type f -name '*.php' -print | while read -r file
-do
-    chmod u=rwx,g=rx,o= "$file"
-done
-IFS= find "$WIKI_DIR" -type f -name '*.sh' -print | while read -r file
-do
-    chmod u=rwx,g=rx,o= "$file"
+    if file -b "${file}" | grep -q -E 'executable|script';
+    then
+        chmod u=rwx,g=rx,o= "${file}"
+    else
+        chmod u=rw,g=r,o= "${file}"
+    fi
 done
 
 # Images/ must be writable by apache group
-echo "Fixing MediaWiki images/ permissions"
+echo "Setting MediaWiki images/ permissions"
 IFS= find "$WIKI_DIR/images" -type d | while read -r dir
 do
     chmod ug=rwx,o= "$dir"
@@ -136,7 +133,7 @@ do
     chmod ug=rw,o= "$file"
 done
 
-echo "Fixing Apache session permissions"
+echo "Setting Apache session permissions"
 if [[ -d "/var/lib/pear" ]]
 then
     chown -R apache:apache "/var/lib/pear"
@@ -163,7 +160,7 @@ then
     done
 fi
 
-echo "Fixing Apache logging permissions"
+echo "Setting Apache logging permissions"
 IFS= find "$LOG_DIR" -type d -name 'httpd*' | while read -r dir
 do
     chown -R root:apache "$dir"
@@ -174,7 +171,7 @@ do
     done
 done
 
-echo "Fixing MariaDB logging permissions"
+echo "Setting MariaDB logging permissions"
 chown -R mysql:mysql "$LOG_DIR/mariadb"
 IFS= find "$LOG_DIR/mariadb" -type f -name '*log*' | while read -r file
 do
@@ -190,7 +187,7 @@ systemctl start mariadb.service
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 echo "Running update.php"
-"${PHP_DIR}/php" "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki"
+"${PHP_BIN}" "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki"
 
 echo "Restarting Apache service"
 if ! systemctl restart httpd24-httpd.service; then
