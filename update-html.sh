@@ -64,7 +64,12 @@ done
 # And more permissions
 IFS= find "${www_directory}" -maxdepth 1 -type f -print | while read -r file
 do
-    chmod u=rw,g=r,o= "${file}"
+    if file -b "${file}" | grep -q -E 'executable|script';
+    then
+        chmod u=rwx,g=rx,o= "${file}"
+    else
+        chmod u=rw,g=r,o= "${file}"
+    fi
 done
 
 exit 0
