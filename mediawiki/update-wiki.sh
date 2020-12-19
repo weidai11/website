@@ -121,7 +121,7 @@ do
 done
 
 # Make Python and PHP executable
-echo "Setting file permissions"
+echo "Setting Executable file permissions"
 IFS= find "$WIKI_DIR" -type f -print | while read -r file
 do
     if file -b "${file}" | grep -q -E 'executable|script';
