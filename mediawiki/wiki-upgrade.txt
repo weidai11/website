@@ -170,7 +170,7 @@ Once the database is updated we are married to the new version
 
 Next, cross your fingers:
 
-1. php /var/www/html/w/maintenance/update.php
+1. php /var/www/html/w/maintenance/update.php --quick
 
 If update.php succeeds, then the migration is mostly complete.
 
@@ -193,7 +193,7 @@ update-wiki.sh is available in this GitHub repo.
 
 1. Open update-wiki.sh
 2. Change WIKI_REL=REL1_35 to appropriate version
-3. Change PHP_DIR=/opt/rh/rh-php73/root/usr/bin as needed
+3. Change PHP_BIN=/opt/rh/rh-php73/root/usr/bin/php as needed
 
 And then:
 
