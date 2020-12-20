@@ -73,12 +73,12 @@ Clear old artifacts:
 Download the latest Mediawiki in tmp/:
 
 2. cd /tmp
-3. wget https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.1.tar.gz
+3. wget https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.2.tar.gz
 
 Temporary unpack in tmp/:
 
-4. tar -xzf mediawiki-1.35.1.tar.gz
-5. mv mediawiki-1.35.1/ w
+4. tar -xzf mediawiki-1.35.2.tar.gz
+5. mv mediawiki-1.35.2/ w
 
 Test the copy to the filesystem:
 
@@ -224,17 +224,17 @@ The list from Step (5) should be cribbed away. Here is the one
 produced by CentOS 7 during install:
 
 1. yum -y remove composer libicu libzip t1lib php-PsrLog php-cli \
-php-common php-composer-ca-bundle php-composer-semver \
-php-composer-spdx-licenses php-composer-xdebug-handler php-fedora-autoloader \
-php-gd php-intl php-jsonlint php-justinrainbow-json-schema5 php-mbstring \
-php-paragonie-random-compat php-password-compat php-pdo php-process \
-php-seld-phar-utils php-symfony-browser-kit php-symfony-class-loader \
-php-symfony-common php-symfony-config php-symfony-console \
-php-symfony-css-selector php-symfony-debug php-symfony-dependency-injection \
-php-symfony-dom-crawler php-symfony-event-dispatcher \
-php-symfony-expression-language php-symfony-filesystem php-symfony-finder \
-php-symfony-http-foundation php-symfony-http-kernel php-symfony-polyfill \
-php-symfony-process php-symfony-var-dumper php-symfony-yaml php-xml
+   php-common php-composer-ca-bundle php-composer-semver \
+   php-composer-spdx-licenses php-composer-xdebug-handler php-fedora-autoloader \
+   php-gd php-intl php-jsonlint php-justinrainbow-json-schema5 php-mbstring \
+   php-paragonie-random-compat php-password-compat php-pdo php-process \
+   php-seld-phar-utils php-symfony-browser-kit php-symfony-class-loader \
+   php-symfony-common php-symfony-config php-symfony-console \
+   php-symfony-css-selector php-symfony-debug php-symfony-dependency-injection \
+   php-symfony-dom-crawler php-symfony-event-dispatcher \
+   php-symfony-expression-language php-symfony-filesystem php-symfony-finder \
+   php-symfony-http-foundation php-symfony-http-kernel php-symfony-polyfill \
+   php-symfony-process php-symfony-var-dumper php-symfony-yaml php-xml
 
 2. hash -r
 
