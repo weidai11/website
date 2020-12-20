@@ -62,6 +62,7 @@
     </li>
     <li>fix use of macro <tt>CRYPTOPP_ALIGN_DATA</tt></li>
     <li>fix potential out-of-bounds read in ECDSA</li>
+    <li>fix <tt>std::bad_alloc</tt> when using ByteQueue in pipeline</li>
     <li>fix missing <tt>CRYPTOPP_CXX17_EXCEPTIONS</tt> with Clang</li>
     <li>fix potential out-of-bounds read in GCM mode</li>
     <li>add <tt>configure.sh</tt> when preprocessor macros fail</li>
@@ -112,6 +113,7 @@
   <ul>
     <li>fix use of macro <tt>CRYPTOPP_ALIGN_DATA</tt> (GH #982)</li>
     <li>fix potential out-of-bounds read in ECDSA (GH #981)</li>
+    <li>fix <tt>std::bad_alloc</tt> when using ByteQueue in pipeline (GH #962)</li>
     <li>fix missing <tt>CRYPTOPP_CXX17_EXCEPTIONS</tt> with Clang (GH #960)</li>
     <li>fix potential out-of-bounds read in GCM mode (GH #954)</li>
     <li>add <tt>configure.sh</tt> when preprocessor macros fail (GH #950)</li>
