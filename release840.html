@@ -30,10 +30,10 @@
   <h2>Crypto++ 8.4</h2>
   <p>Crypto++ 8.4 was released on December NN, 2020. The 8.4 release was a minor, planned
   release. There was no CVE and one memory error fixed.</p>
-  <p>The 8.4 release cleared <a href=
-  "https://github.com/weidai11/cryptopp/issues/988">Issue 988</a>. Daniel McRobb
-  discovered <tt>FixedSizeAllocatorWithCleanup</tt> could write to memory outside of the
-  allocation if the allocated memory was not 16-byte aligned.</p>
+  <p>The 8.4 release cleared the memory error reported by Daniel McRobb in <a href=
+  "https://github.com/weidai11/cryptopp/issues/988">Issue 988</a>. McRobb discovered
+  <tt>FixedSizeAllocatorWithCleanup</tt> could write to memory outside of the allocation
+  if the allocated memory was not 16-byte aligned.</p>
   <h2>Download</h2>
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below. Release signatures can be verified using GnuPG according to <a href=
