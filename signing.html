@@ -55,32 +55,12 @@
       <td style="border: 1px solid black; padding: 5px;">-</td>
     </tr>
   </table>
-  <p>Individuals who have release authorization are expected to:</p>
-  <ol>
-    <li>Announce their current key on the mailing list</li>
-    <li>Announce changes to the current key on the mailing list</li>
-    <li>Publish their current key on this wiki page</li>
-    <li>Publish their current key to a well-known keyserver</li>
-    <li>Publish changes to the current key on this wiki page</li>
-    <li>Store the key offline with passphrase protection</li>
-  </ol>
-  <p>Signing keys should be 3072-bit RSA and signatures should use SHA-256. Other
-  algorithm choices, like Ed25519 or SHA-3, will likely cause interop problems for some
-  folks on some platforms.</p>
-  <p>Changes to the signing key should be retained on this page. That is, don't delete a
-  former key if updating to a new key. Retain the old key for record keeping.</p>
-  <p>The key should be stored offline with passphrase protection. For example, burned to
-  a CD and then stored in a fire resistant lock box. The key should not be online, and
-  should not be under control of a key manager to automatically unlock it.</p>
   <p>Note that Wei is listed, but he probably won't sign a release. Wei is busy with
   other duties, and he leaves the day to day operations to others involved in the
   project.</p>
-  <p>Related information can be found at <a href=
-  "https://www.apache.org/dev/release-signing.html">Apache Release Signing</a> and
-  <a href="https://www.cryptopp.com/wiki/Release_Signing">Release Signing</a> on the
-  Crypto++ wiki.</p>
   <h3>Verification</h3>
-  <p>Be sure the public keys used to sign Crypto++ are installed.</p>
+  <p>You should use GnuPG to verify a release signature. Be sure the public keys used to
+  sign Crypto++ are installed.</p>
   <pre>$ gpg --quiet --verify cryptopp820.zip.sig cryptopp820.zip
 gpg: Signature made Sun 28 Apr 2019 07:41:05 PM EDT
 gpg:                using RSA key CE0586AF1F8E37BD
@@ -112,5 +92,27 @@ ghc1ZrVMU0mSVmXDZ+ZWPgze8eLqoMDqdFzm4lWYTGl+gb6gIbg9dnU9p1YRtnXw
 =Yi2N
 -----END PGP PUBLIC KEY BLOCK-----
 </pre>
+  <h3>Governance</h3>
+  <p>Individuals who have release authorization are expected to:</p>
+  <ol>
+    <li>Announce their current key on the mailing list</li>
+    <li>Announce changes to the current key on the mailing list</li>
+    <li>Publish their current key on this wiki page</li>
+    <li>Publish their current key to a well-known keyserver</li>
+    <li>Publish changes to the current key on this wiki page</li>
+    <li>Store the key offline with passphrase protection</li>
+  </ol>
+  <p>Signing keys should be 3072-bit RSA and signatures should use SHA-256. Other
+  algorithm choices, like Ed25519 or SHA-3, will likely cause interop problems for some
+  folks on some platforms.</p>
+  <p>Changes to the signing key should be retained on this page. That is, don't delete a
+  former key if updating to a new key. Retain the old key for record keeping.</p>
+  <p>The key should be stored offline with passphrase protection. For example, burned to
+  a CD and then stored in a fire resistant lock box. The key should not be online, and
+  should not be under control of a key manager to automatically unlock it.</p>
+  <p>Related information can be found at <a href=
+  "https://www.apache.org/dev/release-signing.html">Apache Release Signing</a> and
+  <a href="https://www.cryptopp.com/wiki/Release_Signing">Release Signing</a> on the
+  Crypto++ wiki.</p>
 </body>
 </html>
