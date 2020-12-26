@@ -38,7 +38,7 @@ do
     echo "**************** $file ****************"
 
     echo "tidy: processing file $file..."
-    "$HTML_TIDY" -utf8 --quiet yes --output-bom no --indent auto --indent-spaces 2 --wrap 90 -m "$file"
+    "$HTML_TIDY" -utf8 --quiet yes --tidy-mark no --output-bom no --indent auto --indent-spaces 2 --wrap 90 -m "$file"
 
     echo "sed: processing file $file..."
 
@@ -66,7 +66,7 @@ do
     echo "sed: processing file $file..."
 
     # Delete the generator markup tag
-    "$SED" "${SED_OPTS[@]}" -e'/<meta name="generator"/d' "$file"
+    # "$SED" "${SED_OPTS[@]}" -e'/<meta name="generator"/d' "$file"
 
     # Delete trailing whitespace
     "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
