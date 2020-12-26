@@ -64,6 +64,7 @@
       </ul>
     </li>
     <li>fix SIGILL on POWER8 when compiling with GCC 10</li>
+    <li>fix compile on AIX POWER7 with IBM XLC 12.01</li>
     <li>fix potential out-of-bounds write in <tt>FixedSizeAllocatorWithCleanup</tt></li>
   </ul>
   <h2>Bug fixes and Minor Issues</h2>
@@ -78,6 +79,7 @@
     <li>fix SIGILL on POWER8 when compiling with GCC 10 (GH #986)</li>
     <li>fix potential out-of-bounds write in <tt>FixedSizeAllocatorWithCleanup</tt> (GH
     #988)</li>
+    <li>fix compile on AIX POWER7 with IBM XLC 12.01 (Commit 4577311727f2)</li>
   </ul>
   <h2>Memory error</h2>
   <p>Daniel McRobb discovered <tt>FixedSizeAllocatorWithCleanup</tt> could write to
