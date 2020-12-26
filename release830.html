@@ -176,6 +176,24 @@
   forward. Crypto++ 3.2 was released March 2000.</p>
   <p>The CVE was tracked under <a href=
   "https://github.com/weidai11/cryptopp/issues/869">Issue 869</a>.</p>
+  <h2>Configure.sh script</h2>
+  <p>The Crypto++ 8.3 release added a <tt>configure.sh</tt> script. The script helps fix
+  misdetected features on Android, Clang, OS X and iOS. The script does so by rewriting
+  <tt>config_asm.h</tt> and <tt>config_cxx.h</tt> for the platform it is run on. You
+  should use the script before a build if the library misdetects features for you.</p>
+  <p>The <tt>configure.sh</tt> script is located in <tt>TestScripts/</tt>. It was placed
+  there to avoid confusing users because the script is usually not needed.</p>
+  <p>To run the script perform these steps. You should set <tt>CXX</tt> and
+  <tt>CXXFLAGS</tt> to your preferred flags before running the script.</p>
+  <pre>
+$ cp -p TestScripts/configure.sh .
+$ CXX=g++ ./configure.sh
+Configuring for x86_64
+Compiler: /usr/bin/g++
+Linker: /usr/bin/ld
+Done writing config_asm.h
+Done writing config_cxx.h
+</pre>
   <h2>X.509 Certificate interface</h2>
   <p>Crypto++ was modified to support certificates by way of a <tt>Certificate</tt> base
   class. The library does not provide concrete certificate classes, however. An X.509
