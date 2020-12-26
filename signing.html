@@ -32,6 +32,7 @@
   to release Crypto++. Authorized individuals roughly means folks with check-in
   privileges. There is no single project key shared among authorized release
   personnel.</p>
+  <h3>Collaborators</h3>
   <p>The list of collaborators who are authorized to release with their key are listed
   below.</p>
   <table style="border: 1px solid black; border-collapse: collapse;" summary=
@@ -78,6 +79,12 @@
   "https://www.apache.org/dev/release-signing.html">Apache Release Signing</a> and
   <a href="https://www.cryptopp.com/wiki/Release_Signing">Release Signing</a> on the
   Crypto++ wiki.</p>
+  <h3>Verification</h3>
+  <p>Be sure the public keys used to sign Crypto++ are installed.</p>
+  <pre>$ gpg --quiet --verify cryptopp820.zip.sig cryptopp820.zip
+gpg: Signature made Sun 28 Apr 2019 07:41:05 PM EDT
+gpg:                using RSA key CE0586AF1F8E37BD
+gpg: Good signature from "Jeffrey Walton (Crypto++ Release) &lt;noloader@gmail.com&gt;"</pre>
   <h3>Jeffrey Walton</h3>
   <p>Key fingerprint = B8CC 1980 2062 211A 508B 2F5C CE05 86AF 1F8E 37BD</p>
   <pre>
