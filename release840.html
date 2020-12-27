@@ -60,12 +60,13 @@
     <li>expanded community input and support</li>
     <li style="list-style: none">
       <ul>
-        <li>66 unique contributors as of this release</li>
+        <li>67 unique contributors as of this release</li>
       </ul>
     </li>
     <li>fix SIGILL on POWER8 when compiling with GCC 10</li>
     <li>fix potential out-of-bounds write in <tt>FixedSizeAllocatorWithCleanup</tt></li>
     <li>fix compile on AIX POWER7 with IBM XLC 12.01</li>
+    <li>fix compile on Solaris with SunCC 12.6</li>
   </ul>
   <h2>Bug fixes and Minor Issues</h2>
   <p>The bug fix and minor issue list for Crypto++ 8.4 follows. Many non-trivial issues
@@ -80,6 +81,7 @@
     <li>fix potential out-of-bounds write in <tt>FixedSizeAllocatorWithCleanup</tt> (GH
     #988)</li>
     <li>fix compile on AIX POWER7 with IBM XLC 12.01 (Commit 4577311727f2)</li>
+    <li>fix compile on Solaris with SunCC 12.6 (PR #990)</li>
   </ul>
   <h2>Memory error</h2>
   <p>Daniel McRobb discovered <tt>FixedSizeAllocatorWithCleanup</tt> could write to
