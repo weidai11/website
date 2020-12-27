@@ -40,17 +40,17 @@ unzip -aoq CryptoPPRef.zip -d .
 mv CryptoPPRef.zip ref/
 
 echo "Changing ownership"
-chown -R root:apache "${www_directory}/docs"
+chown -R root:apache "${www_directory}/docs/${ref_dir}"
 chown root:apache ref/CryptoPPRef.zip
 
 echo "Setting directory permissions"
-IFS= find "${www_directory}/docs" -type d -print | while read -r dir
+IFS= find "${www_directory}/docs/${ref_dir}" -type d -print | while read -r dir
 do
     chmod u=rwx,g=rx,o= "${dir}"
 done
 
 echo "Setting file permissions"
-IFS= find "${www_directory}/docs" -type f -print | while read -r file
+IFS= find "${www_directory}/docs/${ref_dir}" -type f -print | while read -r file
 do
     if file -b "${file}" | grep -q -E 'executable|script';
     then
