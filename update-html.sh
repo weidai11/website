@@ -52,17 +52,17 @@ if [ "${count}" -ne 0 ]; then
     mv crypto*.sig "${www_directory}"
 fi
 
-# Ownership
+echo "Setting ownership"
 chown root:apache "${www_directory}"
 chown root:apache "${www_directory}"/*
 
-# And permissions
+echo "Setting directory permissions"
 IFS= find "${www_directory}" -maxdepth 1 -type d -print | while read -r dir
 do
     chmod u=rwx,g=rx,o= "${dir}"
 done
 
-# And more permissions
+echo "Setting file permissions"
 IFS= find "${www_directory}" -maxdepth 1 -type f -print | while read -r file
 do
     if file -b "${file}" | grep -q -E 'executable|script';
@@ -73,8 +73,8 @@ do
     fi
 done
 
-# Finally, set the date/time on the ZIP files
-# This piece is the update-zip.sh script
+echo "Setting zip filetimes"
+# This part is the update-zip.sh script
 IFS= find "${www_directory}" -maxdepth 1 -type f -name '*.zip' -print | while read -r file
 do
     # This fetches the newest timestamp from the ZIP file.
@@ -96,8 +96,14 @@ do
         ft="${year}-${month}-${day} ${seconds}"
     fi
 
-    echo "Setting ${file} to ${ft}"
+    # echo "Setting ${file} to ${ft}"
     touch -d "${ft}" "${file}"
+
+    # Set date/time on sig file.
+    if [ -f "${file}.sig" ];
+    then
+        touch -d "${ft}" "${file}.sig"
+    fi
 done
 
 exit 0

@@ -36,8 +36,14 @@ do
         ft="${year}-${month}-${day} ${seconds}"
     fi
 
-    echo "Setting ${file} to ${ft}"
+    # echo "Setting ${file} to ${ft}"
     touch -d "${ft}" "${file}"
+
+    # Set date/time on sig file.
+    if [ -f "${file}.sig" ];
+    then
+        touch -d "${ft}" "${file}.sig"
+    fi
 done
 
 exit 0
