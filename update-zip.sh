@@ -3,7 +3,9 @@
 # This script restores ZIP filetimes after other scripts run,
 # like scripts to change permissions on $www_directory.
 
-www_directory=/var/www/html
+if [ -z "${www_directory}" ]; then
+    www_directory=/var/www/html
+fi
 
 if [[ ($(id -u) != "0") ]]; then
     echo "You must be root to update the html"

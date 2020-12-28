@@ -4,7 +4,9 @@
 # and *.css files, to the web server directory. The
 # script sets ownership and permissions as required.
 
-www_directory=/var/www/html
+if [ -z "${www_directory}" ]; then
+    www_directory=/var/www/html
+fi
 
 if [[ ($(id -u) != "0") ]]; then
     echo "You must be root to update the html"
