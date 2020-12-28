@@ -1,17 +1,5 @@
-The Crypto++ website is laid out as follows:
+This GitHub is used to backup important elements of the Crypto++ website, and provide centralized collection of admin notes and scripts for the website.
 
-    index.html
-       |
-       +--- Downloads
-       |
-       +--- Crypto++ 5.6.5 release
-       |
-       +--- Crypto++ 5.6.4 release
-       .
-       .
-       .
-       +--- Crypto++ 5.5 release
-       |
-       +--- Manual
-       |
-       +--- Wiki
+Important elements of the Crypto++ website include ZIP files, signatures and release notes. They can be quickly restored if needed. Duplicity is still available, but duplicity takes longer than a `scp -p *.html *.css *.zip *.zip.sig cryptopp.com:`.
+
+The admin notes and scripts document processes and procedures to administer the site. For example, installation of Red Hat SCL Apache, Python and PHP is discussed in the apache-php folder. As another example, to update the library documentation, perform a `make docs` on the local machine and then scp `CryptoPPRef.zip` to the webserver. On the webserver run `update-docs.sh` to unpack the ZIP where it belongs.
