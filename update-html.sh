@@ -18,6 +18,7 @@ if [ ! -d "${www_directory}" ]; then
     exit 1
 fi
 
+echo "Copying files"
 count=$(ls -1 *.html 2>/dev/null | wc -l)
 if [ "${count}" -ne 0 ]; then
     mv *.html "${www_directory}"

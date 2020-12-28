@@ -17,6 +17,7 @@ if [ ! -d "${www_directory}" ]; then
     exit 1
 fi
 
+echo "Setting date/times on zip files"
 IFS= find "${www_directory}" -maxdepth 1 -type f -name '*.zip' -print | while read -r file
 do
     # This fetches the newest timestamp from the ZIP file.
