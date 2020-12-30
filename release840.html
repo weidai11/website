@@ -67,6 +67,7 @@
     <li>fix potential out-of-bounds write in <tt>FixedSizeAllocatorWithCleanup</tt></li>
     <li>fix compile on AIX POWER7 with IBM XLC 12.01</li>
     <li>fix compile on Solaris with SunCC 12.6</li>
+    <li>revert changes for constant-time elliptic curve algorithms</li>
   </ul>
   <h2>Bug fixes and Minor Issues</h2>
   <p>The bug fix and minor issue list for Crypto++ 8.4 follows. Many non-trivial issues
@@ -82,7 +83,14 @@
     #988)</li>
     <li>fix compile on AIX POWER7 with IBM XLC 12.01 (Commit 4577311727f2)</li>
     <li>fix compile on Solaris with SunCC 12.6 (PR #990)</li>
+    <li>revert changes for constant-time elliptic curve algorithms (GH #992,
+    CVE-2019-14318)</li>
   </ul>
+  <h2>CVE-2019-14318</h2>
+  <p>Marcel Keller discovered recent contant-time elliptic curve changes checked-in under
+  GH #862 broke some operations. As a hotfix the contant-time code was reverted, which
+  means CVE-2019-14318 is active again. The break and CVE-2019-14318 are being tracked
+  under GH #994.</p>
   <h2>Memory error</h2>
   <p>Daniel McRobb discovered <tt>FixedSizeAllocatorWithCleanup</tt> could write to
   memory outside of the allocation if the allocated memory was not 16-byte aligned. The
