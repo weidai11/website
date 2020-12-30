@@ -30,7 +30,9 @@
   <h2>Crypto++ 8.4</h2>
   <p>Crypto++ 8.4 was released on January NN, 2021. The 8.4 release was a minor, planned
   release. There was no CVE and one memory error fixed.</p>
-  <p>The 8.4 release cleared the memory error reported by Daniel McRobb in <a href=
+  <p>The 8.4 release reverted the changes for constant-time elliptic curve algorithms.
+  The revert reactivated CVE-2019-14318. The 8.4 release also cleared a memory error
+  reported by Daniel McRobb in <a href=
   "https://github.com/weidai11/cryptopp/issues/988">Issue 988</a>. McRobb discovered
   <tt>FixedSizeAllocatorWithCleanup</tt> could write to memory outside of the allocation
   if the allocated memory was not 16-byte aligned.</p>
@@ -88,9 +90,10 @@
   </ul>
   <h2>CVE-2019-14318</h2>
   <p>Marcel Keller discovered recent contant-time elliptic curve changes checked-in under
-  GH #862 broke some operations. As a hotfix the contant-time code was reverted, which
-  means CVE-2019-14318 is active again. The break and CVE-2019-14318 are being tracked
-  under GH #994.</p>
+  <a href="https://github.com/weidai11/cryptopp/issues/862">Issue 862</a> broke some
+  operations. As a hotfix the contant-time code was reverted, which means CVE-2019-14318
+  is active again. The break and CVE-2019-14318 are being tracked under <a href=
+  "https://github.com/weidai11/cryptopp/issues/994">Issue 994</a>.</p>
   <h2>Memory error</h2>
   <p>Daniel McRobb discovered <tt>FixedSizeAllocatorWithCleanup</tt> could write to
   memory outside of the allocation if the allocated memory was not 16-byte aligned. The
