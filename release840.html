@@ -29,10 +29,12 @@
   </table>
   <h2>Crypto++ 8.4</h2>
   <p>Crypto++ 8.4 was released on January NN, 2021. The 8.4 release was a minor, planned
-  release. There was no CVE and one memory error fixed.</p>
-  <p>The 8.4 release reverted the changes for constant-time elliptic curve algorithms.
-  The revert reactivated CVE-2019-14318. The 8.4 release also cleared a memory error
-  reported by Daniel McRobb in <a href=
+  release. There was no CVEs and one memory error fixed.</p>
+  <p>The Crypto++ 8.4 release reverted the changes for constant-time elliptic curve
+  algorithms. Marcel Keller reported some operations broke under the new algorithm in
+  <a href="https://github.com/weidai11/cryptopp/issues/992">Issue 992</a>. The revert
+  reactivated CVE-2019-14318.</p>
+  <p>The release also cleared a memory error reported by Daniel McRobb in <a href=
   "https://github.com/weidai11/cryptopp/issues/988">Issue 988</a>. McRobb discovered
   <tt>FixedSizeAllocatorWithCleanup</tt> could write to memory outside of the allocation
   if the allocated memory was not 16-byte aligned.</p>
