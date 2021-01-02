@@ -29,7 +29,8 @@
   </table>
   <h2>Crypto++ 8.3</h2>
   <p>Crypto++ 8.3 was released on December 20, 2020. The 8.3 release was a minor, planned
-  release. There was one CVE and no memory errors.</p>
+  release. There was one CVE and no memory errors. A recompile of programs is required
+  due to an unintentional ABI break in Crypto++ 8.3.</p>
   <p>The 8.3 release cleared <a href=
   "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-14318">CVE-2019-14318</a>. Ján
   Jančár discovered multiple information leaks in elliptic curve algorithms. The CVE was
@@ -60,7 +61,12 @@
   <h2>Release Notes</h2>
   <p>The release notes for Crypto++ 8.3 follows.</p>
   <ul>
-    <li>minor release, no recompile of programs required</li>
+    <li>minor release, recompile of programs required</li>
+    <li style="list-style: none">
+      <ul>
+        <li>an accidental ABI break in Crypto++ 8.3 may surface</li>
+      </ul>
+    </li>
     <li>expanded community input and support</li>
     <li style="list-style: none">
       <ul>

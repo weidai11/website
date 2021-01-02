@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Crypto++ Library 8.3 | Free C++ Class Library of Cryptographic Schemes</title>
+  <title>Crypto++ Library 8.4 | Free C++ Class Library of Cryptographic Schemes</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
   <meta name="keywords" content=
@@ -30,7 +30,7 @@
     </tbody>
   </table>
   <div>
-    <h1>Crypto++<sup>®</sup> Library 8.3</h1>
+    <h1>Crypto++<sup>®</sup> Library 8.4</h1>
   </div>
   <p>Crypto++ Library is a free C++ class library of cryptographic schemes. The library
   contains the following algorithms:</p>
@@ -225,6 +225,31 @@
   list please see <a href=
   "https://github.com/weidai11/cryptopp/blob/master/History.txt">History.txt</a>.</p>
   <ul>
+    <li>01/02/2021 - <a href="release840.html">Version 8.4.0 released</a></li>
+    <li style="list-style: none">
+      <ul>
+        <li>minor release, recompile of programs required</li>
+        <li style="list-style: none">
+          <ul>
+            <li>an accidental ABI break in Crypto++ 8.3 may surface under Crypto++
+            8.4</li>
+          </ul>
+        </li>
+        <li>expanded community input and support</li>
+        <li style="list-style: none">
+          <ul>
+            <li>67 unique contributors as of this release</li>
+          </ul>
+        </li>
+        <li>fix SIGILL on POWER8 when compiling with GCC 10</li>
+        <li>fix potential out-of-bounds write in
+        <tt>FixedSizeAllocatorWithCleanup</tt></li>
+        <li>fix compile on AIX POWER7 with IBM XLC 12.01</li>
+        <li>fix compile on Solaris with SunCC 12.6</li>
+        <li>revert changes for constant-time elliptic curve algorithms</li>
+        <li>fix makefile clean and distclean recipes</li>
+      </ul>
+    </li>
     <li>12/20/2020 - <a href="release830.html">Version 8.3.0 released</a></li>
     <li style="list-style: none">
       <ul>
@@ -469,6 +494,15 @@
       </tr>
     </thead>
     <tbody>
+      <tr align="center">
+        <td>2021-01-02</td>
+        <td><a href="cryptopp840.zip">Crypto++ 8.4.0</a> [<a href=
+        "cryptopp840.zip.sig">sig</a>]</td>
+        <td><a href="release840.html">8.4.0 Release</a></td>
+        <td><a href=
+        "http://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_8_4_0">Crypto++
+        8.4.0</a></td>
+      </tr>
       <tr align="center">
         <td>2020-12-20</td>
         <td><a href="cryptopp830.zip">Crypto++ 8.3.0</a> [<a href=

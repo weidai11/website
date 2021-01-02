@@ -28,8 +28,9 @@
     </tbody>
   </table>
   <h2>Crypto++ 8.4</h2>
-  <p>Crypto++ 8.4 was released on January NN, 2021. The 8.4 release was a minor, planned
-  release. There was no CVEs and one memory error fixed.</p>
+  <p>Crypto++ 8.4 was released on January 1, 2021. The 8.4 release was a minor, unplanned
+  release. There was no CVEs and one memory error fixed. A recompile of programs is
+  required due to an unintentional ABI break in Crypto++ 8.3.</p>
   <p>The Crypto++ 8.4 release reverted the changes for constant-time elliptic curve
   algorithms. Marcel Keller reported some operations broke under the new algorithm in
   <a href="https://github.com/weidai11/cryptopp/issues/992">Issue 992</a>. The revert
@@ -45,11 +46,14 @@
   <ul>
     <li>Download: <a href="cryptopp840.zip">cryptopp840.zip</a>, <a href=
     "cryptopp840.zip.sig">cryptopp840.zip.sig</a></li>
-    <li>SHA1: xxx</li>
-    <li>SHA256: xxx</li>
-    <li>SHA512: xxx</li>
-    <li>BLAKE2b: xxx</li>
-    <li>WHIRLPOOL: xxx</li>
+    <li>SHA1: f964e176c4543593579a2f0ba48b6a79eb128001</li>
+    <li>SHA256: c0f5e5cd2c693c8160e9c51666e95949a1c19fd4fe4fef874af2ec1e42757b9a</li>
+    <li>SHA512:
+    4c32b6a9ce8a6925286185f65f7413fa1a430471f09624219656b1d088674c56f95fcc3b64f611632f12cb56dfecdcd41c9d1468942b8c391425a548245dde09</li>
+    <li>BLAKE2b:
+    de57ece8644aef68e40527e2dfe1892f924f1939617ce11d8d27253f15f2dd11cba6e594dd32f75ce799392c12ef22472fcb2f3e44b9c66bb2ae093d4c7e781e</li>
+    <li>WHIRLPOOL:
+    ac7ed4ec3ff948858abf0166c5430564ef72a0baf6d2b3857a8a5bcdb1cad944742f581b50613b5a1d39fc165edc965910927b2fce4a31a71ddb19bee87a6498</li>
   </ul>
   <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
   different because the service creates the archive from sources.</p>
@@ -60,7 +64,12 @@
   <h2>Release Notes</h2>
   <p>The release notes for Crypto++ 8.4 follows.</p>
   <ul>
-    <li>minor release, no recompile of programs required</li>
+    <li>minor release, recompile of programs required</li>
+    <li style="list-style: none">
+      <ul>
+        <li>an accidental ABI break in Crypto++ 8.3 may surface under Crypto++ 8.4</li>
+      </ul>
+    </li>
     <li>expanded community input and support</li>
     <li style="list-style: none">
       <ul>
@@ -72,6 +81,7 @@
     <li>fix compile on AIX POWER7 with IBM XLC 12.01</li>
     <li>fix compile on Solaris with SunCC 12.6</li>
     <li>revert changes for constant-time elliptic curve algorithms</li>
+    <li>fix makefile clean and distclean recipes</li>
   </ul>
   <h2>Bug fixes and Minor Issues</h2>
   <p>The bug fix and minor issue list for Crypto++ 8.4 follows. Many non-trivial issues
@@ -89,6 +99,7 @@
     <li>fix compile on Solaris with SunCC 12.6 (PR #990)</li>
     <li>revert changes for constant-time elliptic curve algorithms (GH #992,
     CVE-2019-14318)</li>
+    <li>fix makefile clean and distclean recipes (GH #998)</li>
   </ul>
   <h2>CVE-2019-14318</h2>
   <p>Marcel Keller discovered recent contant-time elliptic curve changes checked-in under
