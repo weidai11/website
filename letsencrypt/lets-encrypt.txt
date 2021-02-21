@@ -28,7 +28,11 @@ Be sure to restart Apache after the process so the new certificate is used.
    Create the necessary files in the other terminal. Once the
    challenges have been accepted client will download a new cert.
 
-4. Once the certificate issues, copy it to cryptopp-com.pem
+4. Before the final OK, check permissions on the files the LE Client
+   asked you to create. The owner of the files should be root:apache.
+   The permissions should be u=rw,g=r,o=.
+
+5. Once the certificate issues, copy it to cryptopp-com.pem
 
    # cp 0000_cert.pem /etc/pki/tls/certs/cryptopp-com.pem
    cp: overwrite ‘/etc/pki/tls/certs/cryptopp-com.pem’? y
@@ -37,11 +41,11 @@ Be sure to restart Apache after the process so the new certificate is used.
    Test the website. Once tested it is OK to delete the local
    Let's Encrypt artifacts in Home.
 
-5. Restart the Apache web server
+6. Restart the Apache web server
 
    systemctl restart httpd24-httpd.service
 
-6. Verify the new web server certificate.
+7. Verify the new web server certificate.
 
    * https://www.ssllabs.com/ssltest/analyze.html?d=www.cryptopp.com&latest
    * https://www.sslshopper.com/ssl-checker.html#hostname=www.cryptopp.com
