@@ -8,9 +8,9 @@
 www_directory=/var/www/html
 
 # This follows Crypto++ release number
-ref_dir=ref830/
+ref_dir=ref840/
 
-if [[ ($(id -u) != "0") ]]; then
+if [[ $(id -u) != "0" ]]; then
     echo "You must be root to update the docs"
     exit 1
 fi
