@@ -31,7 +31,7 @@ mv CryptoPPRef.zip "${www_directory}/docs"
 cd "${www_directory}/docs"
 
 # Remove old link, add new link
-rm -f ref
+unlink ref/ 2>/dev/null
 mkdir -p "${ref_dir}"
 ln -s "${ref_dir}" ref
 
