@@ -65,27 +65,6 @@
   </ul>
   <h2>Bug fixes and Minor Issues</h2>
   <p>No bugs were fixed at Crypto++ 8.5.</p>
-  <h2>Configure.sh script</h2>
-  <p>The Crypto++ 8.3 release added a <tt>configure.sh</tt> script. The script helps fix
-  misdetected features on Android, Clang, OS X and iOS. You should use the script before
-  a build if the library misdetects features for you.</p>
-  <p>The script fixes misdetected features by rewriting <tt>config_asm.h</tt> and
-  <tt>config_cxx.h</tt> for the platform it is run on. To run the script perform these
-  steps. You should set <tt>CXX</tt> and <tt>CXXFLAGS</tt> to your preferred flags before
-  running the script.</p>
-  <pre>
-$ cp -p TestScripts/configure.sh .
-$ CXX=g++ ./configure.sh
-Configuring for x86_64
-Compiler: /usr/bin/g++
-Linker: /usr/bin/ld
-Done writing config_asm.h
-Done writing config_cxx.h
-</pre>
-  <p>The <tt>configure.sh</tt> script is located in <tt>TestScripts/</tt>. It was placed
-  there to avoid confusing users because the script is usually not needed.</p>
-  <p>A wiki page is available at <a href=
-  "https://www.cryptopp.com/wiki/Configure.sh">Configure.sh script</a>.</p>
   <h2>FIPS DLL deprecation</h2>
   <p>The FIPS DLL used to be an important artifact for Windows builds. NIST moved the
   Crypto++ library to the Historical Validation List in 2014. The Windows DLL is no
