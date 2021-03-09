@@ -11,7 +11,7 @@ SED_OPTS=
 
 IS_DARWIN=$(uname -s | grep -i -c darwin)
 if [[ "$IS_DARWIN" -ne 0 ]]; then
-    SED_OPTS=(-i "")
+    SED_OPTS=(-i '')
 else
     SED_OPTS=(-i)
 fi
@@ -74,5 +74,9 @@ do
     # Fix CRLF endings after sed
     unix2dos "$file" 1>/dev/null
 done
+
+# Delete empty lines inserted by html-tidy
+"$SED" "${SED_OPTS[@]}" '/^[[:space:]]*$/d' index.html
+unix2dos index.html 1>/dev/null
 
 exit 0
