@@ -17,6 +17,11 @@ if [ ! -d "${www_directory}" ]; then
     exit 1
 fi
 
+if [ ! $(command -v unzip 2>/dev/null) ]; then
+    echo "Unable to locate unzip program"
+    exit 1
+fi
+
 echo "Setting zip filetimes"
 IFS= find "${www_directory}" -maxdepth 1 -type f -name '*.zip' -print | while read -r file
 do

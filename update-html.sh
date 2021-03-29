@@ -4,9 +4,18 @@
 # and *.css files, to the web server directory. The
 # script sets ownership and permissions as required.
 
-if [ -z "${www_directory}" ]; then
-    www_directory=/var/www/html
-fi
+# Location of the website
+www_directory=/var/www/html
+
+# Red Hat
+# user_group="root:apache"
+# Debian
+user_group="root:www-data"
+
+# Red Hat with SCL
+# service_name="httpd24-httpd.service"
+# Debian
+service_name="apache2"
 
 if [[ ($(id -u) != "0") ]]; then
     echo "You must be root to update the html"
@@ -56,8 +65,8 @@ if [ "${count}" -ne 0 ]; then
 fi
 
 echo "Setting ownership"
-chown root:apache "${www_directory}"
-chown root:apache "${www_directory}"/*
+chown "${user_group}" "${www_directory}"
+chown "${user_group}" "${www_directory}"/*
 
 echo "Setting directory permissions"
 IFS= find "${www_directory}" -maxdepth 1 -type d -print | while read -r dir

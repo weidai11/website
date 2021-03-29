@@ -5,10 +5,21 @@
 # The script will move and unpack CryptoPPRef.zip. The script sets ownership and
 # permissions as required.
 
+# Location of the website
 www_directory=/var/www/html
 
+# Red Hat
+# user_group="root:apache"
+# Debian
+user_group="root:www-data"
+
+# Red Hat with SCL
+# service_name="httpd24-httpd.service"
+# Debian
+service_name="apache2"
+
 # This follows Crypto++ release number
-ref_dir=ref840/
+ref_dir=ref850/
 
 if [[ $(id -u) != "0" ]]; then
     echo "You must be root to update the docs"
@@ -31,6 +42,7 @@ mv CryptoPPRef.zip "${www_directory}/docs"
 cd "${www_directory}/docs"
 
 # Remove old link, add new link
+# rm -f ref
 unlink ref/ 2>/dev/null
 mkdir -p "${ref_dir}"
 ln -s "${ref_dir}" ref
@@ -40,8 +52,8 @@ unzip -aoq CryptoPPRef.zip -d .
 mv CryptoPPRef.zip ref/
 
 echo "Changing ownership"
-chown -R root:apache "${www_directory}/docs/${ref_dir}"
-chown root:apache ref/CryptoPPRef.zip
+chown -R "${user_group}" "${www_directory}/docs/${ref_dir}"
+chown "${user_group}" ref/CryptoPPRef.zip
 
 echo "Setting directory permissions"
 IFS= find "${www_directory}/docs/${ref_dir}" -type d -print | while read -r dir
@@ -61,6 +73,6 @@ do
 done
 
 echo "Restarting web server"
-systemctl restart httpd24-httpd.service
+systemctl restart "${service_name}"
 
 exit 0
