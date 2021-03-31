@@ -1,0 +1,174 @@
+The documents the restor procedure for the web server.
+
+The process is roughly detailed as follows
+
+* provision an VM
+* install OpenSSH, Apache, PHP, MySQL, Duplicity
+* create users and accounts
+* restore to /tmp/restore
+* copy restored /home tree
+* copy restored /www tree
+
+Add user accounts
+=======================
+
+  adduser weidai
+  ...
+  usermod -a -G sudo weidai
+  usermod -a -G staff weidai
+
+  adduser jwalton
+  ...
+  usermod -a -G sudo jwalton
+  usermod -a -G staff jwalton
+
+Restore system software
+=======================
+
+  # apt-get install apache2 apache2-bin apache2-data apache2-utils
+
+  # apt-get install php7.4 php7.4-cli php7.4-common php7.4-gd php7.4-intl \
+    php7.4-json php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline \
+    php7.4-xml php7.4-zip
+
+  # apt-get install mysql-client-8.0 mysql-client-core-8.0 mysql-common \
+    mysql-server-8.0 mysql-server-core-8.0
+
+Restore to /tmp/restore
+=======================
+
+Run Duplicity with the following command. <password>, <host> and <dir> are
+available in the bitvise-backup script.
+
+  duplicity restore --file-to-restore "/" "sftp://CryptoPPBackup:<password>@<host>:22480/<dir>" "/tmp/restore"
+
+After the command completes the restored filesystem is available at /tmp/restore.
+
+Note well: /tmp is cleaned upon reboot, so get what you need before you bounce the server.
+
+Restore OpenSSH config
+========================
+
+Restore server keys
+
+  cd /tmp/restore
+  cp etc/ssh/ssh_host_*_key* /etc/ssh/
+
+Restore policies
+
+  cp etc/ssh/sshd_config.d/10_pubkey_auth /etc/ssh/sshd_config.d
+  cp etc/ssh/sshd_config.d/20_disable_root_login /etc/ssh/sshd_config.d
+
+Restart OpenSSH service
+
+  systemctl restart sshd
+
+Restore Home directories
+========================
+
+  cd /tmp/restore
+
+  cp -r root/* /root/
+  chown -R root:root /root/*
+
+  cp -r home/weidai/* /home/weidai/
+  chown -R weidai:weidai /home/weidai/*
+
+  cp -r home/jwalton/* /home/jwalton/
+  chown -R jwalton:jwalton /home/jwalton/*
+
+Restore Web server config
+=========================
+
+Enable mod_ssl and mod_rewrite
+
+  a2enmod ssl
+  a2enmod rewrite
+
+Copy relevant files.
+
+  cd /tmp/restore
+
+  cp etc/php/7.4/apache2/php.ini etc/php/7.4/apache2/
+  cp etc/php/7.4/apache2/conf.d/99-security.ini /etc/php/7.4/apache2/conf.d/
+  cp etc/apache2/apache2.conf /etc/apache2/
+  cp etc/apache2/mods-enabled/ssl.conf /etc/apache2/mods-enabled/
+  cp etc/ssl/private/cryptopp-com.* /etc/ssl/private/
+
+Test the configuration
+
+  apachectl configtest
+
+Restore Web data files
+=======================
+
+  cd /tmp/restore
+
+  cp -r var/www/html/* /var/www/html/
+  cp var/www/html/.htaccess /var/www/html/
+
+  chown -R root:www-data /var/www
+
+Restore SQL server config
+=========================
+
+Log into MySQL server with the system password. The system password is 32-characters
+and starts with "cBEY".
+
+  # mysql -u root -p
+  <enter password>
+
+Create the Mediawiki database.
+
+  mysql> CREATE DATABASE my_wiki;
+  Query OK, 1 row affected (0.01 sec)
+
+Create the Mediawiki user. The password is the wiki user password and starts with "fe".
+
+  mysql> CREATE USER 'mwuser'@'localhost' IDENTIFIED BY '<password>';
+  Query OK, 0 rows affected (0.01 sec)
+
+Grant the media wiki user all privileges on the database.
+
+  mysql> GRANT ALL PRIVILEGES ON my_wiki.* TO 'mwuser'@'localhost';
+  Query OK, 0 rows affected (0.01 sec)
+
+  mysql> FLUSH PRIVILEGES;
+
+Restore SQL database
+=======================
+
+Log into MySQL server with the system password. The system password is 32-characters
+and starts with "cBEY".
+
+  # mysql -u root -p
+  <enter password>
+
+Switch to the wiki database.
+
+  mysql> USE my_wiki;
+
+Perform the restore using the SQL dump.
+
+  mysql> source /tmp/restore/backup/wiki.sql;
+  ...
+  Query OK, 830 rows affected (0.02 sec)
+  Records: 830  Duplicates: 0  Warnings: 0
+  Query OK, 0 rows affected (0.01 sec)
+  Query OK, 0 rows affected (0.00 sec)
+
+  mysql>
+
+Once restored exit MySQL.
+
+  mysql> exit
+  Bye
+
+Mediawiki maintenance script
+============================
+
+Run the Mediawiki maintenance script. This is usually performed
+after Mediawiki components are added or removed.
+
+  # cd /var/www/html/w/maintenance
+  # php update.php --quick --server="https://www.cryptopp.com/wiki"

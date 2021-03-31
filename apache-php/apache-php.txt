@@ -16,11 +16,32 @@ Install Apache and PHP packages:
     php7.4-json php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline \
     php7.4-xml php7.4-zip
 
+  # apt-get install mysql-client-8.0 mysql-client-core-8.0 mysql-common \
+    mysql-server-8.0 mysql-server-core-8.0
+
 Once installed the new gear is located in /bin, /etc and friends.
 
-  $ ls /etc | grep -E 'apache|php'
+  $ ls /etc | grep -E 'apache|php|mysql'
   apache2
+  mysql
   php
+
+After MySQl is installed run mysql_secure_installation. Set the password
+to the password. It is 32-characters and starts with "cBEY".
+
+  # mysql_secure_installation
+
+  Remove anonymous users, Disallow remotely root login and Remove test database.
+
+If needed, adjust the password policy manually.
+
+  SHOW VARIABLES LIKE 'validate_password%';
+
+  SET GLOBAL validate_password.policy=STRONG;
+  SET GLOBAL validate_password.length=12;
+  SET GLOBAL validate_password.mixed_case_count=0;
+  SET GLOBAL validate_password.number_count=0;
+  SET GLOBAL validate_password.special_char_count=0;
 
 Crypto++ uses a hardened PHP configuration. Open /etc/php/7.4/apache2/php.ini,
 and add the following to the tail:
@@ -51,6 +72,11 @@ is incompatible with other components.
   # ls /etc/apache2/mods-enabled | grep prefork
   mpm_prefork.conf
   mpm_prefork.load
+
+Enable mod_ssl and mod_rewrite
+
+  a2enmod ssl
+  a2enmod rewrite
 
 Inspect /etc/apache2/mods-enabled, and ensure there are no unneeded modules.
 In particular, http2_module is not compatible with the mpm prefork module:
@@ -89,15 +115,7 @@ Enable and start the Apache service via Systemd
   systemctl enable apache2
   systemctl start apache2
 
-Reboot the machine. Then, check the programs are on-path as expected:
-
-  # command -v apachectl
-  /usr/sbin/apachectl
-
-  # command -v php
-  /usr/bin/php
-
-And verify Apache is running:
+Reboot the machine, and verify Apache is running:
 
   # systemctl status apache2
   ● apache2.service - The Apache HTTP Server
