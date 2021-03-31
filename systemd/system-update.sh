@@ -29,7 +29,7 @@ needs_update=$(apt list --upgradable 2>/dev/null | grep -c -i -v 'Listing')
 if [[ "$needs_update" -gt 0 ]]
 then
 
-    apt-get upgrade -y &>/dev/null && apt-get dist-upgrade -y &>/dev/null
+    apt-get upgrade -y &>/dev/null
     ret_val=$?
 
     if [[ "$ret_val" -eq 0 ]]
