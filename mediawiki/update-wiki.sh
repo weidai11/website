@@ -143,7 +143,7 @@ fi
 # correct. Executable files will be missing +x, and images will have +x.
 
 # We would like to skip images/ here, but find is too sideways.
-# images/ gets different permissions, but find's -prune does not
+# images/ gets different permissions, and find's -prune does not
 # seem to work as expected.
 echo "Setting MediaWiki permissions"
 chown -R ${user_group} "$WIKI_DIR/"
@@ -205,6 +205,19 @@ then
         chmod ug=rwx,o= "$dir"
     done
     IFS= find "/var/lib/php" -type f | while read -r file
+    do
+        chmod ug=rw,o= "$file"
+    done
+fi
+
+if [[ -d "/var/run/apache2" ]]
+then
+    #chown -R ${user_group} "/var/run/apache2"
+    IFS= find "/var/run/apache2" -type d | while read -r dir
+    do
+        chmod ug=rwx,o= "$dir"
+    done
+    IFS= find "/var/run/apache2" -type f | while read -r file
     do
         chmod ug=rw,o= "$file"
     done
