@@ -31,7 +31,7 @@ cd backup-scripts
 ./install.sh
 ```
 
-You should re-run `install.sh` to re-install the scripts if they change. See `update.sh` below.
+You should re-run `install.sh` to re-install the scripts if they change.
 
 ## System-update
 
@@ -72,6 +72,8 @@ You can check the status of the services and timers with `systemctl`. The timer 
    Active: inactive (dead)
      Docs: https://github.com/weidai11/website/systemd
 ```
+
+You can trigger a backup with `systemctl start bitvise-backup.service`.
 
 A successful incremental backup looks like the following.
 
