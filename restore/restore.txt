@@ -1,6 +1,6 @@
 The documents the restore procedure for the web server.
 
-The process is roughly detailed as follows. The process takes about
+The process is detailed as follows. The process takes about
 20 minutes since it is mostly copy and paste.
 
 * provision a VM
@@ -189,6 +189,9 @@ Update Mediawiki
 
 Run our update-wiki.sh script. The script will set ownership and permissions,
 and perform other miscellaneous items.
+
+  cd /var/www/html/w
+  ./update-wiki.sh
 
 Setup backup jobs
 =================
