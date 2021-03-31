@@ -107,6 +107,21 @@ VirtualHost settings:
   TransferLog /var/log/httpd24/access_log
   LogLevel warn
 
+Ensure there is a Short URL rule for Mediawiki. This translate
+requests with wiki/ in the URL to w/ on the filesystem. Also see
+https://www.mediawiki.org/wiki/Manual:Short_URL
+
+  $ cat /var/www/html/.htaccess
+
+  RewriteEngine on
+  RewriteRule ^wiki/?(.*)$ /w/index.php?title=$1 [L,QSA]
+
+  <IfModule mod_deflate.c>
+    <FilesMatch "\.(js|css|html)$">
+      SetOutputFilter DEFLATE
+    </FilesMatch>
+  </IfModule>
+
 Reboot the machine. Then, check the programs are on-path as expected:
 
   # command -v apachectl
