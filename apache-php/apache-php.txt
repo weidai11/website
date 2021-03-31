@@ -84,6 +84,11 @@ And:
   TransferLog /var/log/apache2/access.log
   LogLevel warn
 
+Enable and start the Apache service via Systemd
+
+  systemctl enable apache2
+  systemctl start apache2
+
 Reboot the machine. Then, check the programs are on-path as expected:
 
   # command -v apachectl
