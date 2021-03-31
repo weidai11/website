@@ -99,14 +99,26 @@ You can check the status of the services and timers with `systemctl`. The timer 
      Docs: https://github.com/weidai11/website/systemd
 ```
 
-You can view messages produced by the scripts using `journalctl`.
+A successful incremental backup looks like the following.
 
 ```
-# journalctl -xe | grep -E 'gdrive|bitvise'
-Dec 17 04:57:46 ftpit systemd[1]: Started Run bitvise-backup.service once a day.
--- Subject: Unit bitvise-backup.timer has finished start-up
--- Unit bitvise-backup.timer has finished starting up.
-Dec 17 05:46:44 ftpit systemd[1]: Started Run gdrive-backup.service once a day.
--- Subject: Unit gdrive-backup.timer has finished start-up
--- Unit gdrive-backup.timer has finished starting up.
+# systemctl status bitvise-backup.service
+● bitvise-backup.service - Run bitvise-backup.service once a day
+     Loaded: loaded (/etc/systemd/system/bitvise-backup.service; static; vendor preset: enabled)
+     Active: inactive (dead) since Wed 2021-03-31 02:33:48 UTC; 56s ago
+TriggeredBy: ● bitvise-backup.timer
+       Docs: https://github.com/weidai11/website/systemd
+    Process: 3684 ExecStart=/usr/sbin/bitvise-backup (code=exited, status=0/SUCCESS)
+   Main PID: 3684 (code=exited, status=0/SUCCESS)
+
+Mar 31 02:33:48 localhost bitvise-backup[3788]: ChangedFiles 27
+Mar 31 02:33:48 localhost bitvise-backup[3788]: ChangedFileSize 60893049 (58.1 MB)
+Mar 31 02:33:48 localhost bitvise-backup[3788]: ChangedDeltaSize 0 (0 bytes)
+Mar 31 02:33:48 localhost bitvise-backup[3788]: DeltaEntries 51
+Mar 31 02:33:48 localhost bitvise-backup[3788]: RawDeltaSize 1374941 (1.31 MB)
+Mar 31 02:33:48 localhost bitvise-backup[3788]: TotalDestinationSizeChange 240279 (235 KB)
+Mar 31 02:33:48 localhost bitvise-backup[3788]: Errors 0
+Mar 31 02:33:48 localhost bitvise-backup[3788]: -------------------------------------------------
+Mar 31 02:33:48 localhost systemd[1]: bitvise-backup.service: Succeeded.
+Mar 31 02:33:48 localhost systemd[1]: Finished Run bitvise-backup.service once a day.
 ```
