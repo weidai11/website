@@ -36,9 +36,6 @@ fi
 if [[ -z "${gnupg_password}" ]]; then
     echo "WARNING: gnupg_password is empty"
 fi
-if [[ -z "${bitvise_password}" ]]; then
-    echo "WARNING: bitvise_password is empty"
-fi
 
 # Fix the wiki tables (just in case)
 if ! mysqlcheck my_wiki --auto-repair --user=mwuser --password="${wiki_password}" ;
