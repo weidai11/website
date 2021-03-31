@@ -18,9 +18,10 @@
 # This script takes about 20 minutes to run.
 
 # Important variables
-WIKI_DIR="/var/www/html/w"
-WIKI_REL=REL1_35
-PHP_BIN=/usr/bin/php
+html_dir="/var/www"
+wiki_dir="/var/www/html/w"
+wiki_rel=REL1_35
+php_bin=/usr/bin/php
 
 # Privileges? Exit 0 to keep things moving along
 # Errors will be printed to the terminal
@@ -29,13 +30,13 @@ if [[ $(id -u) != "0" ]]; then
     exit 0
 fi
 
-if [[ ! -d "${WIKI_DIR}" ]]; then
-    echo "WIKI_DIR is not valid."
+if [[ ! -d "${wiki_dir}" ]]; then
+    echo "wiki_dir is not valid."
     exit 1
 fi
 
-if [[ ! -f "${PHP_BIN}" ]]; then
-    echo "PHP_BIN is not valid."
+if [[ ! -f "${php_bin}" ]]; then
+    echo "php_bin is not valid."
     exit 1
 fi
 
@@ -82,62 +83,65 @@ echo "Apache service: ${apache_service}"
 echo "MySQL service: ${mysql_service}"
 
 # Set ownership of the Web server files
-chown -R ${user_group} /var/www
+chown -R ${user_group} "${html_dir}"
 
 # This finds directories check'd out from Git and updates them.
 # It works surprisingly well. There have only been a couple of
 # minor problems.
-IFS= find "$WIKI_DIR/skins" -type d -name '.git' -print | while read -r dir
+IFS= find "${wiki_dir}/skins" -type d -name '.git' -print | while read -r dir
 do
     cd "$dir/.." || continue
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull && \
-      git checkout -f "$WIKI_REL" && git pull
+      git checkout -f "${wiki_rel}" && git pull
 done
 
-IFS= find "$WIKI_DIR/extensions" -type d -name '.git' -print | while read -r dir
+IFS= find "${wiki_dir}/extensions" -type d -name '.git' -print | while read -r dir
 do
     cd "$dir/.." || continue
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull && \
-      git checkout -f "$WIKI_REL" && git pull
+      git checkout -f "${wiki_rel}" && git pull
 done
+
+# Set ownership of the Mediawiki files. The git checkout may upset ownership.
+chown -R ${user_group} "${wiki_dir}"
 
 # Remove all developer gear in production. We are not PHP developers.
 # Don't use a wildcard on 'dev'. It matches 'Device' and breaks MobileFrontEnd.
-IFS= find "$WIKI_DIR" -type d -iname 'dev' -print | while read -r dir
+IFS= find "${wiki_dir}" -type d -iname 'dev' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all test frameworks in production. We are not PHP developers.
-IFS= find "$WIKI_DIR" -type d -iname 'test*' -print | while read -r dir
+IFS= find "${wiki_dir}" -type d -iname 'test*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all benchmark frameworks in production. We are not PHP developers.
-IFS= find "$WIKI_DIR" -type d -iname 'benchmark*' -print | while read -r dir
+IFS= find "${wiki_dir}" -type d -iname 'benchmark*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all docs in production. No need to back them up.
-IFS= find "$WIKI_DIR" -type d -iname 'doc*' -print | while read -r dir
+IFS= find "${wiki_dir}" -type d -iname 'doc*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all screenshots in production. No need to back them up.
-IFS= find "$WIKI_DIR" -type d -iname 'screenshot*' -print | while read -r dir
+IFS= find "${wiki_dir}" -type d -iname 'screenshot*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 echo "Creating MediaWiki sitemap"
-if [[ -f "$WIKI_DIR/create-sitemap.sh" ]]; then
-    rm -rf "$WIKI_DIR/sitemap"
-    bash "$WIKI_DIR/create-sitemap.sh" 1>/dev/null
+if [[ -f "${wiki_dir}/create-sitemap.sh" ]]; then
+    rm -rf "${wiki_dir}/sitemap"
+    bash "${wiki_dir}/create-sitemap.sh" 1>/dev/null
 fi
 
 # Set proper ownership and permissions. This is required after unpacking a
@@ -148,11 +152,11 @@ fi
 # images/ gets different permissions, and find's -prune does not
 # seem to work as expected.
 echo "Setting MediaWiki permissions"
-IFS= find "$WIKI_DIR" -type d -print | while read -r dir
+IFS= find "${wiki_dir}" -type d -print | while read -r dir
 do
     chmod u=rwx,g=rx,o= "$dir"
 done
-IFS= find "$WIKI_DIR" -type f -print | while read -r file
+IFS= find "${wiki_dir}" -type f -print | while read -r file
 do
     chmod u=rw,g=r,o= "$file"
 done
@@ -160,18 +164,18 @@ done
 # images/ must be writable by Apache. This is the upload
 # directory, and the directory where thumbnails are created.
 echo "Setting MediaWiki images/ permissions"
-IFS= find "$WIKI_DIR/images" -type d | while read -r dir
+IFS= find "${wiki_dir}/images" -type d | while read -r dir
 do
     chmod ug=rwx,o= "$dir"
 done
-IFS= find "$WIKI_DIR/images" -type f | while read -r file
+IFS= find "${wiki_dir}/images" -type f | while read -r file
 do
     chmod ug=rw,o= "$file"
 done
 
 # Make Python, PHP and friends executable
 echo "Setting Executable file permissions"
-IFS= find "$WIKI_DIR" -type f -print | while read -r file
+IFS= find "${wiki_dir}" -type f -print | while read -r file
 do
     if file -b "${file}" | grep -q -E 'executable|script';
     then
@@ -194,7 +198,7 @@ fi
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 echo "Running update.php"
-"${PHP_BIN}" "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki"
+"${php_bin}" "${wiki_dir}/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki"
 
 echo "Restarting Apache service"
 if ! systemctl restart ${apache_service}; then
