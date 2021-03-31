@@ -70,7 +70,7 @@ fi
 # Debian uses mysql.service
 services=$(systemctl list-units --type=service 2>/dev/null)
 if echo ${services} | grep -q mariadb.service; then
-    mysql_service="${apache_service}"
+    mysql_service="mariadb.service"
 elif echo ${services} | grep -q mysql.service; then
     mysql_service="mysql.service"
 else
