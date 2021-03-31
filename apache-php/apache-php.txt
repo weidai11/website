@@ -19,6 +19,9 @@ Install Apache and PHP packages:
   # apt-get install mysql-client-8.0 mysql-client-core-8.0 mysql-common \
     mysql-server-8.0 mysql-server-core-8.0
 
+  # Other tools needed on occasion
+  # apt-get install net-tools git unzip
+
 Once installed the new gear is located in /bin, /etc and friends.
 
   $ ls /etc | grep -E 'apache|php|mysql'

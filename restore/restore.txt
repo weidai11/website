@@ -44,6 +44,9 @@ Install system software
 
   apt-get install duplicity
 
+  # Other tools needed on occasion
+  apt-get install net-tools git unzip
+
 Restore to /tmp/restore
 =======================
 
