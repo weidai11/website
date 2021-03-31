@@ -43,11 +43,11 @@ You should re-run `install.sh` to re-install the scripts if they change. See `up
 
 The system-update script updates the system once a day without user prompts. The script applies all updates, and not just security updates. The warez includes a Systemd service, timer and script. The `system-update` script is placed at `/usr/sbin/system-update.sh`.
 
-The system-update script runs at 3:00 AM each night. The script reboots the machine as required.
+The system-update script runs at 4:00 AM each night. The script reboots the machine as required.
 
 ## Bitvise-backup
 
-The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd service, timer and backup script. The bitvise-backup script runs at 4:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
+The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd service, timer and backup script. The bitvise-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
 The `bitvise-backup` script is placed at `/usr/sbin/bitvise-backup`. The script includes a password so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
@@ -65,7 +65,7 @@ source scl_source enable python27
 
 ## Gdrive-backup
 
-The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The gdrive-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
+The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The gdrive-backup script runs at 5:30 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
 The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script includes a secret token so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
