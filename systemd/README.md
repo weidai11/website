@@ -51,35 +51,11 @@ The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd 
 
 The `bitvise-backup` script is placed at `/usr/sbin/bitvise-backup`. The script includes a password so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
 
-The bitvise-backup script sources SCL's `python27` environment because Systemd blows away the machine's environment specified in `/etc/profile.d`.
-
-```
-# cat bitvise-backup
-#!/usr/bin/env bash
-
-# JW: Systemd blows out the machine's environment, including the SCL gear.
-# https://github.com/systemd/systemd/issues/18028
-source scl_source enable python27
-...
-```
-
 ## Gdrive-backup
 
 The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The gdrive-backup script runs at 5:30 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
 The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script includes a secret token so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
-
-The gdrive-backup script sources SCL's `python27` environment because Systemd blows away the machine's environment specified in `/etc/profile.d`.
-
-```
-# cat gdrive-backup
-#!/usr/bin/env bash
-
-# JW: Systemd blows out the machine's environment, including the SCL gear.
-# https://github.com/systemd/systemd/issues/18028
-source scl_source enable python27
-...
-```
 
 ## Systemctl status
 
