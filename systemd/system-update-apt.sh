@@ -51,7 +51,7 @@ then
 fi
 
 # Set to 0 if not set
-needs_reboot=${$needs_reboot:-0}
+needs_reboot=${needs_reboot:-0}
 
 if [[ "$needs_reboot" -eq 1 ]]
 then
