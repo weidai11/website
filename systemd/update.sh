@@ -14,6 +14,12 @@ then
     exit 1
 fi
 
+if ! wget -O bitvise-backup https://raw.githubusercontent.com/weidai11/website/master/systemd/bitvise-backup;
+then
+    echo "Failed to download bitvise-backup script"
+    exit 1
+fi
+
 if ! wget -O gdrive-backup.service https://raw.githubusercontent.com/weidai11/website/master/systemd/gdrive-backup.service;
 then
     echo "Failed to download gdrive-backup.service"
@@ -23,6 +29,12 @@ fi
 if ! wget -O gdrive-backup.timer https://raw.githubusercontent.com/weidai11/website/master/systemd/gdrive-backup.timer;
 then
     echo "Failed to download gdrive-backup.timer"
+    exit 1
+fi
+
+if ! wget -O gdrive-backup https://raw.githubusercontent.com/weidai11/website/master/systemd/gdrive-backup;
+then
+    echo "Failed to download gdrive-backup script"
     exit 1
 fi
 
@@ -56,6 +68,6 @@ then
     exit 1
 fi
 
-chmod ug=rwx,o= install.sh update.sh system-update.sh
+chmod ug=rwx,o= install.sh update.sh bitvise-backup gdrive-backup system-update.sh
 
 exit 0
