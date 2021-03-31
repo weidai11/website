@@ -1,0 +1,23 @@
+This document details the Crypto++ webserver's SSH configuration. The virtual
+machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1).
+
+Two mods are made to the SSH configureation:
+
+  # ls /etc/ssh/sshd_config.d
+  10_pubkey_auth  20_disable_root_login
+
+Public key authentication:
+
+  # cat /etc/ssh/sshd_config.d/10_pubkey_auth
+  # Disable passwords
+  PasswordAuthentication no
+  ChallengeResponseAuthentication no
+  UsePAM no
+
+  # Enable public key
+  PubkeyAuthentication yes
+
+No root logins via SSH. You have to use the IONOS virtual console to regain control.
+
+  # cat /etc/ssh/sshd_config.d/20_disable_root_login
+  PermitRootLogin no
