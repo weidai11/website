@@ -8,10 +8,6 @@ The warez in this section of the website are copied in root's home directory at 
 
 The warez in this section of the website need to be downloaded and updated manually. A Git clone brings in everything, but all we need are a few scripts. Git 2.19 would allow us to clone just Systemd, but the web server has Git 1.8. Also see https://stackoverflow.com/a/52269934.
 
-## Note Well
-
-The backup scripts work with `/etc/cryptopp.conf` on the web server. Be sure `/etc/cryptopp.conf` is available on the web server.
-
 ## Update.sh
 
 The artifacts in this section of the website need to be downloaded to the web server and updated on occassion. Just run `update.sh` to perform the initial download and manual update.
@@ -54,6 +50,10 @@ The `bitvise-backup` script is placed at `/usr/sbin/bitvise-backup`. The script 
 The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The gdrive-backup script runs at 5:30 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
 The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script reads passwords and shared secrets from `/etc/cryptopp.conf`.
+
+## cryptopp.conf
+
+The backup scripts work with `/etc/cryptopp.conf` on the web server. `/etc/cryptopp.conf` holds the passwords and shared secrets needed for the backups. Be sure `/etc/cryptopp.conf` is available on the web server.
 
 ## Systemctl status
 
