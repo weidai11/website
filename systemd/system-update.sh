@@ -1,57 +1,60 @@
 #!/usr/bin/env bash
 
-# This script updates the system once a day without user prompts.
-# If required the script reboots the machine. Also see
-# https://github.com/weidai11/website/tree/master/systemd
-
 export PATH=/sbin:/usr/sbin:/bin:/usr/bin
+export DEBIAN_FRONTEND=noninteractive
 
 echo "Updating package list"
-yum clean all &>/dev/null
-yum check-update &>/dev/null
+apt-get -y autoclean &>/dev/null
+apt-get update &>/dev/null
+
+# Ubuntu makes it a pain in the ass to remove old kernels
+# https://help.ubuntu.com/community/RemoveOldKernels
+if true
+then
+    apt-mark auto '^linux-.*-4.*(-generic)?$' &>/dev/null
+    apt-mark auto '^linux-.*-5.*(-generic)?$' &>/dev/null
+fi
 
 if true
 then
     echo "Purging old packages"
-    yum -y autoremove &>/dev/null
+    apt autoremove --purge &>/dev/null
 fi
 
-# If no packages are upgradable, then the message is "Last metadata expiration check ...".
+# If no packages are upgradable, then the message is "Listing... Done".
 # Otherwise a package name is listed as upgradable.
-needs_update=$(yum check-update 2>/dev/null | grep -c -v -E '^Last metadata|^Fedora')
+needs_update=$(apt list --upgradable 2>/dev/null | grep -c -i -v 'Listing')
 
 # Only update and reboot if packages are available
 if [[ "$needs_update" -gt 0 ]]
 then
-    echo "Upgrades are available"
-    yum -y update &>/dev/null
+
+    apt-get upgrade -y &>/dev/null && apt-get dist-upgrade -y &>/dev/null
     ret_val=$?
 
-    if [[ ("$ret_val" -eq 0) || ("$ret_val" -eq 100) ]]
+    if [[ "$ret_val" -eq 0 ]]
     then
         echo "Upgraded system"
     else
         echo "Failed to upgrade system, error $ret_val"
         exit "$ret_val"
     fi
+
+    needs_reboot=1
 else
     echo "No system updates"
 fi
 
-# needs-restarting misses an updated kernel
-# Check /lib/modules for an updated kernel
-reboot_required=0
-
-if [[ $(needs-restarting -r &>/dev/null) -eq 1 ]]
+if [[ -f /var/run/reboot-required ]]
 then
-    reboot_required=1
+    needs_reboot=1
 fi
 
-if [[ "$reboot_required" -eq 1 ]]
+if [[ "$needs_reboot" -eq 1 ]]
 then
-    echo "Scheduling reboot in 5 minutes"
-    # shutdown -r +5
-    systemd-run --on-active=5m shutdown -r now
+    echo "Scheduling reboot in 10 minutes"
+    # shutdown -r +10
+    systemd-run --on-active=10m shutdown -r now
 else
     echo "No reboot required"
 fi
