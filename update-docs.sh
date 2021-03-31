@@ -8,15 +8,31 @@
 # Location of the website
 www_directory=/var/www/html
 
-# Red Hat
-# user_group="root:apache"
-# Debian
-user_group="root:www-data"
+# Red Hat uses root:apache, Debian uses root:www-data
+if grep -q www-data /etc/group; then
+    user_group="root:www-data"
+elif grep -q apache2 /etc/group; then
+    user_group="root:apache2"
+elif grep -q apache /etc/group; then
+    user_group="root:apache"
+else
+    echo "user:group error"
+    exit 1
+fi
 
-# Red Hat with SCL
-# service_name="httpd24-httpd.service"
-# Debian
-service_name="apache2"
+# Red Hat with SCL uses httpd24-httpd.service, Fedora
+# uses httpd24.service, Debian uses apache2.service
+services=$(systemctl list-units --type=service 2>/dev/null)
+if echo ${services} | grep -q httpd24-httpd.service; then
+    service_name="httpd24-httpd.service"
+elif echo ${services} | grep -q httpd24.service; then
+    service_name="httpd24.service"
+elif echo ${services} | grep -q apache2.service; then
+    service_name="apache2.service"
+else
+    echo "service name error"
+    exit 1
+fi
 
 # This follows Crypto++ release number
 ref_dir=ref850/

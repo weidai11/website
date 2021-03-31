@@ -7,7 +7,7 @@ if [ -z "${www_directory}" ]; then
     www_directory=/var/www/html
 fi
 
-if [[ ($(id -u) != "0") ]]; then
+if [[ $(id -u) != "0" ]]; then
     echo "You must be root to update the html"
     exit 1
 fi
