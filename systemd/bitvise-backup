@@ -41,6 +41,9 @@ fi
 if [[ -z "${bitvise_password}" ]]; then
     echo "WARNING: bitvise_password is empty"
 fi
+if [[ -z "${bitvise_host}" ]]; then
+    echo "WARNING: bitvise_host is empty"
+fi
 
 # Fix the wiki tables (just in case)
 if ! mysqlcheck my_wiki --auto-repair --user=mwuser --password="${wiki_password}" ;
@@ -71,9 +74,6 @@ chmod u=rw,g=r,o= /backup/wiki.sql
 # PASSPHRASE is the GnuPG passphrase used by Duplicity.
 # All backup jobs get PASSPHRASE.
 export PASSPHRASE="${gnupg_password}"
-
-# GDrive setting. Not used by Bitvise backup.
-export GOOGLE_DRIVE_SETTINGS=/backup/duplicity_gdrive_settings
 
 exclude_opts=()
 exclude_opts+=("--exclude /proc")
