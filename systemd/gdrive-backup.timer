@@ -3,7 +3,7 @@ Description=Run gdrive-backup.service once a day
 Documentation=https://github.com/weidai11/website/systemd
 
 [Timer]
-OnCalendar=*-*-* 05:10:00
+OnCalendar=*-*-* 05:40:00
 RandomizedDelaySec=600
 Persistent=true
 
