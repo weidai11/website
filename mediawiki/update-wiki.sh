@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 # update-wiki.sh performs maintenance on the Mediawiki installation.
-# The script does five things, give or take. First it updates GitHub
+# The script does four things, give or take. First it updates GitHub
 # based components in skins/ and extensions/. Second, it {re}sets
-# ownership and permissions on Mediawiki files and folders. Third, it
-# {re}sets ownership and permissions on log files and folders. Fourth,
+# ownership and permissions on Mediawiki files and folders. Third,
 # it then restarts the the MySQL and Apache service. Finally, it runs
 # MediaWiki's update.php. update.php is important and it must be run
 # anytime a change occurs.
@@ -15,7 +14,7 @@
 # The script is located in the wiki directory, which is /var/www/html/w.
 # We should probably schedule this script as a cron job or systemd unit.
 #
-# This script takes about 20 minutes to run.
+# This script takes about 5 minutes to run.
 
 # Important variables
 html_dir="/var/www"
