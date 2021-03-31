@@ -30,7 +30,7 @@ previous settings.
   $ find /etc -name 99-security.ini
   /etc/php/7.4/apache2/conf.d/99-security.ini
 
-Open /etc/opt/rh/rh-php73/php.ini, and add the following to the tail:
+Open /etc/php/7.4/apache2/php.ini, and add the following to the tail:
 
   # tail -n 5 /etc/php/7.4/apache2/php.ini
   ;; Security hardening in security.ini
