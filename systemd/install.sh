@@ -19,6 +19,18 @@ if [[ ! -d /etc/systemd/system ]]; then
     exit 1
 fi
 
+if [[ ! -f bitvise-backup.timer || ! -f bitvise-backup.service ]]; then
+    echo "bitvise-backup not found"
+    echo "Try running update.sh to feth the Systemd units"
+    exit 1
+fi
+
+if [[ ! -f gdrive-backup.timer || ! -f gdrive-backup.service ]]; then
+    echo "gdrive-backup not found"
+    echo "Try running update.sh to feth the Systemd units"
+    exit 1
+fi
+
 ########## Bitvise backup script ##########
 
 # Clean previous installations, if present
@@ -31,9 +43,13 @@ cp bitvise-backup.service /etc/systemd/system
 cp bitvise-backup.timer /etc/systemd/system
 
 # Copy our backup script
-cp "/root/backup-scripts/bitvise-backup" /usr/sbin/bitvise-backup
-chown root:root /usr/sbin/bitvise-backup
-chmod u=rwx,g=rx,o= /usr/sbin/bitvise-backup
+if [[ -f "/root/backup-scripts/gdrive-backup" ]]; then
+    cp "/root/backup-scripts/bitvise-backup" /usr/sbin/bitvise-backup
+    chown root:root /usr/sbin/bitvise-backup
+    chmod u=rwx,g=rx,o= /usr/sbin/bitvise-backup
+else
+    "WARNING: /root/backup-scripts/gdrive-backup does not exist"
+fi
 
 # Enable bitvise-backup timer
 if ! systemctl enable bitvise-backup.timer; then
@@ -61,9 +77,13 @@ cp gdrive-backup.service /etc/systemd/system
 cp gdrive-backup.timer /etc/systemd/system
 
 # Copy our backup script
-cp "/root/backup-scripts/gdrive-backup" /usr/sbin/gdrive-backup
-chown root:root /usr/sbin/gdrive-backup
-chmod u=rwx,g=rx,o= /usr/sbin/gdrive-backup
+if [[ -f "/root/backup-scripts/gdrive-backup" ]]; then
+    cp "/root/backup-scripts/gdrive-backup" /usr/sbin/gdrive-backup
+    chown root:root /usr/sbin/gdrive-backup
+    chmod u=rwx,g=rx,o= /usr/sbin/gdrive-backup
+else
+    "WARNING: /root/backup-scripts/gdrive-backup does not exist"
+fi
 
 # Enable gdrive-backup timer
 if ! systemctl enable gdrive-backup.timer; then
@@ -91,9 +111,13 @@ cp system-update.service /etc/systemd/system
 cp system-update.timer /etc/systemd/system
 
 # Copy our backup script
-cp "/root/backup-scripts/system-update.sh" /usr/sbin/system-update.sh
-chown root:root /usr/sbin/system-update.sh
-chmod u=rwx,g=rx,o= /usr/sbin/system-update.sh
+if [[ -f "/root/backup-scripts/system-update.sh" ]]; then
+    cp "/root/backup-scripts/system-update.sh" /usr/sbin/system-update.sh
+    chown root:root /usr/sbin/system-update.sh
+    chmod u=rwx,g=rx,o= /usr/sbin/system-update.sh
+else
+    "WARNING: /root/backup-scripts/system-update.sh does not exist"
+fi
 
 # Enable system-update timer
 if ! systemctl enable system-update.timer; then
