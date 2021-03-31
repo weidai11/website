@@ -22,7 +22,8 @@ Once installed the new gear is located in /bin, /etc and friends.
   apache2
   php
 
-Open /etc/php/7.4/apache2/php.ini, and add the following to the tail:
+Crypto++ uses a hardened PHP configuration. Open /etc/php/7.4/apache2/php.ini,
+and add the following to the tail:
 
   # tail -n 5 /etc/php/7.4/apache2/php.ini
   ;; Security hardening in security.ini
@@ -31,9 +32,8 @@ Open /etc/php/7.4/apache2/php.ini, and add the following to the tail:
   error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
   error_log = /var/log/apache2/error.log
 
-Crypto++ uses a hardened PHP configuration. Copy security.ini to
-/etc/php/7.4/apache2/conf.d/99-security.ini. Be sure to rename it to
-99-security.ini. The 99- ensures security.ini runs last to override all
+Copy security.ini to /etc/php/7.4/apache2/conf.d/99-security.ini. Be sure to
+rename it to 99-security.ini. The 99- ensures security.ini runs last to override
 previous settings.
 
   $ find /etc -name 99-security.ini
