@@ -34,6 +34,9 @@ else
     exit 1
 fi
 
+echo "Ownership: ${user_group}"
+echo "Service: ${service_name}"
+
 # This follows Crypto++ release number
 ref_dir=ref850/
 

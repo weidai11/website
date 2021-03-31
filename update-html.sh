@@ -33,6 +33,9 @@ else
     exit 1
 fi
 
+echo "Ownership: ${user_group}"
+echo "Service: ${service_name}"
+
 if [[ $(id -u) != "0" ]]; then
     echo "You must be root to update the html"
     exit 1
