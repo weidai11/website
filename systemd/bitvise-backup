@@ -92,7 +92,7 @@ root_drive="/"
 
 # This is the Bitvise backup.
 if ! duplicity ${full_backup} --allow-source-mismatch ${exclude_opts[@]} ${root_drive} \
-     sftp://CryptoPPBackup:"${bitvise_password}@zonk.bitvise.com:22480/cryptopp_com_backup ;
+     "sftp://CryptoPPBackup:${bitvise_password}@zonk.bitvise.com:22480/cryptopp_com_backup" ;
 then
     echo "Failed to backup VM to Bitvise"
     exit 1
