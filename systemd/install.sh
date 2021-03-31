@@ -101,6 +101,9 @@ echo "Installed gdrive-backup service"
 
 ########## System update script ##########
 
+# Begin DISABLE for the moment
+if false; then
+
 # Clean previous installations, if present
 systemctl disable system-update.service &>/dev/null
 systemctl disable system-update.timer &>/dev/null
@@ -132,6 +135,9 @@ if ! systemctl start system-update.timer; then
 fi
 
 echo "Installed system-update service"
+
+# End DISABLE for the moment
+fi
 
 ########## Systemd services ##########
 
