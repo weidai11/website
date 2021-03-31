@@ -18,7 +18,7 @@ then
     esac
 fi
 
-# Remove access to the mysqldump backup
+# Ensure the dump is properly protected
 mkdir -p /backup
 chmod u=rwx,g=rx,o= /backup
 
@@ -67,7 +67,7 @@ fi
 chmod u=rw,g=r,o= /backup/wiki.sql
 
 # PASSPHRASE is the GnuPG passphrase used by Duplicity.
-# All backup jobs get PASSPHRASE.
+# All backup jobs get PASSPHRASE. Restores need the PASSPHRASE.
 export PASSPHRASE="${gnupg_password}"
 
 # GDrive setting. Not used by Bitvise backup.
