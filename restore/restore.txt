@@ -220,3 +220,14 @@ Once the backup jobs are setup verify them.
        Active: inactive (dead)
   TriggeredBy: ● bitvise-backup.timer
          Docs: https://github.com/weidai11/website/systemd
+
+Test the website and wiki
+=========================
+
+Navigate to https://www.github.com. Press F5 to get a fresh copy of the page.
+
+Click on the Mediawiki link at the top of the page. Press F5 to get a fresh copy
+of the page.
+
+Navigate to https://www.cryptopp.com/wiki/Special:Version. Ensure everything looks ok.
+
