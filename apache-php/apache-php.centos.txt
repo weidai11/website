@@ -1,0 +1,126 @@
+This document details the Crypto++ webserver's configuration. The virtual
+machine is a CentOS 7 VM provided by GoDaddy. The webserver uses a LAMP
+stack with Apache, PHP and MySQL. The webserver also uses Mediawiki software.
+
+Apache, PHP and Mediawiki supplied by Red Hat are too old to be useful
+nowadays. The version of MySQL is OK, so it uses the base package. To get
+something newer we enable Red Hat's Software Collection (SCL). SCL supplies an
+updated Apache, Python and PHP. Mediawiki is not supplied by SCL, so we use the
+latest version from Mediawiki Fondation. Also see
+https://wiki.centos.org/AdditionalResources/Repositories/SCL on the
+CentOS wiki.
+
+The following instructions install Apache and PHP from Red Hat's SCL and detail
+some of the important settings for the webserver. After installing Apache and
+PHP we need to install Mediawiki from sources using a Long Term Release version
+of the software.
+
+Perform the following to setup the Virtual Machine using SCL:
+
+  # yum install centos-release-scl scl-utils-build
+  # yum update
+
+Remove old Apache and PHP packages, if present:
+
+  # yum list installed | grep -E 'php|httpd'
+  php.x86_64
+  php-cli.x86_64
+  php-common.x86_64
+  ...
+  httpd.x86_64
+  httpd-tools.x86_64
+  ...
+
+  # yum remove httpd php
+
+And then install newer Apache and PHP packages:
+
+  # yum install httpd24-httpd httpd24-mod_ssl httpd24-mod_security httpd24-httpd-tools
+  # yum install rh-php73 rh-php73-php rh-php73-php-cli rh-php73-php-common \
+    rh-php73-php-gd rh-php73-php-json rh-php73-php-mbstring rh-php73-php-intl \
+    rh-php73-php-mysqlnd rh-php73-php-pdo rh-php73-php-pear rh-php73-php-xml \
+    rh-php73-php-process rh-php73-php-zip rh-php73-runtime
+
+Once installed the new gear is located in /opt/rh. However, some of the
+configuration files are located in /etc.
+
+  $ ls /opt/rh/
+  httpd24    rh-php73
+
+To use the new gear create a couple of scripts in the /etc/profile.d/ directory:
+
+  # cat /etc/profile.d/enable-scl-httpd24.sh
+  #!/usr/bin/env bash
+  source scl_source enable httpd24
+
+And:
+
+  # cat /etc/profile.d/enable-scl-php73.sh
+  #!/usr/bin/env bash
+  source scl_source enable rh-php73
+
+Crypto++ uses a hardened PHP configuration. Copy security.ini to /etc/opt/rh/rh-php73/php.d/:
+
+  /etc/opt/rh/rh-php73/php.d/security.ini
+
+Open /etc/opt/rh/rh-php73/php.ini, and add the following to the tail:
+
+  # tail -n 5 /etc/opt/rh/rh-php73/php.ini
+  ;; Security hardening in security.ini
+  log_errors = On
+  log_errors_max_len = 1024
+  error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
+  error_log = /var/log/httpd24/error_log
+
+Open /opt/rh/httpd24/root/etc/httpd/conf/httpd.conf and verify logging settings:
+
+  ErrorLog /var/log/httpd24/error_log
+  TransferLog /var/log/httpd24/access_log
+
+Open /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-mpm.conf, and ensure
+prefork is used. We tried to cutover to mpm_event_module, but it is
+incompatible with other components.
+
+  LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
+
+Open /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-base.conf, and
+comment-out unneeded modules. In particular, http2_module is not compatible
+with the mpm prefork module:
+
+  #LoadModule http2_module modules/mod_http2.so
+
+Open /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf and verify the SSL/TLS
+VirtualHost settings:
+
+  DocumentRoot "/var/www/html"
+  ServerName www.cryptopp.com:443
+  ServerAlias *.cryptopp.com cryptopp.com
+
+  SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2 +TLSv1.3
+  SSLCipherSuite HIGH:!aNULL:!kRSA:!MD5:!RC4
+
+  SSLCertificateFile /etc/pki/tls/certs/cryptopp-com.pem
+  SSLCertificateChainFile /etc/pki/tls/certs/cryptopp-com.chain.pem
+  SSLCertificateKeyFile /etc/pki/tls/private/cryptopp-com.key.pem
+
+  ErrorLog /var/log/httpd24/error_log
+  TransferLog /var/log/httpd24/access_log
+  LogLevel warn
+
+Reboot the machine. Then, check the programs are on-path as expected:
+
+  # command -v apachectl
+  /opt/rh/httpd24/root/usr/sbin/apachectl
+  # command -v php
+  /opt/rh/rh-php73/root/usr/bin/php
+
+And verify Apache is running:
+
+# systemctl status httpd24-httpd
+● httpd24-httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd24-httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Mon 2020-04-20 22:15:15 EDT; 44min ago
+   ...
+
+Finally, install Mediawiki software. Mediawiki installation is covered in
+wiki-upgrade.txt.
