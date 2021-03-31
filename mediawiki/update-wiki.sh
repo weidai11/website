@@ -20,12 +20,12 @@
 # Important variables
 WIKI_DIR="/var/www/html/w"
 WIKI_REL=REL1_35
-PHP_BIN=/opt/rh/rh-php73/root/usr/bin/php
+PHP_BIN=/usr/bin/php
 LOG_DIR="/var/log"
 
 # Privileges? Exit 0 to keep things moving along
 # Errors will be printed to the terminal
-if [[ ($(id -u) != "0") ]]; then
+if [[ $(id -u) != "0" ]]; then
     echo "You must be root to update the wiki"
     exit 0
 fi
@@ -40,7 +40,49 @@ if [[ ! -f "${PHP_BIN}" ]]; then
     exit 1
 fi
 
-# This finds directories check'd out from Git and updates them. 
+# Red Hat uses root:apache, Debian uses root:www-data
+if grep -q www-data /etc/group; then
+    user_group="root:www-data"
+elif grep -q apache2 /etc/group; then
+    user_group="root:apache2"
+elif grep -q apache /etc/group; then
+    user_group="root:apache"
+else
+    echo "user:group name error"
+    exit 1
+fi
+
+# Red Hat with SCL uses httpd24-httpd.service, Fedora
+# uses httpd24.service, Debian uses apache2.service
+services=$(systemctl list-units --type=service 2>/dev/null)
+if echo ${services} | grep -q httpd24-httpd.service; then
+    apache_service="httpd24-httpd.service"
+elif echo ${services} | grep -q httpd24.service; then
+    apache_service="httpd24.service"
+elif echo ${services} | grep -q apache2.service; then
+    apache_service="apache2.service"
+else
+    echo "Apache service name error"
+    exit 1
+fi
+
+# Red Hat with SCL uses mariadb.service,
+# Debian uses mysql.service
+services=$(systemctl list-units --type=service 2>/dev/null)
+if echo ${services} | grep -q mariadb.service; then
+    mysql_service="${apache_service}"
+elif echo ${services} | grep -q mysql.service; then
+    mysql_service="mysql.service"
+else
+    echo "MySQL service name error"
+    exit 1
+fi
+
+echo "Apache ownership: ${user_group}"
+echo "Apache service: ${apache_service}"
+echo "MySQL service: ${mysql_service}"
+
+# This finds directories check'd out from Git and updates them.
 # It works surprisingly well. There have only been a couple of
 # minor problems.
 IFS= find "$WIKI_DIR/skins" -type d -name '.git' -print | while read -r dir
@@ -104,7 +146,7 @@ fi
 # images/ gets different permissions, but find's -prune does not
 # seem to work as expected.
 echo "Setting MediaWiki permissions"
-chown -R root:apache "$WIKI_DIR/"
+chown -R ${user_group} "$WIKI_DIR/"
 IFS= find "$WIKI_DIR" -type d -print | while read -r dir
 do
     chmod u=rwx,g=rx,o= "$dir"
@@ -144,7 +186,7 @@ done
 echo "Setting Apache session permissions"
 if [[ -d "/var/lib/pear" ]]
 then
-    chown -R apache:apache "/var/lib/pear"
+    chown -R ${user_group} "/var/lib/pear"
     IFS= find "/var/lib/pear" -type d | while read -r dir
     do
         chmod ug=rwx,o= "$dir"
@@ -157,7 +199,7 @@ fi
 
 if [[ -d "/var/lib/php" ]]
 then
-    chown -R apache:apache "/var/lib/php"
+    chown -R ${user_group} "/var/lib/php"
     IFS= find "/var/lib/php" -type d | while read -r dir
     do
         chmod ug=rwx,o= "$dir"
@@ -169,9 +211,9 @@ then
 fi
 
 echo "Setting Apache logging permissions"
-IFS= find "$LOG_DIR" -type d -name 'httpd*' | while read -r dir
+IFS= find "$LOG_DIR" -type d \( -name 'apache*' -o -name 'httpd*' \) | while read -r dir
 do
-    chown -R root:apache "$dir"
+    chown -R ${user_group} "$dir"
     chmod ug=rwx,o= "$dir"
     IFS= find "$dir" -type f -name '*log*' | while read -r file
     do
@@ -180,8 +222,8 @@ do
 done
 
 echo "Setting MariaDB logging permissions"
-chown -R mysql:mysql "$LOG_DIR/mariadb"
-IFS= find "$LOG_DIR/mariadb" -type f -name '*log*' | while read -r file
+chown -R mysql:mysql "$LOG_DIR/mysql"
+IFS= find "$LOG_DIR/mysql" -type f -name '*log*' | while read -r file
 do
     chown mysql:mysql "$file"
     chmod ug=rw,o= "$file"
@@ -189,21 +231,26 @@ done
 
 # Make sure MySQL is running for update.php. It is a chronic
 # problem because the Linux OOM killer targets mysqld.
-echo "Restarting MySQL"
-systemctl stop mariadb.service 2>/dev/null
-systemctl start mariadb.service
+echo "Restarting MySQL service"
+if ! systemctl restart ${mysql_service}; then
+    echo "Restart failed. Sleeping for 3 seconds"
+    sleep 3
+    echo "Restarting Apache service"
+    systemctl stop ${mysql_service} 2>/dev/null
+    systemctl start ${mysql_service}
+fi
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 echo "Running update.php"
 "${PHP_BIN}" "$WIKI_DIR/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki"
 
 echo "Restarting Apache service"
-if ! systemctl restart httpd24-httpd.service; then
+if ! systemctl restart ${apache_service}; then
     echo "Restart failed. Sleeping for 3 seconds"
     sleep 3
     echo "Restarting Apache service"
-    systemctl stop httpd24-httpd.service 2>/dev/null
-    systemctl start httpd24-httpd.service
+    systemctl stop ${apache_service} 2>/dev/null
+    systemctl start ${apache_service}
 fi
 
 # Cleanup backup files
