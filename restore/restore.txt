@@ -230,4 +230,3 @@ Click on the Mediawiki link at the top of the page. Press F5 to get a fresh copy
 of the page.
 
 Navigate to https://www.cryptopp.com/wiki/Special:Version. Ensure everything looks ok.
-
