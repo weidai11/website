@@ -9,7 +9,7 @@ if [[ "$EUID" -ne 0 ]]; then
     exit 1
 fi
 
-if [[ -z $(command -v systemctl 2>/dev/null) ]]; then
+if [[ ! $(command -v systemctl 2>/dev/null) ]]; then
     echo "systemctl not found"
     exit 1
 fi
@@ -21,13 +21,13 @@ fi
 
 if [[ ! -f bitvise-backup.timer || ! -f bitvise-backup.service ]]; then
     echo "bitvise-backup not found"
-    echo "Try running update.sh to feth the Systemd units"
+    echo "Try running update.sh to fetch the Systemd units"
     exit 1
 fi
 
 if [[ ! -f gdrive-backup.timer || ! -f gdrive-backup.service ]]; then
     echo "gdrive-backup not found"
-    echo "Try running update.sh to feth the Systemd units"
+    echo "Try running update.sh to fetch the Systemd units"
     exit 1
 fi
 
