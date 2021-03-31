@@ -1,7 +1,7 @@
 The documents the restore procedure for the web server.
 
 The process is roughly detailed as follows. The process takes about
-20 minutes since the process is copy and paste.
+20 minutes since it is mostly copy and paste.
 
 * provision a VM
 * create users and accounts
@@ -15,6 +15,7 @@ The process is roughly detailed as follows. The process takes about
 * restore SQL database
 * update Mediawiki
 * repair Mediawiki
+* setup backup jobs
 
 Create user accounts
 ====================
@@ -188,3 +189,34 @@ Update Mediawiki
 
 Run our update-wiki.sh script. The script will set ownership and permissions,
 and perform other miscellaneous items.
+
+Setup backup jobs
+=================
+
+The final step is to setup Systemd backup jobs. This is very important.
+
+  cd /root/backup-scripts
+
+  ./update.sh
+  ./install.sh
+  
+Note well: the folder contains https://github.com/weidai11/website/tree/master/systemd.
+The folder also contains bitvise-backup and gdrive-backup scripts, which are not in the
+GitHub repo. They are not in the repo because they include secrets.
+
+Once the backup jobs are setup verify them.
+
+  # systemctl status bitvise-backup.timer
+  ● bitvise-backup.timer - Run bitvise-backup.service once a day
+       Loaded: loaded (/etc/systemd/system/bitvise-backup.timer; enabled; vendor >
+       Active: active (waiting) since Wed 2021-03-31 19:42:14 UTC; 30min ago
+      Trigger: Thu 2021-04-01 05:13:12 UTC; 9h left
+     Triggers: ● bitvise-backup.service
+         Docs: https://github.com/weidai11/website/systemd
+
+  # systemctl status bitvise-backup.service
+  ● bitvise-backup.service - Run bitvise-backup.service once a day
+       Loaded: loaded (/etc/systemd/system/bitvise-backup.service; static; vendor>
+       Active: inactive (dead)
+  TriggeredBy: ● bitvise-backup.timer
+         Docs: https://github.com/weidai11/website/systemd
