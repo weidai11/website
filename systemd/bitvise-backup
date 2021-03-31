@@ -30,6 +30,7 @@ chmod u=r,go= /etc/cryptopp.conf
 wiki_password=$(grep WIKI_PASSWORD /etc/cryptopp.conf | cut -f 2 -d '=')
 gnupg_password=$(grep GNUPG_PASSWORD /etc/cryptopp.conf | cut -f 2 -d '=')
 bitvise_password=$(grep BITVISE_PASSWORD /etc/cryptopp.conf | cut -f 2 -d '=')
+bitvise_host=$(grep BITVISE_HOST /etc/cryptopp.conf | cut -f 2 -d '=')
 
 if [[ -z "${wiki_password}" ]]; then
     echo "WARNING: wiki_password is empty"
@@ -92,7 +93,7 @@ root_drive="/"
 
 # This is the Bitvise backup.
 if ! duplicity ${full_backup} --allow-source-mismatch ${exclude_opts[@]} ${root_drive} \
-     "sftp://CryptoPPBackup:${bitvise_password}@zonk.bitvise.com:22480/cryptopp_com_backup" ;
+     "sftp://CryptoPPBackup:${bitvise_password}@${bitvise_host}:22480/cryptopp_com_backup" ;
 then
     echo "Failed to backup VM to Bitvise"
     exit 1
