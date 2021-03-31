@@ -99,7 +99,7 @@ Copy relevant files.
 
   cd /tmp/restore
 
-  cp -p etc/php/7.4/apache2/php.ini etc/php/7.4/apache2/
+  cp -p etc/php/7.4/apache2/php.ini /etc/php/7.4/apache2/
   cp -p etc/php/7.4/apache2/conf.d/99-security.ini /etc/php/7.4/apache2/conf.d/
   cp -p etc/apache2/apache2.conf /etc/apache2/
   cp -p etc/apache2/mods-enabled/ssl.conf /etc/apache2/mods-enabled/
@@ -195,14 +195,20 @@ Setup backup jobs
 
 The final step is to setup Systemd backup jobs. This is very important.
 
-  cd /root/backup-scripts
+First, restore the conf file with passwords and shared secrets.
 
+  cd /tmp/restore
+  cp -p etc/cryptopp.conf /etc/
+  chown root:root /etc/cryptopp.conf
+  chmod u=r,go= /etc/cryptopp.conf
+
+Second, update and install the backup scripts.
+
+  cd /root/backup-scripts
   ./update.sh
   ./install.sh
   
 Note well: the folder contains https://github.com/weidai11/website/tree/master/systemd.
-The folder also contains bitvise-backup and gdrive-backup scripts, which are not in the
-GitHub repo. They are not in the repo because they include secrets.
 
 Once the backup jobs are setup verify them.
 

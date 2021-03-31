@@ -1,18 +1,16 @@
 # Systemd services
 
-Most of the world has moved to Systemd for init and job scheduling, including Red Hat, CentOS, Debian and Ubuntu. This section of the website holds Systemd scripts in place of Cron jobs. The scripts update the system and perform backups on a nightly basis.
+Most of the world has moved to Systemd for init and job scheduling, including Red Hat, CentOS, Debian and Ubuntu. This section of the website holds Systemd scripts that we use in place of Cron jobs. The scripts update the system and perform nightly backups.
 
 Cron jobs had a few drawbacks. The first problem was the lack of a "machine account". Lack of a machine account meant we had to tie a job to a user, like a backup job running for a user rather than a machine. Locating all Cron jobs for all users is problematic. The second problem is running a Cron job "right now" for testing. There's no simple way to do it. The third problem is lack of logging. /var/log/syslog shows a begin/end for a script identified by a session, but nothing else. Syslog does not provide a script name or messages from the script.
 
-The warez in this section of the website are copied in root's home directory at `$HOME/backup-scripts`. The GitHub does NOT include the actual backup script because passwords are present. The actual backup scripts are located in `$HOME/backup-scripts`.
+The warez in this section of the website are copied in root's home directory at `$HOME/backup-scripts`. The GitHub includes the backup scripts. But the passwords and shared secrets needed for them is located at `/etc/cryptopp.conf`. Be sure `/etc/cryptopp.conf` is available on the web server.
 
 The warez in this section of the website need to be downloaded and updated manually. A Git clone brings in everything, but all we need are a few scripts. Git 2.19 would allow us to clone just Systemd, but the web server has Git 1.8. Also see https://stackoverflow.com/a/52269934.
 
 ## Note Well
 
-This GitHub lacks `/usr/sbin/bitvise-backup` and `/usr/sbin/gdrive-backup`. The files are the actual backup scripts with credentials.
-
-The scripts are not located in this GitHub. The scripts are available in root's home directory and on the filesystem in `/sbin`.
+The backup scripts work with `/etc/cryptopp.conf` on the web server. Be sure `/etc/cryptopp.conf` is available on the web server.
 
 ## Update.sh
 
@@ -49,13 +47,13 @@ The system-update script runs at 4:00 AM each night. The script reboots the mach
 
 The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd service, timer and backup script. The bitvise-backup script runs at 5:00 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
-The `bitvise-backup` script is placed at `/usr/sbin/bitvise-backup`. The script includes a password so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
+The `bitvise-backup` script is placed at `/usr/sbin/bitvise-backup`. The script reads passwords and shared secrets from `/etc/cryptopp.conf`.
 
 ## Gdrive-backup
 
 The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The gdrive-backup script runs at 5:30 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
-The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script includes a secret token so it is clamped down. Owner is `root:root`, and permissions are `u:rwx,g:rx,o:`.
+The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script reads passwords and shared secrets from `/etc/cryptopp.conf`.
 
 ## Systemctl status
 
