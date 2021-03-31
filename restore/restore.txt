@@ -62,12 +62,12 @@ Restore OpenSSH config
 Restore server keys
 
   cd /tmp/restore
-  cp etc/ssh/ssh_host_*_key* /etc/ssh/
+  cp -p etc/ssh/ssh_host_*_key* /etc/ssh/
 
 Restore policies
 
-  cp etc/ssh/sshd_config.d/10_pubkey_auth /etc/ssh/sshd_config.d
-  cp etc/ssh/sshd_config.d/20_disable_root_login /etc/ssh/sshd_config.d
+  cp -p etc/ssh/sshd_config.d/10_pubkey_auth /etc/ssh/sshd_config.d
+  cp -p etc/ssh/sshd_config.d/20_disable_root_login /etc/ssh/sshd_config.d
 
 Restart OpenSSH service
 
@@ -78,13 +78,13 @@ Restore Home directories
 
   cd /tmp/restore
 
-  cp -r root/* /root/
+  cp -p -r root/* /root/
   chown -R root:root /root/*
 
-  cp -r home/weidai/* /home/weidai/
+  cp -p -r home/weidai/* /home/weidai/
   chown -R weidai:weidai /home/weidai/*
 
-  cp -r home/jwalton/* /home/jwalton/
+  cp -p -r home/jwalton/* /home/jwalton/
   chown -R jwalton:jwalton /home/jwalton/*
 
 Restore Web server config
@@ -99,11 +99,11 @@ Copy relevant files.
 
   cd /tmp/restore
 
-  cp etc/php/7.4/apache2/php.ini etc/php/7.4/apache2/
-  cp etc/php/7.4/apache2/conf.d/99-security.ini /etc/php/7.4/apache2/conf.d/
-  cp etc/apache2/apache2.conf /etc/apache2/
-  cp etc/apache2/mods-enabled/ssl.conf /etc/apache2/mods-enabled/
-  cp etc/ssl/private/cryptopp-com.* /etc/ssl/private/
+  cp -p etc/php/7.4/apache2/php.ini etc/php/7.4/apache2/
+  cp -p etc/php/7.4/apache2/conf.d/99-security.ini /etc/php/7.4/apache2/conf.d/
+  cp -p etc/apache2/apache2.conf /etc/apache2/
+  cp -p etc/apache2/mods-enabled/ssl.conf /etc/apache2/mods-enabled/
+  cp -p etc/ssl/private/cryptopp-com.* /etc/ssl/private/
 
 Test the configuration
 
@@ -114,8 +114,8 @@ Restore Web data files
 
   cd /tmp/restore
 
-  cp -r var/www/html/* /var/www/html/
-  cp var/www/html/.htaccess /var/www/html/
+  cp -p -r var/www/html/* /var/www/html/
+  cp -p var/www/html/.htaccess /var/www/html/
 
   chown -R root:www-data /var/www
 
