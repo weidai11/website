@@ -25,13 +25,13 @@ Add user accounts
 Restore system software
 =======================
 
-  # apt-get install apache2 apache2-bin apache2-data apache2-utils
+  apt-get install apache2 apache2-bin apache2-data apache2-utils
 
-  # apt-get install php7.4 php7.4-cli php7.4-common php7.4-gd php7.4-intl \
+  apt-get install php7.4 php7.4-cli php7.4-common php7.4-gd php7.4-intl \
     php7.4-json php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline \
     php7.4-xml php7.4-zip
 
-  # apt-get install mysql-client-8.0 mysql-client-core-8.0 mysql-common \
+  apt-get install mysql-client-8.0 mysql-client-core-8.0 mysql-common \
     mysql-server-8.0 mysql-server-core-8.0
 
 Restore to /tmp/restore
@@ -141,7 +141,7 @@ Restore SQL database
 Log into MySQL server with the system password. The system password is 32-characters
 and starts with "cBEY".
 
-  # mysql -u root -p
+  mysql -u root -p
   <enter password>
 
 Switch to the wiki database.
@@ -170,5 +170,5 @@ Mediawiki maintenance script
 Run the Mediawiki maintenance script. This is usually performed
 after Mediawiki components are added or removed.
 
-  # cd /var/www/html/w/maintenance
-  # php update.php --quick --server="https://www.cryptopp.com/wiki"
+  cd /var/www/html/w/maintenance
+  php update.php --quick --server="https://www.cryptopp.com/wiki"

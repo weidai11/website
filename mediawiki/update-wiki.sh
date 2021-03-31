@@ -21,7 +21,6 @@
 WIKI_DIR="/var/www/html/w"
 WIKI_REL=REL1_35
 PHP_BIN=/usr/bin/php
-LOG_DIR="/var/log"
 
 # Privileges? Exit 0 to keep things moving along
 # Errors will be printed to the terminal
@@ -55,11 +54,11 @@ fi
 # Red Hat with SCL uses httpd24-httpd.service, Fedora
 # uses httpd24.service, Debian uses apache2.service
 services=$(systemctl list-units --type=service 2>/dev/null)
-if echo ${services} | grep -q httpd24-httpd.service; then
+if echo "${services}" | grep -q httpd24-httpd.service; then
     apache_service="httpd24-httpd.service"
-elif echo ${services} | grep -q httpd24.service; then
+elif echo "${services}" | grep -q httpd24.service; then
     apache_service="httpd24.service"
-elif echo ${services} | grep -q apache2.service; then
+elif echo "${services}" | grep -q apache2.service; then
     apache_service="apache2.service"
 else
     echo "Apache service name error"
@@ -69,9 +68,9 @@ fi
 # Red Hat with SCL uses mariadb.service,
 # Debian uses mysql.service
 services=$(systemctl list-units --type=service 2>/dev/null)
-if echo ${services} | grep -q mariadb.service; then
+if echo "${services}" | grep -q mariadb.service; then
     mysql_service="mariadb.service"
-elif echo ${services} | grep -q mysql.service; then
+elif echo "${services}" | grep -q mysql.service; then
     mysql_service="mysql.service"
 else
     echo "MySQL service name error"
@@ -82,12 +81,15 @@ echo "Apache ownership: ${user_group}"
 echo "Apache service: ${apache_service}"
 echo "MySQL service: ${mysql_service}"
 
+# Set ownership of the Web server files
+chown -R ${user_group} /var/www
+
 # This finds directories check'd out from Git and updates them.
 # It works surprisingly well. There have only been a couple of
 # minor problems.
 IFS= find "$WIKI_DIR/skins" -type d -name '.git' -print | while read -r dir
 do
-    cd "$dir/.."
+    cd "$dir/.." || continue
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull && \
       git checkout -f "$WIKI_REL" && git pull
@@ -95,7 +97,7 @@ done
 
 IFS= find "$WIKI_DIR/extensions" -type d -name '.git' -print | while read -r dir
 do
-    cd "$dir/.."
+    cd "$dir/.." || continue
     echo "Updating ${dir::-4}"
     git reset --hard HEAD && git pull && \
       git checkout -f "$WIKI_REL" && git pull
@@ -146,7 +148,6 @@ fi
 # images/ gets different permissions, and find's -prune does not
 # seem to work as expected.
 echo "Setting MediaWiki permissions"
-chown -R ${user_group} "$WIKI_DIR/"
 IFS= find "$WIKI_DIR" -type d -print | while read -r dir
 do
     chmod u=rwx,g=rx,o= "$dir"
@@ -178,68 +179,6 @@ do
     else
         chmod u=rw,g=r,o= "${file}"
     fi
-done
-
-# The directories where session information is stored
-# must be writable by Apache. As far as we know that
-# is /var/lib/pear and /var/lib/php.
-echo "Setting Apache session permissions"
-if [[ -d "/var/lib/pear" ]]
-then
-    chown -R ${user_group} "/var/lib/pear"
-    IFS= find "/var/lib/pear" -type d | while read -r dir
-    do
-        chmod ug=rwx,o= "$dir"
-    done
-    IFS= find "/var/lib/pear" -type f | while read -r file
-    do
-        chmod ug=rw,o= "$file"
-    done
-fi
-
-if [[ -d "/var/lib/php" ]]
-then
-    chown -R ${user_group} "/var/lib/php"
-    IFS= find "/var/lib/php" -type d | while read -r dir
-    do
-        chmod ug=rwx,o= "$dir"
-    done
-    IFS= find "/var/lib/php" -type f | while read -r file
-    do
-        chmod ug=rw,o= "$file"
-    done
-fi
-
-if [[ -d "/var/run/apache2" ]]
-then
-    #chown -R ${user_group} "/var/run/apache2"
-    IFS= find "/var/run/apache2" -type d | while read -r dir
-    do
-        chmod ug=rwx,o= "$dir"
-    done
-    IFS= find "/var/run/apache2" -type f | while read -r file
-    do
-        chmod ug=rw,o= "$file"
-    done
-fi
-
-echo "Setting Apache logging permissions"
-IFS= find "$LOG_DIR" -type d \( -name 'apache*' -o -name 'httpd*' \) | while read -r dir
-do
-    chown -R ${user_group} "$dir"
-    chmod ug=rwx,o= "$dir"
-    IFS= find "$dir" -type f -name '*log*' | while read -r file
-    do
-        chmod ug=rw,o= "$file"
-    done
-done
-
-echo "Setting MariaDB logging permissions"
-chown -R mysql:mysql "$LOG_DIR/mysql"
-IFS= find "$LOG_DIR/mysql" -type f -name '*log*' | while read -r file
-do
-    chown mysql:mysql "$file"
-    chmod ug=rw,o= "$file"
 done
 
 # Make sure MySQL is running for update.php. It is a chronic
