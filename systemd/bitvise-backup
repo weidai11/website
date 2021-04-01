@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# This script performs a backup of the webserver to Bitvise. The backup
-# script depends upon /etc/cryptopp.conf for passwords and shared
-# secrets.
+# This script performs a backup of the webserver to Bitvise. The script will
+# be run by Systemd on a daily basis. The backup script depends upon
+# /etc/cryptopp.conf for passwords and shared secrets.
 #
 # cryptopp.conf is not available in this GitHub because it holds passwords
 # and shared secrets. You have to have a copy of it somewhere. It is one of
