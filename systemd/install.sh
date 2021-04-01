@@ -9,6 +9,8 @@
 # and shared secrets. You have to have a copy of it somewhere. It is one of
 # those files that you should have an encrypted local copy somewhere, like
 # on a local machine or in email.
+#
+# Also see https://github.com/weidai11/website/tree/master/systemd
 
 if [[ "$EUID" -ne 0 ]]; then
     echo "This script must be run as root"
