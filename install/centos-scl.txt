@@ -138,4 +138,4 @@ And verify Apache is running:
    ...
 
 Finally, install Mediawiki software. Mediawiki installation is covered in
-wiki-upgrade.txt.
+mediawiki/wiki-upgrade.txt.
