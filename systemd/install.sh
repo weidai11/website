@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
-# This script installs bitvise-backup as a system service. The Systemd units (timer and service)
-# are located in the Website GitHub. The backup script (bitvise-backup) is located in Root's
-# home directory and not GitHub because passwords are hardcoded in the script.
+# This script installs bitvise-backup and gdrive-backup as system services.
+# The Systemd units (timer and service) are located in the Website GitHub.
+# The backup scripts depend upon /etc/cryptopp.conf for passwords and shared
+# secrets.
+#
+# cryptopp.conf is not available in this GitHub because it holds passwords
+# and shared secrets. You have to have a copy of it somewhere. It is one of
+# those files that you should have an encrypted local copy somewhere, like
+# on a local machine or in email.
 
 if [[ "$EUID" -ne 0 ]]; then
     echo "This script must be run as root"
@@ -39,17 +45,13 @@ systemctl disable bitvise-backup.timer &>/dev/null
 find /etc/systemd -name 'bitvise-backup.*' -exec rm -f {} \;
 
 # Copy our Systemd units
-cp bitvise-backup.service /etc/systemd/system
-cp bitvise-backup.timer /etc/systemd/system
+cp -p bitvise-backup.service /etc/systemd/system
+cp -p bitvise-backup.timer /etc/systemd/system
 
 # Copy our backup script
-if [[ -f "/root/backup-scripts/gdrive-backup" ]]; then
-    cp "/root/backup-scripts/bitvise-backup" /usr/sbin/bitvise-backup
-    chown root:root /usr/sbin/bitvise-backup
-    chmod u=rwx,g=rx,o= /usr/sbin/bitvise-backup
-else
-    "WARNING: /root/backup-scripts/gdrive-backup does not exist"
-fi
+cp -p bitvise-backup /usr/sbin/bitvise-backup
+chown root:root /usr/sbin/bitvise-backup
+chmod u=rwx,g=rx,o= /usr/sbin/bitvise-backup
 
 # Enable bitvise-backup timer
 if ! systemctl enable bitvise-backup.timer; then
@@ -73,17 +75,13 @@ systemctl disable gdrive-backup.timer &>/dev/null
 find /etc/systemd -name 'gdrive-backup.*' -exec rm -f {} \;
 
 # Copy our Systemd units
-cp gdrive-backup.service /etc/systemd/system
-cp gdrive-backup.timer /etc/systemd/system
+cp -p gdrive-backup.service /etc/systemd/system
+cp -p gdrive-backup.timer /etc/systemd/system
 
 # Copy our backup script
-if [[ -f "/root/backup-scripts/gdrive-backup" ]]; then
-    cp "/root/backup-scripts/gdrive-backup" /usr/sbin/gdrive-backup
-    chown root:root /usr/sbin/gdrive-backup
-    chmod u=rwx,g=rx,o= /usr/sbin/gdrive-backup
-else
-    "WARNING: /root/backup-scripts/gdrive-backup does not exist"
-fi
+cp -p gdrive-backup /usr/sbin/gdrive-backup
+chown root:root /usr/sbin/gdrive-backup
+chmod u=rwx,g=rx,o= /usr/sbin/gdrive-backup
 
 # Enable gdrive-backup timer
 if ! systemctl enable gdrive-backup.timer; then
@@ -110,17 +108,13 @@ systemctl disable system-update.timer &>/dev/null
 find /etc/systemd -name 'system-update.*' -exec rm -f {} \;
 
 # Copy our Systemd units
-cp system-update.service /etc/systemd/system
-cp system-update.timer /etc/systemd/system
+cp -p system-update.service /etc/systemd/system
+cp -p system-update.timer /etc/systemd/system
 
-# Copy our backup script
-if [[ -f "/root/backup-scripts/system-update.sh" ]]; then
-    cp "/root/backup-scripts/system-update.sh" /usr/sbin/system-update.sh
-    chown root:root /usr/sbin/system-update.sh
-    chmod u=rwx,g=rx,o= /usr/sbin/system-update.sh
-else
-    "WARNING: /root/backup-scripts/system-update.sh does not exist"
-fi
+# Copy our update script
+cp -p system-update.sh /usr/sbin/system-update.sh
+chown root:root /usr/sbin/system-update.sh
+chmod u=rwx,g=rx,o= /usr/sbin/system-update.sh
 
 # Enable system-update timer
 if ! systemctl enable system-update.timer; then
