@@ -38,7 +38,8 @@ Create user accounts
 Install system software
 =======================
 
-  apt-get install apache2 apache2-bin apache2-data apache2-utils
+  apt-get install apache2 apache2-bin apache2-data apache2-utils \
+    libapache2-mod-security2
 
   apt-get install php7.4 php7.4-cli php7.4-common php7.4-gd php7.4-intl \
     php7.4-json php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline \
@@ -98,10 +99,11 @@ Restore Home directories
 Restore Web server config
 =========================
 
-Enable mod_ssl and mod_rewrite
+Enable mod_ssl, mod_rewrite and mod_security
 
   a2enmod ssl
   a2enmod rewrite
+  a2enmod security2
 
 Copy relevant files.
 
@@ -111,6 +113,7 @@ Copy relevant files.
   cp -p etc/php/7.4/apache2/conf.d/99-security.ini /etc/php/7.4/apache2/conf.d/
   cp -p etc/apache2/apache2.conf /etc/apache2/
   cp -p etc/apache2/mods-enabled/ssl.conf /etc/apache2/mods-enabled/
+  cp -p etc/modsecurity/modsecurity.conf /etc/modsecurity/modsecurity.conf
   cp -p etc/ssl/private/cryptopp-com.* /etc/ssl/private/
 
 Test the configuration

@@ -13,7 +13,8 @@ MySQL setup is available in install/mysql.txt.
 Install Apache and PHP packages
 ===============================
 
-  # apt-get install apache2 apache2-bin apache2-data apache2-utils
+  # apt-get install apache2 apache2-bin apache2-data apache2-utils \
+    libapache2-mod-security2
 
   # apt-get install php7.4 php7.4-cli php7.4-common php7.4-gd php7.4-intl \
     php7.4-json php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline \
@@ -75,12 +76,21 @@ Enable mod_ssl and mod_rewrite
 
   a2enmod ssl
   a2enmod rewrite
+  a2enmod security2
 
 Inspect /etc/apache2/mods-enabled, and ensure there are no unneeded modules.
 In particular, http2_module is not compatible with the mpm prefork module:
 
   # ls /etc/apache2/mods-enabled | grep http2
   #
+
+mod_security
+============
+
+Find modsecurity.conf and verify SecRuleEngine is On:
+
+  # SecRuleEngine DetectionOnly
+  SecRuleEngine On
 
 ssl.conf
 ========
