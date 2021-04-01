@@ -13,11 +13,11 @@ Apapche and PHP setup is available in install/apache-php.txt.
 Install MySQL packages
 ======================
 
-  # apt-get install mysql-client-8.0 mysql-client-core-8.0 mysql-common \
+  apt-get install mysql-client-8.0 mysql-client-core-8.0 mysql-common \
     mysql-server-8.0 mysql-server-core-8.0
 
   # Other tools needed on occasion
-  # apt-get install net-tools git unzip
+  apt-get install net-tools git unzip
 
 Once installed the new gear is located in /bin, /etc and friends.
 
@@ -34,7 +34,7 @@ to the password. It is 32-characters and starts with "cBEY".
 
   # mysql_secure_installation
 
-  Remove anonymous users, Disallow remotely root login and Remove test database.
+  Remove anonymous users, Disallow remote root login and Remove test databases.
 
 If needed, adjust the password policy manually.
 

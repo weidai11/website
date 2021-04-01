@@ -80,7 +80,8 @@ Restore policies
 
 Restart OpenSSH service
 
-  systemctl restart sshd
+  systemctl enable sshd
+  systemctl start sshd
 
 Restore Home directories
 ========================
@@ -129,6 +130,26 @@ Restore Web data files
   cp -p var/www/html/.htaccess /var/www/html/
 
   chown -R root:www-data /var/www
+
+Secure database
+===============
+
+After MySQl is installed run mysql_secure_installation. Set the password
+to the password. It is 32-characters and starts with "cBEY".
+
+  # mysql_secure_installation
+
+  Remove anonymous users, Disallow remote root login and Remove test databases.
+
+If needed, adjust the password policy manually.
+
+  SHOW VARIABLES LIKE 'validate_password%';
+
+  SET GLOBAL validate_password.policy=STRONG;
+  SET GLOBAL validate_password.length=12;
+  SET GLOBAL validate_password.mixed_case_count=0;
+  SET GLOBAL validate_password.number_count=0;
+  SET GLOBAL validate_password.special_char_count=0;
 
 Restore SQL server config
 =========================

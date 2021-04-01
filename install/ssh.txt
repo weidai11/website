@@ -21,3 +21,8 @@ No root logins via SSH. You have to use the IONOS virtual console to regain cont
 
   # cat /etc/ssh/sshd_config.d/20_disable_root_login
   PermitRootLogin no
+
+Restart OpenSSH service
+
+  systemctl enable sshd
+  systemctl start sshd
