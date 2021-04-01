@@ -102,3 +102,25 @@ Once restored exit MySQL.
 
   mysql> exit
   Bye
+
+Services
+========
+
+Enable and start the MySQL service via Systemd
+
+  systemctl enable mysql
+  systemctl start mysql
+
+Reboot the machine, and verify Apache is running:
+
+  # systemctl status mysql
+  ● mysql.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2021-03-30 22:10:35 UTC; 2h 22min ago
+     ...
+
+Miscellaneous
+=============
+
+Finally, install Mediawiki software. Mediawiki installation is covered in
+wiki-upgrade.txt.
