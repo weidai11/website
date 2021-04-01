@@ -4,11 +4,11 @@ machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1).
 Two mods are made to the SSH configureation:
 
   # ls /etc/ssh/sshd_config.d
-  10_pubkey_auth  20_disable_root_login
+  10-pubkey_auth.conf  20-disable_root_login.conf
 
-Public key authentication:
+Set public key authentication:
 
-  # cat /etc/ssh/sshd_config.d/10_pubkey_auth
+  # cat /etc/ssh/sshd_config.d/10-pubkey_auth.conf
   # Disable passwords
   PasswordAuthentication no
   ChallengeResponseAuthentication no
@@ -17,12 +17,27 @@ Public key authentication:
   # Enable public key
   PubkeyAuthentication yes
 
-No root logins via SSH. You have to use the IONOS virtual console to regain control.
+Disable root logins via SSH. You have to use the IONOS virtual console to regain control.
 
-  # cat /etc/ssh/sshd_config.d/20_disable_root_login
+  # cat /etc/ssh/sshd_config.d/20-disable_root_login.conf
   PermitRootLogin no
 
 Restart OpenSSH service
 
   systemctl enable sshd
   systemctl start sshd
+
+Note well: Options are sticky in sshd_config. The first option wins. After
+changing the configuration verify they are set with:
+
+  # sshd -T | grep -i -E 'pam|password|authentication|root'
+  usepam no
+  permitrootlogin no
+  hostbasedauthentication no
+  pubkeyauthentication yes
+  kerberosauthentication no
+  gssapiauthentication no
+  passwordauthentication no
+  kbdinteractiveauthentication no
+  challengeresponseauthentication no
+  permitemptypasswords no

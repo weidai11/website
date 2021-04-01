@@ -75,8 +75,8 @@ Restore server keys
 
 Restore policies
 
-  cp -p etc/ssh/sshd_config.d/10_pubkey_auth /etc/ssh/sshd_config.d
-  cp -p etc/ssh/sshd_config.d/20_disable_root_login /etc/ssh/sshd_config.d
+  cp -p etc/ssh/sshd_config.d/10-pubkey_auth.conf /etc/ssh/sshd_config.d
+  cp -p etc/ssh/sshd_config.d/20-disable_root_login.conf /etc/ssh/sshd_config.d
 
 Restart OpenSSH service
 
