@@ -68,6 +68,9 @@ is incompatible with other components.
   mpm_prefork.conf
   mpm_prefork.load
 
+Enable mods
+===========
+
 Enable mod_ssl and mod_rewrite
 
   a2enmod ssl
