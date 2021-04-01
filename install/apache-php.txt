@@ -114,7 +114,7 @@ And:
 .htaccess
 =========
 
-Ensure there is a Short URL rule for Mediawiki. This translate
+Ensure there is a Short URL rule for Mediawiki. This translates
 requests with wiki/ in the URL to w/ on the filesystem. Also see
 https://www.mediawiki.org/wiki/Manual:Short_URL
 
