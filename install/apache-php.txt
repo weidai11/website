@@ -24,7 +24,7 @@ Install Apache and PHP packages
     mysql-server-8.0 mysql-server-core-8.0
 
   # Other tools needed on occasion
-  # apt-get install net-tools git unzip
+  # apt-get install net-tools certbot git unzip
 
 Once installed the new gear is located in /bin, /etc and friends.
 
@@ -113,7 +113,7 @@ And:
   SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2 +TLSv1.3
   SSLCipherSuite HIGH:!aNULL:!kRSA:!MD5:!RC4
 
-  SSLCertificateFile /etc/ssl/private/cryptopp-com.pem
+  SSLCertificateFile /etc/ssl/private/cryptopp-com.cert.pem
   SSLCertificateChainFile /etc/ssl/private/cryptopp-com.chain.pem
   SSLCertificateKeyFile /etc/ssl/private/cryptopp-com.key.pem
 

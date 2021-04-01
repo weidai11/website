@@ -32,10 +32,10 @@ Be sure to restart Apache after the process so the new certificate is used.
    asked you to create. The owner of the files should be root:apache.
    The permissions should be u=rw,g=r,o=.
 
-5. Once the certificate issues, copy it to cryptopp-com.pem
+5. Once the certificate issues, copy it to cryptopp-com.cert.pem
 
-   # cp 0000_cert.pem /etc/pki/tls/certs/cryptopp-com.pem
-   cp: overwrite ‘/etc/pki/tls/certs/cryptopp-com.pem’? y
+   # cp 0000_cert.pem /etc/pki/tls/certs/cryptopp-com.cert.pem
+   cp: overwrite ‘/etc/pki/tls/certs/cryptopp-com.cert.pem’? y
 
    The existing chain should be OK, but it can be copied if desired.
    Test the website. Once tested it is OK to delete the local
@@ -54,5 +54,5 @@ Be sure to restart Apache after the process so the new certificate is used.
 
 # find /etc/ -name 'cryptopp*.pem'
 /etc/pki/tls/private/cryptopp-com.key.pem
-/etc/pki/tls/certs/cryptopp-com.pem
+/etc/pki/tls/certs/cryptopp-com.cert.pem
 /etc/pki/tls/certs/cryptopp-com.chain.pem

@@ -51,7 +51,7 @@ Install system software
   apt-get install duplicity
 
   # Other tools needed on occasion
-  apt-get install net-tools git unzip
+  apt-get install net-tools certbot git unzip
 
 Restore to /tmp/restore
 =======================

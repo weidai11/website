@@ -99,7 +99,7 @@ VirtualHost settings:
   SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2 +TLSv1.3
   SSLCipherSuite HIGH:!aNULL:!kRSA:!MD5:!RC4
 
-  SSLCertificateFile /etc/pki/tls/certs/cryptopp-com.pem
+  SSLCertificateFile /etc/pki/tls/certs/cryptopp-com.cert.pem
   SSLCertificateChainFile /etc/pki/tls/certs/cryptopp-com.chain.pem
   SSLCertificateKeyFile /etc/pki/tls/private/cryptopp-com.key.pem
 

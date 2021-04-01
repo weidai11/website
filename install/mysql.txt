@@ -17,7 +17,7 @@ Install MySQL packages
     mysql-server-8.0 mysql-server-core-8.0
 
   # Other tools needed on occasion
-  apt-get install net-tools git unzip
+  apt-get install net-tools certbot git unzip
 
 Once installed the new gear is located in /bin, /etc and friends.
 
