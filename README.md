@@ -1,4 +1,4 @@
-This GitHub is used to backup important elements of the Crypto++ website, and provide centralized collection of admin notes and scripts for the website. The files are located in the `html/` directory.
+This GitHub is used to backup important elements of the Crypto++ website, and provide centralized collection of admin notes and scripts for the website.
 
 Important elements of the Crypto++ website include ZIP files, signatures and release notes. They are located in the `html/` subdirectory and can be quickly restored. Duplicity is still available, but duplicity takes longer than a `scp -p *.html *.css *.png *.svg *.ico *.zip *.zip.sig cryptopp.com:`. Once the files are in your home directory, you can run `update-html.sh` to copy them to `/var/www/html` and set ownership and permissions.
 
