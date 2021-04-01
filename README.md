@@ -8,7 +8,7 @@ Here are the subdirectories of this repo:
   * install - how to setup and configure a VM like the webserver
   * restore - how to perform a restore using Duplicity
   * mediawiki - how to perform a Mediawiki upgrade, like MW 1.35 to 1.35.1
-  * systemd - units used to backup the VM
+  * systemd - units and scripts used to backup the VM
   * letsencrypt - how to renew the webserver's X.509 certificate
   * iptables - how to block misbehaving IP hosts
 
