@@ -4,9 +4,9 @@ Most of the world has moved to Systemd for init and job scheduling, including Re
 
 Cron jobs had a few drawbacks. The first problem was the lack of a "machine account". Lack of a machine account meant we had to tie a job to a user, like a backup job running for a user rather than a machine. Locating all Cron jobs for all users is problematic. The second problem is running a Cron job "right now" for testing. There's no simple way to do it. The third problem is lack of logging. /var/log/syslog shows a begin/end for a script identified by a session, but nothing else. Syslog does not provide a script name or messages from the script.
 
-The warez in this section of the website are copied in root's home directory at `$HOME/backup-scripts`. The GitHub includes the backup scripts. But the passwords and shared secrets needed for them is located at `/etc/cryptopp.conf`. Be sure `/etc/cryptopp.conf` is available on the web server.
+The warez in this section of the website are copied in root's home directory at `$HOME/backup-scripts`. The GitHub includes the backup scripts and services. But the passwords and shared secrets needed for them is located at `/etc/cryptopp.conf`. Be sure `/etc/cryptopp.conf` is available on the web server.
 
-The warez in this section of the website need to be downloaded and updated manually. A Git clone brings in everything, but all we need are a few scripts. Git 2.19 would allow us to clone just Systemd, but the web server has Git 1.8. Also see https://stackoverflow.com/a/52269934.
+The warez in this section of the website need to be downloaded and updated manually. A Git clone brings in everything, but we only need a few scripts from the systemd/ directory. Git 2.19 would allow us to clone just systemd/, but the web server has Git 1.8. Also see https://stackoverflow.com/a/52269934.
 
 ## Update.sh
 
@@ -45,11 +45,15 @@ The bitvise-backup script runs the Bitvise backup. The warez includes a Systemd 
 
 The `bitvise-backup` script is placed at `/usr/sbin/bitvise-backup`. The script reads passwords and shared secrets from `/etc/cryptopp.conf`.
 
+You can perform a manual Bitvise backup by ruinning `/usr/sbin/bitvise-backup` directly. Once `install.sh` has been run, you can also run a backup with `systemctl start bitvise-backup.service`.
+
 ## Gdrive-backup
 
 The gdrive-backup script runs the Gdrive backup. The warez includes a Systemd service, timer and backup script. The gdrive-backup script runs at 5:30 AM each night. The script performs a full backup every 3 months. Otherwise the script performs an incremental backup.
 
 The `gdrive-backup` script is placed at `/usr/sbin/gdrive-backup`. The script reads passwords and shared secrets from `/etc/cryptopp.conf`.
+
+You can perform a manual Bitvise backup by ruinning `/usr/sbin/gdrive-backup` directly. Once `install.sh` has been run, you can also run a backup with `systemctl start grdive-backup.service`.
 
 ## cryptopp.conf
 
@@ -58,6 +62,8 @@ The backup scripts work with `/etc/cryptopp.conf` on the web server. `/etc/crypt
 ## Systemctl status
 
 You can check the status of the services and timers with `systemctl`. The timer should be active, and the service should be inactive. The service will switch to active once triggered by the timer.
+
+You can trigger a backup with `systemctl start bitvise-backup.service`.
 
 ```
 # systemctl status bitvise-backup.timer
@@ -72,8 +78,6 @@ You can check the status of the services and timers with `systemctl`. The timer 
    Active: inactive (dead)
      Docs: https://github.com/weidai11/website/systemd
 ```
-
-You can trigger a backup with `systemctl start bitvise-backup.service`.
 
 A successful incremental backup looks like the following.
 
