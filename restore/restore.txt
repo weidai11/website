@@ -1,4 +1,9 @@
-The documents the restore procedure for the web server.
+The documents the restore procedure for the web server. It is a mashup of
+intall/apache-php.txt, install/mysql.txt with a dose of a Bitvise restoration.
+
+The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1). The webserver
+uses a LAMP stack with Apache, PHP and MySQL. The webserver also uses Mediawiki
+software from the Mediawiki Foundation (and not the distro).
 
 The process is detailed as follows. The process takes about
 20 minutes since it is mostly copy and paste.
@@ -213,8 +218,6 @@ Second, update and install the backup scripts.
   cd /root/backup-scripts
   ./update.sh
   ./install.sh
-  
-Note well: the folder contains https://github.com/weidai11/website/tree/master/systemd.
 
 Once the backup jobs are setup verify them.
 
