@@ -114,7 +114,7 @@ Enable and start the MySQL service via Systemd
 Reboot the machine, and verify Apache is running:
 
   # systemctl status mysql
-  ● mysql.service - The Apache HTTP Server
+  ● mysql.service - MySQL Community Server
      Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
      Active: active (running) since Tue 2021-03-30 22:10:35 UTC; 2h 22min ago
      ...
