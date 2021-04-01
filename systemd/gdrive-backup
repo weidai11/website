@@ -17,7 +17,7 @@ export PATH
 
 # Determine if we need a full back. We do a full backup every three months.
 day=$(date +%d)
-if [ "${day}" = '1' ];
+if [ "${day}" = '01' ];
 then
     month=$(date +%m)
     case ${month} in
@@ -27,6 +27,10 @@ then
         *)
           ;;
     esac
+fi
+
+if [ -n "${full_backup}" ]; then
+    echo "Performing a full backup"
 fi
 
 # Ensure the dump is properly protected
@@ -48,17 +52,21 @@ if [[ -z "${gnupg_password}" ]]; then
     echo "WARNING: gnupg_password is empty"
 fi
 
-# Fix the wiki tables (just in case)
-if ! mysqlcheck my_wiki --auto-repair --user=mwuser --password="${wiki_password}" ;
+# Fix the wiki tables (just in case). This step produces a lot of noise, so send stdout to /dev/null.
+if mysqlcheck my_wiki --auto-repair --user=mwuser --password="${wiki_password}" 1>/dev/null;
 then
+    echo "Repair wiki database ok"
+else
     echo "Failed to repair wiki database"
     # exit 1
 fi
 
 # --no-tablespaces due to https://dba.stackexchange.com/q/271981
-if ! mysqldump --single-transaction --no-tablespaces --routines --events --triggers --add-drop-table \
+if mysqldump --single-transaction --no-tablespaces --routines --events --triggers --add-drop-table \
      --extended-insert -u mwuser -h 127.0.0.1 -p"${wiki_password}" my_wiki > /backup/wiki.sql ;
 then
+    echo "Dump wiki database ok"
+else
     echo "Failed to dump wiki database"
     exit 1
 fi
