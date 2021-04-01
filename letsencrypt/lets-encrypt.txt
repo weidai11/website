@@ -1,0 +1,59 @@
+The Let's Encrypt process uses two terminals. In the first terminal, the
+'letsencrypt' program runs and tells you to do things. In the second
+terminal you do what the 'letsencrypt' program says, like create files
+with particular content.
+
+It is also OK to execute the procedure multiple times while learning the
+process. Let's Encrypt will issue a new certificate on a second or third run.
+
+The process below reuses the existing web server keypair for key continuity.
+We need to be mindful of unexpected key changes due to Public-Key-Pins
+header used for HTTP public key pinning.
+
+Be sure to restart Apache after the process so the new certificate is used.
+
+1. Log-in to VM, su to root with "sudo su -".
+   CD to $HOME/lets-encrypt.
+   An existing CSR using the existing key is in $HOME/lets-encrypt.
+
+2. Open a second terminal, su to root.
+   CD to /var/www/html/.well-known/acme-challenge/.
+   Remove past challenges.
+
+3. letsencrypt --manual --email webmaster@cryptopp.com --csr cryptopp-com.req.pem auth
+   This terminal is now occupied by LE client.
+   LE client will send requests and receive responses.
+
+   LE client will tell you to create a file with specific content.
+   Create the necessary files in the other terminal. Once the
+   challenges have been accepted client will download a new cert.
+
+4. Before the final OK, check permissions on the files the LE Client
+   asked you to create. The owner and permissionsshould be
+     - root:www-data
+     - u=rw,g=r,o=
+
+5. Once the certificate issues, copy it to cryptopp-com.cert.pem
+
+   # cp 0000_cert.pem /etc/ssl/private/cryptopp-com.cert.pem
+   cp: overwrite ‘/etc/ssl/private/cryptopp-com.cert.pem’? y
+
+   The existing chain should be OK, but it can be copied if desired.
+   Test the website. Once tested it is OK to delete the local
+   Let's Encrypt artifacts in Home.
+
+6. Restart the Apache web server
+
+   systemctl restart apache2.service
+
+7. Verify the new web server certificate.
+
+   * https://www.ssllabs.com/ssltest/analyze.html?d=www.cryptopp.com&latest
+   * https://www.sslshopper.com/ssl-checker.html#hostname=www.cryptopp.com
+
+----------
+
+# find /etc/ -name 'cryptopp*.pem'
+/etc/ssl/private/cryptopp-com.key.pem
+/etc/ssl/private/cryptopp-com.cert.pem
+/etc/ssl/private/cryptopp-com.chain.pem
