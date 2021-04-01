@@ -9,12 +9,13 @@ Here are the subdirectories of this repo:
   * restore - how to perform a restore using Duplicity
   * mediawiki - how to perform a Mediawiki upgrade, like MW 1.35 to 1.35.1
   * systemd - units used to backup the VM
+  * letsencrypt - how to renew the webserver's X.509 certificate
   * iptables - how to block misbehaving IP hosts
-
-One important file is missing. `cryptopp.conf` is not available in this GitHub because it holds passwords and shared secrets. You must have a copy of it somewhere. It is one of those files that you should have an encrypted local copy somewhere, like on a local machine or in email.
 
 After an install or restore, you have to manually restore the full html tree. The full tree includes Doxygen documentation and Mediawiki software.
 
 After an install or restore, you have to manually restore the Mediawiki database. The database is easy to import once you setup the Mediawili user and create the database.
 
 After an install or restore, you have to manually configure backups using the files in `systemd/`. Just run `systemd/install.sh` to perform the action.
+
+One important file is missing. `cryptopp.conf` is not available in this GitHub because it holds passwords and shared secrets. You must have a copy of it somewhere. It is one of those files that you should have an encrypted local copy somewhere, like on a local machine or in email.
