@@ -1,0 +1,104 @@
+This document details the Crypto++ webserver's configuration for MySQL.
+The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1).
+The webserver uses a LAMP stack with Apache, PHP and MySQL. The webserver
+also uses Mediawiki software from the Mediawiki Foundation (and not the distro).
+
+The following instructions install MySQL and detail some of the
+important settings for the webserver. After installing MySQL we need
+to install Apache and PHP, Mediawiki from sources using a Long Term Release
+version of the Mediawiki software.
+
+Apapche and PHP setup is available in install/apache-php.txt.
+
+Install MySQL packages
+======================
+
+  # apt-get install mysql-client-8.0 mysql-client-core-8.0 mysql-common \
+    mysql-server-8.0 mysql-server-core-8.0
+
+  # Other tools needed on occasion
+  # apt-get install net-tools git unzip
+
+Once installed the new gear is located in /bin, /etc and friends.
+
+  $ ls /etc | grep -E 'apache|php|mysql'
+  apache2
+  mysql
+  php
+
+Secure database
+===============
+
+After MySQl is installed run mysql_secure_installation. Set the password
+to the password. It is 32-characters and starts with "cBEY".
+
+  # mysql_secure_installation
+
+  Remove anonymous users, Disallow remotely root login and Remove test database.
+
+If needed, adjust the password policy manually.
+
+  SHOW VARIABLES LIKE 'validate_password%';
+
+  SET GLOBAL validate_password.policy=STRONG;
+  SET GLOBAL validate_password.length=12;
+  SET GLOBAL validate_password.mixed_case_count=0;
+  SET GLOBAL validate_password.number_count=0;
+  SET GLOBAL validate_password.special_char_count=0;
+
+SQL server config
+=================
+
+Log into MySQL server with the system password. The system password is 32-characters
+and starts with "cBEY".
+
+  # mysql -u root -p
+  <enter password>
+
+Create the Mediawiki database.
+
+  mysql> CREATE DATABASE my_wiki;
+  Query OK, 1 row affected (0.01 sec)
+
+Create the Mediawiki user. The password is the wiki user password and starts with "fe".
+
+  mysql> CREATE USER 'mwuser'@'localhost' IDENTIFIED BY '<password>';
+  Query OK, 0 rows affected (0.01 sec)
+
+Grant the media wiki user all privileges on the database.
+
+  mysql> GRANT ALL PRIVILEGES ON my_wiki.* TO 'mwuser'@'localhost';
+  Query OK, 0 rows affected (0.01 sec)
+
+  mysql> FLUSH PRIVILEGES;
+
+Restore database
+================
+
+Perform this step if you are restoring the database.
+
+Log into MySQL server with the system password. The system password is 32-characters
+and starts with "cBEY".
+
+  mysql -u root -p
+  <enter password>
+
+Switch to the wiki database.
+
+  mysql> USE my_wiki;
+
+Perform the restore using the SQL dump. wiki.sql is available in a Bitvise backup.
+
+  mysql> source /tmp/restore/backup/wiki.sql;
+  ...
+  Query OK, 830 rows affected (0.02 sec)
+  Records: 830  Duplicates: 0  Warnings: 0
+  Query OK, 0 rows affected (0.01 sec)
+  Query OK, 0 rows affected (0.00 sec)
+
+  mysql>
+
+Once restored exit MySQL.
+
+  mysql> exit
+  Bye

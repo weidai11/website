@@ -1,6 +1,6 @@
-This document details the Crypto++ webserver's configuration. The virtual
-machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1). The webserver uses
-a LAMP stack with Apache, PHP and MySQL. The webserver also uses Mediawiki
+This document details the Crypto++ webserver's configuration for Apache and PHP.
+The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1). The webserver
+uses a LAMP stack with Apache, PHP and MySQL. The webserver also uses Mediawiki
 software from the Mediawiki Foundation (and not the distro).
 
 The following instructions install Apache and PHP and detail some of the
@@ -8,7 +8,10 @@ important settings for the webserver. After installing Apache and PHP we need
 to install Mediawiki from sources using a Long Term Release version of the
 Mediawiki software.
 
-Install Apache and PHP packages:
+MySQL setup is available in install/mysql.txt.
+
+Install Apache and PHP packages
+===============================
 
   # apt-get install apache2 apache2-bin apache2-data apache2-utils
 
@@ -29,22 +32,8 @@ Once installed the new gear is located in /bin, /etc and friends.
   mysql
   php
 
-After MySQl is installed run mysql_secure_installation. Set the password
-to the password. It is 32-characters and starts with "cBEY".
-
-  # mysql_secure_installation
-
-  Remove anonymous users, Disallow remotely root login and Remove test database.
-
-If needed, adjust the password policy manually.
-
-  SHOW VARIABLES LIKE 'validate_password%';
-
-  SET GLOBAL validate_password.policy=STRONG;
-  SET GLOBAL validate_password.length=12;
-  SET GLOBAL validate_password.mixed_case_count=0;
-  SET GLOBAL validate_password.number_count=0;
-  SET GLOBAL validate_password.special_char_count=0;
+security.ini
+============
 
 Crypto++ uses a hardened PHP configuration. Open /etc/php/7.4/apache2/php.ini,
 and add the following to the tail:
@@ -62,6 +51,9 @@ previous settings.
 
   $ find /etc -name 99-security.ini
   /etc/php/7.4/apache2/conf.d/99-security.ini
+
+apache2.conf
+============
 
 Open /etc/apache2/apache2.conf and verify logging settings:
 
@@ -86,6 +78,9 @@ In particular, http2_module is not compatible with the mpm prefork module:
 
   # ls /etc/apache2/mods-enabled | grep http2
   #
+
+ssl.conf
+========
 
 Find ssl.conf and verify the SSL/TLS VirtualHost settings:
 
@@ -113,6 +108,9 @@ And:
   TransferLog /var/log/apache2/access.log
   LogLevel warn
 
+.htaccess
+=========
+
 Ensure there is a Short URL rule for Mediawiki. This translate
 requests with wiki/ in the URL to w/ on the filesystem. Also see
 https://www.mediawiki.org/wiki/Manual:Short_URL
@@ -128,6 +126,9 @@ https://www.mediawiki.org/wiki/Manual:Short_URL
     </FilesMatch>
   </IfModule>
 
+Services
+========
+
 Enable and start the Apache service via Systemd
 
   systemctl enable apache2
@@ -140,6 +141,9 @@ Reboot the machine, and verify Apache is running:
      Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
      Active: active (running) since Tue 2021-03-30 22:10:35 UTC; 2h 22min ago
      ...
+
+Miscellaneous
+=============
 
 Finally, install Mediawiki software. Mediawiki installation is covered in
 wiki-upgrade.txt.
