@@ -34,7 +34,7 @@ to the password. It is 32-characters and starts with "cBEY".
 
   # mysql_secure_installation
 
-  Remove anonymous users, Disallow remote root login and Remove test databases.
+Remove anonymous users, Disallow remote root login and Remove test databases.
 
 If needed, adjust the password policy manually.
 

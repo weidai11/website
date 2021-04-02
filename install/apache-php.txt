@@ -68,6 +68,15 @@ Ensure the following settings are set or add them if missing:
   ServerSignature Off
   ServerTokens Prod
 
+Add the following if serving pages results in "Forbidden" (access denied):
+
+  <Directory /var/www/html>
+      Options Indexes FollowSymLinks
+      # AllowOverride None
+      AllowOverride All
+      Require all granted
+  </Directory>
+
 MPM model
 =========
 
