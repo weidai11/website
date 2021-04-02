@@ -62,6 +62,14 @@ Open /etc/apache2/apache2.conf and verify logging settings:
   TransferLog ${APACHE_LOG_DIR}/access.log
   LogLevel warn
 
+Ensure the following settings are set or add them if missing:
+
+  ServerSignature Off
+  ServerTokens Prod
+
+MPM model
+=========
+
 Ensure prefork is used. We tried to cutover to mpm_event_module, but it
 is incompatible with other components.
 
