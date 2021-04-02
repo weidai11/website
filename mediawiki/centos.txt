@@ -98,7 +98,7 @@ Step 7 - Install Composer
 # This gets an old Composer with dependencies.
 # Red Hat SCL does not supply an updated composer.
 
-1. apt-get -y install composer
+1. yum -y install composer
 2. hash -r
 3. Copy the list of dependencies
 
@@ -112,9 +112,9 @@ Step 8 - Disable server hardening
 Composer needs access to directories and functions we have disabled.
 Temporarily re-enable them for Composer.
 
-1. cp /etc/php/7.4/apache2/conf.d/99-security.weak /etc/php/7.4/apache2/conf.d/99-security.ini
+1. cp /etc/opt/rh/rh-php73/php.d/security.ini.weak /etc/opt/rh/rh-php73/php.d/security.ini
 
-99-security.weak allows:
+security.ini.weak allows:
    - open_basedir=<any>
    - allow_url_fopen=On
    - allow_url_include=On
@@ -193,7 +193,7 @@ update-wiki.sh is available in this GitHub repo.
 
 1. Open update-wiki.sh
 2. Change WIKI_REL=REL1_35 to appropriate version
-3. Change PHP_BIN=/usr/bin/php as needed
+3. Change PHP_BIN=/opt/rh/rh-php73/root/usr/bin/php as needed
 
 And then:
 
@@ -209,9 +209,9 @@ visiting Special:Version wiki page:
 Step 13 - Restore server hardening
 ==================================
 
-1. cp /etc/php/7.4/apache2/conf.d/99-security.hard /etc/php/7.4/apache2/conf.d/99-security.ini
+1. cp /etc/opt/rh/rh-php73/php.d/security.ini.hard /etc/opt/rh/rh-php73/php.d/security.ini
 
-99-security.hard re-enables:
+security.ini.hard re-enables:
    - open_basedir="..."
    - allow_url_fopen=Off
    - allow_url_include=Off
@@ -223,18 +223,26 @@ Step 14 - Remove Composer
 The list from Step (5) should be cribbed away. Here is the one
 produced by CentOS 7 during install:
 
-1. apt-get remove -y \
-   composer jsonlint php-composer-ca-bundle php-composer-semver \
-   php-composer-spdx-licenses php-composer-xdebug-handler php-json-schema \
-   php-psr-container php-psr-log php-symfony-console php-symfony-filesystem \
-   php-symfony-finder php-symfony-process php-symfony-service-contracts
+1. yum -y remove composer libicu libzip t1lib php-PsrLog php-cli \
+   php-common php-composer-ca-bundle php-composer-semver \
+   php-composer-spdx-licenses php-composer-xdebug-handler php-fedora-autoloader \
+   php-gd php-intl php-jsonlint php-justinrainbow-json-schema5 php-mbstring \
+   php-paragonie-random-compat php-password-compat php-pdo php-process \
+   php-seld-phar-utils php-symfony-browser-kit php-symfony-class-loader \
+   php-symfony-common php-symfony-config php-symfony-console \
+   php-symfony-css-selector php-symfony-debug php-symfony-dependency-injection \
+   php-symfony-dom-crawler php-symfony-event-dispatcher \
+   php-symfony-expression-language php-symfony-filesystem php-symfony-finder \
+   php-symfony-http-foundation php-symfony-http-kernel php-symfony-polyfill \
+   php-symfony-process php-symfony-var-dumper php-symfony-yaml php-xml
 
 2. hash -r
 
-3. apt-get autoclean
-4. apt-get autoremove
+3. yum -y autoremove
 
-Step 15 - Clean backup
-======================
+Miscellaneous
+=============
 
-1. rm -rf /var/wiki-backup/
+Note well: You may need to reinstall librsync-devel or python2-lockfile if
+duplicity has a failure. 'yum -y autoremove' seems to remove it even though
+it is needed by duplicity.
