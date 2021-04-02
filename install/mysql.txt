@@ -65,7 +65,7 @@ Create the Mediawiki user. The password is the wiki user password and starts wit
   mysql> CREATE USER 'mwuser'@'localhost' IDENTIFIED BY '<password>';
   Query OK, 0 rows affected (0.01 sec)
 
-Grant the media wiki user all privileges on the database.
+Grant the media wiki user all privileges on the Mediawiki database.
 
   mysql> GRANT ALL PRIVILEGES ON my_wiki.* TO 'mwuser'@'localhost';
   Query OK, 0 rows affected (0.01 sec)
