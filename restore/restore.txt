@@ -1,12 +1,12 @@
 The documents the restore procedure for the web server. It is a mashup of
 intall/apache-php.txt, install/mysql.txt with a dose of a Bitvise restoration.
 
-The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1). The webserver
-uses a LAMP stack with Apache, PHP and MySQL. The webserver also uses Mediawiki
-software from the Mediawiki Foundation (and not the distro).
+The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1). The
+webserver uses a LAMP stack with Apache, PHP and MySQL. The webserver also uses
+Mediawiki software from the Mediawiki Foundation (and not the distro).
 
-The process is detailed as follows. The process takes about
-20 minutes since it is mostly copy and paste.
+The process is detailed as follows. The process takes about 20 minutes since
+it is mostly copy and paste.
 
 * provision a VM
 * create users and accounts
@@ -22,8 +22,20 @@ The process is detailed as follows. The process takes about
 * repair Mediawiki
 * setup backup jobs
 
+Provision a VM
+==============
+
+If the VM is being reprovisioned then log into the IONOS console. JW should
+have provided you credentials to his IONOS account.
+
+Go to "My IONOS". Go to "Servers & Cloud". Highlight the Crypto++ webserver.
+Select Reinstall.
+
 Create user accounts
 ====================
+
+Manually recreate the user accounts. This ensures the home directories are
+present before they are restored.
 
   adduser weidai
   ...
@@ -34,6 +46,8 @@ Create user accounts
   ...
   usermod -a -G sudo jwalton
   usermod -a -G staff jwalton
+
+  adduser ...
 
 Install system software
 =======================
@@ -56,14 +70,17 @@ Install system software
 Restore to /tmp/restore
 =======================
 
-Run Duplicity with the following command. <password>, <host> and <dir> are
-available in the bitvise-backup script.
+Run Duplicity with the following command. <password>, <host>, <port> and <dir>
+are available in in cryptopp.conf. cryptopp.conf if a file that you should have
+a local encrypted copy.
 
-  duplicity restore --file-to-restore "/" "sftp://CryptoPPBackup:<password>@<host>:22480/<dir>" "/tmp/restore"
+  duplicity restore --file-to-restore "/" "sftp://CryptoPPBackup:<password>@<host>:<port>/<dir>" "/tmp/restore"
 
-After the command completes the restored filesystem is available at /tmp/restore.
+After the command completes the restored filesystem is available at
+/tmp/restore.
 
-Note well: /tmp is cleaned upon reboot, so get what you need before you bounce the server.
+Note well: /tmp is cleaned upon reboot, so get what you need before you bounce
+the server.
 
 Restore OpenSSH config
 ======================
@@ -75,8 +92,7 @@ Restore server keys
 
 Restore policies
 
-  cp -p etc/ssh/sshd_config.d/10-pubkey_auth.conf /etc/ssh/sshd_config.d
-  cp -p etc/ssh/sshd_config.d/20-disable_root_login.conf /etc/ssh/sshd_config.d
+  cp -p etc/ssh/sshd_config.d/* /etc/ssh/sshd_config.d/
 
 Restart OpenSSH service
 
@@ -96,6 +112,8 @@ Restore Home directories
 
   cp -p -r home/jwalton/* /home/jwalton/
   chown -R jwalton:jwalton /home/jwalton/*
+
+  chmod -R o= /home/*
 
 Restore Web server config
 =========================
@@ -130,12 +148,13 @@ Restore Web data files
   cp -p var/www/html/.htaccess /var/www/html/
 
   chown -R root:www-data /var/www
+  chmod -R o= /var/www
 
 Secure database
 ===============
 
-After MySQl is installed run mysql_secure_installation. Set the password
-to the password. It is 32-characters and starts with "cBEY".
+After MySQl is installed run mysql_secure_installation. Set the password to the
+system password. It is 32-characters and starts with "cB".
 
   # mysql_secure_installation
 
@@ -143,10 +162,13 @@ Remove anonymous users, Disallow remote root login and Remove test databases.
 
 If needed, adjust the password policy manually.
 
+  # mysql -u root -p
+  <enter password>
+
   SHOW VARIABLES LIKE 'validate_password%';
 
   SET GLOBAL validate_password.policy=STRONG;
-  SET GLOBAL validate_password.length=12;
+  SET GLOBAL validate_password.length=16;
   SET GLOBAL validate_password.mixed_case_count=0;
   SET GLOBAL validate_password.number_count=0;
   SET GLOBAL validate_password.special_char_count=0;
@@ -154,8 +176,8 @@ If needed, adjust the password policy manually.
 Restore SQL server config
 =========================
 
-Log into MySQL server with the system password. The system password is 32-characters
-and starts with "cBEY".
+Log into MySQL server with the system password. The system password is
+32-characters and starts with "cB".
 
   # mysql -u root -p
   <enter password>
@@ -165,7 +187,8 @@ Create the Mediawiki database.
   mysql> CREATE DATABASE my_wiki;
   Query OK, 1 row affected (0.01 sec)
 
-Create the Mediawiki user. The password is the wiki user password and starts with "fe".
+Create the Mediawiki user. The password is the wiki user password. It is
+16-characters and starts with "fe".
 
   mysql> CREATE USER 'mwuser'@'localhost' IDENTIFIED BY '<password>';
   Query OK, 0 rows affected (0.01 sec)
@@ -180,8 +203,8 @@ Grant the media wiki user all privileges on the database.
 Restore SQL database
 ====================
 
-Log into MySQL server with the system password. The system password is 32-characters
-and starts with "cBEY".
+Log into MySQL server with the system password. The system password is
+32-characters and starts with "cBEY".
 
   mysql -u root -p
   <enter password>
@@ -223,7 +246,7 @@ Run our update-wiki.sh script. The script will set ownership and permissions,
 and perform other miscellaneous items.
 
   cd /var/www/html/w
-  ./update-wiki.sh
+  bash update-wiki.sh
 
 Setup backup jobs
 =================
@@ -265,7 +288,8 @@ Test the website and wiki
 
 Navigate to https://www.github.com. Press F5 to get a fresh copy of the page.
 
-Click on the Mediawiki link at the top of the page. Press F5 to get a fresh copy
-of the page.
+Click on the Mediawiki link at the top of the page. Press F5 to get a fresh
+copy of the page.
 
-Navigate to https://www.cryptopp.com/wiki/Special:Version. Ensure everything looks ok.
+Navigate to https://www.cryptopp.com/wiki/Special:Version. Ensure everything
+looks ok.
