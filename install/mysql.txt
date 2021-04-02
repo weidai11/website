@@ -30,7 +30,7 @@ Secure database
 ===============
 
 After MySQl is installed run mysql_secure_installation. Set the password
-to the password. It is 32-characters and starts with "cBEY".
+to the system password. It is 32-characters and starts with "cBEY".
 
   # mysql_secure_installation
 
