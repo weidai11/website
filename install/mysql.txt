@@ -1,7 +1,7 @@
 This document details the Crypto++ webserver's configuration for MySQL.
 The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1).
 The webserver uses a LAMP stack with Apache, PHP and MySQL. The webserver
-also uses Mediawiki software from the Mediawiki Foundation (and not the distro).
+also uses Mediawiki software from the Mediawiki Foundation (not the distro).
 
 The following instructions install MySQL and detail some of the
 important settings for the webserver. After installing MySQL we need
@@ -38,6 +38,9 @@ Remove anonymous users, Disallow remote root login and Remove test databases.
 
 If needed, adjust the password policy manually.
 
+  # mysql -u root -p
+  <enter password>
+
   SHOW VARIABLES LIKE 'validate_password%';
 
   SET GLOBAL validate_password.policy=STRONG;
@@ -49,8 +52,8 @@ If needed, adjust the password policy manually.
 SQL server config
 =================
 
-Log into MySQL server with the system password. The system password is 32-characters
-and starts with "cBEY".
+Log into MySQL server with the system password. The system password is
+32-characters and starts with "cBEY".
 
   # mysql -u root -p
   <enter password>
@@ -60,7 +63,8 @@ Create the Mediawiki database.
   mysql> CREATE DATABASE my_wiki;
   Query OK, 1 row affected (0.01 sec)
 
-Create the Mediawiki user. The password is the wiki user password and starts with "fe".
+Create the Mediawiki user. The password is the wiki user password is
+16-characters and starts with "fe".
 
   mysql> CREATE USER 'mwuser'@'localhost' IDENTIFIED BY '<password>';
   Query OK, 0 rows affected (0.01 sec)
@@ -77,8 +81,8 @@ Restore database
 
 Perform this step if you are restoring the database.
 
-Log into MySQL server with the system password. The system password is 32-characters
-and starts with "cBEY".
+Log into MySQL server with the system password. The system password is
+32-characters and starts with "cBEY".
 
   mysql -u root -p
   <enter password>
@@ -87,7 +91,7 @@ Switch to the wiki database.
 
   mysql> USE my_wiki;
 
-Perform the restore using the SQL dump. wiki.sql is available in a Bitvise backup.
+Perform the restore using the SQL dump. wiki.sql is part of a Bitvise backup.
 
   mysql> source /tmp/restore/backup/wiki.sql;
   ...

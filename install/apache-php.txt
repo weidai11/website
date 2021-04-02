@@ -1,7 +1,7 @@
-This document details the Crypto++ webserver's configuration for Apache and PHP.
-The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1). The webserver
-uses a LAMP stack with Apache, PHP and MySQL. The webserver also uses Mediawiki
-software from the Mediawiki Foundation (and not the distro).
+This document details the Crypto++ webserver configuration for Apache and PHP.
+The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1). The
+webserver uses a LAMP stack with Apache, PHP and MySQL. The webserver also uses
+Mediawiki software from the Mediawiki Foundation (and not the distro).
 
 The following instructions install Apache and PHP and detail some of the
 important settings for the webserver. After installing Apache and PHP we need
@@ -39,7 +39,7 @@ security.ini
 Crypto++ uses a hardened PHP configuration. Open /etc/php/7.4/apache2/php.ini,
 and add the following to the tail:
 
-  # tail -n 5 /etc/php/7.4/apache2/php.ini
+  # tail -n 6 /etc/php/7.4/apache2/php.ini
   ;; Security hardening in security.ini
   log_errors = On
   display_errors = Off
@@ -48,8 +48,8 @@ and add the following to the tail:
   error_log = /var/log/apache2/error.log
 
 Copy security.ini to /etc/php/7.4/apache2/conf.d/99-security.ini. Be sure to
-rename it to 99-security.ini. The 99- ensures security.ini runs last to override
-previous settings.
+rename it to 99-security.ini. The 99- ensures security.ini runs last to
+override previous settings.
 
   $ find /etc -name 99-security.ini
   /etc/php/7.4/apache2/conf.d/99-security.ini
@@ -80,8 +80,8 @@ Add the following if serving pages results in "Forbidden" (access denied):
 MPM model
 =========
 
-Ensure prefork is used. We tried to cutover to mpm_event_module, but it
-is incompatible with other components.
+Ensure prefork is used. We tried to cutover to mpm_event_module, but it is
+incompatible with other components.
 
   # ls /etc/apache2/mods-enabled | grep prefork
   mpm_prefork.conf
@@ -142,8 +142,8 @@ And:
 .htaccess
 =========
 
-Ensure there is a Short URL rule for Mediawiki. This translates
-requests with wiki/ in the URL to w/ on the filesystem. Also see
+Ensure there is a Short URL rule for Mediawiki. This translates requests with
+wiki/ in the URL to w/ on the filesystem. Also see
 https://www.mediawiki.org/wiki/Manual:Short_URL
 
   $ cat /var/www/html/.htaccess
@@ -160,7 +160,7 @@ https://www.mediawiki.org/wiki/Manual:Short_URL
 Apache Service
 ==============
 
-Enable and start the Apache service via Systemd
+Enable and start the Apache service via Systemd.
 
   systemctl enable apache2
   systemctl start apache2
