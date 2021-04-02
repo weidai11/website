@@ -157,8 +157,8 @@ https://www.mediawiki.org/wiki/Manual:Short_URL
     </FilesMatch>
   </IfModule>
 
-Services
-========
+Apache Service
+==============
 
 Enable and start the Apache service via Systemd
 
