@@ -103,8 +103,8 @@ Once restored exit MySQL.
   mysql> exit
   Bye
 
-Services
-========
+MySQL Service
+=============
 
 Enable and start the MySQL service via Systemd
 
