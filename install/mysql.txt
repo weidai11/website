@@ -41,7 +41,7 @@ If needed, adjust the password policy manually.
   SHOW VARIABLES LIKE 'validate_password%';
 
   SET GLOBAL validate_password.policy=STRONG;
-  SET GLOBAL validate_password.length=12;
+  SET GLOBAL validate_password.length=16;
   SET GLOBAL validate_password.mixed_case_count=0;
   SET GLOBAL validate_password.number_count=0;
   SET GLOBAL validate_password.special_char_count=0;
