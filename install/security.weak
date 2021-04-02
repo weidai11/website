@@ -24,8 +24,8 @@ file_uploads=On
 upload_max_filesize=4M
 
 ;; #7: Turn Off Remote Code Execution
-allow_url_fopen=Off
-allow_url_include=Off
+allow_url_fopen=On
+allow_url_include=On
 
 ;; #8: Enable SQL Safe Mode
 sql.safe_mode=On
@@ -44,14 +44,14 @@ memory_limit = 40M
 ; Suhosin is not available for PHP 7 (yet)
 
 ;; #12 Disable Dangerous PHP Functions
-disable_functions=apache_note,apache_setenv,chgrp,closelog,debugger_off,debugger_on,define_sys,define_syslog_variables,diskfreespace,dl,escapeshellarg,escapeshellcmd,exec,getmypid,getmyuid,ini_restore,leak,listen,openlog,passthru,pclose,pcntl_alarm,pcntl_exec,pcntl_fork,pcntl_getpriority,pcntl_get_last_error,pcntl_setpriority,pcntl_signal,pcntl_signal_dispatch,pcntl_sigprocmask,pcntl_sigtimedwait,pcntl_sigwaitinfo,pcntl_strerror,pcntl_wait,pcntl_waitpid,pcntl_wexitstatus,pcntl_wifexited,pcntl_wifsignaled,pcntl_wifstopped,pcntl_wstopsig,pcntl_wtermsig,php_uname,popen,posix,posix_ctermid,posix_getcwd,posix_getegid,posix_geteuid,posix_getgid,posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid,posix_getpwnam,posix_getpwuid,posix_getrlimit,posix_getsid,posix_getuid,posix_isatty,posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid,posix_setpgid,posix_setsid,posix_setuid,posix_times,posix_ttyname,posix_uname,proc_close,proc_get_status,proc_nice,proc_open,proc_terminate,shell_exec,show_source,syslog,system,url_exec,_getppid
+;; disable_functions=apache_note,apache_setenv,chgrp,closelog,debugger_off,debugger_on,define_sys,define_syslog_variables,diskfreespace,dl,escapeshellarg,escapeshellcmd,exec,getmypid,getmyuid,ini_restore,leak,listen,openlog,passthru,pclose,pcntl_alarm,pcntl_exec,pcntl_fork,pcntl_getpriority,pcntl_get_last_error,pcntl_setpriority,pcntl_signal,pcntl_signal_dispatch,pcntl_sigprocmask,pcntl_sigtimedwait,pcntl_sigwaitinfo,pcntl_strerror,pcntl_wait,pcntl_waitpid,pcntl_wexitstatus,pcntl_wifexited,pcntl_wifsignaled,pcntl_wifstopped,pcntl_wstopsig,pcntl_wtermsig,php_uname,popen,posix,posix_ctermid,posix_getcwd,posix_getegid,posix_geteuid,posix_getgid,posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid,posix_getpwnam,posix_getpwuid,posix_getrlimit,posix_getsid,posix_getuid,posix_isatty,posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid,posix_setpgid,posix_setsid,posix_setuid,posix_times,posix_ttyname,posix_uname,proc_close,proc_get_status,proc_nice,proc_open,proc_terminate,shell_exec,show_source,syslog,system,url_exec,_getppid
 
 ;; #13 PHP Fastcgi / CGI
 cgi.force_redirect=On
 
 ;; #15 Limit PHP Access To File System
 ;; Allows recursive descent
-open_basedir="/var/www/html/:/var/lib/php/"
+;; open_basedir="/var/www/html/:/var/lib/php/"
 
 ;; #16 Session Path
 session.save_path="/var/lib/php/session"
