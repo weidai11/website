@@ -72,7 +72,6 @@ Add the following if serving pages results in "Forbidden" (access denied):
 
   <Directory /var/www/html>
       Options Indexes FollowSymLinks
-      # AllowOverride None
       AllowOverride FileInfo
       Require all granted
   </Directory>
