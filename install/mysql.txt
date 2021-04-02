@@ -30,7 +30,7 @@ Secure database
 ===============
 
 After MySQl is installed run mysql_secure_installation. Set the password
-to the system password. It is 32-characters and starts with "cBEY".
+to the system password. It is 32-characters and starts with "cB".
 
   # mysql_secure_installation
 
@@ -53,7 +53,7 @@ SQL server config
 =================
 
 Log into MySQL server with the system password. The system password is
-32-characters and starts with "cBEY".
+32-characters and starts with "cB".
 
   # mysql -u root -p
   <enter password>
@@ -82,7 +82,7 @@ Restore database
 Perform this step if you are restoring the database.
 
 Log into MySQL server with the system password. The system password is
-32-characters and starts with "cBEY".
+32-characters and starts with "cB".
 
   mysql -u root -p
   <enter password>
