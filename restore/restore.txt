@@ -111,7 +111,7 @@ Copy relevant files.
   cd /tmp/restore
 
   cp -p etc/php/7.4/apache2/php.ini /etc/php/7.4/apache2/
-  cp -p etc/php/7.4/apache2/conf.d/99-security.ini /etc/php/7.4/apache2/conf.d/
+  cp -p etc/php/7.4/apache2/conf.d/99-security.* /etc/php/7.4/apache2/conf.d/
   cp -p etc/apache2/apache2.conf /etc/apache2/
   cp -p etc/apache2/mods-enabled/ssl.conf /etc/apache2/mods-enabled/
   cp -p etc/modsecurity/modsecurity.conf /etc/modsecurity/modsecurity.conf
