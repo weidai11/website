@@ -22,10 +22,16 @@ Disable root logins via SSH. You have to use the IONOS virtual console to regain
   # cat /etc/ssh/sshd_config.d/20-disable_root_login.conf
   PermitRootLogin no
 
+SSH Service
+===========
+
 Restart OpenSSH service
 
   systemctl enable sshd
   systemctl start sshd
+
+Audit options
+=============
 
 Note well: Options are sticky in sshd_config. The first option wins. After
 changing the configuration verify they are set with:
