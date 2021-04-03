@@ -109,6 +109,12 @@ Find modsecurity.conf and verify SecRuleEngine is On:
   # SecRuleEngine DetectionOnly
   SecRuleEngine On
 
+Find the PCRE rules and change them to:
+
+  # https://github.com/SpiderLabs/owasp-modsecurity-crs/issues/656
+  SecPcreMatchLimit 500000
+  SecPcreMatchLimitRecursion 500000
+
 ssl.conf
 ========
 
