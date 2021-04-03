@@ -150,6 +150,23 @@ Restore Web data files
   chown -R root:www-data /var/www
   chmod -R o= /var/www
 
+Apache Permissions
+==================
+
+Ownership of /var/html is root:www-data. Other has no access.
+
+  chown -R root:www-data /var/www-data
+  chmod -R o= /var/html
+
+PHP has an upload directory at /var/lib/php/session. Apache needs write access.
+
+  chown -R www-data:www-data /var/lib/php
+  chmod -R o= /var/lib/php
+
+Test the configuration
+
+  apachectl configtest
+
 Secure database
 ===============
 
@@ -228,6 +245,11 @@ Once restored exit MySQL.
 
   mysql> exit
   Bye
+
+MySQL Permissions
+=================
+
+MySQL permissions are OK.
 
 Repair Mediawiki
 ================

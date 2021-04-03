@@ -162,6 +162,19 @@ https://www.mediawiki.org/wiki/Manual:Short_URL
     </FilesMatch>
   </IfModule>
 
+Permissions
+===========
+
+Ownership of /var/html is root:www-data. Other has no access.
+
+  chown -R root:www-data /var/www-data
+  chmod -R o= /var/html
+
+PHP has an upload directory at /var/lib/php/session. Apache needs write access.
+
+  chown -R www-data:www-data /var/lib/php
+  chmod -R o= /var/lib/php
+
 Apache Service
 ==============
 
