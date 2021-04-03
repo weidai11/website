@@ -17,7 +17,7 @@ export PATH
 
 # Determine if we need a full back. We do a full backup every three months.
 day=$(date +%d)
-if [ "${day}" = '01' ];
+if [ "${day}" = "01" ];
 then
     month=$(date +%m)
     case ${month} in
@@ -64,7 +64,8 @@ if [[ -z "${bitvise_port}" ]]; then
     echo "WARNING: bitvise_port is empty"
 fi
 
-# Fix the wiki tables (just in case). This step produces a lot of noise, so send stdout to /dev/null.
+# Fix the wiki tables just in case. This step produces a lot of noise,
+# so send stdout to /dev/null.
 if mysqlcheck my_wiki --auto-repair --user=mwuser --password="${wiki_password}" 1>/dev/null;
 then
     echo "Repair wiki database ok"

@@ -4,6 +4,9 @@
 # be run by Systemd on a daily basis. The backup script depends upon
 # /etc/cryptopp.conf for passwords and shared secrets.
 #
+# GDrive Backup is disabled at the moment. The GDrive backup requires a token
+# that changes every 30 days. It is too much work to stay on top of.
+#
 # cryptopp.conf is not available in this GitHub because it holds passwords
 # and shared secrets. You have to have a copy of it somewhere. It is one of
 # those files that you should have an encrypted local copy somewhere, like
@@ -17,7 +20,7 @@ export PATH
 
 # Determine if we need a full back. We do a full backup every three months.
 day=$(date +%d)
-if [ "${day}" = '01' ];
+if [ "${day}" = "01" ];
 then
     month=$(date +%m)
     case ${month} in
@@ -52,7 +55,8 @@ if [[ -z "${gnupg_password}" ]]; then
     echo "WARNING: gnupg_password is empty"
 fi
 
-# Fix the wiki tables (just in case). This step produces a lot of noise, so send stdout to /dev/null.
+# Fix the wiki tables just in case. This step produces a lot of noise,
+# so send stdout to /dev/null.
 if mysqlcheck my_wiki --auto-repair --user=mwuser --password="${wiki_password}" 1>/dev/null;
 then
     echo "Repair wiki database ok"
