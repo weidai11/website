@@ -50,8 +50,11 @@ fi
 #################### Bitvise backup script ####################
 
 # Clean previous installations, if present
+systemctl stop bitvise-backup.service &>/dev/null
+systemctl stop bitvise-backup.timer &>/dev/null
 systemctl disable bitvise-backup.service &>/dev/null
 systemctl disable bitvise-backup.timer &>/dev/null
+systemctl revert bitvise-backup.service &>/dev/null
 find /etc/systemd -name 'bitvise-backup.*' -exec rm -f {} \;
 
 # Copy our Systemd units
@@ -80,8 +83,11 @@ echo "Installed bitvise-backup service"
 #################### Gdrive backup script ####################
 
 # Clean previous installations, if present
+systemctl stop gdrive-backup.service &>/dev/null
+systemctl stop gdrive-backup.timer &>/dev/null
 systemctl disable gdrive-backup.service &>/dev/null
 systemctl disable gdrive-backup.timer &>/dev/null
+systemctl revert gdrive-backup.service &>/dev/null
 find /etc/systemd -name 'gdrive-backup.*' -exec rm -f {} \;
 
 ########## BEGIN DISABLED ##########
@@ -116,8 +122,11 @@ fi
 #################### System update script ####################
 
 # Clean previous installations, if present
+systemctl stop system-update.service &>/dev/null
+systemctl stop system-update.timer &>/dev/null
 systemctl disable system-update.service &>/dev/null
 systemctl disable system-update.timer &>/dev/null
+systemctl revert system-update.timer &>/dev/null
 find /etc/systemd -name 'system-update.*' -exec rm -f {} \;
 
 ########## BEGIN DISABLED ##########
