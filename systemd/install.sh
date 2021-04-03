@@ -5,6 +5,12 @@
 # The backup scripts depend upon /etc/cryptopp.conf for passwords and shared
 # secrets.
 #
+# GDrive Backup is disabled at the moment. The GDrive backup requires a token
+# that changes every 30 days. It is too much work to stay on top of.
+#
+# System Update is disabled at the moment. The VM has an Apt update unit that
+# is preinstalled. We don't want to conflict with it.
+#
 # cryptopp.conf is not available in this GitHub because it holds passwords
 # and shared secrets. You have to have a copy of it somewhere. It is one of
 # those files that you should have an encrypted local copy somewhere, like
@@ -12,7 +18,9 @@
 #
 # Also see https://github.com/weidai11/website/tree/master/systemd
 
-if [[ "$EUID" -ne 0 ]]; then
+#################### Administrivia ####################
+
+if [[ $(id -u) != "0" ]]; then
     echo "This script must be run as root"
     exit 1
 fi
@@ -39,7 +47,7 @@ if [[ ! -f gdrive-backup.timer || ! -f gdrive-backup.service ]]; then
     exit 1
 fi
 
-########## Bitvise backup script ##########
+#################### Bitvise backup script ####################
 
 # Clean previous installations, if present
 systemctl disable bitvise-backup.service &>/dev/null
@@ -69,12 +77,15 @@ fi
 
 echo "Installed bitvise-backup service"
 
-########## Gdrive backup script ##########
+#################### Gdrive backup script ####################
 
 # Clean previous installations, if present
 systemctl disable gdrive-backup.service &>/dev/null
 systemctl disable gdrive-backup.timer &>/dev/null
 find /etc/systemd -name 'gdrive-backup.*' -exec rm -f {} \;
+
+########## BEGIN DISABLED ##########
+if false; then
 
 # Copy our Systemd units
 cp -p gdrive-backup.service /etc/systemd/system
@@ -99,15 +110,18 @@ fi
 
 echo "Installed gdrive-backup service"
 
-########## System update script ##########
+fi
+########## END DISABLED ##########
 
-# Begin DISABLE for the moment
-if false; then
+#################### System update script ####################
 
 # Clean previous installations, if present
 systemctl disable system-update.service &>/dev/null
 systemctl disable system-update.timer &>/dev/null
 find /etc/systemd -name 'system-update.*' -exec rm -f {} \;
+
+########## BEGIN DISABLED ##########
+if false; then
 
 # Copy our Systemd units
 cp -p system-update.service /etc/systemd/system
@@ -132,10 +146,10 @@ fi
 
 echo "Installed system-update service"
 
-# End DISABLE for the moment
 fi
+########## END DISABLED ##########
 
-########## Systemd services ##########
+#################### Systemd services ####################
 
 # Reload services
 if ! systemctl daemon-reload 2>/dev/null; then
