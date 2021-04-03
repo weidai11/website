@@ -1,6 +1,16 @@
 This document details the Crypto++ webserver SSH configuration. The virtual
 machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1).
 
+Install OpenSSH packages
+========================
+
+This should already be installed, but just in case...
+
+  apt-get install openssh-server
+
+  # Other tools needed on occasion
+  apt-get install net-tools certbot git unzip
+  
 Pubkey Authentication
 =====================
 
