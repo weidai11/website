@@ -1,6 +1,10 @@
 ### Create the request:
 
+# CentOS:
 openssl req -new -config cryptopp-com.conf -key /etc/pki/tls/private/cryptopp-com.key.pem -sha256 -out cryptopp-com.req.pem
+
+# Debian:
+openssl req -new -config cryptopp-com.conf -key /etc/ssl/private/cryptopp-com.key.pem -sha256 -out cryptopp-com.req.pem
 
 ### Show the request:
 
