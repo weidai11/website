@@ -1,0 +1,59 @@
+On occasion the webserver experiences questionable behavior from some clients.
+For example:
+
+# journalctl -xe | grep 31.210.20.203
+...
+Apr 04 00:36:31 localhost sshd[722652]: Disconnected from invalid user centos 31.210.20.203 port 49328 [preauth]
+Apr 04 00:41:48 localhost sshd[722714]: Invalid user centos from 31.210.20.203 port 38166
+Apr 04 00:41:49 localhost sshd[722714]: Received disconnect from 31.210.20.203 port 38166:11: Normal Shutdown, Thank you for playing
+...
+
+The host at 31.210.20.203 is attempting to break into the webserver by trying different usernames and passwords, like centos, ubuntu, test, test1, etc.
+
+It is OK to block misbehaving hosts. To block a host, determine the netblock
+information for the host:
+
+  $ whois 31.210.20.203 | grep -E 'inetnum|route'
+  inetnum:        31.210.20.0 - 31.210.21.255
+  route:          31.210.20.0/24
+
+Second, send an email to the Whois contacts and inform them the netblock is
+being banned. Tell them the ban will be lifted if they tend to their
+misbehaving host.
+
+  $ whois 31.210.20.203 | grep '@'
+  % Abuse contact for '31.210.20.0 - 31.210.21.255' is 'abuse@serverion.com'
+  abuse-mailbox:  abuse@serverion.com
+
+Don't worry if you don't receive a response. Accurate administrative and
+technical contact information is an ICANN contractual requirement. It is the
+site's responsibility to provide accurate information.
+
+Third, open /etc/iptables/rules.v4 and ban the block. Add the block before
+traffic is accepted. I.e., place the Deny rule before the Allow rules.
+
+  # Constant probes by hosts in the Netherlands
+  -A INPUT -p all -s 31.210.20.0/24 -j DROP
+
+China Mobile is a constant source of problems. After we reported several
+problem hosts to the company, China Mobile blocked our emails to abuse@
+by bouncing our emails. China Mobile has a permanent ban:
+
+  # Permanent ban from China Mobile (AS9808)
+  -A INPUT -p all -s 221.176.0.0/13 -j DROP
+
+After adding a network reload iptables:
+
+  systemctl restart iptables
+
+Finally, verify the new rule:
+
+  # iptables -L
+  Chain INPUT (policy ACCEPT)
+  target     prot opt source               destination
+  DROP       all  --  221.176.0.0/13       anywhere
+  ...
+
+If the site's administrator states they have tended to their host, then remove
+the ban. The ban is intended to protect the Crypto++ webserver. The ban is not
+punitive.

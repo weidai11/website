@@ -1,4 +1,4 @@
-On occassion the webserver experiences questionable behavior from some clients.
+On occasion the webserver experiences questionable behavior from some clients.
 For example:
 
 # cat /var/log/httpd24/access_log | grep Talk
@@ -34,7 +34,7 @@ misbehaving host.
 
 Don't worry if you don't receive a response. Accurate administrative and
 technical contact information is an ICANN contractual requirement. It is the
-site's responsiblity to provide accurate information.
+site's responsibility to provide accurate information.
 
 Third, open /etc/sysconfig/iptables and ban the block. Add the block before
 traffic is accepted. I.e., place the Deny rule before the Allow rules.
