@@ -30,7 +30,7 @@
 # Once we banned China Mobile, attacks started from Chinanet
 -A INPUT -p all -s 222.184.0.0/13 -j DROP
 
-# And then from China Internet Network Information Center (CINNIC)
+# And then from China Internet Network Information Center (CNNIC)
 -A INPUT -p all -s 121.4.0.0/15 -j DROP
 
 # Russian site. Emails to abuse@ bounce.
