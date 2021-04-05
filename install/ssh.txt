@@ -10,7 +10,7 @@ This should already be installed, but just in case...
 
   # Other tools needed on occasion
   apt-get install net-tools certbot git unzip
-  
+
 Pubkey Authentication
 =====================
 
