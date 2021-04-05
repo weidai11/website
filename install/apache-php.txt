@@ -68,11 +68,11 @@ Ensure the following settings are set or add them if missing:
   ServerSignature Off
   ServerTokens Prod
 
-Add the following if serving pages results in "Forbidden" (access denied):
+Add the following for configuration of /var/www/html using .htaccess.
 
   <Directory /var/www/html>
       Options Indexes FollowSymLinks
-      AllowOverride FileInfo
+      AllowOverride FileInfo Options
       Require all granted
   </Directory>
 
