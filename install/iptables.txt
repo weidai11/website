@@ -46,11 +46,11 @@
 # Now the explicity allowed stuff
 #
 
-# Allow ping.
--A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
-
 # Allow established sessions.
 -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# Allow ping.
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
 
 # Allow DHCP.
 -A INPUT -p udp --dport 68 -j ACCEPT
