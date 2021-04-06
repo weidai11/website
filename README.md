@@ -9,7 +9,7 @@ Here are the subdirectories of this repo:
   * restore - how to perform a restore using Duplicity
   * mediawiki - how to perform a Mediawiki upgrade, like MW 1.35 to 1.35.1
   * systemd - units and scripts used to backup the VM
-  * letsencrypt - how to renew the webserver's X.509 certificate
+  * letsencrypt - how to renew the webserver's TLS certificate
   * iptables - how to block misbehaving IP hosts
 
 After an install or restore, you have to manually restore the full html tree. The full tree includes Doxygen documentation and Mediawiki software.
