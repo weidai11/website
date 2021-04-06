@@ -33,6 +33,21 @@ Once installed the new gear is located in /bin, /etc and friends.
   mysql
   php
 
+php.ini
+=======
+
+Change the various temp directories from /tmp to /var/lib/php/tmp.
+
+  # grep '/tmp' /etc/php/7.4/apache2/php.ini
+  sys_temp_dir = "/var/lib/php/tmp"
+  soap.wsdl_cache_dir="/var/lib/php/tmp"
+  opcache.lockfile_path=/var/lib/php/tmp
+
+Ensure the directoru exists and is owned by www-data.
+
+  mkdir -p /var/lib/php/tmp
+  chown www-data:www-data /var/lib/php/tmp
+
 security.ini
 ============
 
@@ -115,34 +130,71 @@ Find the PCRE rules and change them to:
   SecPcreMatchLimit 500000
   SecPcreMatchLimitRecursion 500000
 
+cryptopp.conf
+=============
+
+Add a site at /etc/apache2/sites-available/cryptopp.conf.
+
+  # cat /etc/apache2/sites-available/cryptopp.conf | grep -v '^[[:space:]]#'
+  <VirtualHost *:80>
+
+    ServerName cryptopp.com
+    ServerAlias www.cryptopp.com
+
+    Redirect permanent / https://cryptopp.com/
+
+    ServerAdmin webmaster@cryptopp.com
+    DocumentRoot /var/www/html
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+  </VirtualHost>
+
+  <VirtualHost *:443>
+
+    SSLEngine on
+
+    DocumentRoot "/var/www/html"
+    ServerName www.cryptopp.com
+    ServerAlias *.cryptopp.com cryptopp.com
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    TransferLog ${APACHE_LOG_DIR}/access.log
+    LogLevel warn
+
+    SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2 +TLSv1.3
+
+    SSLCipherSuite HIGH:!aNULL:!kRSA:!MD5:!RC4
+
+    SSLCertificateFile /etc/ssl/private/cryptopp-com.cert.pem
+
+    SSLCertificateKeyFile /etc/ssl/private/cryptopp-com.key.pem
+
+    SSLCertificateChainFile /etc/ssl/private/cryptopp-com.chain.pem
+
+    SSLVerifyClient none
+
+    <Files ~ "\.(cgi|shtml|phtml|php3?)$">
+           SSLOptions +StdEnvVars
+    </Files>
+    <Directory "/var/www/cgi-bin">
+               SSLOptions +StdEnvVars
+    </Directory>
+
+  </VirtualHost>
+
+Enable the site.
+
+  # a2ensite cryptopp
+  Enabling site cryptopp.
+  To activate the new configuration, you need to run:
+    systemctl reload apache2
+
 ssl.conf
 ========
 
-Find ssl.conf and verify the SSL/TLS VirtualHost settings:
-
-  # find /etc/apache2 -name ssl.conf
-  /etc/apache2/mods-enabled/ssl.conf
-  /etc/apache2/mods-available/ssl.conf
-
-And:
-
-  $ cat /etc/apache2/mods-enabled/ssl.conf
-  ...
-
-  DocumentRoot "/var/www/html"
-  ServerName www.cryptopp.com:443
-  ServerAlias *.cryptopp.com cryptopp.com
-
-  SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2 +TLSv1.3
-  SSLCipherSuite HIGH:!aNULL:!kRSA:!MD5:!RC4
-
-  SSLCertificateFile /etc/ssl/private/cryptopp-com.cert.pem
-  SSLCertificateChainFile /etc/ssl/private/cryptopp-com.chain.pem
-  SSLCertificateKeyFile /etc/ssl/private/cryptopp-com.key.pem
-
-  ErrorLog /var/log/apache2/error.log
-  TransferLog /var/log/apache2/access.log
-  LogLevel warn
+No changes are made to ssl.conf.
 
 .htaccess
 =========

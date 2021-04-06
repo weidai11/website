@@ -18,8 +18,7 @@
 # China Mobile permanent ban. Constant problems. Emails to abuse@ bounce.
 # This appears to be the Chinese military. Each time we banned a host another
 # drone showed up, but using a longer time interval between attacks. Attacks
-# started at 1s apart, then 5s, 30s, 1min, 5min, 10min and 30min. We banned
-# China Mobile at the 30min interval.
+# started at 1s apart, then 5s, 30s, 1min, 5min, 10min and 30min.
 -A INPUT -p all -s 111.0.0.0/10 -j DROP
 -A INPUT -p all -s 221.176.0.0/13 -j DROP
 -A INPUT -p all -s 221.130.0.0/15 -j DROP
