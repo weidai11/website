@@ -185,10 +185,10 @@ Add a site at /etc/apache2/sites-available/cryptopp.conf.
     SSLVerifyClient none
 
     <Files ~ "\.(cgi|shtml|phtml|php3?)$">
-           SSLOptions +StdEnvVars
+        SSLOptions +StdEnvVars
     </Files>
     <Directory "/var/www/cgi-bin">
-               SSLOptions +StdEnvVars
+        SSLOptions +StdEnvVars
     </Directory>
 
   </VirtualHost>
