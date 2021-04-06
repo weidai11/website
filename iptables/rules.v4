@@ -42,10 +42,10 @@
 -A INPUT -p all -s 104.131.0.0/16 -j DROP
 -A INPUT -p all -s 128.199.0.0/16 -j DROP
 
-# Korean site.
+# Korean.
 -A INPUT -p all -s 211.36.128.0/19 -j DROP
 
-# Pakistan
+# Pakistan.
 -A INPUT -p all -s 158.108.0.0/16 -j DROP
 
 #
