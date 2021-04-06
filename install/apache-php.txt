@@ -201,7 +201,9 @@ Enable the site.
 ssl.conf
 ========
 
-No changes are made to ssl.conf.
+cryptopp.conf provides our TLS configuration. Remove the sample
+virtual host. Delete everything between <VirtualHost> and </VirtualHost>,
+including the tags.
 
 .htaccess
 =========
