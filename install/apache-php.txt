@@ -124,11 +124,18 @@ Find modsecurity.conf and verify SecRuleEngine is On:
   # SecRuleEngine DetectionOnly
   SecRuleEngine On
 
-Find the PCRE rules and change them to:
+Find the PCRE limits and change them to:
 
   # https://github.com/SpiderLabs/owasp-modsecurity-crs/issues/656
   SecPcreMatchLimit 500000
   SecPcreMatchLimitRecursion 500000
+
+Open security2.conf and disable the OWASP CRS rules
+
+  # cat /etc/apache2/mods-enabled/security2.conf
+  SecDataDir /var/cache/modsecurity
+  IncludeOptional /etc/modsecurity/*.conf
+  # IncludeOptional /usr/share/modsecurity-crs/*.load
 
 cryptopp.conf
 =============
@@ -139,7 +146,7 @@ Add a site at /etc/apache2/sites-available/cryptopp.conf.
   <VirtualHost *:80>
 
     ServerName cryptopp.com
-    ServerAlias www.cryptopp.com
+    ServerAlias www.cryptopp.com *.cryptopp.com
 
     Redirect permanent / https://cryptopp.com/
 
@@ -155,9 +162,11 @@ Add a site at /etc/apache2/sites-available/cryptopp.conf.
 
     SSLEngine on
 
-    DocumentRoot "/var/www/html"
-    ServerName www.cryptopp.com
-    ServerAlias *.cryptopp.com cryptopp.com
+    ServerName cryptopp.com
+    ServerAlias www.cryptopp.com *.cryptopp.com
+
+    ServerAdmin webmaster@cryptopp.com
+    DocumentRoot /var/www/html
 
     ErrorLog ${APACHE_LOG_DIR}/error.log
     TransferLog ${APACHE_LOG_DIR}/access.log
@@ -188,8 +197,6 @@ Enable the site.
 
   # a2ensite cryptopp
   Enabling site cryptopp.
-  To activate the new configuration, you need to run:
-    systemctl reload apache2
 
 ssl.conf
 ========
