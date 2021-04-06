@@ -4,14 +4,22 @@
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [1362:13097010]
 
+#
+# From https://help.ubuntu.com/community/IptablesHowTo
+#
+
 # Allow loopback early.
 -A INPUT -i lo -j ACCEPT
 
+#
+# Blacklist problem netblocks
+#
+
 # China Mobile permanent ban. Constant problems. Emails to abuse@ bounce.
 # This appears to be the Chinese military. Each time we banned a host another
-# drone showed up, but using a longer time interval. Attacks started at 1s
-# apart, then 2s, 5s, 30s, 5min, 10min and 30min. We banned China Mobile at
-# the 30min interval.
+# drone showed up, but using a longer time interval between attacks. Attacks
+# started at 1s apart, then 5s, 30s, 1min, 5min, 10min and 30min. We banned
+# China Mobile at the 30min interval.
 -A INPUT -p all -s 111.0.0.0/10 -j DROP
 -A INPUT -p all -s 221.176.0.0/13 -j DROP
 -A INPUT -p all -s 221.130.0.0/15 -j DROP
@@ -20,7 +28,7 @@
 # Once we banned China Mobile, attacks started from Chinanet
 -A INPUT -p all -s 222.184.0.0/13 -j DROP
 
-# And then from China Internet Network Information Center
+# And then from China Internet Network Information Center (CNNIC)
 -A INPUT -p all -s 121.4.0.0/15 -j DROP
 
 # Russian site. Emails to abuse@ bounce.
@@ -32,24 +40,35 @@
 # Korean site.
 -A INPUT -p all -s 211.36.128.0/19 -j DROP
 
-#  Allow ping
+#
+# Now on to allowed stuff
+#
+
+# Allow established sessions.
+-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+#  Allow ping.
 -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
 
-# DHCP/Bootp. Needed so we don't hang on reboot
--A INPUT -m state --state NEW,ESTABLISHED -p udp --dport 68 -j ACCEPT
+# Allow DHCP.
+-A INPUT -p udp --dport 68 -j ACCEPT
 
-# DNS replies sent over UDP.
--A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 53 -j ACCEPT
--A INPUT -m state --state NEW,ESTABLISHED -p udp --dport 53 -j ACCEPT
+# Allow DNS and replies sent over UDP.
+-A INPUT -p tcp --dport 53 -j ACCEPT
+-A INPUT -p udp --dport 53 -j ACCEPT
 
-# SFTP for Bitvise backup
+# SFTP for Bitvise backup.
 # ??? Something like https://stackoverflow.com/a/26661411,
 # but we need the client rules, not the server rules.
 
-# Always allow after the bans
--A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 22 -j ACCEPT
--A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 80 -j ACCEPT
--A INPUT -m state --state NEW,ESTABLISHED -p tcp --dport 443 -j ACCEPT
+# Allow the webserver services.
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 443 -j ACCEPT
+
+#
+# The stealth rule
+#
 
 # Drop all other traffic. Test a Bitvise backup after enabling
 # this rule due to SFTP. I have not been able to get it working...
