@@ -29,20 +29,28 @@
 -A INPUT -p all -s 218.92.0.0/16 -j DROP
 -A INPUT -p all -s 117.41.48.0/20 -j DROP
 -A INPUT -p all -s 106.119.0.0/16 -j DROP
+-A INPUT -p all -s 49.95.0.0/11 -j DROP
 
 # And then from China Internet Network Information Center (CNNIC)
 -A INPUT -p all -s 121.4.0.0/15 -j DROP
 
 # Russian site. Emails to abuse@ bounce.
 -A INPUT -p all -s 81.161.63.0/24 -j DROP
+-A INPUT -p all -s 194.165.16.0/24 -j DROP
+
+# Lithuanian
+-A INPUT -p all -s 185.36.81.0/24 -j DROP
 
 # CenturyLink. Does not respond to emails.
 -A INPUT -p all -s 97.112.0.0/12 -j DROP
 
 # Digital Ocean. Constant problems. Does not respond to emails.
+# They are as bad as the Chines Military. It looks like they are
+# working together.
 -A INPUT -p all -s 104.131.0.0/16 -j DROP
 -A INPUT -p all -s 128.199.0.0/16 -j DROP
 -A INPUT -p all -s 192.241.128.0/17 -j DROP
+-A INPUT -p all -s 68.183.0.0/16 -j DROP
 
 # Hurricane Electric. Does not respond to emails.
 -A INPUT -p all -s 65.49.0.0/17 -j DROP
@@ -52,6 +60,20 @@
 
 # Pakistan. Does not respond to emails.
 -A INPUT -p all -s 158.108.0.0/16 -j DROP
+
+# Vietnam.
+-A INPUT -p all -s 116.108.0.0/14 -j DROP
+-A INPUT -p all -s 171.224.0.0/11 -j DROP
+
+# Hong Kong
+-A INPUT -p all -s 5.188.206.0/24 -j DROP
+
+# Sweden
+-A INPUT -p all -s 185.246.128.0/22 -j DROP
+-A INPUT -p all -s 171.25.193.0/24 -j DROP
+
+# U.S.
+-A INPUT -p all -s 199.195.248.0/21 -j DROP
 
 #
 # Now on to allowed stuff
