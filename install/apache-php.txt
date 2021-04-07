@@ -104,7 +104,7 @@ incompatible with other components.
 Enable mods
 ===========
 
-Enable mod_ssl, mod_rewrite, mod_socache_shmcb and mod security2.
+Enable mod_ssl, mod_rewrite, mod_socache_shmcb and mod_security2.
 mod_socache_shmcb is used for OCSP stapling. mod_security2 is used
 for ModSecurity.
 
@@ -135,7 +135,7 @@ Find the PCRE limits and change them to:
 
 Open security2.conf and disable the OWASP CRS rules
 
-  # cat /etc/apache2/mods-enabled/security2.conf
+  # cat /etc/apache2/mods-enabled/security2.conf (modsecurity-crs):
   SecDataDir /var/cache/modsecurity
   IncludeOptional /etc/modsecurity/*.conf
   # IncludeOptional /usr/share/modsecurity-crs/*.load
@@ -200,6 +200,13 @@ ssl.conf
 cryptopp.conf provides our TLS configuration. Remove the sample
 virtual host. Delete everything between <VirtualHost> and </VirtualHost>,
 including the tags.
+
+In the global area remaining in ssl.conf, add the following for OCSP stapling.
+Add it after SSLSessionCache.
+
+# OCSP Stapling
+SSLUseStapling On
+SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(32768)
 
 .htaccess
 =========
