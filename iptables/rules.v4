@@ -44,13 +44,13 @@
 -A INPUT -p all -s 128.199.0.0/16 -j DROP
 -A INPUT -p all -s 192.241.128.0/17 -j DROP
 
-# US.
+# Hurricane Electric. Does not respond to emails.
 -A INPUT -p all -s 65.49.0.0/17 -j DROP
 
-# Korean.
+# Korean. Does not respond to emails.
 -A INPUT -p all -s 211.36.128.0/19 -j DROP
 
-# Pakistan.
+# Pakistan. Does not respond to emails.
 -A INPUT -p all -s 158.108.0.0/16 -j DROP
 
 #
