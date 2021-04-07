@@ -83,7 +83,8 @@ Ensure the following settings are set or add them if missing:
   ServerSignature Off
   ServerTokens Prod
 
-Add the following for configuration of /var/www/html using .htaccess.
+Add the following to apache2.conf. It allows /var/www/html/.htaccess
+to override configuration options.
 
   <Directory /var/www/html>
       Options Indexes FollowSymLinks
