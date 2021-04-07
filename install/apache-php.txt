@@ -134,7 +134,8 @@ Find the PCRE limits and change them to:
   SecPcreMatchLimit 500000
   SecPcreMatchLimitRecursion 500000
 
-Open security2.conf and disable the OWASP CRS rules (modsecurity-crs):
+Open security2.conf and disable the OWASP CRS rules (modsecurity-crs).
+Alternately, remove the package modsecurity-crs if present.
 
   # cat /etc/apache2/mods-enabled/security2.conf
   SecDataDir /var/cache/modsecurity
