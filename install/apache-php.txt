@@ -104,9 +104,12 @@ incompatible with other components.
 Enable mods
 ===========
 
-Enable mod_ssl and mod_rewrite
+Enable mod_ssl, mod_rewrite, mod_socache_shmcb and mod security2.
+mod_socache_shmcb is used for OCSP stapling. mod_security2 is used
+for ModSecurity.
 
   a2enmod ssl
+  a2enmod socache_shmcb
   a2enmod rewrite
   a2enmod security2
 
