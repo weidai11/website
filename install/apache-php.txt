@@ -206,7 +206,7 @@ Add it after SSLSessionCache.
 
 # OCSP Stapling
 SSLUseStapling On
-SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(32768)
+SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(8192)
 
 .htaccess
 =========
