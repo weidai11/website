@@ -234,7 +234,7 @@ Restore SQL database
 ====================
 
 Log into MySQL server with the system password. The system password is
-32-characters and starts with "cBEY".
+32-characters and starts with "cB".
 
   mysql -u root -p
   <enter password>
