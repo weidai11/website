@@ -249,8 +249,8 @@ You can remove the backup if the wiki is up and running.
 Step 18 - New Incremental system backup
 =======================================
 
-Take a new backup. update-wiki.sh upsized the database, so this
-ensures we have one good backup for current wiki,current database
+Take a new backup. Running maintenance/update.php upsized the database,
+so this ensures we have one good backup for {current wiki, current database}
 combination.
 
 1. systemctl start bitvise-backup.service
