@@ -26,6 +26,10 @@ Install Apache and PHP packages
   # Other tools needed on occasion
   # apt-get install net-tools certbot git unzip
 
+If OWASP CRS rules are installed, then remove them:
+
+  # apt-get remove modsecurity-crs
+
 Once installed the new gear is located in /bin, /etc and friends.
 
   $ ls /etc | grep -E 'apache|php|mysql'

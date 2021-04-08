@@ -68,6 +68,10 @@ Install system software
   # Other tools needed on occasion
   apt-get install net-tools certbot git unzip
 
+If OWASP CRS rules are installed, then remove them:
+
+  # apt-get remove modsecurity-crs
+
 Restore to /tmp/restore
 =======================
 
