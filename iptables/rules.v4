@@ -48,7 +48,10 @@
 -A INPUT -p all -s 115.48.0.0/12 -j DROP
 -A INPUT -p all -s 123.8.0.0/13 -j DROP
 
-# Digital Ocean. Constant problems. They are as bad as the Chines Military.
+# And more Chines attacks
+-A INPUT -p all -s 192.144.192.0/18 -j DROP
+
+# Digital Ocean. Constant problems. They are as bad as the Chinese Military.
 # It looks like they are working together.
 -A INPUT -p all -s 68.183.0.0/16 -j DROP
 -A INPUT -p all -s 104.131.0.0/16 -j DROP
@@ -63,11 +66,10 @@
 # Lithuania.
 -A INPUT -p all -s 185.36.81.0/24 -j DROP
 
-# CenturyLink.
--A INPUT -p all -s 97.112.0.0/12 -j DROP
-
-# Hurricane Electric.
--A INPUT -p all -s 65.49.0.0/17 -j DROP
+# India.
+-A INPUT -p all -s 42.111.0.0/18 -j DROP
+-A INPUT -p all -s 49.32.0.0/12 -j DROP
+-A INPUT -p all -s 103.221.77.0/24 -j DROP
 
 # OVN Hosting from Canada. Wiki spammer.
 # Another cesspool of illegal activity.
@@ -108,10 +110,23 @@
 
 # U.S.
 -A INPUT -p all -s 23.231.0.0/17 -j DROP
+-A INPUT -p all -s 45.16.0.0/12 -j DROP
+-A INPUT -p all -s 72.240.240.0/24 -j DROP
+-A INPUT -p all -s 74.72.0.0/15 -j DROP
 -A INPUT -p all -s 104.223.0.0/17 -j DROP
 -A INPUT -p all -s 104.223.32.128/25 -j DROP
 -A INPUT -p all -s 107.158.0.0/16 -j DROP
+-A INPUT -p all -s 134.228.27.0/24 -j DROP
 -A INPUT -p all -s 199.195.248.0/21 -j DROP
+
+# Microsoft.
+-A INPUT -p all -s 20.48.0.0/12 -j DROP
+
+# CenturyLink.
+-A INPUT -p all -s 97.112.0.0/12 -j DROP
+
+# Hurricane Electric.
+-A INPUT -p all -s 65.49.0.0/17 -j DROP
 
 #####################################################################
 # The good stuff...
