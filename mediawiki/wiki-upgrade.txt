@@ -33,7 +33,12 @@ performed. The incremental backup takes about 5 to 10 minutes.
 
 1. systemctl start bitvise-backup.service
 
-Step 4 - Local backup of wiki only
+Step 4 - Stop the Apache service
+================================
+
+1. systemctl stop apache2.service
+
+Step 5 - Local backup of wiki only
 ==================================
 
 Delete a previous local backup, if present. Make a local backup
@@ -44,13 +49,13 @@ can be restored quickly without the need to restore a copy
 using duplicity.
 
 1. rm -rf /var/wiki-backup
-2. cp -r /var/www/html/w /var/wiki-backup
+2. cp -rp /var/www/html/w /var/wiki-backup
 3. chown root:root /var/wiki-backup
 
 Do not skip the backup step. Later you will need LocalSettings.php
 from the local backup.
 
-Step 5 - Delete the Vendor directory
+Step 6 - Delete the Vendor directory
 ====================================
 
 Delete the current vendor directory. It holds code and tools for
@@ -59,7 +64,7 @@ be installed using Composer.
 
 1. rm -rf /var/www/html/w/vendor/*
 
-Step 6 - Install latest Mediawiki
+Step 7 - Install latest Mediawiki
 =================================
 
 Clear old artifacts from /tmp:
@@ -88,21 +93,20 @@ It is OK to delete the artifacts in /tmp:
 
 8. rm -rf /tmp/mediawiki* /tmp/w/
 
-Step 7 - Install Composer
+Step 8 - Install Composer
 =========================
 
-# This gets an old Composer with dependencies.
-# Red Hat SCL does not supply an updated composer.
+# This gets Composer with dependencies.
 
 1. apt-get -y install composer
 2. hash -r
 3. Copy the list of dependencies
 
-Step (1) is dangerous. Composer is a developer tool that brings
+Step (8.1) is dangerous. Composer is a developer tool that brings
 in 30+ dependencies. Composer and friends require unsafe functions.
 They must be removed after the Mediawiki upgrade.
 
-Step 8 - Disable server hardening
+Step 9 - Disable server hardening
 =================================
 
 Composer needs access to directories and functions we have disabled.
@@ -116,10 +120,10 @@ Temporarily re-enable them for Composer.
    - allow_url_include=On
    - disable_functions=<none>
 
-Step (1) is dangerous. It allows many popular attack vectors.
+Step (9.1) is dangerous. It allows many popular attack vectors.
 This change must be undone after Composer has been run.
 
-Step 9 - Update Mediawiki dependencies
+Step 10 - Update Mediawiki dependencies
 ======================================
 
 Use Composer to update Mediawiki dependencies. This is needed
@@ -132,7 +136,7 @@ our installation. I think composer is too old.
 1. cd /var/www/html/w/
 2. php -d extension=phar.so composer.phar update
 
-Step (2) is dangerous. It runs Composer as root, and does not
+Step (10.2) is dangerous. It runs Composer as root, and does not
 disable plugins or scripts in the third-party projects. The
 third-party projects effectively have full control over
 the web server and virtual machine.
@@ -141,7 +145,7 @@ If you experience errors in vendor/ then revisit Step (5).
 Step (5) deletes the old vendor/ directory in preparation
 for the Composer updates.
 
-Step 10 - Restore LocalSettings.php
+Step 11 - Restore LocalSettings.php
 ===================================
 
 The backup of LocalSettings.php is in /var/wiki-backup.
@@ -155,7 +159,7 @@ Note: Mediawiki does not provide a LocalSettings.php in the
 tarball. You have to use the existing LocalSettings.php that
 was backed up in Step 4.
 
-Step 11 - Database maintenance
+Step 12 - Database maintenance
 ==============================
 
 We are now at the point of no return. Prior to this point
@@ -173,34 +177,6 @@ If update.php succeeds, then the migration is mostly complete.
 If update.php fails, then fix the errors until it succeeds. If it
 still fails, then you have to go back to the old installation located
 in /var/wiki-backup.
-
-Step 12 - Update for new Mediawiki
-==================================
-
-update-wiki.sh is our tool to perform additional updates on the wiki.
-Each time we run 'yum update' we also run update-wiki.sh.
-
-update-wiki.sh updates extensions and skins on a regular basis. It
-also fixes file permissions on files from the tarball, skins and
-extensions. The file permissions are always screwed up, like PHP files
-without the eXecute bit, and JPEG files with the eXecute bit.
-
-update-wiki.sh is available in this GitHub repo.
-
-1. Open update-wiki.sh
-2. Change WIKI_REL=REL1_35 to appropriate version
-3. Change PHP_BIN=/usr/bin/php as needed
-
-And then:
-
-4. bash /var/www/html/w/update-wiki.sh
-
-update-wiki.sh also restarts MySQL and Apache.
-
-At this point you should be able to test the installation by
-visiting Special:Version wiki page:
-
-5. https://www.cryptopp.com/wiki/Special:Version
 
 Step 13 - Restore server hardening
 ==================================
@@ -230,7 +206,42 @@ produced by CentOS 7 during install:
 3. apt-get autoclean
 4. apt-get autoremove
 
-Step 15 - Clean backup
+Step 15 - Start the Apache service
+==================================
+
+1. systemctl start apache2.service
+
+Step 16 - Update for new Mediawiki
+==================================
+
+update-wiki.sh is our tool to perform additional updates on the wiki.
+Each time we run 'yum update' we also run update-wiki.sh.
+
+update-wiki.sh updates extensions and skins on a regular basis. It
+also fixes file permissions on files from the tarball, skins and
+extensions. The file permissions are always screwed up, like PHP files
+without the eXecute bit, and JPEG files with the eXecute bit.
+
+update-wiki.sh is available in this GitHub repo.
+
+1. Open update-wiki.sh
+2. Change WIKI_REL=REL1_35 to appropriate version
+3. Change PHP_BIN=/usr/bin/php as needed
+
+And then:
+
+4. bash /var/www/html/w/update-wiki.sh
+
+update-wiki.sh also restarts MySQL and Apache.
+
+At this point you should be able to test the installation by
+visiting Special:Version wiki page:
+
+5. https://www.cryptopp.com/wiki/Special:Version
+
+Step 17 - Clean backup
 ======================
+
+You can remove the backup if the wiki is up and running.
 
 1. rm -rf /var/wiki-backup/
