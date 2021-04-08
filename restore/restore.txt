@@ -12,6 +12,7 @@ it is mostly copy and paste.
 * create users and accounts
 * install system software
 * restore to /tmp/restore
+* restore Iptables config
 * restore OpenSSH config
 * restore Home directories
 * restore Web server config
@@ -81,6 +82,13 @@ After the command completes the restored filesystem is available at
 
 Note well: /tmp is cleaned upon reboot, so get what you need before you bounce
 the server.
+
+Restore Iptables
+================
+
+  cp -p etc/iptables/* /etc/iptables/
+
+  systemctl restart iptables
 
 Restore OpenSSH config
 ======================
