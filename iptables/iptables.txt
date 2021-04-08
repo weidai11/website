@@ -17,9 +17,12 @@ information for the host:
   inetnum:        31.210.20.0 - 31.210.21.255
   route:          31.210.20.0/24
 
+If the netblock is missing, then visit https://ipinfo.io/. IpInfo should be
+able to provide the missing information.
+
 Second, send an email to the Whois contacts and inform them the netblock is
 being banned. Tell them the ban will be lifted if they tend to their
-misbehaving host.
+misbehaving host and fix their network monitoring.
 
   $ whois 31.210.20.203 | grep '@'
   % Abuse contact for '31.210.20.0 - 31.210.21.255' is 'abuse@serverion.com'
@@ -27,20 +30,25 @@ misbehaving host.
 
 Don't worry if you don't receive a response. Accurate administrative and
 technical contact information is an ICANN contractual requirement. It is the
-site's responsibility to provide accurate information.
+organization's responsibility to provide accurate information.
 
-Third, open /etc/iptables/rules.v4 and ban the block. Add the block before
-traffic is accepted. I.e., place the Deny rule before the Allow rules.
+Third, open /etc/iptables/rules.v4 and ban the netblock. Add the netblock
+before traffic is accepted. I.e., place the Deny rule before the Allow rules.
 
   # Constant probes by hosts in the Netherlands
   -A INPUT -p all -s 31.210.20.0/24 -j DROP
 
-China Mobile is a constant source of problems. After we reported several
-problem hosts to the company, China Mobile blocked our emails to abuse@
-by bouncing our emails. China Mobile has a permanent ban:
+China Mobile, Chinanet and Digital Ocean are a constant source of problems.
+After we reported several problem hosts to China Mobile, China Mobile blocked
+our reports to abuse@ by bouncing our emails.
+
+China Mobile has a permanent ban:
 
   # Permanent ban from China Mobile (AS9808)
+  -A INPUT -p all -s 111.0.0.0/10 -j DROP
   -A INPUT -p all -s 221.176.0.0/13 -j DROP
+  -A INPUT -p all -s 221.130.0.0/15 -j DROP
+  -A INPUT -p all -s 223.119.255.0/24 -j DROP
 
 After adding a network reload iptables:
 
