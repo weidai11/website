@@ -2,11 +2,7 @@ Installing a new version of Mediawiki sucks for a several reasons.
 First, we have to disable some of our security hardening and re-enable
 it later. Second, we have to install a bunch of developer tools and
 then remove them. Third, Mediawiki uses bleeding edge components but
-CentOS provides antique software.
-
-The Crypto++ VM has some updated components from Red Hat SCL, like
-an updated Apache, Python and PHP. Other components are not available
-from the SCL, like an updated Composer.
+some OSes provide older software.
 
 You should set aside about 30 minutes to one hour for the migration.
 The process itself is copy/paste and should take about 10 minutes
