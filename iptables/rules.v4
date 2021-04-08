@@ -6,6 +6,7 @@
 
 #
 # From https://help.ubuntu.com/community/IptablesHowTo
+# To lookup netblocks, visit https://ipinfo.io.
 #
 
 # Allow loopback early.
@@ -45,10 +46,11 @@
 -A INPUT -p all -s 97.112.0.0/12 -j DROP
 
 # Digital Ocean. Constant problems. Does not respond to emails.
-# Digital Ocean are as bad as the Chines Military. It looks
-# like they are working together.
+# They are as bad as the Chines Military. It looks like they are
+# working together.
 -A INPUT -p all -s 104.131.0.0/16 -j DROP
 -A INPUT -p all -s 128.199.0.0/16 -j DROP
+-A INPUT -p all -s 157.230.128.0/20 -j DROP
 -A INPUT -p all -s 192.241.128.0/17 -j DROP
 -A INPUT -p all -s 68.183.0.0/16 -j DROP
 
@@ -61,18 +63,24 @@
 # Pakistan. Does not respond to emails.
 -A INPUT -p all -s 158.108.0.0/16 -j DROP
 
-# Vietnam. Does not respond to emails.
+# Vietnam.
 -A INPUT -p all -s 116.108.0.0/14 -j DROP
 -A INPUT -p all -s 171.224.0.0/11 -j DROP
 
-# Hong Kong. Does not respond to emails.
+# Hong Kong
 -A INPUT -p all -s 5.188.206.0/24 -j DROP
 
-# Sweden. Does not respond to emails.
+# Phillipines
+-A INPUT -p all -s 122.54.192.0/19 -j DROP
+
+# Thailand
+-A INPUT -p all -s 103.10.228.0/24 -j DROP
+
+# Sweden
 -A INPUT -p all -s 185.246.128.0/22 -j DROP
 -A INPUT -p all -s 171.25.193.0/24 -j DROP
 
-# U.S. Does not respond to emails.
+# U.S.
 -A INPUT -p all -s 199.195.248.0/21 -j DROP
 
 #
