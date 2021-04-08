@@ -36,6 +36,7 @@
 -A INPUT -p all -s 49.95.0.0/11 -j DROP
 -A INPUT -p all -s 106.119.0.0/16 -j DROP
 -A INPUT -p all -s 117.41.48.0/20 -j DROP
+-A INPUT -p all -s 118.112.0.0/13 -j DROP
 -A INPUT -p all -s 124.236.0.0/14 -j DROP
 -A INPUT -p all -s 222.184.0.0/13 -j DROP
 -A INPUT -p all -s 218.92.0.0/16 -j DROP
@@ -68,7 +69,8 @@
 # Hurricane Electric.
 -A INPUT -p all -s 65.49.0.0/17 -j DROP
 
-#OVN Hosting. Wiki spammer. Another cesspool of illegal activity.
+# OVN Hosting from Canada. Wiki spammer.
+# Another cesspool of illegal activity.
 -A INPUT -p all -s 158.69.0.0/16 -j DROP
 
 # Germany. Wiki spammer.
