@@ -62,7 +62,7 @@ be installed using Composer.
 Step 6 - Install latest Mediawiki
 =================================
 
-Clear old artifacts:
+Clear old artifacts from /tmp:
 
 1. rm -rf /tmp/mediawiki* /tmp/w/
 
