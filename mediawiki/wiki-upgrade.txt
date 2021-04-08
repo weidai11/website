@@ -31,7 +31,7 @@ This step performs a system backup using duplicity. The backups
 are usually incremental. Every three months a full backup is
 performed. The incremental backup takes about 20 to 25 minutes.
 
-1. /usr/sbin/bitvise-backup
+1. systemctl start bitvise-backup.service
 
 Step 4 - Local backup of wiki only
 ==================================
