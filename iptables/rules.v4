@@ -4,21 +4,21 @@
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [1362:13097010]
 
-#
+#####################################################################
 # From https://help.ubuntu.com/community/IptablesHowTo
 # To lookup netblocks, visit https://ipinfo.io.
 #
 # All the networks on this list fail to respond to email
 # reports. They will be permanent bans unless the network
 # operator contacts us.
-#
+#####################################################################
 
 # Allow loopback early.
 -A INPUT -i lo -j ACCEPT
 
-#
-# Blacklist problem netblocks
-#
+#####################################################################
+# Blacklist problem networks
+#####################################################################
 
 # China Mobile permanent ban. Constant problems. Emails to abuse@ bounce.
 # This appears to be the Chinese military. Each time we banned a host another
@@ -113,9 +113,9 @@
 -A INPUT -p all -s 107.158.0.0/16 -j DROP
 -A INPUT -p all -s 199.195.248.0/21 -j DROP
 
-#
-# Now on to allowed stuff
-#
+#####################################################################
+# The good stuff...
+#####################################################################
 
 # Allow established sessions.
 -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
@@ -139,9 +139,9 @@
 -A INPUT -p tcp --dport 80 -j ACCEPT
 -A INPUT -p tcp --dport 443 -j ACCEPT
 
-#
+#####################################################################
 # The stealth rule
-#
+#####################################################################
 
 # Drop all other traffic. Test a Bitvise backup after enabling
 # this rule due to SFTP. I have not been able to get it working...
