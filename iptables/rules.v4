@@ -25,6 +25,7 @@
 # drone showed up, but using a longer time interval between attacks. Attacks
 # started at 1s apart, then 5s, 30s, 1min, 5min, 10min and 30min.
 -A INPUT -p all -s 111.0.0.0/10 -j DROP
+-A INPUT -p all -s 183.192.0.0/10 -j DROP
 -A INPUT -p all -s 183.197.0.0/17 -j DROP
 -A INPUT -p all -s 221.130.0.0/15 -j DROP
 -A INPUT -p all -s 221.176.0.0/13 -j DROP
@@ -70,6 +71,10 @@
 #OVN Hosting. Wiki spammer. Another cesspool of illegal activity.
 -A INPUT -p all -s 158.69.0.0/16 -j DROP
 
+# Germany. Wiki spammer.
+-A INPUT -p all -s 154.16.20.0/24 -j DROP
+-A INPUT -p all -s 173.44.164.0/22 -j DROP
+
 # Hungary. Wiki spammer.
 -A INPUT -p all -s 185.189.114.0/24 -j DROP
 
@@ -78,6 +83,9 @@
 
 # Pakistan.
 -A INPUT -p all -s 158.108.0.0/16 -j DROP
+
+# Poland.
+-A INPUT -p all -s 5.133.11.116/30 -j DROP
 
 # Vietnam.
 -A INPUT -p all -s 116.108.0.0/14 -j DROP
@@ -97,8 +105,11 @@
 -A INPUT -p all -s 171.25.193.0/24 -j DROP
 
 # U.S.
--A INPUT -p all -s 199.195.248.0/21 -j DROP
+-A INPUT -p all -s 23.231.0.0/17 -j DROP
 -A INPUT -p all -s 104.223.0.0/17 -j DROP
+-A INPUT -p all -s 104.223.32.128/25 -j DROP
+-A INPUT -p all -s 107.158.0.0/16 -j DROP
+-A INPUT -p all -s 199.195.248.0/21 -j DROP
 
 #
 # Now on to allowed stuff
