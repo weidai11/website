@@ -49,7 +49,7 @@
 -A INPUT -p all -s 115.48.0.0/12 -j DROP
 -A INPUT -p all -s 123.8.0.0/13 -j DROP
 
-# And more Chinese attacks
+# And more Chines attacks
 -A INPUT -p all -s 129.211.160.0/20 -j DROP
 -A INPUT -p all -s 192.144.192.0/18 -j DROP
 
@@ -84,6 +84,9 @@
 # OVN Hosting from Canada. Wiki spammer.
 # Another cesspool of illegal activity.
 -A INPUT -p all -s 158.69.0.0/16 -j DROP
+
+# Czechoslovakia. WordPress break-ins.
+-A INPUT -p all -s 194.228.20.0/24 -j DROP
 
 # Germany. Wiki spammer.
 -A INPUT -p all -s 154.16.20.0/24 -j DROP
