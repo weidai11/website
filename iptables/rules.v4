@@ -48,7 +48,8 @@
 -A INPUT -p all -s 115.48.0.0/12 -j DROP
 -A INPUT -p all -s 123.8.0.0/13 -j DROP
 
-# And more Chines attacks
+# And more Chinese attacks
+-A INPUT -p all -s 129.211.160.0/20 -j DROP
 -A INPUT -p all -s 192.144.192.0/18 -j DROP
 
 # Digital Ocean. Constant problems. They are as bad as the Chinese Military.
@@ -56,8 +57,13 @@
 -A INPUT -p all -s 68.183.0.0/16 -j DROP
 -A INPUT -p all -s 104.131.0.0/16 -j DROP
 -A INPUT -p all -s 128.199.0.0/16 -j DROP
+-A INPUT -p all -s 142.93.0.0/16 -j DROP
 -A INPUT -p all -s 157.230.128.0/20 -j DROP
 -A INPUT -p all -s 192.241.128.0/17 -j DROP
+
+
+# Egypt.
+-A INPUT -p all -s 45.240.0.0/13 -j DROP
 
 # Russian site. Emails to abuse@ bounce.
 -A INPUT -p all -s 81.161.63.0/24 -j DROP
@@ -69,6 +75,7 @@
 # India.
 -A INPUT -p all -s 42.111.0.0/18 -j DROP
 -A INPUT -p all -s 49.32.0.0/12 -j DROP
+-A INPUT -p all -s 103.161.98.0/23 -j DROP
 -A INPUT -p all -s 103.221.77.0/24 -j DROP
 
 # OVN Hosting from Canada. Wiki spammer.
@@ -85,8 +92,15 @@
 # Korean.
 -A INPUT -p all -s 211.36.128.0/19 -j DROP
 
+# Mexico. Apache break-ins.
+-A INPUT -p all -s 187.189.197.0/24 -j DROP
+
+# Spain. Apache break-ins.
+-A INPUT -p all -s 83.53.0.0/16 -j DROP
+
 # Pakistan.
 -A INPUT -p all -s 158.108.0.0/16 -j DROP
+-A INPUT -p all -s 175.107.228.0/22 -j DROP
 
 # Poland.
 -A INPUT -p all -s 5.133.11.116/30 -j DROP
@@ -121,6 +135,7 @@
 
 # Microsoft.
 -A INPUT -p all -s 20.48.0.0/12 -j DROP
+-A INPUT -p all -s 52.160.0.0/11 -j DROP
 
 # CenturyLink.
 -A INPUT -p all -s 97.112.0.0/12 -j DROP
