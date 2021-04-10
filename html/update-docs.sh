@@ -64,7 +64,7 @@ cd "${www_directory}/docs"
 # rm -f ref
 unlink ref/ 2>/dev/null
 mkdir -p "${ref_dir}"
-ln -s "${ref_dir}" ref
+ln -s ref "${ref_dir}"
 
 echo "Unpacking documentation"
 unzip -aoq CryptoPPRef.zip -d .
