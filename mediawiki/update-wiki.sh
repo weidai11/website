@@ -82,9 +82,9 @@ else
     exit 1
 fi
 
-echo "Apache ownership: ${red_color}${user_group}${no_color}"
-echo "Apache service: ${red_color}${apache_service}${no_color}"
-echo "MySQL service: ${red_color}${mysql_service}${no_color}"
+echo -e "Apache ownership: ${red_color}${user_group}${no_color}"
+echo -e "Apache service: ${red_color}${apache_service}${no_color}"
+echo -e "MySQL service: ${red_color}${mysql_service}${no_color}"
 
 # Set ownership of the Web server files
 chown -R ${user_group} "${html_dir}"
