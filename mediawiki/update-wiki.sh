@@ -46,11 +46,11 @@ fi
 
 # Red Hat uses root:apache, Debian uses root:www-data
 if grep -q www-data /etc/group; then
-    user_group="root:www-data"
+    apache_owner="root:www-data"
 elif grep -q apache2 /etc/group; then
-    user_group="root:apache2"
+    apache_owner="root:apache2"
 elif grep -q apache /etc/group; then
-    user_group="root:apache"
+    apache_owner="root:apache"
 else
     echo "user:group name error"
     exit 1
@@ -82,12 +82,13 @@ else
     exit 1
 fi
 
-echo -e "Apache ownership: ${red_color}${user_group}${no_color}"
+echo -e "Apache ownership: ${red_color}${apache_owner}${no_color}"
 echo -e "Apache service: ${red_color}${apache_service}${no_color}"
 echo -e "MySQL service: ${red_color}${mysql_service}${no_color}"
 
 # Set ownership of the Web server files
-chown -R ${user_group} "${html_dir}"
+echo -e "${green_color}Setting Webserver ownership${no_color}"
+chown -R ${apache_owner} "${html_dir}"
 
 # This finds directories check'd out from Git and updates them.
 # It works surprisingly well. There have only been a couple of
@@ -134,7 +135,7 @@ done
 
 # Set ownership of the Mediawiki files. The git checkout may upset ownership.
 echo -e "${green_color}Setting MediaWiki ownership${no_color}"
-chown -R ${user_group} "${wiki_dir}"
+chown -R ${apache_owner} "${wiki_dir}"
 
 # Remove all developer gear in production. We are not PHP developers.
 # Don't use a wildcard on 'dev'. It matches 'Device' and breaks MobileFrontEnd.
