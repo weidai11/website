@@ -132,34 +132,40 @@ do
 done
 
 # Set ownership of the Mediawiki files. The git checkout may upset ownership.
+echo -e "${green_color}Setting MediaWiki ownership${no_color}"
 chown -R ${user_group} "${wiki_dir}"
 
 # Remove all developer gear in production. We are not PHP developers.
 # Don't use a wildcard on 'dev'. It matches 'Device' and breaks MobileFrontEnd.
+echo -e "${green_color}Removing Mediawiki dev gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'dev' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all test frameworks in production. We are not PHP developers.
+echo -e "${green_color}Removing Mediawiki test gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'test*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all benchmark frameworks in production. We are not PHP developers.
+echo -e "${green_color}Removing Mediawiki benchmark gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'benchmark*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all docs in production. No need to back them up.
+echo -e "${green_color}Removing Mediawiki documentation${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'doc*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
 done
 
 # Remove all screenshots in production. No need to back them up.
+echo -e "${green_color}Removing Mediawiki screenshots${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'screenshot*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
@@ -212,6 +218,12 @@ do
     fi
 done
 
+# Cleanup backup files
+echo -e "${green_color}Cleaning backup files${no_color}"
+find /var/www -name '*~' -exec rm {} \;
+find /opt -name '*~' -exec rm {} \;
+find /etc -name '*~' -exec rm {} \;
+
 # Make sure MySQL is running for update.php. It is a chronic
 # problem because the Linux OOM killer targets mysqld.
 echo -e "${green_color}Restarting MySQL service${no_color}"
@@ -235,11 +247,5 @@ if ! systemctl restart ${apache_service}; then
     systemctl stop ${apache_service} 2>/dev/null
     systemctl start ${apache_service}
 fi
-
-# Cleanup backup files
-echo -e "${green_color}Cleaning backup files${no_color}"
-find /var/www -name '*~' -exec rm {} \;
-find /opt -name '*~' -exec rm {} \;
-find /etc -name '*~' -exec rm {} \;
 
 exit 0
