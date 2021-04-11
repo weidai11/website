@@ -23,6 +23,7 @@ wiki_rel=REL1_35
 php_bin=/usr/bin/php
 
 # Pretty print
+red_color='\033[0;31m'
 green_color='\033[0;32m'
 no_color='\033[0m'
 
@@ -81,9 +82,9 @@ else
     exit 1
 fi
 
-echo "Apache ownership: ${user_group}"
-echo "Apache service: ${apache_service}"
-echo "MySQL service: ${mysql_service}"
+echo "Apache ownership: ${red_color}${user_group}${no_color}"
+echo "Apache service: ${red_color}${apache_service}${no_color}"
+echo "MySQL service: ${red_color}${mysql_service}${no_color}"
 
 # Set ownership of the Web server files
 chown -R ${user_group} "${html_dir}"
@@ -95,7 +96,7 @@ IFS= find "${wiki_dir}/skins" -type d -name '.git' -print | while read -r dir
 do
     cd "$dir/.." || continue
     skin="$(basename ${dir::-4})"
-    echo -e "${green_color}Updating ${skin}${no_color}"
+    echo -e "${green_color}Updating skin ${skin}${no_color}"
 
     if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
     then
@@ -115,7 +116,7 @@ IFS= find "${wiki_dir}/extensions" -type d -name '.git' -print | while read -r d
 do
     cd "$dir/.." || continue
     extension="$(basename ${dir::-4})"
-    echo -e "${green_color}Updating ${extension}${no_color}"
+    echo -e "${green_color}Updating extension ${extension}${no_color}"
 
     if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
     then
@@ -196,7 +197,7 @@ done
 
 # images/ must be writable by Apache. This is the upload
 # directory, and the directory where thumbnails are created.
-echo -e "${green_color}Setting MediaWiki images/ permissions${no_color}"
+echo -e "${green_color}Setting MediaWiki images permissions${no_color}"
 IFS= find "${wiki_dir}/images" -type d | while read -r dir
 do
     chmod ug=rwx,o= "$dir"
