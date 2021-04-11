@@ -238,7 +238,7 @@ fi
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 echo -e "${green_color}Running update.php${no_color}"
-"${php_bin}" "${wiki_dir}/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki"
+"${php_bin}" "${wiki_dir}/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki" | head -n 1
 
 echo -e "${green_color}Restarting Apache service${no_color}"
 if ! systemctl restart ${apache_service}; then
