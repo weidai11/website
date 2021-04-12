@@ -149,6 +149,13 @@ do
     rm -rf "$dir" 2>/dev/null
 done
 
+# Remove all demos in production. We are not PHP developers.
+echo -e "${green_color}Removing Mediawiki test gear${no_color}"
+IFS= find "${wiki_dir}" -type d -iname 'demos*' -print | while read -r dir
+do
+    rm -rf "$dir" 2>/dev/null
+done
+
 # Remove all test frameworks in production. We are not PHP developers.
 echo -e "${green_color}Removing Mediawiki test gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'test*' -print | while read -r dir
