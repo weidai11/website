@@ -106,7 +106,7 @@ do
     else
         # Some GitHubs don't follow Mediawiki conventions.
         # They lack a branch like REL1_32, REL1_35, etc.
-        git fetch origin && git reset --hard origin&& git clean -xdf
+        git fetch origin && git reset --hard origin && git clean -xdf
     fi
 
     # Cleanup
@@ -129,7 +129,7 @@ do
     else
         # Some GitHubs don't follow Mediawiki conventions.
         # They lack a branch like REL1_32, REL1_35, etc.
-        git fetch origin && git reset --hard origin&& git clean -xdf
+        git fetch origin && git reset --hard origin && git clean -xdf
     fi
 
     # Cleanup
