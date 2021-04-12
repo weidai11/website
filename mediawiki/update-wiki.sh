@@ -150,7 +150,7 @@ do
 done
 
 # Remove all demos in production. We are not PHP developers.
-echo -e "${green_color}Removing Mediawiki test gear${no_color}"
+echo -e "${green_color}Removing Mediawiki demo gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'demos*' -print | while read -r dir
 do
     rm -rf "$dir" 2>/dev/null
