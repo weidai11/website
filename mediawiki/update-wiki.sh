@@ -92,48 +92,56 @@ echo -e "MySQL service: ${cyan_color}${mysql_service}${no_color}"
 # minor problems.
 IFS= find "${wiki_dir}/skins" -type d -name '.git' -print | while read -r dir
 do
-    cd "$dir/.." || continue
     skin="$(basename ${dir::-4})"
     echo -e "${green_color}Updating skin ${skin}${no_color}"
 
-    if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
-    then
-        # Some GitHubs have both branch and tag with same name.
-        # Hence the 'git tag -d'.
-        git fetch origin && git reset --hard "origin/${wiki_rel}" && \
-          git tag -d "${wiki_rel}" 2>/dev/null && \
-          git checkout -f "${wiki_rel}" && git clean -xdf
-    else
-        # Some GitHubs don't follow Mediawiki conventions.
-        # They lack a branch like REL1_32, REL1_35, etc.
-        git fetch origin && git reset --hard origin && git clean -xdf
-    fi
+    # Run in a subshell
+    (
+        cd "${wiki_dir}/skins/${skin}" || continue
 
-    # Cleanup
-    git fetch --prune >/dev/null 2>&1
+        if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
+        then
+            # Some GitHubs have both branch and tag with same name.
+            # Hence the 'git tag -d'.
+            git fetch origin && git reset --hard "origin/${wiki_rel}" && \
+              git tag -d "${wiki_rel}" 2>/dev/null && \
+              git checkout -f "${wiki_rel}" && git clean -xdf
+        else
+            # Some GitHubs don't follow Mediawiki conventions.
+            # They lack a branch like REL1_32, REL1_35, etc.
+            git fetch origin && git reset --hard origin && git clean -xdf
+        fi
+
+        # Cleanup
+        git fetch --prune >/dev/null 2>&1
+    )
 done
 
 IFS= find "${wiki_dir}/extensions" -type d -name '.git' -print | while read -r dir
 do
-    cd "$dir/.." || continue
     extension="$(basename ${dir::-4})"
     echo -e "${green_color}Updating extension ${extension}${no_color}"
 
-    if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
-    then
-        # Some GitHubs have both branch and tag with same name.
-        # Hence the 'git tag -d'.
-        git fetch origin && git reset --hard "origin/${wiki_rel}" && \
-          git tag -d "${wiki_rel}" 2>/dev/null && \
-          git checkout -f "${wiki_rel}" && git clean -xdf
-    else
-        # Some GitHubs don't follow Mediawiki conventions.
-        # They lack a branch like REL1_32, REL1_35, etc.
-        git fetch origin && git reset --hard origin && git clean -xdf
-    fi
+    # Run in a subshell
+    (
+        cd "${wiki_dir}/extensions/${extension}" || continue
 
-    # Cleanup
-    git fetch --prune >/dev/null 2>&1
+        if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
+        then
+            # Some GitHubs have both branch and tag with same name.
+            # Hence the 'git tag -d'.
+            git fetch origin && git reset --hard "origin/${wiki_rel}" && \
+              git tag -d "${wiki_rel}" 2>/dev/null && \
+              git checkout -f "${wiki_rel}" && git clean -xdf
+        else
+            # Some GitHubs don't follow Mediawiki conventions.
+            # They lack a branch like REL1_32, REL1_35, etc.
+            git fetch origin && git reset --hard origin && git clean -xdf
+        fi
+
+        # Cleanup
+        git fetch --prune >/dev/null 2>&1
+    )
 done
 
 # Set ownership of the Webserver and Mediawiki files.
