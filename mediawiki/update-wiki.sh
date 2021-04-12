@@ -98,6 +98,9 @@ do
 
     if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
     then
+        # Some GitHubs have both branch and tag with same name.
+        git tag -d "${wiki_rel}" 2>/dev/null
+        # Fetch the latest files
         git fetch origin && git reset --hard "origin/${wiki_rel}" && \
           git checkout -f "${wiki_rel}" && git pull && git clean -xdf
     else
@@ -118,6 +121,9 @@ do
 
     if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
     then
+        # Some GitHubs have both branch and tag with same name.
+        git tag -d "${wiki_rel}" 2>/dev/null
+        # Fetch the latest files
         git fetch origin && git reset --hard "origin/${wiki_rel}" && \
           git checkout -f "${wiki_rel}" && git pull && git clean -xdf
     else
