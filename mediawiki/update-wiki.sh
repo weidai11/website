@@ -99,14 +99,14 @@ do
     if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
     then
         # Some GitHubs have both branch and tag with same name.
-        git tag -d "${wiki_rel}" 2>/dev/null
-        # Fetch the latest files
+        # Hence the 'git tag -d'.
         git fetch origin && git reset --hard "origin/${wiki_rel}" && \
-          git checkout -f "${wiki_rel}" && git pull && git clean -xdf
+          git tag -d "${wiki_rel}" 2>/dev/null && \
+          git checkout -f "${wiki_rel}" && git clean -xdf
     else
         # Some GitHubs don't follow Mediawiki conventions.
         # They lack a branch like REL1_32, REL1_35, etc.
-        git reset --hard origin && git pull && git clean -xdf
+        git fetch origin && git reset --hard origin&& git clean -xdf
     fi
 
     # Cleanup
@@ -122,14 +122,14 @@ do
     if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
     then
         # Some GitHubs have both branch and tag with same name.
-        git tag -d "${wiki_rel}" 2>/dev/null
-        # Fetch the latest files
+        # Hence the 'git tag -d'.
         git fetch origin && git reset --hard "origin/${wiki_rel}" && \
-          git checkout -f "${wiki_rel}" && git pull && git clean -xdf
+          git tag -d "${wiki_rel}" 2>/dev/null && \
+          git checkout -f "${wiki_rel}" && git clean -xdf
     else
         # Some GitHubs don't follow Mediawiki conventions.
         # They lack a branch like REL1_32, REL1_35, etc.
-        git reset --hard origin && git pull && git clean -xdf
+        git fetch origin && git reset --hard origin&& git clean -xdf
     fi
 
     # Cleanup
