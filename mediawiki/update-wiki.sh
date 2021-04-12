@@ -92,12 +92,14 @@ echo -e "MySQL service: ${cyan_color}${mysql_service}${no_color}"
 # minor problems.
 IFS= find "${wiki_dir}/skins" -type d -name '.git' -print | while read -r dir
 do
-    skin="$(basename ${dir::-4})"
+    # Strip '.git'
+    dir="$(dirname  ${dir})"
+    skin="$(basename ${dir})"
     echo -e "${green_color}Updating skin ${skin}${no_color}"
 
     # Run in a subshell
     (
-        cd "${wiki_dir}/skins/${skin}" || continue
+        cd "${dir}" || continue
 
         if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
         then
@@ -119,12 +121,14 @@ done
 
 IFS= find "${wiki_dir}/extensions" -type d -name '.git' -print | while read -r dir
 do
-    extension="$(basename ${dir::-4})"
+    # Strip '.git'
+    dir="$(dirname  ${dir})"
+    extension="$(basename ${dir})"
     echo -e "${green_color}Updating extension ${extension}${no_color}"
 
     # Run in a subshell
     (
-        cd "${wiki_dir}/extensions/${extension}" || continue
+        cd "${dir}" || continue
 
         if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
         then
