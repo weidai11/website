@@ -99,6 +99,7 @@ do
 
     # Run in a subshell
     (
+        echo "Entering ${dir}"
         cd "${dir}" || continue
 
         if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
@@ -128,6 +129,7 @@ do
 
     # Run in a subshell
     (
+        echo "Entering ${dir}"
         cd "${dir}" || continue
 
         if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
