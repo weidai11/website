@@ -86,10 +86,6 @@ echo -e "Apache ownership: ${red_color}${apache_owner}${no_color}"
 echo -e "Apache service: ${red_color}${apache_service}${no_color}"
 echo -e "MySQL service: ${red_color}${mysql_service}${no_color}"
 
-# Set ownership of the Web server files
-echo -e "${green_color}Setting Webserver ownership${no_color}"
-chown -R ${apache_owner} "${html_dir}"
-
 # This finds directories check'd out from Git and updates them.
 # It works surprisingly well. There have only been a couple of
 # minor problems.
@@ -133,9 +129,10 @@ do
     git fetch --prune >/dev/null 2>&1
 done
 
-# Set ownership of the Mediawiki files. The git checkout may upset ownership.
-echo -e "${green_color}Setting MediaWiki ownership${no_color}"
-chown -R ${apache_owner} "${wiki_dir}"
+# Set ownership of the Webserver and Mediawiki files.
+# The git checkout may upset ownership.
+echo -e "${green_color}Setting Webserver ownership${no_color}"
+chown -R ${apache_owner} "${html_dir}"
 
 # Remove all developer gear in production. We are not PHP developers.
 # Don't use a wildcard on 'dev'. It matches 'Device' and breaks MobileFrontEnd.
