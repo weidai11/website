@@ -24,6 +24,7 @@ php_bin=/usr/bin/php
 
 # Pretty print
 red_color='\033[0;31m'
+cyan_color='\033[0;36m'
 green_color='\033[0;32m'
 no_color='\033[0m'
 
@@ -82,9 +83,9 @@ else
     exit 1
 fi
 
-echo -e "Apache ownership: ${red_color}${apache_owner}${no_color}"
-echo -e "Apache service: ${red_color}${apache_service}${no_color}"
-echo -e "MySQL service: ${red_color}${mysql_service}${no_color}"
+echo -e "Apache ownership: ${cyan_color}${apache_owner}${no_color}"
+echo -e "Apache service: ${cyan_color}${apache_service}${no_color}"
+echo -e "MySQL service: ${cyan_color}${mysql_service}${no_color}"
 
 # This finds directories check'd out from Git and updates them.
 # It works surprisingly well. There have only been a couple of
