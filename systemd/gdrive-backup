@@ -12,6 +12,8 @@
 # those files that you should have an encrypted local copy somewhere, like
 # on a local machine or in email.
 #
+# We switched to using MYSQL_PWD rather than '-p <password>' in April 2021.
+#
 # Also see https://github.com/weidai11/website/tree/master/systemd
 
 # Systemd adds random paths at times. Take full control of PATH.
@@ -57,7 +59,8 @@ fi
 
 # Fix the wiki tables just in case. This step produces a lot of noise,
 # so send stdout to /dev/null.
-if mysqlcheck my_wiki --auto-repair --user=mwuser --password="${wiki_password}" 1>/dev/null;
+if MYSQL_PWD="${wiki_password}" \
+   mysqlcheck my_wiki --auto-repair --user=mwuser 1>/dev/null;
 then
     echo "Repair wiki database ok"
 else
@@ -66,8 +69,10 @@ else
 fi
 
 # --no-tablespaces due to https://dba.stackexchange.com/q/271981
-if mysqldump --single-transaction --no-tablespaces --routines --events --triggers --add-drop-table \
-     --extended-insert -u mwuser -h 127.0.0.1 -p"${wiki_password}" my_wiki > /backup/wiki.sql ;
+if MYSQL_PWD="${wiki_password}" \
+   mysqldump --single-transaction --no-tablespaces --routines \
+     --events --triggers --add-drop-table --extended-insert \
+     -u mwuser -h 127.0.0.1 my_wiki > /backup/wiki.sql ;
 then
     echo "Dump wiki database ok"
 else
