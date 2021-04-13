@@ -134,8 +134,8 @@ and avoids developer tools, but it does not seem to work with
 our installation. I think composer is too old.
 
 1. cd /var/www/html/w/
-2. php -d extension=phar.so composer.phar update
-3. composer update --no-dev;
+2. rm -rf vendor/
+3. php -d extension=phar.so composer.phar update --no-dev
 
 Step (10.2) is dangerous. It runs Composer as root, and does not
 disable plugins or scripts in the third-party projects. The
