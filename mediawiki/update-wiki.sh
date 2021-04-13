@@ -221,8 +221,8 @@ fi
 # new MediaWiki or cloning a Skin or Extension. The permissions are never
 # correct. Executable files will be missing +x, and images will have +x.
 
-# We would like to skip images/ here, but find is too sideways.
-# images/ gets different permissions, and find's -prune does not
+# We would like to skip images/ and uploads/ here, but find is too sideways.
+# images/ and uploads/ get different permissions, and find's -prune does not
 # seem to work as expected.
 echo -e "${green_color}Setting MediaWiki permissions${no_color}"
 IFS= find "${wiki_dir}" -type d -print | while read -r dir
@@ -234,14 +234,25 @@ do
     chmod u=rw,g=r,o= "$file"
 done
 
-# images/ must be writable by Apache. This is the upload
-# directory, and the directory where thumbnails are created.
+# images/ must be writable by Apache. This is the directory where images
+# are saved and thumbnails are created
 echo -e "${green_color}Setting MediaWiki images permissions${no_color}"
 IFS= find "${wiki_dir}/images" -type d | while read -r dir
 do
     chmod ug=rwx,o= "$dir"
 done
 IFS= find "${wiki_dir}/images" -type f | while read -r file
+do
+    chmod ug=rw,o= "$file"
+done
+
+# uploads/ must be writable by Apache. This is the upload directory
+echo -e "${green_color}Setting MediaWiki uploads permissions${no_color}"
+IFS= find "${wiki_dir}/uploads" -type d | while read -r dir
+do
+    chmod ug=rwx,o= "$dir"
+done
+IFS= find "${wiki_dir}/uploads" -type f | while read -r file
 do
     chmod ug=rw,o= "$file"
 done
