@@ -155,9 +155,9 @@ echo -e "${green_color}Updating dependencies via Composer${no_color}"
 if command -v composer 2>/dev/null
 then
     if composer update --no-dev; then
-        echo -e "${green_color}Updated Composer dependencies${no_color}"
+        echo -e "${green_color}Updated dependencies via Composer${no_color}"
     else
-        echo -e "${red_color}Failed to update Composer dependencies${no_color}"
+        echo -e "${red_color}Failed to update dependencies via Composer${no_color}"
     fi
 else
     echo -e "${red_color}Skipping... Composer not installed${no_color}"
