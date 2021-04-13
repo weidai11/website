@@ -152,7 +152,7 @@ done
 
 # If composer is present, then update files
 echo -e "${green_color}Updating dependencies via Composer${no_color}"
-if command -v composer 2>/dev/null
+if command -v composer 1>/dev/null 2>&1
 then
     if composer update --no-dev; then
         echo -e "${green_color}Updated dependencies via Composer${no_color}"
