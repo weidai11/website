@@ -150,6 +150,19 @@ do
     )
 done
 
+# If composer is present, then update files
+echo -e "${green_color}Updating dependencies via Composer${no_color}"
+if command -v composer 2>/dev/null
+then
+    if composer update --no-dev; then
+        echo -e "${green_color}Updated Composer dependencies${no_color}"
+    else
+        echo -e "${red_color}Failed to update Composer dependencies${no_color}"
+    fi
+else
+    echo -e "${red_color}Skipping... Composer not installed${no_color}"
+fi
+
 # Set ownership of the Webserver and Mediawiki files.
 # The git checkout may upset ownership.
 echo -e "${green_color}Setting Webserver ownership${no_color}"
