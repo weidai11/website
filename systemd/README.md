@@ -33,6 +33,12 @@ cd backup-scripts
 
 You should re-run `install.sh` to re-install the scripts if they change.
 
+## Systemd Units
+
+The timer and service files are called units. Units for the system that are created by the administrator are placed in `/etc/systemd/system`. Also see [systemd.unit(5) man page](https://www.freedesktop.org/software/systemd/man/systemd.unit.html).
+
+In contrast, units installed by a package manager are placed in `/usr/lib/systemd/system`. And software installed by the administrator would place their units in `/usr/local/lib/systemd/system`.
+
 ## System-update
 
 The system-update script updates the system once a day without user prompts. The script applies all updates, and not just security updates. The warez includes a Systemd service, timer and script. The `system-update` script is placed at `/usr/sbin/system-update.sh`.
