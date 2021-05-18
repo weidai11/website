@@ -87,6 +87,9 @@ echo -e "Apache ownership: ${cyan_color}${apache_owner}${no_color}"
 echo -e "Apache service: ${cyan_color}${apache_service}${no_color}"
 echo -e "MySQL service: ${cyan_color}${mysql_service}${no_color}"
 
+# Composer needs to be run from Wiki directory.
+cd "${wiki_dir}" || exit 1
+
 # This finds directories check'd out from Git and updates them.
 # It works surprisingly well. There have only been a couple of
 # minor problems.
