@@ -163,7 +163,7 @@ then
         echo -e "${red_color}Failed to update dependencies via Composer${no_color}"
     fi
 else
-    echo -e "${red_color}Skipping... Composer not installed${no_color}"
+    echo -e "${cyan_color}Skipping... Composer not installed${no_color}"
 fi
 
 # Set ownership of the Webserver and Mediawiki files.
