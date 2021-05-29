@@ -19,7 +19,7 @@
 # Important variables
 html_dir="/var/www"
 wiki_dir="/var/www/html/w"
-wiki_rel=REL1_35
+wiki_rel=REL1_36
 php_bin=/usr/bin/php
 
 # Pretty print
@@ -114,7 +114,7 @@ do
               git checkout -f "${wiki_rel}" && git clean -xdf
         else
             # Some GitHubs don't follow Mediawiki conventions.
-            # They lack a branch like REL1_32, REL1_35, etc.
+            # They lack a branch like REL1_32, REL1_36, etc.
             git fetch origin && git reset --hard origin && git clean -xdf
         fi
 
@@ -144,7 +144,7 @@ do
               git checkout -f "${wiki_rel}" && git clean -xdf
         else
             # Some GitHubs don't follow Mediawiki conventions.
-            # They lack a branch like REL1_32, REL1_35, etc.
+            # They lack a branch like REL1_32, REL1_36, etc.
             git fetch origin && git reset --hard origin && git clean -xdf
         fi
 
