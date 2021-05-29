@@ -105,13 +105,17 @@ php "$wiki_root/maintenance/rebuildtextindex.php" "${script_args[@]}"
 echo -e "${green_color}Running rebuildFileCache.php${no_color}"
 php "$wiki_root/maintenance/rebuildFileCache.php" "${script_args[@]}"
 
+# Added at Mediawiki 1.36
+echo -e "${green_color}Running rebuildrecentchanges.php${no_color}"
+php "$wiki_root/maintenance/rebuildrecentchanges.php" "${script_args[@]}"
+
 echo -e "${green_color}Running refreshLinks.php${no_color}"
 php "$wiki_root/maintenance/refreshLinks.php" "${script_args[@]}"
 
 echo -e "${green_color}Running rebuildLocalisationCache.php${no_color}"
 # php "$wiki_root/maintenance/rebuildLocalisationCache.php" --force
-echo -e "${red_color}Skipping... See https://phabricator.wikimedia.org/T251850${no_color}"
+echo -e "${cyan_color}Skipping... See https://phabricator.wikimedia.org/T251850${no_color}"
 
-#Removed at Mediawiki 1.36
-#echo -e "${green_color}Running rebuildAll.php${no_color}"
-#php "$wiki_root/maintenance/rebuildall.php"
+# Renamed at Mediawiki 1.36
+echo -e "${green_color}Running rebuildall.php${no_color}"
+php "$wiki_root/maintenance/rebuildall.php"
