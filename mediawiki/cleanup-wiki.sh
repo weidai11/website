@@ -112,5 +112,6 @@ echo -e "${green_color}Running rebuildLocalisationCache.php${no_color}"
 # php "$wiki_root/maintenance/rebuildLocalisationCache.php" --force
 echo -e "${red_color}Skipping... See https://phabricator.wikimedia.org/T251850${no_color}"
 
-echo -e "${green_color}Running rebuildAll.php${no_color}"
-php "$wiki_root/maintenance/rebuildall.php"
+#Removed at Mediawiki 1.36
+#echo -e "${green_color}Running rebuildAll.php${no_color}"
+#php "$wiki_root/maintenance/rebuildall.php"
