@@ -14,7 +14,7 @@
 # The script is located in the wiki directory, which is /var/www/html/w.
 # We should probably schedule this script as a cron job or systemd unit.
 #
-# This script takes about 5 minutes to run.
+# This script takes about 10 minutes to run.
 
 # Important variables
 html_dir="/var/www"
@@ -112,12 +112,14 @@ do
         then
             # Some GitHubs have both branch and tag with same name.
             # Hence the 'git tag -d'.
+            echo "${wiki_rel} branch found"
             git fetch origin && git reset --hard "origin/${wiki_rel}" && \
               git tag -d "${wiki_rel}" 2>/dev/null && \
               git checkout -f "${wiki_rel}" && git clean -xdf
         else
             # Some GitHubs don't follow Mediawiki conventions.
             # They lack a branch like REL1_32, REL1_36, etc.
+            echo "${wiki_rel} branch not found"
             git fetch origin && git reset --hard origin && git clean -xdf
         fi
 
@@ -145,12 +147,14 @@ do
         then
             # Some GitHubs have both branch and tag with same name.
             # Hence the 'git tag -d'.
+            echo "${wiki_rel} branch found"
             git fetch origin && git reset --hard "origin/${wiki_rel}" && \
               git tag -d "${wiki_rel}" 2>/dev/null && \
               git checkout -f "${wiki_rel}" && git clean -xdf
         else
             # Some GitHubs don't follow Mediawiki conventions.
             # They lack a branch like REL1_32, REL1_36, etc.
+            echo "${wiki_rel} branch not found"
             git fetch origin && git reset --hard origin && git clean -xdf
         fi
 
