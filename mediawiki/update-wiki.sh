@@ -105,6 +105,9 @@ do
         echo "Entering ${dir}"
         cd "${dir}" || continue
 
+        # Try to prime a checkout
+        git checkout ${wiki_rel} 1>/dev/null 2>&1
+
         if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
         then
             # Some GitHubs have both branch and tag with same name.
@@ -134,6 +137,9 @@ do
     (
         echo "Entering ${dir}"
         cd "${dir}" || continue
+
+        # Try to prime a checkout
+        git checkout ${wiki_rel} 1>/dev/null 2>&1
 
         if git branch -a 2>/dev/null | grep -q "${wiki_rel}"
         then
