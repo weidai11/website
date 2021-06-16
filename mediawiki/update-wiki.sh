@@ -123,6 +123,9 @@ do
             git fetch origin && git reset --hard origin && git clean -xdf
         fi
 
+        # Print the branch
+        echo "Branch $(git branch 2>/dev/null | grep '\*' | cut -b 3-)"
+
         # Cleanup
         git fetch --prune >/dev/null 2>&1
     )
@@ -157,6 +160,9 @@ do
             echo "${wiki_rel} branch not found"
             git fetch origin && git reset --hard origin && git clean -xdf
         fi
+
+        # Print the branch
+        echo "Branch $(git branch 2>/dev/null | grep '\*' | cut -b 3-)"
 
         # Cleanup
         git fetch --prune >/dev/null 2>&1
