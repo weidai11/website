@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Crypto++ Library | 8.6 Release</title>
+  <meta name="description" content=
+  "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
+  <meta name="keywords" content=
+  "Crypto++, CryptoPP, crypto, cryptography, cryptographic, security, free, open source, public domain, library, C++, SSE2, SSE4, AESNI, RDRAND, RDSEED, NEON, ASIMD, cipher, ciphers, code, codes, scheme, schemes, hash, digest, cryptosystem, key agreement, AES, DH, RSA, DSA, DES, SHA, HMAC, HKDF, elliptic curve">
+  <link rel="stylesheet" type="text/css" href="cryptopp.css">
+</head>
+<body>
+  <!-- Child pages menu bar at top of page. Differs from home page -->
+  <table border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFCC" summary="Menu bar">
+    <tbody>
+      <tr>
+        <td><b><big><a href="index.html">Home Page</a></big></b></td>
+        <td><a href="index.html#download">Download</a></td>
+        <td><a href="docs/ref/">Manual</a></td>
+        <td><a href="//github.com/weidai11/cryptopp">GitHub</a></td>
+        <td><a href="wiki/">Mediawiki</a></td>
+        <td><a href="index.html#lists">Mailing lists</a></td>
+        <td><a href="index.html#contributions">Contributions</a></td>
+        <td><a href="wiki/Related_Links">Related links</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>Crypto++ 8.6</h2>
+  <p>Crypto++ 8.6 was released on September 24, 2021. The 8.6 release was a minor,
+  unplanned release. There was one CVEs and no memory errors.</p>
+  <p>This release clears CVE-2021-40530 and fixes a problem with ChaCha20 AVX2
+  implementation. The CVE was due to ElGamal encryption using a work estimate to size
+  encryption exponents instead subgroup order. The ChaCha20 issue was due to mishandling
+  a carry in the AVX2 code path. The ChaCha20 issue was difficult to duplicate, so most
+  users should not experience it.</p>
+  <h2>Download</h2>
+  <p>The download is available from the Crypto++ website. The checksums for the download
+  are below. Release signatures can be verified using GnuPG according to <a href=
+  "signing.html">Release Signing</a>.</p>
+  <ul>
+    <li>Download: <a href="cryptopp860.zip">cryptopp860.zip</a>, <a href=
+    "cryptopp860.zip.sig">cryptopp860.zip.sig</a></li>
+    <li>SHA1: d5756ceff1263cd827506c8189fa8899cec6397c</li>
+    <li>SHA256: 20aa413957d9c8ae353ee2f7747bd7ac392f933c60a53e3fd1e41cadbc48d193</li>
+    <li>SHA512:
+    e7773f5e4a7dc7e8e735b1702524bee56ba38e5211544c9c9778bc51ed8dc7b376c17f2e406410043b636312336f26f76dc963f298872f8c13933e88c232fc03</li>
+    <li>BLAKE2b:
+    c93998e2deb93abf12b801877404f0f82547bfbbbc5aae727e68daffc2407877dda76d7bcd06239d40a48baf21b6f2e29f74e9a97ecbc1b5d4b5bcc50ada71da</li>
+    <li>WHIRLPOOL:
+    edc5b350d12bad9f48382bd225383720939d3371817d2d0bd0a428d37a54a2ec6289d1dc52daeba7fb314a738e78d32fc126c58c7f0c86ad9ecc4ea849985bd0</li>
+  </ul>
+  <p>Mirrors for the download are below. Note that GitHub checksums on the ZIP or TAR are
+  different because the service creates the archive from sources.</p>
+  <ul>
+    <li><a href="//github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_8_6_0">GitHub
+    cryptopp860.zip</a></li>
+  </ul>
+  <h2>Release Notes</h2>
+  <p>The release notes for Crypto++ 8.6 follows.</p>
+  <ul>
+    <li>minor release, recompile of programs required</li>
+    <li>expanded community input and support</li>
+    <li style="list-style: none">
+      <ul>
+        <li>74 unique contributors as of this release</li>
+      </ul>
+    </li>
+    <li>fix ElGamal encryption</li>
+    <li>fix ChaCha20 AVX2 implementation</li>
+    <li>add octal and decimal literal prefix parsing to Integer</li>
+    <li>fix OldRandomPool GenerateWord32</li>
+    <li>fix feature testing on ARM A-32 and Aarch64</li>
+    <li>fix AdditiveCipherTemplate&lt;T&gt; ProcessData (GH #1010)</li>
+  </ul>
+  <h2>Bug fixes and Minor Issues</h2>
+  <ul>
+    <li>fix ElGamal encryption (GH #1059, CVE-2021-40530)</li>
+    <li>fix ChaCha20 AVX2 implementation (GH #1069)</li>
+    <li>add octal and decimal literal prefix parsing to Integer (Commit
+    e154280d310c)</li>
+    <li>add missing overload in ed25519Signer and ed25519Verifier (Commits fae99431186d,
+    08f3fc5676af)</li>
+    <li>make SHA-NI independent of AVX and AVX2 (GH #1045)</li>
+    <li>fix OldRandomPool GenerateWord32 (Commit fabd88e4e47b)</li>
+    <li>use CPPFLAGS during feature testing (Commit 7e0f678055f4)</li>
+    <li>fix compile on CentOS 5 (Commits b51383cc6c63, ef3a9e8eeaea)</li>
+    <li>fix compile on FreeBSD (Commit 2619dbec0bfc)</li>
+    <li>fix feature testing on ARM A-32 and Aarch64 (Commit 203a47a3451d)</li>
+    <li>enable inline ASM for CRC and PMULL on Apple M1</li>
+    <li>fix Intel oneAPI compile (PR #1027)</li>
+    <li>rename test files with *.cpp extension (GH #1024)</li>
+    <li>fix GCC compile error due to missing _mm256_set_m128i (Commit 2cfa8a60a186)</li>
+    <li>add LSH-256 and LSH-512 hash functions (GH #1025, PR #1026)</li>
+    <li>add ECIES_P1363 for backwards compatibility (Commit 8e02d0d6dcdd)</li>
+    <li>fix AdditiveCipherTemplate&lt;T&gt; ProcessData (GH #1010)</li>
+    <li>remove CRYPTOPP_NO_CXX11 define (Commit 6911928ffd3a)</li>
+    <li>add -fno-common for Darwin builds (Commit a70662dae83e)</li>
+    <li>update documentation (too many commits to list)</li>
+  </ul>
+  <h2>ElGamal encryption</h2>
+  <p>ElGamal encryption was changed to use exponents of subgroup order due to <a href=
+  "https://eprint.iacr.org/2021/923.pdf">On the (in)security of ElGamal in OpenPGP</a>.
+  Formerly the size of the exponent was selected based on an estimated work factor.</p>
+  <h2>AdditiveCipherTemplate&lt;T&gt; ProcessData</h2>
+  <p>The <tt>AdditiveCipherTemplate&lt;T&gt; ProcessData</tt> fix was required because
+  GCC began removing code when the input and output buffers were the same buffer (i.e.,
+  in-place encryption or decryption). We believe GCC began removing the code due to alias
+  violations. The fix breaks binary compatibility so a recompile is required.</p>
+  <h2>FIPS DLL deprecation</h2>
+  <p>The FIPS DLL used to be an important artifact for Windows builds. NIST moved the
+  Crypto++ library to the Historical Validation List in 2014. The Windows DLL is no
+  longer validated.</p>
+  <p>The project files to build the FIPS DLL are <tt>cryptdll.vcxproj</tt> and
+  <tt>dlltest.vcxproj</tt>. The projects are now deprecated and subject to removal.</p>
+  <h2>File Changes</h2>
+  <p>No files were added or removed at Crypto++ 8.6.</p>
+</body>
+</html>
