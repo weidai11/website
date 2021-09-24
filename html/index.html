@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.2.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Crypto++ Library 8.5 | Free C++ Class Library of Cryptographic Schemes</title>
+  <title>Crypto++ Library 8.6 | Free C++ Class Library of Cryptographic Schemes</title>
   <meta name="description" content=
   "free C++ library for cryptography: includes ciphers, message authentication codes, one-way hash functions, public-key cryptosystems, key agreement schemes, and deflate compression">
   <meta name="keywords" content=
@@ -30,7 +30,7 @@
     </tbody>
   </table>
   <div>
-    <h1>Crypto++<sup>®</sup> Library 8.5</h1>
+    <h1>Crypto++<sup>®</sup> Library 8.6</h1>
   </div>
   <p>Crypto++ Library is a free C++ class library of cryptographic schemes. The library
   contains the following algorithms:</p>
@@ -113,6 +113,7 @@
         "http://www.cryptopp.com/wiki/FIPS_180-2">SHA-2</a>, SHA-3, <a href=
         "http://www.cryptopp.com/wiki/SHAKE">SHAKE (128/256)</a>, <a href=
         "http://www.cryptopp.com/wiki/SipHash">SipHash</a>, <a href=
+        "http://www.cryptopp.com/wiki/LSH">LSH (128/256)</a>, <a href=
         "http://www.cryptopp.com/wiki/Tiger">Tiger</a>, RIPEMD (128/160/256/320),
         <a href="http://www.cryptopp.com/wiki/SM3">SM3</a>, <a href=
         "http://www.cryptopp.com/wiki/WHIRLPOOL">WHIRLPOOL</a></td>
@@ -225,6 +226,39 @@
   list please see <a href=
   "https://github.com/weidai11/cryptopp/blob/master/History.txt">History.txt</a>.</p>
   <ul>
+    <li>09/24/2021 - <a href="release850.html">Version 8.6.0 released</a></li>
+    <li style="list-style: none">
+      <ul>
+        <li>minor release, no recompile of programs required</li>
+        <li>expanded community input and support</li>
+        <li style="list-style: none">
+          <ul>
+            <li>74 unique contributors as of this release</li>
+          </ul>
+        </li>
+        <li>fix ElGamal encryption</li>
+        <li>fix ChaCha20 AVX2 implementation</li>
+        <li>add octal and decimal literal prefix parsing to Integer</li>
+        <li>add missing overload in ed25519Signer and ed25519Verifier</li>
+        <li>make SHA-NI independent of AVX and AVX2</li>
+        <li>fix OldRandomPool GenerateWord32</li>
+        <li>use CPPFLAGS during feature testing</li>
+        <li>fix compile on CentOS 5</li>
+        <li>fix compile on FreeBSD</li>
+        <li>fix feature testing on ARM A-32 and Aarch64</li>
+        <li>enable inline ASM for CRC and PMULL on Apple M1</li>
+        <li>fix Intel oneAPI compile</li>
+        <li>rename test files with *.cpp extension</li>
+        <li>fix GCC compile error due to missing _mm256_set_m128i</li>
+        <li>add LSH-256 and LSH-512 hash functions</li>
+        <li>add ECIES_P1363 for backwards compatibility</li>
+        <li>fix AdditiveCipherTemplate&lt;T&gt; ProcessData</li>
+        <li>remove CRYPTOPP_NO_CXX11 define</li>
+        <li>add -fno-common for Darwin builds</li>
+        <li>update documentation</li>
+      </ul>
+    </li>
+    <li style="list-style: none"><br></li>
     <li>03/07/2021 - <a href="release850.html">Version 8.5.0 released</a></li>
     <li style="list-style: none">
       <ul>
@@ -419,6 +453,15 @@
       </tr>
     </thead>
     <tbody>
+      <tr align="center">
+        <td>2021-09-24</td>
+        <td><a href="cryptopp860.zip">Crypto++ 8.6.0</a> [<a href=
+        "cryptopp860.zip.sig">sig</a>]</td>
+        <td><a href="release860.html">8.6.0 Release</a></td>
+        <td><a href=
+        "http://github.com/weidai11/cryptopp/releases/tag/CRYPTOPP_8_6_0">Crypto++
+        8.6.0</a></td>
+      </tr>
       <tr align="center">
         <td>2021-03-07</td>
         <td><a href="cryptopp850.zip">Crypto++ 8.5.0</a> [<a href=
