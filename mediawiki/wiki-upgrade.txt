@@ -33,6 +33,10 @@ performed. The incremental backup takes about 5 to 10 minutes.
 
 1. systemctl start bitvise-backup.service
 
+Verify the backup completed successfully
+
+2. systemctl status bitvise-backup.service
+
 Step 4 - Stop the Apache service
 ================================
 
