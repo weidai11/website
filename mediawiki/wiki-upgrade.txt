@@ -128,7 +128,7 @@ Step (9.1) is dangerous. It allows many popular attack vectors.
 This change must be undone after Composer has been run.
 
 Step 10 - Update Mediawiki dependencies
-======================================
+=======================================
 
 Use Composer to update Mediawiki dependencies. This is needed
 because the release tarball does not include them.
