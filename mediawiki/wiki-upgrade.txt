@@ -62,8 +62,8 @@ from the local backup.
 Step 6 - Delete the Vendor directory
 ====================================
 
-Delete the current vendor directory. It holds code and tools for
-the previous version of the Mediawiki software. New versions will
+Delete the contents of the vendor directory. It holds code and tools
+for the previous version of the Mediawiki software. New versions will
 be installed using Composer.
 
 1. rm -rf /var/www/html/w/vendor/*
