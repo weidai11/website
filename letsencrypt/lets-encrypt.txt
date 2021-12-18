@@ -42,11 +42,17 @@ Be sure to restart Apache after the process so the new certificate is used.
    Test the website. Once tested it is OK to delete the local
    Let's Encrypt artifacts in Home.
 
-6. Restart the Apache web server
+6. Open cryptopp-com.cert.pem and verify there is one certificate.
+   If there are multiple certificates in cryptopp-com.cert.pem, then
+   remove the extra certificates since we don't want a chain. Keep the
+   first certificate in the file, and remove the second and third
+   certificates in the file.
+   
+7. Restart the Apache web server
 
    systemctl restart apache2.service
 
-7. Verify the new web server certificate.
+8. Verify the new web server certificate.
 
    * https://www.ssllabs.com/ssltest/analyze.html?d=www.cryptopp.com&latest
    * https://www.sslshopper.com/ssl-checker.html#hostname=www.cryptopp.com
