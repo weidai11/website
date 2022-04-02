@@ -99,7 +99,7 @@ It is OK to delete the artifacts in /tmp:
 8. rm -rf /tmp/mediawiki* /tmp/w/
 
 Step 8 - Install Composer
-=========================
+=============================
 
 Install Composer with dependencies.
 
@@ -107,16 +107,12 @@ Install Composer with dependencies.
 2. hash -r
 3. Copy the list of dependencies
 
-Step (8.1) is dangerous. Composer is a developer tool that brings
-in 30+ dependencies. Composer and friends require unsafe functions.
-They must be removed after the Mediawiki upgrade.
+Then
 
-Step 9 - Clear Composer cache
-=============================
+4. composer global clearcache
+5. composer install
 
-1. composer global clearcache
-
-Step 10 - Disable server hardening
+Step 9 - Disable server hardening
 ==================================
 
 Composer needs access to directories and functions we have disabled.
@@ -133,7 +129,7 @@ Temporarily re-enable them for Composer.
 Step (9.1) is dangerous. It allows many popular attack vectors.
 This change must be undone after Composer has been run.
 
-Step 11 - Update Mediawiki dependencies
+Step 10 - Update Mediawiki dependencies
 =======================================
 
 Use Composer to update Mediawiki dependencies. This is needed
@@ -155,7 +151,7 @@ If you experience errors in vendor/ then revisit Step (5).
 Step (5) deletes the old vendor/ directory in preparation
 for the Composer updates.
 
-Step 12 - Restore LocalSettings.php
+Step 11 - Restore LocalSettings.php
 ===================================
 
 The backup of LocalSettings.php is in /var/wiki-backup.
@@ -169,7 +165,7 @@ Note: Mediawiki does not provide a LocalSettings.php in the
 tarball. You have to use the existing LocalSettings.php that
 was backed up in Step 4.
 
-Step 13 - Database maintenance
+Step 12 - Database maintenance
 ==============================
 
 We are now at the point of no return. Prior to this point
@@ -188,7 +184,7 @@ If update.php fails, then fix the errors until it succeeds. If it
 still fails, then you have to go back to the old installation located
 in /var/wiki-backup.
 
-Step 14 - Restore server hardening
+Step 13 - Restore server hardening
 ==================================
 
 1. cp /etc/php/7.4/apache2/conf.d/99-security.hard /etc/php/7.4/apache2/conf.d/99-security.ini
@@ -199,7 +195,7 @@ Step 14 - Restore server hardening
    - allow_url_include=Off
    - disable_functions="apache_note ..."
 
-Step 15 - Remove Composer
+Step 14 - Remove Composer
 =========================
 
 The list from Step (5) should be cribbed away. Here is the one
@@ -215,12 +211,12 @@ produced by CentOS 7 during install:
 
 3. apt-get autoclean && apt-get autoremove
 
-Step 16 - Start the Apache service
+Step 15 - Start the Apache service
 ==================================
 
 1. systemctl start apache2.service
 
-Step 17 - Update for new Mediawiki
+Step 16 - Update for new Mediawiki
 ==================================
 
 update-wiki.sh is our tool to perform additional updates on the wiki.
@@ -248,14 +244,14 @@ visiting Special:Version wiki page:
 
 5. https://www.cryptopp.com/wiki/Special:Version
 
-Step 18 - Clean backup
+Step 17 - Clean backup
 ======================
 
 You can remove the backup if the wiki is up and running.
 
 1. rm -rf /var/wiki-backup/
 
-Step 19 - New Incremental system backup
+Step 18 - New Incremental system backup
 =======================================
 
 Take a new backup. Running maintenance/update.php upsized the database,
