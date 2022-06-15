@@ -20,16 +20,17 @@ Be sure to restart Apache after the process so the new certificate is used.
    CD to /var/www/html/.well-known/acme-challenge/.
    Remove past challenges.
 
-3. letsencrypt --manual --email webmaster@cryptopp.com --csr cryptopp-com.req.pem auth
+3. In the first terminal issue the following command:
+   letsencrypt --manual --email webmaster@cryptopp.com --csr cryptopp-com.req.pem auth
    This terminal is now occupied by LE client.
    LE client will send requests and receive responses.
 
    LE client will tell you to create a file with specific content.
-   Create the necessary files in the other terminal. Once the
+   Create the necessary files in the second terminal. Once the
    challenges have been accepted client will download a new cert.
 
 4. Before the final OK, check permissions on the files the LE Client
-   asked you to create. The owner and permissionsshould be
+   asked you to create. The owner and permissions should be:
      - root:www-data
      - u=rw,g=r,o=
 
