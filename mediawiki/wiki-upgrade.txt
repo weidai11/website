@@ -79,12 +79,12 @@ Clear old artifacts from /tmp:
 Download the latest Mediawiki in tmp/:
 
 2. cd /tmp
-3. wget https://releases.wikimedia.org/mediawiki/1.38/mediawiki-1.38.2.tar.gz
+3. wget https://releases.wikimedia.org/mediawiki/1.37/mediawiki-1.37.3.tar.gz
 
 Temporary unpack in tmp/:
 
-4. tar -xzf mediawiki-1.38.2.tar.gz
-5. mv mediawiki-1.38.2/ w
+4. tar -xzf mediawiki-1.37.3.tar.gz
+5. mv mediawiki-1.37.3/ w
 
 Test the copy to the filesystem:
 
@@ -230,7 +230,7 @@ without the eXecute bit, and JPEG files with the eXecute bit.
 update-wiki.sh is available in this GitHub repo.
 
 1. Open update-wiki.sh
-2. Change WIKI_REL=REL1_38 to appropriate version
+2. Change WIKI_REL=REL1_37 to appropriate version
 3. Change PHP_BIN=/usr/bin/php as needed
 
 And then:

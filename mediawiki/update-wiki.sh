@@ -19,7 +19,7 @@
 # Important variables
 html_dir="/var/www"
 wiki_dir="/var/www/html/w"
-wiki_rel=REL1_38
+wiki_rel=REL1_37
 php_bin=/usr/bin/php
 
 # Pretty print
