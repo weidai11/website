@@ -296,7 +296,11 @@ fi
 
 # Always run update script per https://www.mediawiki.org/wiki/Manual:Update.php
 echo -e "${green_color}Running update.php${no_color}"
-"${php_bin}" "${wiki_dir}/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki" | head -n 1
+if ! "${php_bin}" "${wiki_dir}/maintenance/update.php" --quick --server="https://www.cryptopp.com/wiki" | head -n 1 ;
+then
+    # Just stop now. There's no need to do the permissions yet. It just wastes time we need for troubleshooting.
+    exit 1
+fi
 
 echo -e "${green_color}Restarting Apache service${no_color}"
 if ! systemctl restart ${apache_service}; then
