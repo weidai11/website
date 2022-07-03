@@ -62,12 +62,14 @@ from the local backup.
 Step 6 - Delete the Vendor directory
 ====================================
 
-Delete the contents of the vendor directory. It holds code and tools
-for the previous version of the Mediawiki software. New versions will
-be installed using Composer.
+Delete the contents of most Mediawiki directories. It holds code and tools
+for the previous version of the Mediawiki software. New versions will be
+installed during rsync and using Composer.
 
-1. rm -rf /var/www/html/w/vendor/*
-2. rm -f /var/www/html/w/composer.lock
+1. cd /var/www/html/w
+2. rm -rf cache/ includes/ languages/ maintenance/ mw-config/ resources/ serialized/ vendor/
+3. rm -rf *.php
+4. rm -f /var/www/html/w/composer.lock
 
 Step 7 - Install latest Mediawiki
 =================================
@@ -109,8 +111,9 @@ Install Composer with dependencies.
 
 Then
 
-4. composer global clearcache
-5. composer install
+4. cd /var/www/html/w
+5. composer global clearcache
+6. composer install
 
 Step 9 - Disable server hardening
 ==================================
@@ -142,13 +145,13 @@ old installations.
 1. cd /var/www/html/w/
 2. php -d extension=phar.so composer.phar update --no-dev
 
-Step (10.3) is dangerous. It runs Composer as root, and does not
+Step (10.2) is dangerous. It runs Composer as root, and does not
 disable plugins or scripts in the third-party projects. The
 third-party projects effectively have full control over the web
 server and virtual machine.
 
-If you experience errors in vendor/ then revisit Step (5).
-Step (5) deletes the old vendor/ directory in preparation
+If you experience errors in vendor/ then revisit Step (6).
+Step (6) deletes the old vendor/ directory in preparation
 for the Composer updates.
 
 Step 11 - Restore LocalSettings.php
