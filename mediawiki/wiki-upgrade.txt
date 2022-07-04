@@ -64,7 +64,7 @@ Step 6 - Delete previous MW artifacts
 
 Delete the contents of most Mediawiki directories. It holds code and tools
 for the previous version of the Mediawiki software. New versions will be
-installed during rsync and using Composer.
+installed from the tarball using rsync and using Composer.
 
 1. cd /var/www/html/w
 2. rm -rf cache/ includes/ languages/ maintenance/ mw-config/ resources/{lib,src} serialized/ vendor/
@@ -101,7 +101,7 @@ It is OK to delete the artifacts in /tmp:
 8. rm -rf /tmp/mediawiki* /tmp/w/
 
 Step 8 - Install Composer
-=============================
+=========================
 
 Install Composer with dependencies.
 
@@ -116,7 +116,7 @@ Then
 6. composer install
 
 Step 9 - Disable server hardening
-==================================
+=================================
 
 Composer needs access to directories and functions we have disabled.
 Temporarily re-enable them for Composer.
