@@ -124,6 +124,11 @@ do
             git fetch origin && git reset --hard origin && git clean -xdf
         fi
 
+        if [[ -f "update.patch" ]] ;
+        then
+            git apply update.patch
+        fi
+
         # Print the branch
         echo "Branch $(git branch 2>/dev/null | grep '\*' | cut -b 3-)"
 
@@ -160,6 +165,11 @@ do
             # They lack a branch like REL1_32, REL1_36, etc.
             echo "${wiki_rel} branch not found"
             git fetch origin && git reset --hard origin && git clean -xdf
+        fi
+
+        if [[ -f "update.patch" ]] ;
+        then
+            git apply update.patch
         fi
 
         # Print the branch
