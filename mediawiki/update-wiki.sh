@@ -193,42 +193,42 @@ chown -R ${apache_owner} "${www_dir}"
 echo -e "${green_color}Removing Mediawiki dev gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'dev' -print | while read -r dir
 do
-    rm -rf "$dir" 2>/dev/null
+    rm -rf "${dir}" 2>/dev/null
 done
 
 # Remove all demos in production. We are not PHP developers.
 echo -e "${green_color}Removing Mediawiki demo gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'demos*' -print | while read -r dir
 do
-    rm -rf "$dir" 2>/dev/null
+    rm -rf "${dir}" 2>/dev/null
 done
 
 # Remove all test frameworks in production. We are not PHP developers.
 echo -e "${green_color}Removing Mediawiki test gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'test*' -print | while read -r dir
 do
-    rm -rf "$dir" 2>/dev/null
+    rm -rf "${dir}" 2>/dev/null
 done
 
 # Remove all benchmark frameworks in production. We are not PHP developers.
 echo -e "${green_color}Removing Mediawiki benchmark gear${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'benchmark*' -print | while read -r dir
 do
-    rm -rf "$dir" 2>/dev/null
+    rm -rf "${dir}" 2>/dev/null
 done
 
 # Remove all docs in production. No need to back them up.
 echo -e "${green_color}Removing Mediawiki documentation${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'doc*' -print | while read -r dir
 do
-    rm -rf "$dir" 2>/dev/null
+    rm -rf "${dir}" 2>/dev/null
 done
 
 # Remove all screenshots in production. No need to back them up.
 echo -e "${green_color}Removing Mediawiki screenshots${no_color}"
 IFS= find "${wiki_dir}" -type d -iname 'screenshot*' -print | while read -r dir
 do
-    rm -rf "$dir" 2>/dev/null
+    rm -rf "${dir}" 2>/dev/null
 done
 
 echo -e "${green_color}Creating MediaWiki sitemap${no_color}"
@@ -247,11 +247,11 @@ fi
 echo -e "${green_color}Setting MediaWiki permissions${no_color}"
 IFS= find "${wiki_dir}" -type d -print | while read -r dir
 do
-    chmod u=rwx,g=rx,o= "$dir"
+    chmod u=rwx,g=rx,o= "${dir}"
 done
 IFS= find "${wiki_dir}" -type f -print | while read -r file
 do
-    chmod u=rw,g=r,o= "$file"
+    chmod u=rw,g=r,o= "${file}"
 done
 
 # images/ must be writable by Apache. This is the directory where images
@@ -259,11 +259,11 @@ done
 echo -e "${green_color}Setting MediaWiki images permissions${no_color}"
 IFS= find "${wiki_dir}/images" -type d | while read -r dir
 do
-    chmod ug=rwx,o= "$dir"
+    chmod ug=rwx,o= "${dir}"
 done
 IFS= find "${wiki_dir}/images" -type f | while read -r file
 do
-    chmod ug=rw,o= "$file"
+    chmod ug=rw,o= "${file}"
 done
 
 # Make Python, PHP and friends executable
