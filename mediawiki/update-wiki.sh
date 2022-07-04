@@ -17,9 +17,10 @@
 # This script takes about 10 minutes to run.
 
 # Important variables
-html_dir="/var/www"
+www_dir="/var/www"
+html_dir="/var/www/html"
 wiki_dir="/var/www/html/w"
-wiki_rel=REL1_37
+wiki_rel=REL1_38
 php_bin=/usr/bin/php
 
 # Pretty print
@@ -185,7 +186,7 @@ fi
 # Set ownership of the Webserver and Mediawiki files.
 # The git checkout may upset ownership.
 echo -e "${green_color}Setting Webserver ownership${no_color}"
-chown -R ${apache_owner} "${html_dir}"
+chown -R ${apache_owner} "${www_dir}"
 
 # Remove all developer gear in production. We are not PHP developers.
 # Don't use a wildcard on 'dev'. It matches 'Device' and breaks MobileFrontEnd.
