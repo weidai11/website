@@ -59,15 +59,15 @@ using duplicity.
 Do not skip the backup step. Later you will need LocalSettings.php
 from the local backup.
 
-Step 6 - Delete the Vendor directory
-====================================
+Step 6 - Delete previous MW artifacts
+=====================================
 
 Delete the contents of most Mediawiki directories. It holds code and tools
 for the previous version of the Mediawiki software. New versions will be
 installed during rsync and using Composer.
 
 1. cd /var/www/html/w
-2. rm -rf cache/ includes/ languages/ maintenance/ mw-config/ resources/ serialized/ vendor/
+2. rm -rf cache/ includes/ languages/ maintenance/ mw-config/ resources/{lib,src} serialized/ vendor/
 3. rm -rf *.php
 4. rm -f /var/www/html/w/composer.lock
 
@@ -166,7 +166,7 @@ Make a backup of the new LocalSettings.php in case it is needed.
 
 Note: Mediawiki does not provide a LocalSettings.php in the
 tarball. You have to use the existing LocalSettings.php that
-was backed up in Step 4.
+was backed up in Step (5).
 
 Step 12 - Database maintenance
 ==============================
