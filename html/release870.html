@@ -97,6 +97,20 @@
     <li>work around GCC 11 bug on armhf (GH #1094)</li>
     <li>fix undersized SecBlock buffer in Integer bit operations (GH #1072)</li>
   </ul>
+  <h2>GCC 12 crash</h2>
+  <p>We removed GCC 12 from the supported compilers list. We believe it has a bug that is
+  causing the validation suite to crash. See <a href=
+  "https://github.com/weidai11/cryptopp/issues/1134">Issue 1134</a> and <a href=
+  "https://github.com/weidai11/cryptopp/issues/1135">Issue 1135</a> for some of the
+  discussion.</p>
+  <p>The crash is present with GCC 12 at <tt>-O2</tt> or higher, and happens around the
+  ECGDSA test suite. The crash is not present in GCC 12 at <tt>-O1</tt>. The crash is not
+  present in other compilers like Clang and MSVC. The crash was not present in earlier
+  versions of GCC. Tools like Asan, UBsan and Valgirnd do not show a problem.
+  <tt>-DCRYPTOPP_DISABLE_ASM</tt> and <tt>-fno-lto</tt> do not affect the problem.</p>
+  <p>We do not have a minimal reproducer, so tracking down the crash is problematic. We
+  also cannot report it to the GCC folks without a reproducer.</p>
+  <p>The current workaround is to build the library at <tt>-O1</tt>.</p>
   <h2>FIPS DLL deprecation</h2>
   <p>The FIPS DLL used to be an important artifact for Windows builds. NIST moved the
   Crypto++ library to the Historical Validation List in 2014. The Windows DLL is no
