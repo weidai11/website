@@ -20,7 +20,7 @@
 www_dir="/var/www"
 html_dir="/var/www/html"
 wiki_dir="/var/www/html/w"
-wiki_rel=REL1_38
+wiki_rel=REL1_39
 php_bin=/usr/bin/php
 
 # Pretty print
