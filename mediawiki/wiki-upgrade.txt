@@ -8,6 +8,11 @@ You should set aside about 30 minutes to one hour for the migration.
 The process itself is copy/paste and should take about 10 minutes
 after the backup. The extra time is in case something goes sideways.
 
+Do not upgrade to Mediawiki 1.39 at the moment. MW 1.39 is broken on
+Ubuntu 20.04 due to a hidden Composer 2 requirement. Ubuntu 20.04 only
+provides Composer 1. Ubuntu 22.04 provides Composer 2, but it is not
+available at the hosting provider yet.
+
 In the instructions below the Crypto++ Wiki is located at
 /var/www/html/w. https://www.cryptopp.com/wiki works because
 of an Apache mod-rewrite rule.
