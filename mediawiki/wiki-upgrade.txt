@@ -87,7 +87,7 @@ Clear old artifacts from /tmp:
 Download the latest Mediawiki in tmp/:
 
 2. cd /tmp
-3. wget https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.38.6.tar.gz
+3. wget https://releases.wikimedia.org/mediawiki/1.38/mediawiki-1.38.6.tar.gz
 
 Temporary unpack in tmp/:
 
@@ -120,7 +120,7 @@ Then
 
 4. cd /var/www/html/w
 5. composer global clearcache
-6. composer install
+6. composer install --no-dev
 
 Step 9 - Disable server hardening
 =================================
