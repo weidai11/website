@@ -128,8 +128,8 @@ fi
 
 # The wiki.sql.gz dump will be about 70MB or 80MB compressed. Check size against 1MB.
 wiki_dump_size=$(wc -c /backup/wiki.sql.gz | awk '{print $1}')
-printf "Wiki database size is %s bytes\n" "$(numfmt --grouping ${wiki_dump_size})"
-if [ ${wiki_dump_size} -lt 1048576 ]
+printf "Wiki database size is %s bytes\n" "$(numfmt --grouping "${wiki_dump_size}")"
+if [ "${wiki_dump_size}" -lt 1048576 ]
 then
     echo "Failed to dump wiki database. Database is too small."
     exit 1
@@ -159,7 +159,7 @@ exclude_opts+=("--exclude /etc/sysconfig/network-scripts")
 root_drive="/"
 
 # This is the Bitvise backup.
-if ! duplicity ${full_backup} --allow-source-mismatch ${exclude_opts[@]} ${root_drive} \
+if ! duplicity ${full_backup} --allow-source-mismatch "${exclude_opts[@]}" "${root_drive}" \
     "sftp://CryptoPPBackup:${bitvise_password}@${bitvise_host}:${bitvise_port}/cryptopp_com_backup" ;
 then
     echo "Failed to backup VM to Bitvise"
