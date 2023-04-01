@@ -24,10 +24,10 @@ then
     month=$(date +%m)
     case ${month} in
         01|04|07|10)
-          full_backup=full
-          ;;
+            full_backup=full
+            ;;
         *)
-          ;;
+            ;;
     esac
 fi
 
@@ -36,13 +36,12 @@ if [ -n "${full_backup}" ]; then
 fi
 
 # Ensure the dump is properly protected
-rm -rf /backup
-mkdir -p /backup
+rm -rf /backup; mkdir -p /backup
 chmod u=rwx,g=rx,o= /backup
 
 # Ensure conf file is properly protected
 chown root:root /etc/cryptopp.conf
-chmod u=r,go= /etc/cryptopp.conf
+chmod ug=r,o= /etc/cryptopp.conf
 
 # Get passwords needed for this script
 wiki_password=$(grep WIKI_PASSWORD /etc/cryptopp.conf | cut -f 2 -d '=')
@@ -93,26 +92,26 @@ fi
 # we disconnect the web server and use --lock-tables as a workaround. At
 # MySQL 8.0.33, we can use --single-transaction again.
 if mysql --version 2>&1 | grep -q -E 'mysql[[:space:]]+Ver 8\.0\.32'; then
-   echo "Using MySQL --lock-tables --add-locks options"
-   mysql_lock_opt="--lock-tables --add-locks"
+    echo "Using MySQL --lock-tables --add-locks options"
+    mysql_lock_opt="--lock-tables --add-locks"
 else
-   echo "Using MySQL --single-transaction option"
-   mysql_lock_opt="--single-transaction"
+    echo "Using MySQL --single-transaction option"
+    mysql_lock_opt="--single-transaction"
 fi
 
 if MYSQL_PWD="${wiki_password}" \
-   mysqldump --no-tablespaces \
-     ${mysql_lock_opt} \
-     --events --triggers --routines \
-     --add-drop-table --create-options \
-     --extended-insert \
-     --default-character-set=utf8 \
-     -u mwuser -h localhost my_wiki | gzip -q -v9 > /backup/wiki.sql.gz ;
+    mysqldump --no-tablespaces \
+        ${mysql_lock_opt} \
+        --events --triggers --routines \
+        --add-drop-table --create-options \
+        --extended-insert \
+        --default-character-set=utf8 \
+        -u mwuser -h localhost my_wiki | gzip -q -v9 > /backup/wiki.sql.gz ;
 
-   # Old backup command
-   # mysqldump --single-transaction --no-tablespaces --routines \
-   # --events --triggers --add-drop-table --extended-insert \
-   # -u mwuser -h 127.0.0.1 my_wiki > /backup/wiki.sql ;
+    # Old backup command
+    # mysqldump --single-transaction --no-tablespaces --routines \
+    # --events --triggers --add-drop-table --extended-insert \
+    # -u mwuser -h 127.0.0.1 my_wiki > /backup/wiki.sql ;
 then
     echo "Dump wiki database ok"
 else
@@ -127,7 +126,7 @@ then
     echo "Continuing anyways"
 fi
 
-# The wiki.sql.gz dump will be about 20MB. Check size against 1MB.
+# The wiki.sql.gz dump will be about 70MB or 80MB compressed. Check size against 1MB.
 wiki_dump_size=$(wc -c /backup/wiki.sql.gz | awk '{print $1}')
 printf "Wiki database size is %s bytes\n" "$(numfmt --grouping ${wiki_dump_size})"
 if [ ${wiki_dump_size} -lt 1048576 ]
@@ -161,7 +160,7 @@ root_drive="/"
 
 # This is the Bitvise backup.
 if ! duplicity ${full_backup} --allow-source-mismatch ${exclude_opts[@]} ${root_drive} \
-     "sftp://CryptoPPBackup:${bitvise_password}@${bitvise_host}:${bitvise_port}/cryptopp_com_backup" ;
+    "sftp://CryptoPPBackup:${bitvise_password}@${bitvise_host}:${bitvise_port}/cryptopp_com_backup" ;
 then
     echo "Failed to backup VM to Bitvise"
     exit 1
