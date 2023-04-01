@@ -86,14 +86,26 @@ then
 fi
 
 # Backup instructions https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki
-# Avoid --single-transaction due to
+# Lock option choice due to MySQL change at versions 5.7.41 and 8.0.32 in
+# February 2023 See https://bugs.mysql.com/bug.php?id=109685 and
 # https://bugs.launchpad.net/ubuntu/+source/mysql-5.7/+bug/2003866. We failed
-# to enable RELOAD or FLUSH_TABLES for mwuser to fix the 2003866 bug. Instead
-# we disconnect the web server and use --lock-tables as a workaround.
+# to enable RELOAD or FLUSH_TABLES for mwuser to fix the 109685 bug. Instead
+# we disconnect the web server and use --lock-tables as a workaround. At
+# MySQL 8.0.33, we can use --single-transaction again.
+if mysql --version 2>&1 | grep -q -E 'mysql[[:space:]]+Ver 8\.0\.32'; then
+   echo "Using MySQL --lock-tables --add-locks options"
+   mysql_lock_opt="--lock-tables --add-locks"
+else
+   echo "Using MySQL --single-transaction option"
+   mysql_lock_opt="--single-transaction"
+fi
+
 if MYSQL_PWD="${wiki_password}" \
-   mysqldump --no-tablespaces --lock-tables \
+   mysqldump --no-tablespaces \
+     ${mysql_lock_opt} \
      --events --triggers --routines \
-     --add-drop-table --extended-insert \
+     --add-drop-table --create-options \
+     --extended-insert \
      --default-character-set=utf8 \
      -u mwuser -h localhost my_wiki | gzip -q -v9 > /backup/wiki.sql.gz ;
 
