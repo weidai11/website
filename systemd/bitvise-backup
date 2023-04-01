@@ -36,6 +36,7 @@ if [ -n "${full_backup}" ]; then
 fi
 
 # Ensure the dump is properly protected
+rm -rf /backup
 mkdir -p /backup
 chmod u=rwx,g=rx,o= /backup
 
@@ -94,7 +95,7 @@ if MYSQL_PWD="${wiki_password}" \
      --events --triggers --routines \
      --add-drop-table --extended-insert \
      --default-character-set=utf8 \
-     -u mwuser -h localhost my_wiki > /backup/wiki.sql ;
+     -u mwuser -h localhost my_wiki | gzip -q -v9 > /backup/wiki.sql.gz ;
 
    # Old backup command
    # mysqldump --single-transaction --no-tablespaces --routines \
@@ -114,8 +115,8 @@ then
     echo "Continuing anyways"
 fi
 
-# The wiki.sql dump will be about 20MB. Check size against 1MB.
-wiki_dump_size=$(wc -c /backup/wiki.sql | awk '{print $1}')
+# The wiki.sql.gz dump will be about 20MB. Check size against 1MB.
+wiki_dump_size=$(wc -c /backup/wiki.sql.gz | awk '{print $1}')
 printf "Wiki database size is %s bytes\n" "$(numfmt --grouping ${wiki_dump_size})"
 if [ ${wiki_dump_size} -lt 1048576 ]
 then
@@ -124,7 +125,7 @@ then
 fi
 
 # And ensure the dump is readbale for backup.
-chmod u=rw,g=r,o= /backup/wiki.sql
+chmod u=rw,g=r,o= /backup/wiki.sql.gz
 
 # PASSPHRASE is the GnuPG passphrase used by Duplicity.
 # All backup jobs get PASSPHRASE. Restores need the PASSPHRASE.
