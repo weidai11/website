@@ -87,12 +87,12 @@ Clear old artifacts from /tmp:
 Download the latest Mediawiki in tmp/:
 
 2. cd /tmp
-3. wget https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.39.1.tar.gz
+3. wget https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.38.6.tar.gz
 
 Temporary unpack in tmp/:
 
-4. tar -xzf mediawiki-1.39.1.tar.gz
-5. mv mediawiki-1.39.1/ w/
+4. tar -xzf mediawiki-1.38.6.tar.gz
+5. mv mediawiki-1.38.6/ w/
 6. chown -R root:www-data w/
 
 Test the copy to the filesystem:

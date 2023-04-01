@@ -116,7 +116,7 @@ fi
 
 # The wiki.sql dump will be about 20MB. Check size against 1MB.
 wiki_dump_size=$(wc -c /backup/wiki.sql | awk '{print $1}')
-echo "Wiki database size is ${wiki_dump_size} bytes"
+printf "Wiki database size is % bytes" $(numfmt --grouping ${wiki_dump_size})
 if [ ${wiki_dump_size} -lt 1048576 ]
 then
     echo "Failed to dump wiki database. Database is too small."
