@@ -84,7 +84,7 @@ then
     echo "Continuing anyways"
 fi
 
-# General backup instructions at https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki
+# Backup instructions https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki
 # Avoid --single-transaction due to
 # https://bugs.launchpad.net/ubuntu/+source/mysql-5.7/+bug/2003866. We failed
 # to enable RELOAD or FLUSH_TABLES for mwuser to fix the 2003866 bug. Instead
