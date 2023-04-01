@@ -74,14 +74,31 @@ then
     echo "Repair wiki database ok"
 else
     echo "Failed to repair wiki database"
-    # exit 1
+    echo "Continuing anyways"
 fi
 
-# --no-tablespaces due to https://dba.stackexchange.com/q/271981
+# Disable the connection from Apache to MySQL for the dump
+if ! systemctl stop apache2.service ;
+then
+    echo "Failed to stop Apache service"
+    echo "Continuing anyways"
+fi
+
+# General backup instructions at https://www.mediawiki.org/wiki/Manual:Backing_up_a_wiki
+# Avoid --single-transaction due to
+# https://bugs.launchpad.net/ubuntu/+source/mysql-5.7/+bug/2003866. We failed
+# to enable RELOAD or FLUSH_TABLES for mwuser to fix the 2003866 bug. Instead
+# we disconnect the web server and use --lock-tables as a workaround.
 if MYSQL_PWD="${wiki_password}" \
-   mysqldump --single-transaction --no-tablespaces --routines \
-     --events --triggers --add-drop-table --extended-insert \
-     -u mwuser -h 127.0.0.1 my_wiki > /backup/wiki.sql ;
+   mysqldump --no-tablespaces --lock-tables \
+     --events --triggers --routines \
+     --default-character-set=utf8 \
+     -u mwuser -h localhost my_wiki > /backup/wiki.sql ;
+
+   # Old backup command
+   # mysqldump --single-transaction --no-tablespaces --routines \
+   # --events --triggers --add-drop-table --extended-insert \
+   # -u mwuser -h 127.0.0.1 my_wiki > /backup/wiki.sql ;
 then
     echo "Dump wiki database ok"
 else
@@ -89,9 +106,17 @@ else
     exit 1
 fi
 
+# Re-enable connection from Apache to MySQL after the dump
+if ! systemctl start apache2.service ;
+then
+    echo "Failed to start Apache service"
+    echo "Continuing anyways"
+fi
+
 # The wiki.sql dump will be about 20MB. Check size against 1MB.
-wiki_sql_size=$(wc -c /backup/wiki.sql | awk '{print $1}')
-if [ ${wiki_sql_size} -lt 1048576 ]
+wiki_dump_size=$(wc -c /backup/wiki.sql | awk '{print $1}')
+echo "Wiki database size is ${wiki_dump_size} bytes"
+if [ ${wiki_dump_size} -lt 1048576 ]
 then
     echo "Failed to dump wiki database. Database is too small."
     exit 1
