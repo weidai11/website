@@ -92,6 +92,7 @@ fi
 if MYSQL_PWD="${wiki_password}" \
    mysqldump --no-tablespaces --lock-tables \
      --events --triggers --routines \
+     --add-drop-table --extended-insert \
      --default-character-set=utf8 \
      -u mwuser -h localhost my_wiki > /backup/wiki.sql ;
 
