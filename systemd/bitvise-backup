@@ -17,13 +17,18 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin
 export PATH
 
-# Determine if we need a full back. We do a full backup every three months.
+# Determine if we need a full back. We do a full backup every other month.
+# However, Duplicity recommends every month. See the following FAQ for
+# more information: https://duplicity.gitlab.io/FAQ.html#long_chains.
+# We use a longer full backup frequency since we are using a friendly
+# company's server for storage. We also compress the backup to further
+# reduce storage requirements.
 day=$(date +%d)
 if [ "${day}" = "01" ];
 then
     month=$(date +%m)
     case ${month} in
-        01|04|07|10)
+        01|03|05|07|09|11)
             full_backup=full
             ;;
         *)
