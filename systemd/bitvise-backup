@@ -11,6 +11,13 @@
 #
 # We switched to using MYSQL_PWD rather than '-p <password>' in April 2021.
 #
+# We started compressing the wiki backup in March 2023. The tarball
+# size decreased from 380 MB to 75 MB.
+#
+# We stopped exiting early on failures in April 2023. We should get as
+# much backed up as possible, even if it is incomplete. That's the
+# reason for 'echo "Continuing anyways"' instead of 'exit 1'.
+#
 # Also see https://github.com/weidai11/website/tree/master/systemd
 
 # Systemd adds random paths at times. Take full control of PATH.
@@ -121,7 +128,7 @@ then
     echo "Dump wiki database ok"
 else
     echo "Failed to dump wiki database"
-    exit 1
+    echo "Continuing anyways"
 fi
 
 # Re-enable connection from Apache to MySQL after the dump
@@ -137,7 +144,7 @@ printf "Wiki database size is %s bytes\n" "$(numfmt --grouping "${wiki_dump_size
 if [ "${wiki_dump_size}" -lt 1048576 ]
 then
     echo "Failed to dump wiki database. Database is too small."
-    exit 1
+    echo "Continuing anyways"
 fi
 
 # And ensure the dump is readbale for backup.
