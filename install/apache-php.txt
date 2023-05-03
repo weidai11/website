@@ -47,7 +47,7 @@ Change the various temp directories from /tmp to /var/lib/php/tmp.
   soap.wsdl_cache_dir="/var/lib/php/tmp"
   opcache.lockfile_path=/var/lib/php/tmp
 
-Ensure the directoru exists and is owned by www-data.
+Ensure the directory exists and is owned by www-data.
 
   mkdir -p /var/lib/php/tmp
   chown www-data:www-data /var/lib/php/tmp
@@ -68,7 +68,7 @@ and add the following to the tail:
 
 Copy security.ini to /etc/php/7.4/apache2/conf.d/99-security.ini. Be sure to
 rename it to 99-security.ini. The 99- ensures security.ini runs last to
-override previous settings.
+override previous directives or settings.
 
   $ find /etc -name 99-security.ini
   /etc/php/7.4/apache2/conf.d/99-security.ini
@@ -76,25 +76,60 @@ override previous settings.
 apache2.conf
 ============
 
-Open /etc/apache2/apache2.conf and verify logging settings:
+Open /etc/apache2/apache2.conf and verify logging directives:
 
   ErrorLog ${APACHE_LOG_DIR}/error.log
   TransferLog ${APACHE_LOG_DIR}/access.log
   LogLevel warn
 
-Ensure the following settings are set or add them if missing:
-
-  ServerSignature Off
-  ServerTokens Prod
-
-Add the following to apache2.conf. It allows /var/www/html/.htaccess
-to override configuration options.
+And add these directives in /etc/apache2/apache2.conf:
 
   <Directory /var/www/html>
-      Options Indexes FollowSymLinks
-      AllowOverride FileInfo Options
-      Require all granted
+    Options Indexes FollowSymLinks
+    AllowOverride FileInfo Options
+    Require all granted
   </Directory>
+
+  # https://stackoverflow.com/a/39261812
+  <IfModule mod_security.c>
+    <If "%{REQUEST_URI} =~ %w/index.php?%">
+      SecFilterEngine Off
+      SecFilterScanPOST Off
+    </If>
+  </IfModule>
+
+Ensure the following settings are set or add them if missing:
+
+  # https://www.cyberciti.biz/faq/rhel-centos-hide-httpd-version/
+  ServerSignature Off
+  ServerTokens Prod
+ssl.conf
+========
+
+Open /etc/apache2/mods-available/ssl.conf and add directives.
+cryptopp.conf provides our TLS configuration. Remove the sample
+virtual host. Delete everything between <VirtualHost> and </VirtualHost>,
+including the tags.
+
+In the global area remaining in ssl.conf, add the following for OCSP stapling.
+Add it after SSLSessionCache.
+
+  # OCSP Stapling
+  SSLUseStapling On
+  SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(8192)
+
+Add the following for logging:
+
+  # Logging using warn level
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  TransferLog ${APACHE_LOG_DIR}/access.log
+  LogLevel warn
+
+And add the following for cipher suite configurations:
+
+  # Protocols and cipher suites
+  SSLProtocol -all +TLSv1 +TLSv1.1 +TLSv1.2 +TLSv1.3
+  SSLCipherSuite HIGH:!aNULL:!kRSA:!MD5:!RC4
 
 MPM model
 =========
@@ -200,20 +235,6 @@ Enable the site.
   # a2ensite cryptopp
   Enabling site cryptopp.
 
-ssl.conf
-========
-
-cryptopp.conf provides our TLS configuration. Remove the sample
-virtual host. Delete everything between <VirtualHost> and </VirtualHost>,
-including the tags.
-
-In the global area remaining in ssl.conf, add the following for OCSP stapling.
-Add it after SSLSessionCache.
-
-# OCSP Stapling
-SSLUseStapling On
-SSLStaplingCache shmcb:${APACHE_RUN_DIR}/ssl_stapling(8192)
-
 .htaccess
 =========
 
@@ -235,9 +256,12 @@ https://www.mediawiki.org/wiki/Manual:Short_URL
 Permissions
 ===========
 
-Ownership of /var/html is root:www-data. Other has no access.
+Ownership of /var/html is root:www-data. Root has RW access. Apache has R access. Other has no access.
+Apache does not need write access to most of the files and directories, so resist the urge. And
+definitely avoid Stack Overflow answers like chmod -R 0777.
 
   chown -R root:www-data /var/www-data
+  chmod -R g=r /var/html
   chmod -R o= /var/html
 
 PHP has an upload directory at /var/lib/php/session, and a temp directory at
@@ -245,7 +269,11 @@ PHP has an upload directory at /var/lib/php/session, and a temp directory at
 
   mkdir -p /var/lib/php/tmp
   chown -R www-data:www-data /var/lib/php
+  chmod -R g=rw /var/lib/php/tmp
+  chmod -R g=rw /var/lib/php/session
   chmod -R o= /var/lib/php
+
+If in doubt, then check php.ini and see where its scratch directory is located.
 
 Apache Service
 ==============
