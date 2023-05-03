@@ -103,6 +103,7 @@ Ensure the following settings are set or add them if missing:
   # https://www.cyberciti.biz/faq/rhel-centos-hide-httpd-version/
   ServerSignature Off
   ServerTokens Prod
+
 ssl.conf
 ========
 
