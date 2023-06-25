@@ -121,7 +121,7 @@
   <tt>dlltest.vcxproj</tt>. The projects are now deprecated and subject to removal.</p>
   <h2>File Changes</h2>
   <p>Below is a list of all files that were created or renamed at Crypto++ 8.7.</p>
-  <pre>$ git diff-tree -r --summary CRYPTOPP_8_6_0 CRYPTOPP_8_7_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+  <pre>$ git diff-tree -r --summary CRYPTOPP_8_6_0 CRYPTOPP_8_7_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | grep -E '(\.h|\.cpp|\.txt|\.dat)'
 create   TestPrograms/test_arm_armv7.cpp
 create   power7_ppc.cpp
 create   power8_ppc.cpp

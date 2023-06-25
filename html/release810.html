@@ -165,7 +165,7 @@
   <p>Below is a list of all files that were added at Crypto++ 8.1. <tt>keccakc.h</tt> and
   <tt>keccakc.cpp</tt> were refactored and deleted.</p>
   <pre>
-$ git diff-tree -r --summary CRYPTOPP_8_0_0 CRYPTOPP_8_1_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+$ git diff-tree -r --summary CRYPTOPP_8_0_0 CRYPTOPP_8_1_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | grep -E '(\.h|\.cpp|\.txt|\.dat)'
 create   TestVectors/aead.txt
 create   TestVectors/chacha20poly1305.txt
 create   TestVectors/poly1305_tls.txt

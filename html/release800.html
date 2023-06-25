@@ -339,7 +339,7 @@ endif
   work when using a dash). For example, <tt>adv-simd.h</tt> was renamed
   <tt>adv_simd.h</tt>. The renames were not included in the list.</p>
   <pre>
-$ git diff-tree -r --summary CRYPTOPP_7_0_0 CRYPTOPP_8_0_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+$ git diff-tree -r --summary CRYPTOPP_7_0_0 CRYPTOPP_8_0_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | grep -E '(\.h|\.cpp|\.txt|\.dat)'
 create   aes_armv4.S
 create   aes_armv4.h
 create   chacha_avx.cpp

@@ -151,7 +151,7 @@
   5.6.5.</p>The header file <tt>ossig.h</tt> is new and needs to be distributed.
   Additions to <tt>TestScripts</tt> can probably be ignored.
   <pre>
-$ git diff-tree -r --summary CRYPTOPP_5_6_4 CRYPTOPP_5_6_5 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+$ git diff-tree -r --summary CRYPTOPP_5_6_4 CRYPTOPP_5_6_5 | grep -v "change" | awk '{$2=$3=""; print $0}' | grep -E '(\.h|\.cpp|\.txt|\.dat)'
 create TestScripts/coverity-linux.txt
 create TestScripts/coverity-macosx.txt
 create TestScripts/coverity-windows.txt

@@ -243,7 +243,7 @@
   <p>Below is a list of <em>source</em> files that were added or deleted at Crypto++
   5.6.4.</p>
   <pre>
-$ git diff-tree -r --summary CRYPTOPP_5_6_3 CRYPTOPP_5_6_4 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+$ git diff-tree -r --summary CRYPTOPP_5_6_3 CRYPTOPP_5_6_4 | grep -v "change" | awk '{$2=$3=""; print $0}' | grep -E '(\.h|\.cpp|\.txt|\.dat)'
 create CMakeLists.txt
 create TestData/fhmqv160.dat
 create TestData/fhmqv256.dat

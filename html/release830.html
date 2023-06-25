@@ -217,7 +217,7 @@ Done writing config_cxx.h
   <h2>File Changes</h2>
   <p>Below is a list of all files that were added at Crypto++ 8.3.</p>
   <pre>
-$ git diff-tree -r --summary CRYPTOPP_8_2_0 CRYPTOPP_8_3_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.S|\.txt|\.dat)'
+$ git diff-tree -r --summary CRYPTOPP_8_2_0 CRYPTOPP_8_3_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | grep -E '(\.h|\.cpp|\.S|\.txt|\.dat)'
 create   TestData/ecies_p160.dat
 create   TestData/ecies_t163.dat
 create   TestVectors/xts.txt

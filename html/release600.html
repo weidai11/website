@@ -350,7 +350,7 @@ CRYPTOPP_SIMON_FLAG: -march=armv8-a
   <p>Below is a list of <em>all</em> files that were added or deleted at Crypto++
   6.0.</p>
   <pre>
-$ git diff-tree -r --summary CRYPTOPP_5_6_5 CRYPTOPP_6_0_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | egrep '(\.h|\.cpp|\.txt|\.dat)'
+$ git diff-tree -r --summary CRYPTOPP_5_6_5 CRYPTOPP_6_0_0 | grep -v "change" | awk '{$2=$3=""; print $0}' | grep -E '(\.h|\.cpp|\.txt|\.dat)'
 create   TestData/aria.dat
 create   TestData/rsa2048a.dat
 create   TestVectors/aria.txt
