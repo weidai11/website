@@ -17,11 +17,11 @@ else
 fi
 
 HTML_TIDY=$(command -v tidy)
-if [[ -z "$HTML_TIDY" ]]; then
+if [[ -z "${HTML_TIDY}" ]]; then
     HTML_TIDY=$(command -v htmltidy)
 fi
 
-if [[ -z "$HTML_TIDY" ]]; then
+if [[ -z "${HTML_TIDY}" ]]; then
     echo "ERROR: could not locate HTML Tidy"
     exit 1
 fi
@@ -38,23 +38,23 @@ do
     echo "**************** $file ****************"
 
     echo "tidy: processing file $file..."
-    "$HTML_TIDY" -utf8 --quiet yes --tidy-mark no --output-bom no --indent auto --indent-spaces 2 --wrap 90 -m "$file"
+    "${HTML_TIDY}" -utf8 --quiet yes --tidy-mark no --output-bom no --indent auto --indent-spaces 2 --wrap 90 -m "$file"
 
     echo "sed: processing file $file..."
 
     # Delete trailing whitespace
-    "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
+    "${SED}" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
 
     # Fix encoding
-    "$SED" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' "$file"
+    "${SED}" "${SED_OPTS[@]}" -e's/opci&Atilde;&sup3;n/opción/g' "$file"
 
     # Fix CRLF endings after sed
     unix2dos "$file" 1>/dev/null
 
     # Delete the generator markup tag
-    #"$SED" "${SED_OPTS[@]}" -e'/<meta name="generator".*/d' "$file"
-    #"$SED" "${SED_OPTS[@]}" -e'/"HTML Tidy.*/d' "$file"
-    #"$SED" "${SED_OPTS[@]}" -e'/"*see www.w3.org*/d' "$file"
+    #"${SED}" "${SED_OPTS[@]}" -e'/<meta name="generator".*/d' "$file"
+    #"${SED}" "${SED_OPTS[@]}" -e'/"HTML Tidy.*/d' "$file"
+    #"${SED}" "${SED_OPTS[@]}" -e'/"*see www.w3.org*/d' "$file"
 
     echo
 done
@@ -66,17 +66,17 @@ do
     echo "sed: processing file $file..."
 
     # Delete the generator markup tag
-    # "$SED" "${SED_OPTS[@]}" -e'/<meta name="generator"/d' "$file"
+    # "${SED}" "${SED_OPTS[@]}" -e'/<meta name="generator"/d' "$file"
 
     # Delete trailing whitespace
-    "$SED" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
+    "${SED}" "${SED_OPTS[@]}" -e's/[[:space:]]*$//' "$file"
 
     # Fix CRLF endings after sed
     unix2dos "$file" 1>/dev/null
 done
 
 # Delete empty lines inserted by html-tidy
-"$SED" "${SED_OPTS[@]}" '/^[[:space:]]*$/d' index.html
+"${SED}" "${SED_OPTS[@]}" '/^[[:space:]]*$/d' index.html
 unix2dos index.html 1>/dev/null
 
 exit 0
