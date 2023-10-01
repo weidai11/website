@@ -28,8 +28,12 @@
     </tbody>
   </table>
   <h2>Crypto++ 8.9</h2>
-  <p>Crypto++ 8.9 was released on June 25, 2023. The 8.9 release was a minor, unplanned
+  <p>Crypto++ 8.9 was released on October 1, 2023. The 8.9 release was a minor, unplanned
   release. There were no CVEs and one memory error.</p>
+  <p>The 8.9 release was driven by the fix for <tt>ProcessData</tt>, and the failures
+  when <tt>inString==outString</tt>. Also see <a href=
+  "https://github.com/weidai11/cryptopp/issues/1231">GH #1231, Rabbit Produces null
+  Keystream When inString == outString</a>.</p>
   <h2>Download</h2>
   <p>The download is available from the Crypto++ website. The checksums for the download
   are below. Release signatures can be verified using GnuPG according to <a href=
@@ -60,27 +64,32 @@
         <li>88 unique contributors as of this release</li>
       </ul>
     </li>
+    <li>add additional tests to datatest.cpp</li>
     <li>fix SIMON128 Asan finding on POWER8</li>
     <li>fix AES/CFB and AES/CTR modes self test failures when using Cryptogams AES on
     ARMv7</li>
     <li>fix ARIA/CTR mode self test failures when inString==outString</li>
     <li>fix HIGHT/CTR mode self test failures when inString==outString</li>
     <li>fix Rabbit/CTR mode self test failures when inString==outString</li>
-    <li>fix Prime Table and dangling reference to a temporary&gt;</li>
+    <li>fix HC128/CTR and HC256/CTR mode self test failures when inString==outString</li>
+    <li>fix Prime Table and dangling reference to a temporary</li>
     <li>fix Singleton::Ref when using C++11 memory fences</li>
     <li>remove unneeded call to Crop() in Randomize()</li>
   </ul>
   <h2>Bug fixes and Minor Issues</h2>
   <ul>
+    <li>add additional tests to datatest.cpp (GH #1231)</li>
     <li>fix SIMON128 Asan finding on POWER8 (GH #1237)</li>
     <li>fix AES/CFB and AES/CTR modes self test failures when using Cryptogams AES on
     ARMv7 (GH #1236)</li>
     <li>fix ARIA/CTR mode self test failures when inString==outString (GH #1235)</li>
     <li>fix HIGHT/CTR mode self test failures when inString==outString (GH #1234)</li>
     <li>fix Rabbit/CTR mode self test failures when inString==outString (GH #1231)</li>
-    <li>fix Prime Table and dangling reference to a temporary&gt; (GH #1210)</li>
-    <li>fix Singleton::Ref when using C++11 memory fences (GH 1208)</li>
-    <li>remove unneeded call to Crop() in Randomize() (GH 1206)</li>
+    <li>fix HC128/CTR and HC256/CTR mode self test failures when inString==outString (GH
+    #1231)</li>
+    <li>fix Prime Table and dangling reference to a temporary (GH #1210)</li>
+    <li>fix Singleton::Ref when using C++11 memory fences (GH #1208)</li>
+    <li>remove unneeded call to Crop() in Randomize() (GH #1206)</li>
   </ul>
   <h2>Memory Error</h2>
   <p>SIMON128 was flagged with an Asan finding on POWER8 and above. It was an off-by one,
