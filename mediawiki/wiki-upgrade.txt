@@ -4,6 +4,11 @@ it later. Second, we have to install a bunch of developer tools and
 then remove them. Third, Mediawiki uses bleeding edge components but
 some OSes provide older software.
 
+Composer is a constant source of problems. If you encounter a
+Composer problem, then back-out the change and restore to a
+previous version of Mediawiki. Then ask a question on the
+Mediawiki mailing list.
+
 You should set aside about 30 minutes to one hour for the migration.
 The process itself is copy/paste and should take about 10 minutes
 after the backup. The extra time is in case something goes sideways.
@@ -11,6 +16,12 @@ after the backup. The extra time is in case something goes sideways.
 In the instructions below the Crypto++ Wiki is located at
 /var/www/html/w. https://www.cryptopp.com/wiki works because
 of an Apache mod-rewrite rule.
+
+
+
+=============================================================================
+Mediawiki Update Process
+=============================================================================
 
 Step 1 - Get root
 =================
@@ -81,12 +92,12 @@ Clear old artifacts from /tmp:
 Download the latest Mediawiki in tmp/:
 
 2. cd /tmp
-3. wget https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.39.4.tar.gz
+3. wget https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.39.5.tar.gz
 
 Temporary unpack in tmp/:
 
-4. tar -xzf mediawiki-1.39.4.tar.gz
-5. mv mediawiki-1.39.4/ w/
+4. tar -xzf mediawiki-1.39.5.tar.gz
+5. mv mediawiki-1.39.5/ w/
 6. chown -R root:www-data w/
 
 Test the copy to the filesystem:
@@ -155,6 +166,9 @@ If you experience errors in vendor/ then revisit Step (6).
 Step (6) deletes the old vendor/ directory in preparation
 for the Composer updates.
 
+If you experience errors due to Composer, then restore the old
+Mediawiki installation. See 'Mediawiki Restore Process' below. 
+
 Step 11 - Restore LocalSettings.php
 ===================================
 
@@ -187,7 +201,7 @@ If update.php succeeds, then the migration is mostly complete.
 
 If update.php fails, then fix the errors until it succeeds. If it
 still fails, then you have to go back to the old installation located
-in /var/wiki-backup.
+in /var/wiki-backup. See 'Mediawiki Restore Process' below.
 
 Step 13 - Restore server hardening
 ==================================
@@ -264,3 +278,17 @@ so this ensures we have one good backup for {current wiki, current database}
 combination.
 
 1. systemctl start bitvise-backup.service
+
+
+
+=============================================================================
+Mediawiki Restore Process
+=============================================================================
+
+If you need to restore a backup, perform the following steps:
+
+1. rm -rf /var/www/html/w
+2. cp -r /var/wiki-backup /var/www/html/w
+3. mv /var/www/html/wiki-backup /var/www/html/w
+4. systemctl start apache2.service
+5. bash /var/www/html/w/update-wiki.sh
