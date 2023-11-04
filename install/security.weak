@@ -57,7 +57,7 @@ cgi.force_redirect=On
 
 ;; #16: Session Path
 session.save_path="/var/lib/php/sessions"
-upload_tmp_dir="/var/lib/php/sessions"
+upload_tmp_dir="/var/lib/php/tmp"
 
 ;; #17: Keep PHP, Software, And OS Up to Date
 ;; Done...
