@@ -30,12 +30,15 @@ export PATH
 # We use a longer full backup frequency since we are using a friendly
 # company's server for storage. We also compress the backup to further
 # reduce storage requirements.
+# Note: We changed to a full backup every three months in July 2024.
+# We ran out of backup storage space, and fewer full backups should help
+# to keep older backup sets. We are guessing 3 or 4 years is good enough.
 day=$(date +%d)
 if [ "${day}" = "01" ];
 then
     month=$(date +%m)
     case ${month} in
-        01|03|05|07|09|11)
+        01|04|07|10)
             full_backup=full
             ;;
         *)
@@ -155,6 +158,7 @@ chmod u=rw,g=r,o= /backup/wiki.sql.gz
 export PASSPHRASE="${gnupg_password}"
 
 exclude_opts=()
+
 exclude_opts+=("--exclude /proc")
 exclude_opts+=("--exclude /dev")
 exclude_opts+=("--exclude /sys")
@@ -171,6 +175,8 @@ exclude_opts+=("--exclude /boot/grub")
 exclude_opts+=("--exclude /etc/fstab")
 exclude_opts+=("--exclude /lost+found")
 exclude_opts+=("--exclude /root/.cache")
+
+exclude_opts+=("--exclude-device-files")
 # exclude_opts+=("--exclude /etc/sysconfig/network-scripts")
 
 root_drive="/"
