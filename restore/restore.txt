@@ -75,11 +75,11 @@ If OWASP CRS rules are installed, then remove them:
 Restore to /tmp/restore
 =======================
 
-Run Duplicity with the following command. <password>, <host>, <port> and <dir>
+Run Duplicity with the following command. <password>, <host>, and <port>
 are available in in cryptopp.conf. cryptopp.conf if a file that you should have
-a local encrypted copy.
+a local encrypted copy. <remote_dir> is hard-coded in the backup script.
 
-  duplicity restore --file-to-restore "/" "sftp://CryptoPPBackup:<password>@<host>:<port>/<dir>" "/tmp/restore"
+  duplicity restore --file-to-restore "/" "sftp://CryptoPPBackup:<password>@<host>:<port>/<remote_dir>" "/tmp/restore"
 
 After the command completes the restored filesystem is available at
 /tmp/restore.
@@ -218,7 +218,7 @@ Create the Mediawiki database.
   Query OK, 1 row affected (0.01 sec)
 
 Create the Mediawiki user. The password is the wiki user password. It is
-16-characters and starts with "fe".
+32-characters and starts with "fe".
 
   mysql> CREATE USER 'mwuser'@'localhost' IDENTIFIED BY '<password>';
   Query OK, 0 rows affected (0.01 sec)
