@@ -159,25 +159,25 @@ export PASSPHRASE="${gnupg_password}"
 
 exclude_opts=()
 
-exclude_opts+=("--exclude /proc")
-exclude_opts+=("--exclude /dev")
-exclude_opts+=("--exclude /sys")
-exclude_opts+=("--exclude /mnt")
-exclude_opts+=("--exclude /run")
-exclude_opts+=("--exclude /tmp")
-exclude_opts+=("--exclude /udev")
-exclude_opts+=("--exclude /var/cache")
-exclude_opts+=("--exclude /var/lock")
-exclude_opts+=("--exclude /var/run")
-exclude_opts+=("--exclude /var/tmp")
+exclude_opts+=("--exclude" "/proc")
+exclude_opts+=("--exclude" "/dev")
+exclude_opts+=("--exclude" "/sys")
+exclude_opts+=("--exclude" "/mnt")
+exclude_opts+=("--exclude" "/run")
+exclude_opts+=("--exclude" "/tmp")
+exclude_opts+=("--exclude" "/udev")
+exclude_opts+=("--exclude" "/var/cache")
+exclude_opts+=("--exclude" "/var/lock")
+exclude_opts+=("--exclude" "/var/run")
+exclude_opts+=("--exclude" "/var/tmp")
 
-exclude_opts+=("--exclude /boot/grub")
-exclude_opts+=("--exclude /etc/fstab")
-exclude_opts+=("--exclude /lost+found")
-exclude_opts+=("--exclude /root/.cache")
+exclude_opts+=("--exclude" "/boot/grub")
+exclude_opts+=("--exclude" "/etc/fstab")
+exclude_opts+=("--exclude" "/lost+found")
+exclude_opts+=("--exclude" "/root/.cache")
 
 exclude_opts+=("--exclude-device-files")
-# exclude_opts+=("--exclude /etc/sysconfig/network-scripts")
+# exclude_opts+=("--exclude" "/etc/sysconfig/network-scripts")
 
 root_drive="/"
 
