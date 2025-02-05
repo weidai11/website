@@ -92,12 +92,12 @@ Clear old artifacts from /tmp:
 Download the latest Mediawiki in tmp/:
 
 2. cd /tmp
-3. wget https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.39.5.tar.gz
+3. wget https://releases.wikimedia.org/mediawiki/1.39/mediawiki-1.39.11.tar.gz
 
 Temporary unpack in tmp/:
 
-4. tar -xzf mediawiki-1.39.5.tar.gz
-5. mv mediawiki-1.39.5/ w/
+4. tar -xzf mediawiki-1.39.11.tar.gz
+5. mv mediawiki-1.39.11/ w/
 6. chown -R root:www-data w/
 
 Test the copy to the filesystem:
@@ -133,7 +133,7 @@ Step 9 - Disable server hardening
 Composer needs access to directories and functions we have disabled.
 Temporarily re-enable them for Composer.
 
-1. cp /etc/php/7.4/apache2/conf.d/99-security.weak /etc/php/7.4/apache2/conf.d/99-security.ini
+1. cp /etc/php/8.2/apache2/conf.d/99-security.weak /etc/php/8.2/apache2/conf.d/99-security.ini
 
 99-security.weak allows:
    - open_basedir=<any>
@@ -206,7 +206,7 @@ in /var/wiki-backup. See 'Mediawiki Restore Process' below.
 Step 13 - Restore server hardening
 ==================================
 
-1. cp /etc/php/7.4/apache2/conf.d/99-security.hard /etc/php/7.4/apache2/conf.d/99-security.ini
+1. cp /etc/php/8.2/apache2/conf.d/99-security.hard /etc/php/8.2/apache2/conf.d/99-security.ini
 
 99-security.hard re-enables:
    - open_basedir="..."
@@ -254,7 +254,7 @@ update-wiki.sh is available in this GitHub repo.
 
 And then:
 
-4. bash /var/www/html/w/update-wiki.sh
+4. bash /var/www/html/update-wiki.sh
 
 update-wiki.sh also restarts MySQL and Apache.
 
