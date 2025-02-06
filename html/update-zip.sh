@@ -17,7 +17,7 @@ if [ ! -d "${www_directory}" ]; then
     exit 1
 fi
 
-if [ ! $(command -v unzip 2>/dev/null) ]; then
+if ! command -v unzip 2>/dev/null; then
     echo "Unable to locate unzip program"
     exit 1
 fi
@@ -33,14 +33,14 @@ do
     # '1998-17-01 20:19' (Ubuntu). I guess unzip changed its output format.
     # Check length of the first field. 2 digits is month, 4 digits is year.
     # We check for 3 instead of 2 because Posix cut adds a newline.
-    len=$(echo -n ${ft} | cut -f 1 -d '-' | wc -c)
+    len=$(echo -n "${ft}" | cut -f 1 -d '-' | wc -c)
     if [[ ${len} -eq 3 ]];
     then
         # Fix date. '01-17-1998 20:19' -> '1998-01-17 20:19'.
-        month=$(echo -n ${ft} | cut -b 1-2)
-        day=$(echo -n ${ft} | cut -b 4-5)
-        year=$(echo -n ${ft} | cut -b 7-10)
-        seconds=$(echo -n ${ft} | cut -b 12-)
+        month=$(echo -n "${ft}" | cut -b 1-2)
+        day=$(echo -n "${ft}" | cut -b 4-5)
+        year=$(echo -n "${ft}" | cut -b 7-10)
+        seconds=$(echo -n "${ft}" | cut -b 12-)
         ft="${year}-${month}-${day} ${seconds}"
     fi
 
