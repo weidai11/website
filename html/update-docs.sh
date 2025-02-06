@@ -23,11 +23,11 @@ fi
 # Red Hat with SCL uses httpd24-httpd.service, Fedora
 # uses httpd24.service, Debian uses apache2.service
 services=$(systemctl list-units --type=service 2>/dev/null)
-if echo ${services} | grep -q httpd24-httpd.service; then
+if echo "${services}" | grep -q httpd24-httpd.service; then
     service_name="httpd24-httpd.service"
-elif echo ${services} | grep -q httpd24.service; then
+elif echo "${services}" | grep -q httpd24.service; then
     service_name="httpd24.service"
-elif echo ${services} | grep -q apache2.service; then
+elif echo "${services}" | grep -q apache2.service; then
     service_name="apache2.service"
 else
     echo "service name error"
@@ -58,7 +58,7 @@ fi
 echo "Preparing files and directories"
 mkdir -p "${www_directory}/docs"
 mv CryptoPPRef.zip "${www_directory}/docs"
-cd "${www_directory}/docs"
+cd "${www_directory}/docs" || exit 1
 
 # Remove old link, add new link
 unlink ref/ 2>/dev/null
