@@ -38,7 +38,7 @@ echo "Ownership: ${user_group}"
 echo "Service: ${service_name}"
 
 # This follows Crypto++ release number
-ref_dir=ref850/
+ref_dir=ref890/
 
 if [[ $(id -u) != "0" ]]; then
     echo "You must be root to update the docs"
@@ -61,10 +61,8 @@ mv CryptoPPRef.zip "${www_directory}/docs"
 cd "${www_directory}/docs"
 
 # Remove old link, add new link
-# rm -f ref
 unlink ref/ 2>/dev/null
-mkdir -p "${ref_dir}"
-ln -s ref "${ref_dir}"
+ln -s "${ref_dir}" ref
 
 echo "Unpacking documentation"
 unzip -aoq CryptoPPRef.zip -d .
