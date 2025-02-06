@@ -18,6 +18,10 @@
 # much backed up as possible, even if it is incomplete. That's the
 # reason for 'echo "Continuing anyways"' instead of 'exit 1'.
 #
+# We switched to Duplicity's FTP_PASSWORD in February 2025.
+#
+# We added FULL_BACKUP in February 2025.
+#
 # Also see https://github.com/weidai11/website/tree/master/systemd
 
 # Systemd adds random paths at times. Take full control of PATH.
@@ -44,6 +48,13 @@ then
         *)
             ;;
     esac
+fi
+
+# If the user specifies FULL_BACKUP=<something>, then perform full backup
+# regardless of the value.
+if [[ ! -z "${FULL_BACKUP}" ]]; then
+    echo "FULL_BACKUP environmental variable is set"
+    full_backup=full
 fi
 
 if [ -n "${full_backup}" ]; then
@@ -157,6 +168,10 @@ chmod u=rw,g=r,o= /backup/wiki.sql.gz
 # All backup jobs get PASSPHRASE. Restores need the PASSPHRASE.
 export PASSPHRASE="${gnupg_password}"
 
+# FTP_PASSWORD is the password to connect to the backup server
+# used by Duplicity.
+export FTP_PASSWORD="${bitvise_password}"
+
 exclude_opts=()
 
 exclude_opts+=("--exclude" "/proc")
@@ -183,7 +198,7 @@ root_drive="/"
 
 # This is the Bitvise backup.
 if ! duplicity ${full_backup} --allow-source-mismatch "${exclude_opts[@]}" "${root_drive}" \
-    "sftp://CryptoPPBackup:${bitvise_password}@${bitvise_host}:${bitvise_port}/cryptopp_com_backup" ;
+    "sftp://CryptoPPBackup@${bitvise_host}:${bitvise_port}/cryptopp_com_backup" ;
 then
     echo "Failed to backup VM to Bitvise"
     exit 1
