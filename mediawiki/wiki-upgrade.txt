@@ -179,7 +179,7 @@ Mediawiki installation. See 'Mediawiki Restore Process' below.
    # find -name composer.json
    composer.json
 
-4. composer update
+4. composer update --no-dev
 
 Step 11 - Restore LocalSettings.php
 ===================================
