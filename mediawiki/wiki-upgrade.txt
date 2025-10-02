@@ -167,7 +167,19 @@ Step (6) deletes the old vendor/ directory in preparation
 for the Composer updates.
 
 If you experience errors due to Composer, then restore the old
-Mediawiki installation. See 'Mediawiki Restore Process' below. 
+Mediawiki installation. See 'Mediawiki Restore Process' below.
+
+3. If step (2) fails, then this may work. Verify the composer
+   lock file and json file are in pwd:
+
+   # pwd
+   /var/www/html/w
+   # find -name composer.lock
+   composer.lock
+   # find -name composer.json
+   composer.json
+
+4. composer update
 
 Step 11 - Restore LocalSettings.php
 ===================================
