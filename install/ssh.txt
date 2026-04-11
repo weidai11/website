@@ -14,7 +14,8 @@ This should already be installed, but just in case...
 Generate Public Keys
 ====================
 
-Generate ed25519, ecdsa and RSA-3072 keys for the webserver
+Generate ed25519, ecdsa and RSA-3072 host keys for the webserver.  Host keys must
+not have a password.
 
   ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
   ssh-keygen -t ecdsa -b 256 -f /etc/ssh/ssh_host_ecdsa_key -N ""
