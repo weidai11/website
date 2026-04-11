@@ -26,7 +26,13 @@ Set public key authentication:
   # Disable passwords
   PasswordAuthentication no
   ChallengeResponseAuthentication no
+  KerberosAuthentication no
+  KerberosOrLocalPasswd no
+  GSSAPIAuthentication no
   UsePAM no
+
+  # Debian and Fedora patches, CVE-2026-3497
+  GSSAPIKeyExchange no
 
   # Enable public key
   PubkeyAuthentication yes
@@ -34,7 +40,7 @@ Set public key authentication:
 Disable root logins via SSH. If you have network problems, then you have to use
 the Hostinger virtual console to regain control.
 
-  # cat /etc/ssh/sshd_config.d/20-disable_root_login.conf
+  # cat /etc/ssh/sshd_config.d/20-no_root_login.conf
   PermitRootLogin no
 
 SSH Service
