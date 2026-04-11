@@ -1,4 +1,4 @@
-This document details the Crypto++ webserver SSH configuration. The virtual
+This document details the Crypto++ webserver SSH configuration.  The virtual
 machine is a Debian 12 VM provided by Hostinger.
 
 Install OpenSSH packages
@@ -11,11 +11,22 @@ This should already be installed, but just in case...
   # Other tools needed on occasion
   apt-get install net-tools certbot git unzip
 
+Generate Public Keys
+====================
+
+Generate ed25519, ecdsa and RSA-3072 keys for the webserver
+
+  ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
+  ssh-keygen -t ecdsa -b 256 -f /etc/ssh/ssh_host_ecdsa_key -N ""
+  ssh-keygen -t rsa -b 3072 -f /etc/ssh/ssh_host_rsa_key -N ""
+
+Do NOT generate a DSA key.  It is no longer needed.
+
 Pubkey Authentication
 =====================
 
-Two mods are made to the SSH configuration. The first enables Public Key
-Authentication only. The second disables root logins over SSH.
+Two mods are made to the SSH configuration.  The first enables Public Key
+Authentication only.  The second disables root logins over SSH.
 
   # ls /etc/ssh/sshd_config.d
   10-pubkey_auth.conf  20-disable_root_login.conf
@@ -37,7 +48,7 @@ Set public key authentication:
   # Enable public key
   PubkeyAuthentication yes
 
-Disable root logins via SSH. If you have network problems, then you have to use
+Disable root logins via SSH.  If you have network problems, then you have to use
 the Hostinger virtual console to regain control.
 
   # cat /etc/ssh/sshd_config.d/20-no_root_login.conf
@@ -54,11 +65,12 @@ Restart OpenSSH service
 Audit options
 =============
 
-Note well: Options are sticky in sshd_config. The first option wins. After
+Note well: Options are sticky in sshd_config.  The first option wins.  After
 changing the configuration verify they are set with:
 
   # sshd -T | grep -i -E 'pam|password|authentication|root'
   usepam no
+  pamservicename sshd
   permitrootlogin no
   hostbasedauthentication no
   pubkeyauthentication yes
@@ -66,5 +78,6 @@ changing the configuration verify they are set with:
   gssapiauthentication no
   passwordauthentication no
   kbdinteractiveauthentication no
-  challengeresponseauthentication no
   permitemptypasswords no
+  chrootdirectory none
+  authenticationmethods any
