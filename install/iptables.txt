@@ -1,5 +1,5 @@
 This document details the Crypto++ webserver configuration for iptables.
-The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1).
+The virtual machine is a Debian 12 VM provided by Hostinger.
 
 The following instructions install Iptables and detail some of the
 important settings for the webserver.

@@ -1,5 +1,5 @@
 This document details the Crypto++ webserver's configuration for MySQL.
-The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1).
+The virtual machine is a Debian 12 VM provided by Hostinger.
 The webserver uses a LAMP stack with Apache, PHP and MySQL. The webserver
 also uses Mediawiki software from the Mediawiki Foundation (not the distro).
 

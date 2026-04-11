@@ -1,5 +1,5 @@
 This document details the Crypto++ webserver SSH configuration. The virtual
-machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1).
+machine is a Debian 12 VM provided by Hostinger.
 
 Install OpenSSH packages
 ========================
@@ -32,7 +32,7 @@ Set public key authentication:
   PubkeyAuthentication yes
 
 Disable root logins via SSH. If you have network problems, then you have to use
-the IONOS virtual console to regain control.
+the Hostinger virtual console to regain control.
 
   # cat /etc/ssh/sshd_config.d/20-disable_root_login.conf
   PermitRootLogin no

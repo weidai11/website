@@ -1,8 +1,8 @@
 The documents the restore procedure for the web server. It is a mashup of
 intall/apache-php.txt, install/mysql.txt with a dose of a Bitvise restoration.
 
-The virtual machine is a Ubuntu 20 VM provided by IONOS (a.k.a. 1&1). The
-webserver uses a LAMP stack with Apache, PHP and MySQL. The webserver also uses
+The virtual machine is a Debian 12 VM provided by Hostinger. The webserver
+ses a LAMP stack with Apache, PHP and MySQL. The webserver also uses
 Mediawiki software from the Mediawiki Foundation (and not the distro).
 
 The process is detailed as follows. The process takes about 20 minutes since
@@ -26,10 +26,10 @@ it is mostly copy and paste.
 Provision a VM
 ==============
 
-If the VM is being reprovisioned then log into the IONOS console. JW should
-have provided you credentials to his IONOS account.
+If the VM is being reprovisioned then log into the Hostinger console. JW should
+have provided you credentials to his Hostinger account.
 
-Go to "My IONOS". Go to "Servers & Cloud". Highlight the Crypto++ webserver.
+Go to "My Hostinger". Go to "Servers & Cloud". Highlight the Crypto++ webserver.
 Select Reinstall.
 
 Create user accounts
